@@ -1,0 +1,43 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+.content {
+  position: absolute;
+  padding:0;
+  margin:0;
+
+  top:0;
+  left:0;
+
+  width: 100%;
+  height: 200%;
+
+  transform-origin: top left;
+  transition: transform .7s $snap;
+}
+
+.content-inner {
+  overflow-y: auto;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  padding: 100px 0;
+
+  @media all and (max-width: $tablet) {
+    padding: 90px 0;
+  }
+}
+
+.menu-opened.content {
+  transform: rotate(-30deg);
+}
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+}

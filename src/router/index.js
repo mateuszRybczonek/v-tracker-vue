@@ -1,15 +1,29 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import VueRouter from 'vue-router'
+import store from '../store'
 
-Vue.use(Router)
+import WelcomePage from '../components/welcome/welcome.vue'
+import DashboardPage from '../components/dashboard/dashboard.vue'
+import SignupPage from '../components/auth/signup.vue'
+import SigninPage from '../components/auth/signin.vue'
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+Vue.use(VueRouter)
+
+const routes = [
+  { path: '/', component: WelcomePage },
+  { path: '/signup', component: SignupPage },
+  { path: '/signin', component: SigninPage },
+  {
+    path: '/dashboard',
+    component: DashboardPage,
+    beforeEnter (to, from ,next) { // authentication guard
+      if (store.state.idToken) {
+        next()
+      } else {
+        next('/signin')
+      }
     }
-  ]
-})
+  }
+]
+
+export default new VueRouter({mode: 'history', routes})

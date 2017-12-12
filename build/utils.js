@@ -42,6 +42,15 @@ exports.cssLoaders = function (options) {
       })
     }
 
+    if (['scss', 'sass'].includes(loader)) {
+      loaders.push({
+        loader: 'sass-resources-loader',
+        options: {
+          resources: config.build.sassGlobalResources,
+        },
+      });
+    }
+
     // Extract CSS when that option is specified
     // (which is the case during production build)
     if (options.extract) {

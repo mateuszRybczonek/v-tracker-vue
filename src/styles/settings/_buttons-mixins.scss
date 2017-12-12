@@ -1,0 +1,24 @@
+@mixin common-button() {
+  letter-spacing: 1px;
+  border: 0;
+  @include border-radius(3px);
+  @include transitions-all;
+  outline:none;
+}
+
+@mixin green-button() {
+  background-color: $color-green;
+  color: #FFF;
+
+  &:enabled {
+    &:hover,
+    &:focus {
+      background-color: $color-hover-green;
+      color: $color-whitey;
+    }
+  }
+
+  &[disabled] {
+    opacity: 0.32;
+  }
+}

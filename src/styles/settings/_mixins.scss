@@ -1,0 +1,51 @@
+@mixin border-radius($radius) {
+  -moz-border-radius: $radius+px;
+  -webkit-border-radius: $radius+px;
+  border-radius: $radius+px;
+}
+
+@mixin font($font-size, $font-weight:null, $line-height:null, $font-family:null) {
+  font-size: $font-size;
+  @if $font-weight != null {
+    font-weight: $font-weight;
+  }
+  @if $font-family != null {
+    font-family: $font-family;
+  }
+  @if $line-height != null {
+    line-height: $line-height;
+  }
+}
+
+@mixin transitions-all {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin box-shadow($shadow-def) {
+  box-shadow: $shadow-def;
+  -webkit-box-shadow: $shadow-def;
+  -moz-box-shadow: $shadow-def;
+  -o-box-shadow: $shadow-def;
+}
+
+@mixin base-typo-header() {
+  padding: 0;
+  margin: 0 0 8px;
+  color: $color-font-grey;
+}
+
+@mixin base-typo-subheader() {
+  margin: 0 0 8px;
+  color: $color-font-light-grey;
+}

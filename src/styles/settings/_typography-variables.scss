@@ -1,0 +1,72 @@
+$font-1x: 14px;
+$font-2x: 28px;
+
+$phone: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+
+$snap: cubic-bezier(1.000, 0.005, 0.240, 1.000);
+$bounce: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+
+h1 {
+  @include base-typo-header();
+  @include font(36px, 600, normal);
+
+  @media all and (max-width: $phone) {
+    @include font(40px, 700, normal);
+  }
+}
+
+h2 {
+  @include base-typo-header();
+  @include font(30px, 600, normal);
+
+  @media all and (max-width: $phone) {
+    @include font(36px, 700, normal);
+  }
+}
+
+h3 {
+  @include base-typo-header();
+  @include font(24px, 600, 32px);
+
+  @media all and (max-width: $phone) {
+    @include font(30px, 700, 35px);
+  }
+}
+
+h4 {
+  @include base-typo-header();
+  @include font(20px, 600, 28px);
+
+  @media all and (max-width: $phone) {
+    @include font(24px, 700, 30px);
+  }
+}
+
+h5 {
+  @include base-typo-header();
+  @include font(18px, 600, 26px);
+
+  @media all and (max-width: $phone) {
+    @include font(20px, 700, 28px);
+  }
+}
+
+h6 {
+  @include base-typo-subheader();
+  @include font(18px, 400, 26px);
+
+  @media all and (max-width: $phone) {
+    @include font(20px, 400, 28px);
+  }
+}
+
+p {
+  @include base-typo-subheader();
+  @include font(15px, 400, 23px);
+
+  @media all and (max-width: $phone) {
+    @include font(18px, 400, 26px);
+  }
+}
