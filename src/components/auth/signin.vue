@@ -3,7 +3,9 @@
     <form-wrapper title="Please login using the form below:">
       <form slot="content" @submit.prevent="onSubmit">
         <div class="error">
-          <span class="validation-error auth-error" v-if="isAuthError">Invalid credentials</span>
+          <span class="validation-error auth-error" v-if="isAuthError">
+            Invalid credentials
+          </span>
         </div>
         <md-field class="input-with-error" :class="{ invalid: validationsEnabled && $v.email.$invalid }">
           <label>Email</label>
@@ -21,6 +23,7 @@
         <md-field class="input-with-error" :class="{ invalid: validationsEnabled && $v.password.$invalid }">
           <label>Password</label>
           <md-input
+            type="password"
             v-model="password"
             @input="$v.password.$touch()">
           </md-input>

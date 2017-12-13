@@ -12,7 +12,7 @@ Vue.use(Vuelidate)
 Vue.use(VueMaterial)
 Vue.config.productionTip = false
 
-axios.defaults.baseURL = 'https://vue-http-rybczonek.firebaseio.com/'
+axios.defaults.baseURL = 'https://v-tracker-vue.firebaseio.com/'
 
 /* eslint-disable no-new */
 new Vue({

@@ -16,6 +16,7 @@
         <md-field class="input-with-error" :class="{ invalid: validationsEnabled && $v.password.$invalid }">
           <label>Password</label>
           <md-input
+            type="password"
             v-model="password"
             @input="$v.password.$touch()">
           </md-input>
@@ -26,6 +27,7 @@
         <md-field class="input-with-error" :class="{ invalid: validationsEnabled && $v.confirmPassword.$invalid }">
           <label>Password confirmation</label>
           <md-input
+            type="password"
             v-model="confirmPassword"
             @input="$v.confirmPassword.$touch()">
           </md-input>

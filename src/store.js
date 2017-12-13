@@ -6,6 +6,8 @@ import router from './router/index'
 
 Vue.use(Vuex)
 
+const API_KEY = 'AIzaSyAFJIoUJ2ZzcnfA0O-ODvWRHsOvCMjg6ow'
+
 export default new Vuex.Store({
   state: {
     idToken: null,
@@ -44,7 +46,7 @@ export default new Vuex.Store({
 		},
 
     login({ commit, dispatch }, authData) { // login action dispatched in the component
-			axios.post('/verifyPassword?key=AIzaSyD0D6Dtj5f6-lXxC8jZyKv46_mMc13TDHI',
+			axios.post(`/verifyPassword?key=${API_KEY}`,
 				{ email: authData.email,
 					password: authData.password,
 					returnSecureToken: true
@@ -96,7 +98,7 @@ export default new Vuex.Store({
 		},
 
     signup({ commit, dispatch }, authData) { // signup action dispatched in the component
-			axios.post('/signupNewUser?key=AIzaSyD0D6Dtj5f6-lXxC8jZyKv46_mMc13TDHI', // store user in auth database
+			axios.post(`/signupNewUser?key=${API_KEY}`, // store user in auth database
 				{ email: authData.email,
 					password: authData.password,
 					returnSecureToken: true
