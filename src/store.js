@@ -11,6 +11,7 @@ export default new Vuex.Store({
     idToken: null,
     userId: null,
 		user: null,
+    authError: null,
   },
   mutations: {
     authUser (state, userData) {      // storing the token in the vuex store
@@ -25,7 +26,15 @@ export default new Vuex.Store({
 		clearAuthData (state) {
     	state.idToken = null
 			state.userId = null
-		}
+		},
+
+    clearAuthError (state) {
+      state.authError = false
+    },
+
+    authError (state, error) {
+      state.authError = error
+    }
   },
   actions: {
   	setLogoutTimer({ commit }, expirationTime) {
@@ -55,7 +64,9 @@ export default new Vuex.Store({
 
 					dispatch('setLogoutTimer', res.data.expiresIn)
         })
-				.catch(error => console.log(error))
+				.catch(error =>{
+          commit('authError', true)
+        })
     },
 
 		tryAutoLogin({ commit }) {
@@ -119,6 +130,10 @@ export default new Vuex.Store({
 				.catch(error => console.log(error))
 		},
 
+    clearAuthError({ commit }) {
+      commit('clearAuthError')
+    },
+
 		fetchUser({ commit, state }) {
 			globalAxios.get(`/users.json?auth=${state.idToken}`)
 				.then(res => {
@@ -140,8 +155,13 @@ export default new Vuex.Store({
 		user (state) {
 			return state.user
 		},
+
 		isAuthenticated (state) {
 			return state.idToken !== null
-		}
+		},
+
+    isAuthError (state) {
+		  return state.authError
+    }
   }
 })

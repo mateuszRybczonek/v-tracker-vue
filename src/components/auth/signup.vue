@@ -11,7 +11,7 @@
         </md-field>
         <span class="validation-error" v-if="validationsEnabled && !$v.email.required">This field must not be empty.</span>
         <span class="validation-error" v-if="validationsEnabled && !$v.email.email">Please provide a valid email address.</span>
-        <span class="validation-error" v-if="validationsEnabled && !$v.email.unique">The email you provided already exist..</span>
+        <span class="validation-error" v-if="validationsEnabled && !$v.email.unique">The email you provided already exist.</span>
 
         <md-field class="input-with-error" :class="{ invalid: validationsEnabled && $v.password.$invalid }">
           <label>Password</label>
@@ -86,8 +86,8 @@
 					password: this.password,
 					confirmPassword: this.confirmPassword,
 				}
-        this.validationsEnabled = true,
-				this.$store.dispatch('signup', formData)
+        this.validationsEnabled = true
+        !this.$v.$invalid ? this.$store.dispatch('signup', formData) : false
 			}
 		},
 

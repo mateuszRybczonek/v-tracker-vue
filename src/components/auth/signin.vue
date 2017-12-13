@@ -2,14 +2,32 @@
   <div class="signin">
     <form-wrapper title="Please login using the form below:">
       <form slot="content" @submit.prevent="onSubmit">
-        <md-field>
+        <div class="error">
+          <span class="validation-error auth-error" v-if="isAuthError">Invalid credentials</span>
+        </div>
+        <md-field class="input-with-error" :class="{ invalid: validationsEnabled && $v.email.$invalid }">
           <label>Email</label>
-          <md-input v-model="email"></md-input>
+          <md-input
+            v-model="email"
+            @input="clearAuthError()"
+            @blur="$v.email.$touch()">
+          </md-input>
         </md-field>
-        <md-field>
+        <div class="error">
+          <span class="validation-error" v-if="validationsEnabled && !$v.email.required">This field must not be empty.</span>
+          <span class="validation-error" v-else-if="validationsEnabled && !$v.email.email">Please provide a valid email address.</span>
+        </div>
+
+        <md-field class="input-with-error" :class="{ invalid: validationsEnabled && $v.password.$invalid }">
           <label>Password</label>
-          <md-input v-model="password"></md-input>
+          <md-input
+            v-model="password"
+            @input="$v.password.$touch()">
+          </md-input>
         </md-field>
+        <div class="error">
+          <span class="validation-error" v-if="validationsEnabled && !$v.password.required">This field must not be empty.</span>
+        </div>
         <div class="actions">
           <positive-button type="submit">Log in</positive-button>
           <positive-button>
@@ -22,6 +40,9 @@
 </template>
 
 <script>
+  import { required, email } from 'vuelidate/lib/validators'
+  import axios from 'axios'
+
   import FormWrapper from './form-wrapper.vue'
   import PositiveButton from '../../components/atoms/buttons/positive.vue'
 
@@ -29,18 +50,40 @@
     data () {
       return {
         email: '',
-        password: ''
+        password: '',
+        validationsEnabled: false,
       }
     },
 
+    computed: { //map getter to property
+      isAuthError() {
+        return this.$store.getters.isAuthError
+      }
+    },
+
+    validations: {
+      email: {
+        required,
+        email,
+      },
+      password: {
+        required,
+      },
+    },
+
     methods: {
-      onSubmit () {
+      onSubmit() {
         const formData = {
           email: this.email,
           password: this.password,
         }
-				this.$store.dispatch('login', { email: formData.email, password: formData.password })
-			}
+        this.validationsEnabled = true
+        !this.$v.$invalid ? this.$store.dispatch('login', { email: formData.email, password: formData.password }) : false
+      },
+
+      clearAuthError() {
+        this.$store.dispatch('clearAuthError')
+      }
     },
 
     components: {
@@ -58,6 +101,26 @@
       .md-field > input {
         border-bottom: 1px solid $color-font-grey;
         color: $color-font-grey;
+      }
+
+      .error {
+        min-height: 30px;
+      }
+
+      .input-with-error {
+        display: flex;
+        flex-direction: column;
+        margin: 15px 0 0;
+      }
+
+      .validation-error {
+        color: $color-tomato;
+        font-size: 12px;
+
+        &.auth-error {
+          display: flex;
+          justify-content: center;
+        }
       }
 
       .actions {

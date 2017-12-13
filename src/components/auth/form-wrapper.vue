@@ -21,7 +21,7 @@
     box-shadow: 0 2px 3px $color-whitey;
 
     > h4 {
-      margin-bottom: 50px;
+      margin-bottom: 20px;
       text-align: center;
     }
   }
