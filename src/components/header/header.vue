@@ -1,16 +1,10 @@
 <template>
   <header id="header">
     <div class="logo">
-      <router-link to="/">Vue - Complete Guide</router-link>
+      <router-link to="/">V-Tracker</router-link>
     </div>
     <nav>
       <ul>
-        <li v-if="!isAuthenticated">
-          <router-link to="/signup">Sign Up</router-link>
-        </li>
-        <li v-if="!isAuthenticated">
-          <router-link to="/signin">Sign In</router-link>
-        </li>
         <li v-if="isAuthenticated">
           <router-link to="/dashboard">Dashboard</router-link>
         </li>
@@ -38,14 +32,14 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   #header {
     height: 56px;
     display: flex;
     flex-flow: row;
     justify-content: space-between;
     align-items: center;
-    background-color: #521751;
+    background-color: $color-green;
     padding: 0 20px;
   }
 
@@ -85,7 +79,7 @@
   li a:hover,
   li a:active,
   li a.router-link-active {
-    color: #fa923f;
+    font-weight: 800;
   }
 
   .logout {

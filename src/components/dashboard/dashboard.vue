@@ -1,5 +1,6 @@
 <template>
   <div id="dashboard">
+    <app-header />
     <h1>That's the dashboard!</h1>
     <p>You should only get here if you're authenticated!</p>
     <p v-if="email">Your email address: {{ email }}</p>
@@ -7,6 +8,8 @@
 </template>
 
 <script>
+  import Header from '../header/header.vue'
+
   export default {
     computed: {
     	email() {
@@ -16,7 +19,11 @@
 
     created () {
       this.$store.dispatch('fetchUser')
-    }
+    },
+
+    components: {
+      'app-header': Header
+    },
   }
 </script>
 
