@@ -1,31 +1,30 @@
 <template>
-  <div id="signin">
-    <div class="signin-form">
-      <form @submit.prevent="onSubmit">
-        <div class="input">
-          <label for="email">Mail</label>
-          <input
-                  type="email"
-                  id="email"
-                  v-model="email">
+  <div class="signin">
+    <form-wrapper title="Please login using the form below:">
+      <form slot="content" @submit.prevent="onSubmit">
+        <md-field>
+          <label>Email</label>
+          <md-input v-model="email"></md-input>
+        </md-field>
+        <md-field>
+          <label>Password</label>
+          <md-input v-model="password"></md-input>
+        </md-field>
+        <div class="actions">
+          <positive-button type="submit">Log in</positive-button>
+          <positive-button>
+            <router-link to="/signup" class="login-button">Sign Up</router-link>
+          </positive-button>
         </div>
-        <div class="input">
-          <label for="password">Password</label>
-          <input
-                  type="password"
-                  id="password"
-                  v-model="password">
-        </div>
-        <div class="submit">
-          <button type="submit">Submit</button>
-        </div>
-        <router-link to="/signup" class="login-button">Sign Up</router-link>
       </form>
-    </div>
+    </form-wrapper>
   </div>
 </template>
 
 <script>
+  import FormWrapper from './form-wrapper.vue'
+  import PositiveButton from '../../components/atoms/buttons/positive.vue'
+
   export default {
     data () {
       return {
@@ -33,6 +32,7 @@
         password: ''
       }
     },
+
     methods: {
       onSubmit () {
         const formData = {
@@ -41,63 +41,29 @@
         }
 				this.$store.dispatch('login', { email: formData.email, password: formData.password })
 			}
-    }
+    },
+
+    components: {
+      'positive-button': PositiveButton,
+      'form-wrapper': FormWrapper
+    },
   }
 </script>
 
-<style scoped>
-  .signin-form {
-    width: 400px;
-    margin: 30px auto;
-    border: 1px solid #eee;
-    padding: 20px;
-    box-shadow: 0 2px 3px #ccc;
-  }
+<style scoped lang="scss">
+  .signin {
+    @include main-page-background();
 
-  .input {
-    margin: 10px auto;
-  }
+    form {
+      .md-field > input {
+        border-bottom: 1px solid $color-font-grey;
+        color: $color-font-grey;
+      }
 
-  .input label {
-    display: block;
-    color: #4e4e4e;
-    margin-bottom: 6px;
-  }
-
-  .input input {
-    font: inherit;
-    width: 100%;
-    padding: 6px 12px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-  }
-
-  .input input:focus {
-    outline: none;
-    border: 1px solid #521751;
-    background-color: #eee;
-  }
-
-  .submit button {
-    border: 1px solid #521751;
-    color: #521751;
-    padding: 10px 20px;
-    font: inherit;
-    cursor: pointer;
-  }
-
-  .submit button:hover,
-  .submit button:active {
-    background-color: #521751;
-    color: white;
-  }
-
-  .submit button[disabled],
-  .submit button[disabled]:hover,
-  .submit button[disabled]:active {
-    border: 1px solid #ccc;
-    background-color: transparent;
-    color: #ccc;
-    cursor: not-allowed;
+      .actions {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
   }
 </style>

@@ -1,3 +1,5 @@
+$button-height: 56px;
+
 @mixin common-button() {
   letter-spacing: 1px;
   border: 0;
@@ -15,6 +17,7 @@
     &:focus {
       background-color: $color-hover-green;
       color: $color-whitey;
+      cursor: pointer;
     }
   }
 
