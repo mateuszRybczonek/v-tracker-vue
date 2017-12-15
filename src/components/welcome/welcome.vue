@@ -15,7 +15,7 @@
   export default {
     components: {
       'positive-button': PositiveButton
-    },
+    }
   }
 </script>
 

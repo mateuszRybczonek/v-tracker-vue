@@ -16,7 +16,7 @@ const routes = [
   {
     path: '/dashboard',
     component: DashboardPage,
-    beforeEnter (to, from ,next) { // authentication guard
+    beforeEnter (to, from, next) { // authentication guard
       if (store.state.idToken) {
         next()
       } else {

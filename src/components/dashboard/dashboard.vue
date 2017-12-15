@@ -12,8 +12,8 @@
 
   export default {
     computed: {
-    	email() {
-    		return !this.$store.getters.user ? false : this.$store.getters.user.email
+      email () {
+        return !this.$store.getters.user ? false : this.$store.getters.user.email
       }
     },
 
@@ -23,7 +23,7 @@
 
     components: {
       'app-header': Header
-    },
+    }
   }
 </script>
 

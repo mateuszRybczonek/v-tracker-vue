@@ -44,7 +44,6 @@
 
 <script>
   import { required, email } from 'vuelidate/lib/validators'
-  import axios from 'axios'
 
   import FormWrapper from './form-wrapper.vue'
   import PositiveButton from '../../components/atoms/buttons/positive.vue'
@@ -54,12 +53,12 @@
       return {
         email: '',
         password: '',
-        validationsEnabled: false,
+        validationsEnabled: false
       }
     },
 
-    computed: { //map getter to property
-      isAuthError() {
+    computed: { // map getter to property
+      isAuthError () {
         return this.$store.getters.isAuthError
       }
     },
@@ -67,24 +66,24 @@
     validations: {
       email: {
         required,
-        email,
+        email
       },
       password: {
-        required,
-      },
+        required
+      }
     },
 
     methods: {
-      onSubmit() {
+      onSubmit () {
         const formData = {
           email: this.email,
-          password: this.password,
+          password: this.password
         }
         this.validationsEnabled = true
-        !this.$v.$invalid ? this.$store.dispatch('login', { email: formData.email, password: formData.password }) : false
+        return !this.$v.$invalid ? this.$store.dispatch('login', { email: formData.email, password: formData.password }) : false
       },
 
-      clearAuthError() {
+      clearAuthError () {
         this.$store.dispatch('clearAuthError')
       }
     },
@@ -92,7 +91,7 @@
     components: {
       'positive-button': PositiveButton,
       'form-wrapper': FormWrapper
-    },
+    }
   }
 </script>
 

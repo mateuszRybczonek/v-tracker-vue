@@ -18,14 +18,14 @@
 
 <script>
   export default {
-  	computed: { //map getter to property
-			isAuthenticated() {
-      	return this.$store.getters.isAuthenticated
+    computed: { //  map getter to property
+      isAuthenticated () {
+        return this.$store.getters.isAuthenticated
       }
     },
 
     methods: {
-  		onLogout() {
+      onLogout () {
         this.$store.dispatch('logout')
       }
     }
