@@ -1,9 +1,11 @@
 <template>
   <div id="dashboard">
     <v-header />
-    <h1>That's the dashboard!</h1>
-    <p>You should only get here if you're authenticated!</p>
-    <p v-if="email">Your email address: {{ email }}</p>
+    <h1>Dashboard</h1>
+    <div class="cards">
+      <vessels-card></vessels-card>
+      <reports-card></reports-card>
+    </div>
 
     <div class="container">
       <div class="row">
@@ -36,6 +38,8 @@
 
 <script>
   import vHeader from '../header/header.vue'
+  import vesselsCard from './vessels-card.vue'
+  import reportsCard from './reports-card.vue'
   import vFormWrapper from '../form-wrapper.vue'
   import vStepper from './multi-step-form/Stepper.vue'
   import Step1 from './multi-step-form/Step1.vue'
@@ -116,6 +120,8 @@
       vHeader,
       vFormWrapper,
       vStepper,
+      vesselsCard,
+      reportsCard,
       step1: Step1,
       step2: Step2,
       step3: Step3
@@ -126,5 +132,15 @@
 <style scoped lang="scss">
   h1, p {
     text-align: center;
+  }
+
+  h1 {
+    margin: 50px 0;
+  }
+
+  .cards {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 40px;
   }
 </style>
