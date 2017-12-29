@@ -9,6 +9,7 @@ import SignupPage from '../pages/auth/signup.vue'
 import SigninPage from '../pages/auth/signin.vue'
 import VesselsPage from '../pages/vessels.vue'
 import ReportsPage from '../pages/reports.vue'
+import NewVessel from '../pages/new-vessel.vue'
 
 Vue.use(VueRouter)
 
@@ -22,7 +23,8 @@ const routes = [
     children: [
       { path: '', component: DashboardIndex },
       { path: 'vessels', component: VesselsPage },
-      { path: 'reports', component: ReportsPage }
+      { path: 'reports', component: ReportsPage },
+      { path: 'vessels/new', component: NewVessel }
     ],
     beforeEnter (to, from, next) { // authentication guard
       if (store.state.idToken) {

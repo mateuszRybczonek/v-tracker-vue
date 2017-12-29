@@ -1,20 +1,7 @@
 <template>
   <div class="vessels-list-item">
-    <v-card to=''>
-      <div class="image">
-        <img src=''>
-      </div>
-
-      <p class="subheader-small">Ensco DS-2<p>
-
-      <p class="subheader-small">
-        IMO number: 123456789
-      </p>
-
-      <div class="buttons">
-        <p>Edit</p>
-        <p>Delete</p>
-      </div>
+    <v-card to='/dashboard/vessels/new'>
+      <p class="h2">Add new vessel</p>
     </v-card>
   </div>
 </template>
@@ -32,7 +19,6 @@
 <style scoped lang="scss">
   .vessels-list-item {
     display: flex;
-    background-color: #FFF;
     width: 350px;
     text-align: center;
     @include border-radius(5);
@@ -51,32 +37,13 @@
       }
     }
 
-    img {
-      height: 150px;
-      width: auto;
-      margin-top: 20px;
-      @include border-radius(2px);
+    h2 {
+      margin: 5px 0 0 ;
 
       @media all and (max-width: $phone) {
-        height: 200px;
-        padding-top: 30px;
+        margin-top: 15px;
+        padding: 0 10px;
       }
-    }
-
-    .subheader-small {
-      padding: 0 0 15px;
-
-      @media all and (max-width: $phone) {
-        padding: 0 15px 30px;
-      }
-    }
-
-    .buttons {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      width: 100%;
     }
   }
-
 </style>
