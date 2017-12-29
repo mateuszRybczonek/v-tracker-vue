@@ -41,3 +41,35 @@ a {
   display: flex;
   flex-direction: column;
 }
+
+form {
+  .md-field > input {
+    border-bottom: 1px solid $color-font-grey;
+    color: $color-font-grey;
+  }
+
+  .error {
+    min-height: 30px;
+  }
+
+  .input-with-error {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0 0;
+  }
+
+  .validation-error {
+    color: $color-tomato;
+    font-size: 12px;
+
+    &.auth-error {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+  }
+}

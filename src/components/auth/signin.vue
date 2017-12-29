@@ -45,7 +45,7 @@
 <script>
   import { required, email } from 'vuelidate/lib/validators'
 
-  import FormWrapper from './form-wrapper.vue'
+  import FormWrapper from '../form-wrapper.vue'
   import PositiveButton from '../../components/atoms/buttons/positive.vue'
 
   export default {
