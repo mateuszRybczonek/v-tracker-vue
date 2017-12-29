@@ -1,5 +1,5 @@
 <template>
-  <v-card to='vessels'>
+  <v-card to='dashboard/vessels'>
     Vessels
   </v-card>
 </template>
@@ -15,5 +15,4 @@
 </script>
 
 <style scoped lang="scss">
-
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="vessels">
-    Vessels
+    <h1>Vessels</h1>
   </div>
 </template>
 
@@ -8,5 +8,11 @@
 </script>
 
 <style scoped lang="scss">
+  h1, p {
+    text-align: center;
+  }
 
+  h1 {
+    margin: 50px 0;
+  }
 </style>

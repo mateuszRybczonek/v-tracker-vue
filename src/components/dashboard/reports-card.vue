@@ -1,5 +1,5 @@
 <template>
-  <v-card to='reports'>
+  <v-card to='dashboard/reports'>
     Reports
   </v-card>
 </template>

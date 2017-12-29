@@ -1,11 +1,7 @@
 <template>
   <div id="dashboard">
     <v-header />
-    <h1>Dashboard</h1>
-    <div class="cards">
-      <vessels-card></vessels-card>
-      <reports-card></reports-card>
-    </div>
+    <router-view></router-view>
 
     <div class="container">
       <div class="row">
@@ -13,7 +9,7 @@
           :selectedStep="selectedStep"
           :isSubmitted="isSubmitted"
           @selectStep="selectStep"></v-stepper>
-        <v-form-wrapper title="Onboarding">
+          <v-form-wrapper title="Onboarding">
             <form slot="content" @submit.prevent>
               <transition name="slide" type="animation">
                 <component
@@ -99,10 +95,6 @@
     },
 
     computed: {
-      email () {
-        return !this.$store.getters.user ? false : this.$store.getters.user.email
-      },
-
       selectedStep () {
         return `step${this.step}`
       },

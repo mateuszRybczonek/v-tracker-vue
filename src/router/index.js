@@ -4,6 +4,7 @@ import store from '../store'
 
 import WelcomePage from '../components/welcome/welcome.vue'
 import DashboardPage from '../components/dashboard/dashboard.vue'
+import DashboardIndex from '../components/dashboard/index.vue'
 import SignupPage from '../components/auth/signup.vue'
 import SigninPage from '../components/auth/signin.vue'
 import VesselsPage from '../components/vessels/index.vue'
@@ -18,28 +19,11 @@ const routes = [
   {
     path: '/dashboard',
     component: DashboardPage,
-    beforeEnter (to, from, next) { // authentication guard
-      if (store.state.idToken) {
-        next()
-      } else {
-        next('/signin')
-      }
-    }
-  },
-  {
-    path: '/vessels',
-    component: VesselsPage,
-    beforeEnter (to, from, next) { // authentication guard
-      if (store.state.idToken) {
-        next()
-      } else {
-        next('/signin')
-      }
-    }
-  },
-  {
-    path: '/reports',
-    component: ReportsPage,
+    children: [
+      { path: '', component: DashboardIndex },
+      { path: 'vessels', component: VesselsPage },
+      { path: 'reports', component: ReportsPage }
+    ],
     beforeEnter (to, from, next) { // authentication guard
       if (store.state.idToken) {
         next()
