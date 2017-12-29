@@ -1,6 +1,6 @@
 <template>
   <div id="dashboard">
-    <v-header />
+    <v-header></v-header>
     <router-view></router-view>
 
     <div class="container">
@@ -33,14 +33,14 @@
 </template>
 
 <script>
-  import vHeader from '../header/header.vue'
-  import vesselsCard from './vessels-card.vue'
-  import reportsCard from './reports-card.vue'
-  import vFormWrapper from '../form-wrapper.vue'
-  import vStepper from './multi-step-form/Stepper.vue'
-  import Step1 from './multi-step-form/Step1.vue'
-  import Step2 from './multi-step-form/Step2.vue'
-  import Step3 from './multi-step-form/Step3.vue'
+  import vHeader from '../components/header/header.vue'
+  import vesselsCard from '../components/dashboard/vessels-card.vue'
+  import reportsCard from '../components/dashboard/reports-card.vue'
+  import vFormWrapper from '../components/form-wrapper.vue'
+  import vStepper from '../components/dashboard/multi-step-form/Stepper.vue'
+  import Step1 from '../components/dashboard/multi-step-form/Step1.vue'
+  import Step2 from '../components/dashboard/multi-step-form/Step2.vue'
+  import Step3 from '../components/dashboard/multi-step-form/Step3.vue'
 
   export default {
     data () {

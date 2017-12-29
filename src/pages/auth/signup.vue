@@ -45,7 +45,7 @@
 
 <script>
   import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
-  import FormWrapper from '../form-wrapper.vue'
+  import FormWrapper from '../../components/form-wrapper.vue'
   import PositiveButton from '../../components/atoms/buttons/positive.vue'
 
   export default {
@@ -77,24 +77,24 @@
         confirmPassword: {
           sameAs: sameAs('password')
         }
-      },
-
-      methods: {
-        onSubmit () {
-          const formData = {
-            email: this.email,
-            password: this.password,
-            confirmPassword: this.confirmPassword
-          }
-          this.validationsEnabled = true
-          return !this.$v.$invalid ? this.$store.dispatch('signup', formData) : false
-        }
-      },
-
-      components: {
-        'positive-button': PositiveButton,
-        'form-wrapper': FormWrapper
       }
+    },
+
+    methods: {
+      onSubmit () {
+        const formData = {
+          email: this.email,
+          password: this.password,
+          confirmPassword: this.confirmPassword
+        }
+        this.validationsEnabled = true
+        return !this.$v.$invalid ? this.$store.dispatch('signup', formData) : false
+      }
+    },
+
+    components: {
+      PositiveButton,
+      FormWrapper
     }
   }
 </script>

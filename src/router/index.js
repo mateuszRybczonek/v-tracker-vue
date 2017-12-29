@@ -3,12 +3,12 @@ import VueRouter from 'vue-router'
 import store from '../store'
 
 import WelcomePage from '../components/welcome/welcome.vue'
-import DashboardPage from '../components/dashboard/dashboard.vue'
+import DashboardPage from '../pages/dashboard.vue'
 import DashboardIndex from '../components/dashboard/index.vue'
-import SignupPage from '../components/auth/signup.vue'
-import SigninPage from '../components/auth/signin.vue'
-import VesselsPage from '../components/vessels/index.vue'
-import ReportsPage from '../components/reports/index.vue'
+import SignupPage from '../pages/auth/signup.vue'
+import SigninPage from '../pages/auth/signin.vue'
+import VesselsPage from '../pages/vessels.vue'
+import ReportsPage from '../pages/reports.vue'
 
 Vue.use(VueRouter)
 
