@@ -31,7 +31,7 @@
         </md-input>
       </md-field>
       <div class="error">
-        <span class="validation-error"</span>
+        <span class="validation-error"></span>
       </div>
 
       <md-field class="input-with-error" :class="{ invalid: showErrors && $v.vessel.mmsi.$invalid }">
@@ -124,8 +124,17 @@
 
     methods: {
       onSubmit () {
+        const formData = {
+          name: this.vessel.name,
+          imoNumber: this.vessel.imoNumber,
+          gt: this.vessel.gt,
+          mmsi: this.vessel.mmsi,
+          yob: this.vessel.yob,
+          flag: this.vessel.flag
+        }
+
         this.showErrors = true
-        this.isSubmitted = true
+        return !this.$v.$invalid ? this.$store.dispatch('createNewVessel', formData) : false
       }
     },
 

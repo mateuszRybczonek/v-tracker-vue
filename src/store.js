@@ -158,6 +158,12 @@ export default new Vuex.Store({
           commit('storeUser', presentUser[0])
         })
         .catch(error => console.log(error))
+    },
+
+    createNewVessel ({ commit, state }, vesselData) {
+      globalAxios.post(`/users/${state.userId}/vessels.json?auth=${state.idToken}`, vesselData)
+        .then(res => console.log(res))
+        .catch(error => console.log(error))
     }
   },
   getters: {

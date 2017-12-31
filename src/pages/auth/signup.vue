@@ -61,7 +61,7 @@
     validations: {
       email: {
         required,
-        email,
+        email
         //  unique: value => {
         //  if (value === '') return true
         //  return axios.get(`/users.json?orderBy="email"&equalTo="${value}"`)
@@ -70,13 +70,13 @@
         //    }))
         //  }
         // },
-        password: {
-          required,
-          minLength: minLength(6)
-        },
-        confirmPassword: {
-          sameAs: sameAs('password')
-        }
+      },
+      password: {
+        required,
+        minLength: minLength(6)
+      },
+      confirmPassword: {
+        sameAs: sameAs('password')
       }
     },
 
