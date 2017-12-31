@@ -172,6 +172,25 @@ export default new Vuex.Store({
             .catch(error => console.log(error))
         })
         .catch(error => console.log(error))
+    },
+
+    fetchVessels ({ commit, state }) {
+      const userId = state.user.id
+      globalAxios.get(`/vessels.json?auth=${state.idToken}`)
+        .then(res => {
+          const data = res.data
+          const vessels = []
+          for (let key in data) {
+            const vessel = data[key]
+            vessel.id = key
+            vessels.push(vessel)
+          }
+          const userVessels = vessels.filter(vessel => {
+            return vessel.owners[userId] === true
+          })
+          return userVessels
+        })
+        .catch(error => console.log(error))
     }
   },
   getters: {

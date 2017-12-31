@@ -9,6 +9,10 @@
   import vesselsList from '../components/vessels/vessels-list/vessels-list.vue'
 
   export default {
+    created () {
+      this.$store.dispatch('fetchVessels')
+    },
+
     components: {
       vesselsList
     }
