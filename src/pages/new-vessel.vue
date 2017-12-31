@@ -130,7 +130,10 @@
           gt: this.vessel.gt,
           mmsi: this.vessel.mmsi,
           yob: this.vessel.yob,
-          flag: this.vessel.flag
+          flag: this.vessel.flag,
+          owners: {
+            [this.$store.state.user.id]: true
+          }
         }
 
         this.showErrors = true

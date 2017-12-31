@@ -161,8 +161,16 @@ export default new Vuex.Store({
     },
 
     createNewVessel ({ commit, state }, vesselData) {
-      globalAxios.post(`/users/${state.userId}/vessels.json?auth=${state.idToken}`, vesselData)
-        .then(res => console.log(res))
+      if (!state.idToken) {
+        return
+      }
+      globalAxios.post(`/vessels.json?auth=${state.idToken}`, vesselData)
+        .then(res => {
+          const vesselId = res.data.name
+          globalAxios.patch(`users/${state.user.id}/vessels.json?auth=${state.idToken}`, { [vesselId]: true })
+            .then(res => console.log(res))
+            .catch(error => console.log(error))
+        })
         .catch(error => console.log(error))
     }
   },
