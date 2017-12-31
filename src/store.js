@@ -37,6 +37,10 @@ export default new Vuex.Store({
 
     authError (state, error) {
       state.authError = error
+    },
+
+    storeVessels (state, vessels) {
+      state.vessels = vessels
     }
   },
   actions: {
@@ -188,7 +192,7 @@ export default new Vuex.Store({
           const userVessels = vessels.filter(vessel => {
             return vessel.owners[userId] === true
           })
-          return userVessels
+          commit('storeVessels', userVessels)
         })
         .catch(error => console.log(error))
     }
