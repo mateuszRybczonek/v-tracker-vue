@@ -42,6 +42,12 @@ export default new Vuex.Store({
 
     storeVessels (state, vessels) {
       state.vessels = vessels
+    },
+
+    deleteVessel (state, vesselId) {
+      const vessel = state.vessels.filter(vessel => vessel.id === vesselId)
+      const vesselIndex = state.vessels.indexOf(vessel)
+      state.vessels.splice(vesselIndex, 1)
     }
   },
   actions: {
@@ -194,6 +200,17 @@ export default new Vuex.Store({
             return vessel.owners[userId] === true
           })
           commit('storeVessels', userVessels)
+        })
+        .catch(error => console.log(error))
+    },
+
+    deleteVessel ({ commit, state }, vesselId) {
+      globalAxios.delete(`/vessels/${vesselId}.json?auth=${state.idToken}`)
+        .then(res => {
+          globalAxios.patch(`users/${state.user.id}/vessels.json?auth=${state.idToken}`, { [vesselId]: null })
+            .then(res => console.log(res))
+            .catch(error => console.log(error))
+          commit('deleteVessel', vesselId)
         })
         .catch(error => console.log(error))
     }

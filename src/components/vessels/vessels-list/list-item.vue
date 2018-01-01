@@ -13,7 +13,7 @@
 
       <div class="buttons">
         <p>Edit</p>
-        <p>Delete</p>
+        <p @click="deleteVessel(vessel.id)">Delete</p>
       </div>
     </v-card>
   </div>
@@ -26,6 +26,12 @@
     props: ['vessel'],
     components: {
       VCard
+    },
+    methods: {
+      deleteVessel (vesselId) {
+        console.log(`delete vessel ${vesselId}`)
+        this.$store.dispatch('deleteVessel', vesselId)
+      }
     }
   }
 </script>
