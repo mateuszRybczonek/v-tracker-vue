@@ -5,10 +5,10 @@
         <img src=''>
       </div>
 
-      <p class="subheader-small">Ensco DS-2<p>
+      <p class="subheader-small">{{vessel.name}}<p>
 
       <p class="subheader-small">
-        IMO number: 123456789
+        IMO number: {{vessel.imoNumber}}
       </p>
 
       <div class="buttons">
@@ -23,6 +23,7 @@
   import VCard from '../../molecules/card.vue'
 
   export default {
+    props: ['vessel'],
     components: {
       VCard
     }

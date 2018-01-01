@@ -13,7 +13,8 @@ export default new Vuex.Store({
     idToken: null,
     userId: null,
     user: null,
-    authError: null
+    authError: null,
+    vessels: null
   },
   mutations: {
     authUser (state, userData) {      // storing the token in the vuex store
@@ -200,6 +201,10 @@ export default new Vuex.Store({
   getters: {
     user (state) {
       return state.user
+    },
+
+    vessels (state) {
+      return state.vessels
     },
 
     isAuthenticated (state) {

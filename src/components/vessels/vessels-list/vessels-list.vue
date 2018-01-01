@@ -1,6 +1,9 @@
 <template>
   <div class="vessels-list">
-    <v-list-item class="vessels-list-item"></v-list-item>
+    <v-list-item
+      v-for="vessel in vessels"
+      class="vessels-list-item"
+      :vessel="vessel"></v-list-item>
     <v-list-new class="vessels-list-item"></v-list-new>
   </div>
 </template>
@@ -11,6 +14,8 @@
   import VListNew from './list-item-new.vue'
 
   export default {
+    props: ['vessels'],
+
     components: {
       VListItem,
       VListNew,
