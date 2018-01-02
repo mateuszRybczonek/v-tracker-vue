@@ -132,7 +132,7 @@
           yob: this.vessel.yob,
           flag: this.vessel.flag,
           owners: {
-            [this.$store.state.user.id]: true
+            [this.$store.state.auth.user.id]: true
           }
         }
 

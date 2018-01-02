@@ -27,7 +27,7 @@ const routes = [
       { path: 'vessels/new', component: NewVessel }
     ],
     beforeEnter (to, from, next) { // authentication guard
-      if (store.state.idToken) {
+      if (store.state.auth.idToken) {
         next()
       } else {
         next('/signin')
