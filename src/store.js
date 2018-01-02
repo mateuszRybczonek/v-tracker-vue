@@ -145,7 +145,7 @@ export default new Vuex.Store({
         return
       }
       globalAxios.post(`/users.json?auth=${state.idToken}`, userData) //  path from main.js axios defaults
-        .then(res => console.log(res))
+        .then(res => { commit('storeUser', userData) })
         .catch(error => console.log(error))
     },
 
@@ -179,7 +179,9 @@ export default new Vuex.Store({
         .then(res => {
           const vesselId = res.data.name
           globalAxios.patch(`users/${state.user.id}/vessels.json?auth=${state.idToken}`, { [vesselId]: true })
-            .then(res => console.log(res))
+            .then(res => {
+              router.push('/dashboard/vessels')
+            })
             .catch(error => console.log(error))
         })
         .catch(error => console.log(error))
