@@ -12,7 +12,7 @@
       </p>
 
       <div class="buttons">
-        <p>Edit</p>
+        <router-link :to="editLink" class="login-button">Edit</router-link>
         <p @click="deleteVessel(vessel.id)">Delete</p>
       </div>
     </v-card>
@@ -27,9 +27,13 @@
     components: {
       VCard
     },
+    computed: {
+      editLink () {
+        return `/dashboard/vessels/${this.vessel.id}/edit`
+      }
+    },
     methods: {
       deleteVessel (vesselId) {
-        console.log(`delete vessel ${vesselId}`)
         this.$store.dispatch('deleteVessel', vesselId)
       }
     }

@@ -10,6 +10,7 @@ import SigninPage from '../pages/auth/signin.vue'
 import VesselsPage from '../pages/vessels.vue'
 import ReportsPage from '../pages/reports.vue'
 import NewVessel from '../pages/new-vessel.vue'
+import EditVessel from '../pages/edit-vessel.vue'
 
 Vue.use(VueRouter)
 
@@ -24,7 +25,8 @@ const routes = [
       { path: '', component: DashboardIndex },
       { path: 'vessels', component: VesselsPage },
       { path: 'reports', component: ReportsPage },
-      { path: 'vessels/new', component: NewVessel }
+      { path: 'vessels/new', component: NewVessel },
+      { path: 'vessels/:id/edit', component: EditVessel }
     ],
     beforeEnter (to, from, next) { // authentication guard
       if (store.state.auth.idToken) {

@@ -29,6 +29,15 @@ const actions = {
       .catch(error => console.log(error))
   },
 
+  editVessel ({ getters }, vesselData) {
+    if (!getters.idToken) {
+      return
+    }
+    globalAxios.patch(`/vessels/${vesselData.id}.json?auth=${getters.idToken}`, vesselData)
+      .then(() => router.push('/dashboard/vessels'))
+      .catch(error => console.log(error))
+  },
+
   fetchVessels ({ getters, commit }) {
     const userId = getters.user.id
     globalAxios.get(`/vessels.json?auth=${getters.idToken}`)
