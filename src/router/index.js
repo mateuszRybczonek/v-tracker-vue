@@ -3,9 +3,14 @@ import VueRouter from 'vue-router'
 import store from '../store'
 
 import WelcomePage from '../components/welcome/welcome.vue'
-import DashboardPage from '../components/dashboard/dashboard.vue'
-import SignupPage from '../components/auth/signup.vue'
-import SigninPage from '../components/auth/signin.vue'
+import DashboardPage from '../pages/dashboard.vue'
+import DashboardIndex from '../components/dashboard/index.vue'
+import SignupPage from '../pages/auth/signup.vue'
+import SigninPage from '../pages/auth/signin.vue'
+import VesselsPage from '../pages/vessels.vue'
+import ReportsPage from '../pages/reports.vue'
+import NewVessel from '../pages/new-vessel.vue'
+import EditVessel from '../pages/edit-vessel.vue'
 
 Vue.use(VueRouter)
 
@@ -16,8 +21,15 @@ const routes = [
   {
     path: '/dashboard',
     component: DashboardPage,
+    children: [
+      { path: '', component: DashboardIndex },
+      { path: 'vessels', component: VesselsPage },
+      { path: 'reports', component: ReportsPage },
+      { path: 'vessels/new', component: NewVessel },
+      { path: 'vessels/:id/edit', component: EditVessel }
+    ],
     beforeEnter (to, from, next) { // authentication guard
-      if (store.state.idToken) {
+      if (store.state.auth.idToken) {
         next()
       } else {
         next('/signin')
