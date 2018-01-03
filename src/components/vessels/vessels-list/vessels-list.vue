@@ -2,7 +2,6 @@
   <div class="vessels-list">
     <v-list-item
       v-for="vessel in vessels"
-      class="vessels-list-item"
       :vessel="vessel"></v-list-item>
     <v-list-new class="vessels-list-item"></v-list-new>
   </div>
@@ -36,10 +35,6 @@
       @media all and (max-width: $phone) {
         margin: 0;
       }
-    }
-
-    @media all and (max-width: $phone) {
-      flex-direction: column;
     }
   }
 </style>

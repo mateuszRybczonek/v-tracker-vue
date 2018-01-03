@@ -1,33 +1,32 @@
 <template>
-  <div class="vessels-list-item">
-    <v-card to=''>
-      <div class="image">
-        <img src=''>
-      </div>
-
+    <v-card :to="vesselDetailsLink" class="vessels-list-item">
       <p class="subheader-small">{{vessel.name}}<p>
-
-      <p class="subheader-small">
-        IMO number: {{vessel.imoNumber}}
-      </p>
-
+      <p class="subheader-small">IMO number: {{vessel.imoNumber}}</p>
       <div class="buttons">
-        <router-link :to="editLink" class="login-button">Edit</router-link>
-        <p @click="deleteVessel(vessel.id)">Delete</p>
+        <router-link :to="editLink" class="icon-button">
+          <icon-button src="../src/assets/icons/pencil.svg" type="positive" size="small"></icon-button>
+        </router-link>
+        <span @click="deleteVessel(vessel.id)" class="icon-button">
+          <icon-button src="../src/assets/icons/trash-o.svg" type="negative" size="small"></icon-button>
+        </span>
       </div>
     </v-card>
-  </div>
 </template>
 
 <script>
   import VCard from '../../molecules/card.vue'
+  import IconButton from '../../atoms/buttons/icon-button'
 
   export default {
     props: ['vessel'],
     components: {
-      VCard
+      VCard,
+      IconButton
     },
     computed: {
+      vesselDetailsLink () {
+        return `/dashboard/vessels/${this.vessel.id}`
+      },
       editLink () {
         return `/dashboard/vessels/${this.vessel.id}/edit`
       }
@@ -43,6 +42,7 @@
 <style scoped lang="scss">
   .vessels-list-item {
     display: flex;
+    align-items: baseline;
     background-color: #FFF;
     width: 350px;
     text-align: center;
@@ -85,8 +85,12 @@
     .buttons {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: flex-end;
       width: 100%;
+
+      > .icon-button {
+        margin: 10px;
+      }
     }
   }
 

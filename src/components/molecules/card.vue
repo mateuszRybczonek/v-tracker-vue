@@ -17,11 +17,11 @@
     min-height: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     background-color: #FFF;
     width: 350px;
-    padding: 0 20px;
+    padding: 20px;
     text-align: center;
     @include transitions-all();
     @include border-radius(5);

@@ -1,8 +1,6 @@
 <template>
   <v-form-wrapper title="Edit vessel details">
     <form slot="content" @submit.prevent>
-      <div>Vessel {{ $route.params.id }}</div>
-      <div>{{vessels}}</div>
       <md-field class="input-with-error" :class="{ invalid: showErrors && $v.vessel.name.$invalid }">
         <label>Name</label>
         <md-input
