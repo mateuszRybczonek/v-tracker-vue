@@ -7,8 +7,6 @@
 
 <script>
   import vHeader from '../components/header/header.vue'
-  import vesselsCard from '../components/dashboard/vessels-card.vue'
-  import reportsCard from '../components/dashboard/reports-card.vue'
 
   export default {
     created () {
@@ -16,9 +14,7 @@
     },
 
     components: {
-      vHeader,
-      vesselsCard,
-      reportsCard
+      vHeader
     }
   }
 </script>

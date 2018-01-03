@@ -2,20 +2,26 @@
   <div id="dashboard-index">
     <h1>Dashboard</h1>
     <div class="cards">
-      <vessels-card></vessels-card>
-      <reports-card></reports-card>
+      <dashboard-card
+        destination="dashboard/vessels"
+        iconSrc="../src/assets/icons/ship.svg"
+        label="Vessels">
+      </dashboard-card>
+      <dashboard-card
+        destination="dashboard/reports"
+        iconSrc="../src/assets/icons/map-marker.svg"
+        label="Reports">
+      </dashboard-card>
     </div>
   </div>
 </template>
 
 <script>
-  import vesselsCard from './vessels-card.vue'
-  import reportsCard from './reports-card.vue'
+  import dashboardCard from './dashboard-card.vue'
 
   export default {
     components: {
-      vesselsCard,
-      reportsCard
+      dashboardCard
     }
   }
 </script>
