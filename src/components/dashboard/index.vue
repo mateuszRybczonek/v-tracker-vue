@@ -2,15 +2,10 @@
   <div id="dashboard-index">
     <h1>Dashboard</h1>
     <div class="cards">
-      <dashboard-card
-        destination="dashboard/vessels"
-        iconSrc="../src/assets/icons/ship.svg"
-        label="Vessels">
-      </dashboard-card>
-      <dashboard-card
-        destination="dashboard/reports"
-        iconSrc="../src/assets/icons/map-marker.svg"
-        label="Reports">
+      <dashboard-card v-for="card in cards"
+        :destination="card.destination"
+        :iconSrc="card.iconSrc"
+        :label="card.label">
       </dashboard-card>
     </div>
   </div>
@@ -22,6 +17,21 @@
   export default {
     components: {
       dashboardCard
+    },
+    computed: {
+      cards () {
+        return [
+          {
+            destination: 'dashboard/vessels',
+            iconSrc: '../src/assets/icons/ship.svg',
+            label: 'Vessels'
+          }, {
+            destination: 'dashboard/reports',
+            iconSrc: '../src/assets/icons/map-marker.svg',
+            label: 'Reports'
+          }
+        ]
+      }
     }
   }
 </script>
