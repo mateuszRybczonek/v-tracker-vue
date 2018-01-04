@@ -1,7 +1,7 @@
 <template>
   <div class="mini-stats-item">
-    <div class="badge badge-fw">
-      <icon-button :src="iconSrc" size="medium"></icon-button>
+    <div class="badge">
+      <i :class="iconName" class="icon"></i>
     </div>
     <div class="description">
       <div class="header">
@@ -18,7 +18,7 @@
   import IconButton from '../../components/atoms/buttons/icon-button'
 
   export default {
-    props: ['iconSrc', 'header', 'description'],
+    props: ['iconName', 'header', 'description'],
     components: {
       IconButton
     }
@@ -51,6 +51,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       height: $icon-size;
       min-width: $icon-size;
       text-align: center;
@@ -61,6 +62,26 @@
 
       > i {
         fill: #FFF;
+      }
+
+      .icon {
+        width: 3rem;
+        height: 3rem;
+        background-size: cover;
+        padding: 0;
+      }
+
+      .fuel {
+        background-color: #FFF;
+        mask-image: url('../../assets/icons.svg');
+        mask-position: 50% 0;
+      }
+
+      .water {
+        background-color: #FFF;
+        mask-image: url('../../assets/icons.svg');
+        mask-position: -12% -445px;
+        mask-size: 300%;
       }
     }
 
