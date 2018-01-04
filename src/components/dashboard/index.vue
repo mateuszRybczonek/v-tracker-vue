@@ -2,7 +2,7 @@
   <div id="dashboard-index">
     <h1>Dashboard</h1>
     <div class="cards">
-      <dashboard-card v-for="card in cards"
+      <dashboard-card v-for="(card, index) in cards"
         :destination="card.destination"
         :iconSrc="card.iconSrc"
         :label="card.label">
