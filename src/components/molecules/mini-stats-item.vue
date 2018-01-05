@@ -1,7 +1,7 @@
 <template>
   <div class="mini-stats-item">
     <div class="badge">
-      <i :class="iconName" class="icon"></i>
+      <i :class="iconName" class="icon icon__medium"></i>
     </div>
     <div class="description">
       <div class="header">
@@ -65,23 +65,40 @@
       }
 
       .icon {
-        width: 3rem;
-        height: 3rem;
         background-size: cover;
         padding: 0;
+
+        &__medium {
+          width: 76px;
+          height: 76px;
+        }
       }
 
       .fuel {
         background-color: #FFF;
         mask-image: url('../../assets/icons.svg');
-        mask-position: 50% 0;
+
+        &__medium {
+          mask-position: 2px 0;
+        }
       }
 
       .water {
         background-color: #FFF;
         mask-image: url('../../assets/icons.svg');
-        mask-position: -12% -445px;
-        mask-size: 300%;
+
+        &__medium {
+          mask-position: 0 -350px;
+        }
+      }
+
+      .people {
+        background-color: #FFF;
+        mask-image: url('../../assets/icons.svg');
+
+        &__medium {
+          mask-position: 0 -490px;
+        }
       }
     }
 

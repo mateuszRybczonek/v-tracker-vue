@@ -24,22 +24,22 @@
       miniStatsItems () {
         return [
           {
-            iconName: 'fuel',
+            iconName: 'fuel fuel__medium',
             header: `${this.lastReport.foRob} cbm`,
             description: 'Remaining FO',
             customClass: 'item-fo'
           }, {
-            iconName: 'fuel',
+            iconName: 'fuel fuel__medium',
             header: `${this.lastReport.doRob} cbm`,
             description: 'Remaining DO',
             customClass: 'item-do'
           }, {
-            iconName: 'water',
+            iconName: 'water water__medium',
             header: `${this.lastReport.fwRob} cbm`,
             description: 'Remaining FW',
             customClass: 'item-fw'
           }, {
-            iconName: 'water',
+            iconName: 'people people__medium',
             header: `${this.lastReport.pob}`,
             description: 'POB',
             customClass: 'item-pob'

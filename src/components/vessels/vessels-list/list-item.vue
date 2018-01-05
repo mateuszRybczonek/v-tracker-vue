@@ -3,11 +3,8 @@
       <p class="subheader-small">{{vessel.name}}<p>
       <p class="subheader-small">IMO number: {{vessel.imoNumber}}</p>
       <div class="buttons">
-        <router-link :to="editLink" class="icon-button">
-          <icon-button src="../src/assets/icons/pencil.svg" type="positive" size="small"></icon-button>
-        </router-link>
-        <span @click="deleteVessel(vessel.id)" class="icon-button">
-          <icon-button src="../src/assets/icons/trash-o.svg" type="negative" size="small"></icon-button>
+        <router-link :to="editLink" class="icon-button icon icon__small pencil pencil__small"></router-link>
+        <span @click="deleteVessel(vessel.id)" class="icon-button icon icon__small trash trash__small">
         </span>
       </div>
     </v-card>
@@ -62,18 +59,6 @@
       }
     }
 
-    img {
-      height: 150px;
-      width: auto;
-      margin-top: 20px;
-      @include border-radius(2px);
-
-      @media all and (max-width: $phone) {
-        height: 200px;
-        padding-top: 30px;
-      }
-    }
-
     .subheader-small {
       padding: 0 0 15px;
 
@@ -88,8 +73,42 @@
       justify-content: flex-end;
       width: 100%;
 
+      .icon {
+        &__small {
+          width: 30px;
+          height: 30px;
+          background-size: cover;
+          padding: 0;
+        }
+      }
+
+      .pencil {
+        background-color: #999;
+        mask-image: url('../../../assets/icons.svg');
+
+        &__small {
+          mask-position: 50% -77px;
+          mask-size: 130%;
+        }
+
+        &:hover {
+          background-color: $color-green;
+        }
+      }
+
+      .trash {
+        background-color: #999;
+        mask-image: url('../../../assets/icons.svg');
+        mask-position: 50% -221px;
+        mask-size: 130%;
+
+        &:hover {
+          background-color: $color-tomato;
+        }
+      }
+
       > .icon-button {
-        margin: 10px;
+        margin: 3px;
       }
     }
   }
