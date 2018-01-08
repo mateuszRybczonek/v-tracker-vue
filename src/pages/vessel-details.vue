@@ -1,13 +1,21 @@
 <template>
   <div id="vessel-details">
     <h1>Vessel details</h1>
-    <h1>{{vessel.name}}</h1>
-    <mini-stats :vessel="vessel" :lastReport="lastReport"></mini-stats>
+    <vessel-info
+      class="vessel-details__item"
+      :vessel="vessel">
+    </vessel-info>
+    <mini-stats
+      class="vessel-details__item"
+      :vessel="vessel"
+      :lastReport="lastReport">
+    </mini-stats>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
+  import VesselInfo from '../components/vessel-details/vessel-info.vue'
   import MiniStats from '../components/vessel-details/mini-stats.vue'
 
   export default {
@@ -99,17 +107,28 @@
     },
 
     components: {
-      MiniStats
+      MiniStats,
+      VesselInfo
     }
   }
 </script>
 
 <style scoped lang="scss">
-  h1, p {
-    text-align: center;
-  }
+  #vessel-details {
+    margin: 0 20px;
 
-  h1 {
-    margin: 50px 0;
+    h1, p {
+      text-align: center;
+    }
+
+    h1 {
+      margin: 50px 0;
+    }
+
+    .vessel-details {
+      &__item {
+        margin-top: 40px;
+      }
+    }
   }
 </style>

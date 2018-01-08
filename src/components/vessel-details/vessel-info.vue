@@ -1,26 +1,39 @@
 <template>
-  <div class="mini-stats">
-    <div class="mini-stats__header">
-      <h3>Last reported data: {{lastReport.reportTime}}</h3>
+  <div class="vessel-info">
+    <div class="vessel-info__header">
+      <h3>{{vessel.name}}</h3>
+      <router-link tag="i"
+         :to="editLink"
+         class="vessel-info__header__edit-link">
+        <v-icon icon="pencil" size="small" color="white"></v-icon>
+      </router-link>
     </div>
-    <div class="mini-stats__content">
-      <mini-stats-item v-for="(item, index) in miniStatsItems"
-        :icon="item.icon"
-        :header="item.header"
-        :description="item.description"
-        :class="item.customClass">
-      </mini-stats-item>
+    <div class="vessel-info__content">
+      <div class="vessel-info__content__section">
+        <h4>IMO Number: {{vessel.imoNumber}}</h4>
+        <h4>MMSI: {{vessel.mmsi}}</h4>
+        <h4>Gross Tonnage: {{vessel.gt}}</h4>
+      </div>
+      <div class="vessel-info__content__section">
+        <h4>Year of build: {{vessel.yob}}</h4>
+        <h4>Flag: {{vessel.flag}}</h4>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
   import MiniStatsItem from '../../components/molecules/mini-stats-item.vue'
+  import VIcon from '../../components/atoms/icon.vue'
 
   export default {
-    props: ['vessel', 'lastReport'],
+    props: ['vessel'],
 
     computed: {
+      editLink () {
+        return `/dashboard/vessels/${this.vessel.id}/edit`
+      },
+
       miniStatsItems () {
         return [
           {
@@ -49,13 +62,14 @@
     },
 
     components: {
-      MiniStatsItem
+      MiniStatsItem,
+      VIcon
     }
   }
 </script>
 
 <style scoped lang="scss">
-  .mini-stats {
+  .vessel-info {
     border: 1px solid $color-font-light-grey;
     text-align: center;
     @include border-radius(5px);
@@ -70,11 +84,23 @@
       > h3 {
         color: $color-whitey;
       }
+
+      &__edit-link {
+        position: absolute;
+        right: 35px;
+        cursor: pointer;
+      }
     }
 
     &__content {
       display: flex;
-      margin: 40px 0 20px;
+      justify-content: space-around;
+      text-align: left;
+      margin: 40px 50px 20px;
+
+      &__section {
+        width: 100%;
+      }
     }
   }
 </style>
