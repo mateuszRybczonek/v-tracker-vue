@@ -1,10 +1,12 @@
 <template>
     <v-card :to="vesselDetailsLink" class="vessels-list-item">
-      <p class="subheader-small">{{vessel.name}}<p>
-      <p class="subheader-small">IMO number: {{vessel.imoNumber}}</p>
-      <div class="buttons">
-        <router-link :to="editLink" class="icon-button icon icon__small pencil pencil__small"></router-link>
-        <span @click="deleteVessel(vessel.id)" class="icon-button icon icon__small trash trash__small">
+      <p class="vessels-list-item__subheader--small">{{vessel.name}}<p>
+      <p class="vessels-list-item__subheader--small">IMO number: {{vessel.imoNumber}}</p>
+      <div class="vessels-list-item__buttons">
+        <router-link
+          :to="editLink"
+          class="vessels-list-item__icon-button icon icon__small pencil pencil__small"></router-link>
+        <span @click="deleteVessel(vessel.id)" class="vessels-list-item__icon-button icon icon__small trash trash__small">
         </span>
       </div>
     </v-card>
@@ -20,6 +22,7 @@
       VCard,
       IconButton
     },
+
     computed: {
       vesselDetailsLink () {
         return `/dashboard/vessels/${this.vessel.id}`
@@ -59,7 +62,7 @@
       }
     }
 
-    .subheader-small {
+    &__subheader--small {
       padding: 0 0 15px;
 
       @media all and (max-width: $phone) {
@@ -67,7 +70,7 @@
       }
     }
 
-    .buttons {
+    &__buttons {
       display: flex;
       flex-direction: row;
       justify-content: flex-end;

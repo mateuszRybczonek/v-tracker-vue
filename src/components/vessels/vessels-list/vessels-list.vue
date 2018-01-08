@@ -1,9 +1,10 @@
 <template>
   <div class="vessels-list">
     <v-list-item
+      class="vessels-list__item"
       v-for="(vessel, index) in vessels"
       :vessel="vessel"></v-list-item>
-    <v-list-new class="vessels-list-item"></v-list-new>
+    <v-list-new class="vessels-list__item"></v-list-new>
   </div>
 </template>
 
@@ -29,7 +30,7 @@
     flex-wrap: wrap;
     margin: 0 30px;
 
-    .vessels-list-item {
+    &__item {
       margin: 20px;
 
       @media all and (max-width: $phone) {
