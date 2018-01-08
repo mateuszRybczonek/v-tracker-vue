@@ -1,7 +1,7 @@
 <template>
   <div class="mini-stats__item">
     <div class="item__badge">
-      <i :class="iconName" class="badge__icon icon--medium"></i>
+      <icon :icon=icon size="large"></icon>
     </div>
     <div class="item__description">
       <div class="description__header">
@@ -15,8 +15,13 @@
 </template>
 
 <script>
+  import Icon from '../../components/atoms/icon.vue'
   export default {
-    props: ['iconName', 'header', 'description']
+    props: ['icon', 'header', 'description'],
+
+    components: {
+      Icon
+    }
   }
 </script>
 
@@ -62,38 +67,6 @@
       .badge__icon {
         background-size: cover;
         padding: 0;
-      }
-
-      .icon--medium {
-        width: 76px;
-        height: 76px;
-      }
-
-      .icon__fuel {
-        background-color: #FFF;
-        mask-image: url('../../assets/icons.svg');
-
-        &--medium {
-          mask-position: 2px 0;
-        }
-      }
-
-      .icon__water {
-        background-color: #FFF;
-        mask-image: url('../../assets/icons.svg');
-
-        &--medium {
-          mask-position: 0 -350px;
-        }
-      }
-
-      .icon__people {
-        background-color: #FFF;
-        mask-image: url('../../assets/icons.svg');
-
-        &--medium {
-          mask-position: 0 -490px;
-        }
       }
     }
 

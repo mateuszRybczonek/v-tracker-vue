@@ -5,7 +5,7 @@
     </div>
     <div class="mini-stats__badges">
       <mini-stats-item v-for="(item, index) in miniStatsItems"
-        :iconName="item.iconName"
+        :icon="item.icon"
         :header="item.header"
         :description="item.description"
         :class="item.customClass">
@@ -24,22 +24,22 @@
       miniStatsItems () {
         return [
           {
-            iconName: 'icon__fuel icon__fuel--medium',
+            icon: 'fuel',
             header: `${this.lastReport.foRob} cbm`,
             description: 'Remaining FO',
             customClass: 'mini-stats__item--fo'
           }, {
-            iconName: 'icon__fuel icon__fuel--medium',
+            icon: 'fuel',
             header: `${this.lastReport.doRob} cbm`,
             description: 'Remaining DO',
             customClass: 'mini-stats__item--do'
           }, {
-            iconName: 'icon__water icon__water--medium',
+            icon: 'water',
             header: `${this.lastReport.fwRob} cbm`,
             description: 'Remaining FW',
             customClass: 'mini-stats__item--fw'
           }, {
-            iconName: 'icon__people icon__people--medium',
+            icon: 'people',
             header: `${this.lastReport.pob}`,
             description: 'POB',
             customClass: 'mini-stats__item--pob'
