@@ -1,7 +1,7 @@
 <template>
   <div class="mini-stats__item">
     <div class="item__badge">
-      <icon :icon=icon size="large"></icon>
+      <v-icon :icon=icon size="large" color="white"></v-icon>
     </div>
     <div class="item__description">
       <div class="description__header">
@@ -15,12 +15,12 @@
 </template>
 
 <script>
-  import Icon from '../../components/atoms/icon.vue'
+  import VIcon from '../../components/atoms/icon.vue'
   export default {
     props: ['icon', 'header', 'description'],
 
     components: {
-      Icon
+      VIcon
     }
   }
 </script>

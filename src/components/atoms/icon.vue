@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    props: ['icon', 'size', 'type'],
+    props: ['icon', 'size', 'type', 'color'],
 
     computed: {
       classes () {
@@ -12,6 +12,7 @@
           icon--${this.icon}
           icon--${this.icon}--${this.size}
           icon--${this.size}
+          icon--${this.color}
           icon--${this.type}
         `
       }
@@ -20,26 +21,49 @@
 </script>
 
 <style scoped lang="scss">
-  $small: 25px;
-  $medium: 35px;
+  $small: 30px;
+  $medium: 50px;
   $large: 76px;
-  $huge: 85px;
+  $huge: 151px;
+  $color-transition: background-color 0.5s ease;
+
+  i {
+    display: block;
+  }
 
   .icon {
     fill: $color-font-light-grey;
 
+    // themes
     &--positive {
+      background-color: $color-font-light-grey;
+
       &:hover {
-        fill: $color-green;
+        transition: $color-transition;
+        background-color: $color-green;
       }
     }
 
     &--negative {
+      background-color: $color-font-light-grey;
+
       &:hover {
-        fill: $color-tomato;
+        transition: $color-transition;
+        background-color: $color-tomato;
       }
     }
 
+
+    //colors
+    &--white {
+      background-color: #FFF;
+    }
+
+    &--light-grey {
+      background-color: $color-font-light-grey;
+    }
+
+    //sizes
     &--small {
       width: $small;
       height: $small;
@@ -60,8 +84,8 @@
       height: $huge;
     }
 
+    //icons
     &--fuel {
-      background-color: #FFF;
       mask-image: url('../../assets/icons.svg');
 
       &--large {
@@ -70,7 +94,6 @@
     }
 
     &--water {
-      background-color: #FFF;
       mask-image: url('../../assets/icons.svg');
 
       &--large {
@@ -79,11 +102,51 @@
     }
 
     &--people {
-      background-color: #FFF;
       mask-image: url('../../assets/icons.svg');
 
       &--large {
         mask-position: 0 -490px;
+      }
+    }
+
+    &--tiles-plus {
+      &--huge {
+        mask-image: url('../../assets/icons.svg');
+        mask-position: 50% -600px;
+        mask-size: 141%;
+      }
+    }
+
+    &--pencil {
+      mask-image: url('../../assets/icons.svg');
+
+      &--small {
+        mask-position: 50% -77px;
+        mask-size: 130%;
+      }
+    }
+
+    &--trash {
+      mask-image: url('../../assets/icons.svg');
+      &--small {
+        mask-position: 50% -221px;
+        mask-size: 130%;
+      }
+    }
+
+    &--ship {
+      &--huge {
+        mask-image: url('../../assets/icons.svg');
+        mask-position: 50% -790px;
+        mask-size: 141%;
+      }
+    }
+
+    &--files {
+      &--huge {
+        mask-image: url('../../assets/icons.svg');
+        mask-position: 50% -206px;
+        mask-size: 141%;
       }
     }
   }

@@ -3,24 +3,25 @@
       <p class="vessels-list-item__subheader--small">{{vessel.name}}<p>
       <p class="vessels-list-item__subheader--small">IMO number: {{vessel.imoNumber}}</p>
       <div class="vessels-list-item__buttons">
-        <router-link
+        <router-link tag="i"
           :to="editLink"
-          class="vessels-list-item__icon-button icon icon__small pencil pencil__small"></router-link>
-        <span @click="deleteVessel(vessel.id)" class="vessels-list-item__icon-button icon icon__small trash trash__small">
-        </span>
+          class="button__edit">
+          <v-icon icon="pencil" size="small" type="positive"></v-icon>
+        </router-link>
+        <v-icon @click="deleteVessel(vessel.id)" icon="trash" size="small" type="negative"></v-icon>
       </div>
     </v-card>
 </template>
 
 <script>
   import VCard from '../../molecules/card.vue'
-  import IconButton from '../../atoms/buttons/icon-button'
+  import VIcon from '../../atoms/icon.vue'
 
   export default {
     props: ['vessel'],
     components: {
       VCard,
-      IconButton
+      VIcon
     },
 
     computed: {
@@ -76,41 +77,12 @@
       justify-content: flex-end;
       width: 100%;
 
-      .icon {
-        &__small {
-          width: 30px;
-          height: 30px;
-          background-size: cover;
-          padding: 0;
-        }
+      .button__edit {
+        width: 30px;
+        height: 30px;
       }
 
-      .pencil {
-        background-color: #999;
-        mask-image: url('../../../assets/icons.svg');
-
-        &__small {
-          mask-position: 50% -77px;
-          mask-size: 130%;
-        }
-
-        &:hover {
-          background-color: $color-green;
-        }
-      }
-
-      .trash {
-        background-color: #999;
-        mask-image: url('../../../assets/icons.svg');
-        mask-position: 50% -221px;
-        mask-size: 130%;
-
-        &:hover {
-          background-color: $color-tomato;
-        }
-      }
-
-      > .icon-button {
+      &__icon-button {
         margin: 3px;
       }
     }

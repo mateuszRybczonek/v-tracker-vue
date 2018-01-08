@@ -4,7 +4,7 @@
     <div class="cards">
       <dashboard-card v-for="(card, index) in cards"
         :destination="card.destination"
-        :iconName="card.iconName"
+        :icon="card.icon"
         :label="card.label">
       </dashboard-card>
     </div>
@@ -23,11 +23,11 @@
         return [
           {
             destination: 'dashboard/vessels',
-            iconName: 'ship__large',
+            icon: 'ship',
             label: 'Vessels'
           }, {
             destination: 'dashboard/reports',
-            iconName: 'files__large',
+            icon: 'files',
             label: 'Reports'
           }
         ]
