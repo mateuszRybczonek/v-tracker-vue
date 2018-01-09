@@ -5,18 +5,21 @@
       class="vessel-details__item"
       :vessel="vessel">
     </vessel-info>
-    <mini-stats
+    <div class="vessel-details__last-report">
+      <h3>Last reported data: {{lastReport.reportTime}}</h3>
+    </div>
+    <remaining-on-board
       class="vessel-details__item"
       :vessel="vessel"
       :lastReport="lastReport">
-    </mini-stats>
+    </remaining-on-board>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
   import VesselInfo from '../components/vessel-details/vessel-info.vue'
-  import MiniStats from '../components/vessel-details/mini-stats.vue'
+  import RemainingOnBoard from '../components/vessel-details/remaining-on-board.vue'
 
   export default {
     created () {
@@ -107,7 +110,7 @@
     },
 
     components: {
-      MiniStats,
+      RemainingOnBoard,
       VesselInfo
     }
   }
@@ -126,6 +129,12 @@
     }
 
     .vessel-details {
+      &__last-report {
+        display: flex;
+        justify-content: center;
+        margin: 40px 20px;
+      }
+
       &__item {
         margin-top: 40px;
       }
