@@ -45,6 +45,9 @@
 
 <script>
   import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
+  import { mapActions } from 'vuex'
+//  import globalAxios from 'axios'
+
   import FormWrapper from '../../components/form-wrapper.vue'
   import PositiveButton from '../../components/atoms/buttons/positive.vue'
 
@@ -62,14 +65,13 @@
       email: {
         required,
         email
-        //  unique: value => {
-        //  if (value === '') return true
-        //  return axios.get(`/users.json?orderBy="email"&equalTo="${value}"`)
-        //   .then((result => {
-        //     return Object.keys(result.data).length === 0
-        //    }))
-        //  }
-        // },
+//        unique: value => {
+//          if (value === '') return true
+//          return globalAxios.get(`/users.json?orderBy="email"&equalTo="${value}"`)
+//            .then(result => {
+//              return Object.keys(result.data).length === 0
+//            })
+//        }
       },
       password: {
         required,
@@ -81,6 +83,10 @@
     },
 
     methods: {
+      ...mapActions([
+        'signup' // map `this.signup(formData)` to `this.$store.dispatch('signup', formData)`
+      ]),
+
       onSubmit () {
         const formData = {
           email: this.email,
@@ -88,7 +94,7 @@
           confirmPassword: this.confirmPassword
         }
         this.validationsEnabled = true
-        return !this.$v.$invalid ? this.$store.dispatch('signup', formData) : false
+        return !this.$v.$invalid ? this.signup(formData) : false
       }
     },
 

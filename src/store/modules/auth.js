@@ -27,10 +27,6 @@ const getters = {
 
   idToken (state) {
     return state.idToken
-  },
-
-  userId (state) {
-    return state.user.id
   }
 }
 
@@ -50,7 +46,8 @@ const actions = {
       .then(res => {
         commit(types.AUTH_USER, {
           token: res.data.idToken,
-          userId: res.data.localId
+          userId: res.data.localId,
+          userEmail: res.data.email
         })
 
         const now = new Date()
@@ -82,11 +79,13 @@ const actions = {
     }
 
     const userId = localStorage.getItem('userId')
+    const userEmail = localStorage.getItem('userEmail')
     commit(types.AUTH_USER, {
       token,
-      userId
+      userId,
+      userEmail
     })
-    router.push('/dashboard')
+    router.back()
   },
 
   logout ({ commit }) {
@@ -106,7 +105,8 @@ const actions = {
       .then(res => {
         commit(types.AUTH_USER, {
           token: res.data.idToken,
-          userId: res.data.localId
+          userId: res.data.localId,
+          userEmail: res.data.email
         })
 
         const now = new Date()
@@ -137,19 +137,16 @@ const actions = {
   },
 
   fetchUser ({ commit, state }) {
-    globalAxios.get(`/users.json?auth=${state.idToken}`)
+    globalAxios.get(`/users.json?orderBy="email"&equalTo="${state.userEmail}"`)
       .then(res => {
+        let user
         const data = res.data
-        const users = []
         for (let key in data) {
-          const user = data[key]
+          user = data[key]
           user.id = key
-          users.push(user)
         }
-        const presentUser = users.filter(user => {
-          return user.email === localStorage.getItem('userEmail')
-        })
-        commit(types.STORE_USER, presentUser[0])
+        localStorage.setItem('user', user)
+        commit(types.STORE_USER, user)
       })
       .catch(error => console.log(error))
   }
@@ -159,6 +156,7 @@ const mutations = {
   [types.AUTH_USER] (state, userData) {      // storing the token in the vuex store
     state.idToken = userData.token
     state.userId = userData.userId
+    state.userEmail = userData.userEmail
   },
 
   [types.STORE_USER] (state, user) {

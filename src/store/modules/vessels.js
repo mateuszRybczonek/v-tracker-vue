@@ -39,7 +39,7 @@ const actions = {
   },
 
   fetchVessels ({ getters, commit }) {
-    const userId = getters.user.id
+    const userId = this.state.auth.user.id
     globalAxios.get(`/vessels.json?auth=${getters.idToken}`)
       .then(res => {
         const data = res.data

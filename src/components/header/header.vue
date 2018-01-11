@@ -17,11 +17,13 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
-    computed: { //  map getter to property
-      isAuthenticated () {
-        return this.$store.getters.isAuthenticated
-      }
+    computed: {
+      ...mapGetters([
+        'isAuthenticated'
+      ])
     },
 
     methods: {

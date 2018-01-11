@@ -105,7 +105,7 @@
     },
 
     created () {
-      this.vessel = this.$store.getters.vessels.find(vessel => vessel.id === this.$route.params.id)
+      this.vessel = this.vessels.find(vessel => vessel.id === this.$route.params.id)
     },
 
     computed: {

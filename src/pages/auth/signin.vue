@@ -44,6 +44,7 @@
 
 <script>
   import { required, email } from 'vuelidate/lib/validators'
+  import { mapGetters, mapActions } from 'vuex'
 
   import FormWrapper from '../../components/form-wrapper.vue'
   import PositiveButton from '../../components/atoms/buttons/positive.vue'
@@ -57,10 +58,10 @@
       }
     },
 
-    computed: { // map getter to property
-      isAuthError () {
-        return this.$store.getters.isAuthError
-      }
+    computed: {
+      ...mapGetters([
+        'isAuthError'
+      ])
     },
 
     validations: {
@@ -74,17 +75,18 @@
     },
 
     methods: {
+      ...mapActions([
+        'login',
+        'clearAuthError'
+      ]),
+
       onSubmit () {
         const formData = {
           email: this.email,
           password: this.password
         }
         this.validationsEnabled = true
-        return !this.$v.$invalid ? this.$store.dispatch('login', { email: formData.email, password: formData.password }) : false
-      },
-
-      clearAuthError () {
-        this.$store.dispatch('clearAuthError')
+        return !this.$v.$invalid ? this.login({ email: formData.email, password: formData.password }) : false
       }
     },
 
