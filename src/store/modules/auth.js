@@ -111,8 +111,9 @@ const actions = {
 
         const now = new Date()
         const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000)
+        authData.userId = res.data.localId
         localStorage.setItem('token', res.data.idToken)  // store token in local storage for auto login
-        localStorage.setItem('userId', res.data.localId)
+        localStorage.setItem('userId', authData.userId)
         localStorage.setItem('expirationDate', expirationDate)
         localStorage.setItem('userEmail', authData.email)
 
@@ -127,7 +128,7 @@ const actions = {
     if (!state.idToken) {
       return
     }
-    globalAxios.post(`/users.json?auth=${state.idToken}`, userData) //  path from main.js axios defaults
+    globalAxios.put(`/users/${userData.userId}.json?auth=${state.idToken}`, userData) //  path from main.js axios defaults
       .then(() => { commit(types.STORE_USER, userData) }) // store user in store
       .catch(error => console.log(error))
   },
@@ -137,7 +138,7 @@ const actions = {
   },
 
   fetchUser ({ commit, state }) {
-    globalAxios.get(`/users.json?orderBy="email"&equalTo="${state.userEmail}"`)
+    globalAxios.get(`/users/${state.userId}.json?auth=${state.idToken}`)
       .then(res => {
         let user
         const data = res.data
