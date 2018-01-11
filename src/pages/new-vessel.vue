@@ -79,7 +79,7 @@
       </div>
 
       <div class="actions">
-        <positive-button>
+        <positive-button :inProgress="isSubmitted">
           <span @click="onSubmit">
             Submit
           </span>
@@ -132,12 +132,17 @@
           yob: this.vessel.yob,
           flag: this.vessel.flag,
           owners: {
-            [this.$store.state.auth.user.id]: true
+            [this.$store.state.auth.userId]: true
           }
         }
 
         this.showErrors = true
-        return !this.$v.$invalid ? this.$store.dispatch('createNewVessel', formData) : false
+        if (this.$v.$invalid) {
+          return false
+        } else {
+          this.$store.dispatch('createNewVessel', formData)
+          this.isSubmitted = true
+        }
       }
     },
 

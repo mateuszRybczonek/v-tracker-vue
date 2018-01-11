@@ -1,11 +1,26 @@
 <template>
-  <button>
-    <slot></slot>
+  <button :class="{'in-progress': inProgress}">
+    <md-progress-spinner
+      v-if="inProgress"
+      :md-diameter="20"
+      :md-stroke="3"
+      md-mode="indeterminate">
+    </md-progress-spinner>
+    <slot v-else></slot>
   </button>
 </template>
 
+<script>
+  export default {
+    name: 'ProgressSpinnerSizes',
+
+    props: ['inProgress']
+  }
+</script>
+
 <style scoped lang="scss">
   button {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -23,6 +38,12 @@
       font-size: 20px;
     }
 
+    &.in-progress {
+      opacity: 0.3;
+      cursor: auto;
+      pointer-events: none;
+    }
+
     > a {
       padding: 0 32px;
       line-height: $button-height;
@@ -34,6 +55,12 @@
       line-height: 21px;
       vertical-align: middle;
       font-size: 22px;
+    }
+
+    .md-progress-spinner {
+      position: absolute;
+      top: 33%;
+      stroke: $color-whitey;
     }
   }
 </style>

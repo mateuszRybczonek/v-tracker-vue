@@ -1,14 +1,26 @@
 <template>
-    <v-card :to="vesselDetailsLink" class="vessels-list-item">
-      <p class="vessels-list-item__subheader--small">{{vessel.name}}<p>
-      <p class="vessels-list-item__subheader--small">IMO number: {{vessel.imoNumber}}</p>
+    <v-card :to="vesselDetailsLink" class="vessels-list-item" :class="{ 'vessels-list-item--faded': inProgress}">
+      <md-progress-spinner
+        v-if="inProgress"
+        :md-diameter="130"
+        :md-stroke="10"
+        md-mode="indeterminate">
+      </md-progress-spinner>
+      <p class="vessels-list-item__subheader--small">
+        {{vessel.name}}
+      <p>
+      <p class="vessels-list-item__subheader--small">
+        IMO number: {{vessel.imoNumber}}
+      </p>
       <div class="vessels-list-item__buttons">
         <router-link tag="i"
           :to="editLink"
           class="button__edit">
           <v-icon icon="pencil" size="small" type="positive"></v-icon>
         </router-link>
-        <v-icon @click="deleteVessel(vessel.id)" icon="trash" size="small" type="negative"></v-icon>
+        <span @click.prevent.stop="deleteVessel(vessel.id)">
+          <v-icon icon="trash" size="small" type="negative"></v-icon>
+        </span>
       </div>
     </v-card>
 </template>
@@ -18,6 +30,14 @@
   import VIcon from '../../atoms/icon.vue'
 
   export default {
+    name: 'ProgressSpinnerSizes',
+
+    data () {
+      return {
+        inProgress: false
+      }
+    },
+
     props: ['vessel'],
     components: {
       VCard,
@@ -35,6 +55,7 @@
     methods: {
       deleteVessel (vesselId) {
         this.$store.dispatch('deleteVessel', vesselId)
+        this.inProgress = true
       }
     }
   }
@@ -42,6 +63,7 @@
 
 <style scoped lang="scss">
   .vessels-list-item {
+    position: relative;
     display: flex;
     align-items: baseline;
     background-color: #FFF;
@@ -61,6 +83,12 @@
         @include box-shadow(0 0 0 0 #FFF);
         transform: scale(1);
       }
+    }
+
+    &--faded {
+      opacity: 0.3;
+      cursor: auto;
+      pointer-events: none;
     }
 
     &__subheader--small {
@@ -86,6 +114,11 @@
         margin: 3px;
       }
     }
-  }
 
+    .md-progress-spinner {
+      position: absolute;
+      top: 25%;
+      stroke: $color-black;
+    }
+  }
 </style>

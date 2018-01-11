@@ -140,12 +140,7 @@ const actions = {
   fetchUser ({ commit, state }) {
     globalAxios.get(`/users/${state.userId}.json?auth=${state.idToken}`)
       .then(res => {
-        let user
-        const data = res.data
-        for (let key in data) {
-          user = data[key]
-          user.id = key
-        }
+        const user = res.data
         localStorage.setItem('user', user)
         commit(types.STORE_USER, user)
       })

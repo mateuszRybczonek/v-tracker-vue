@@ -53,7 +53,6 @@
       }
     }
 
-
     //colors
     &--white {
       background-color: #FFF;

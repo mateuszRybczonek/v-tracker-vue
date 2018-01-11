@@ -20,7 +20,7 @@ const actions = {
     globalAxios.post(`/vessels.json?auth=${getters.idToken}`, vesselData)
       .then(res => {
         const vesselId = res.data.name
-        globalAxios.patch(`users/${getters.user.id}/vessels.json?auth=${getters.idToken}`, { [vesselId]: true })
+        globalAxios.patch(`users/${getters.user.userId}/vessels.json?auth=${getters.idToken}`, { [vesselId]: true })
           .then(() => {
             router.push('/dashboard/vessels')
           })
@@ -39,7 +39,7 @@ const actions = {
   },
 
   fetchVessels ({ getters, commit }) {
-    const userId = this.state.auth.user.id
+    const userId = this.state.auth.userId
     globalAxios.get(`/vessels.json?auth=${getters.idToken}`)
       .then(res => {
         const data = res.data
@@ -60,7 +60,7 @@ const actions = {
   deleteVessel ({ getters, commit }, vesselId) {
     globalAxios.delete(`/vessels/${vesselId}.json?auth=${getters.idToken}`)
       .then(() => {
-        globalAxios.patch(`users/${getters.userId}/vessels.json?auth=${getters.idToken}`, { [vesselId]: null })
+        globalAxios.patch(`users/${getters.user.userId}/vessels.json?auth=${getters.idToken}`, { [vesselId]: null })
           .then(res => commit(types.DELETE_VESSEL, vesselId))
           .catch(error => console.log(error))
       })
