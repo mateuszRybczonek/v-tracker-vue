@@ -131,9 +131,7 @@
           mmsi: this.vessel.mmsi,
           yob: this.vessel.yob,
           flag: this.vessel.flag,
-          owners: {
-            [this.$store.state.auth.userId]: true
-          }
+          owner: this.$store.state.auth.userId
         }
 
         this.showErrors = true

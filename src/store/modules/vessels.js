@@ -40,18 +40,10 @@ const actions = {
 
   fetchVessels ({ getters, commit }) {
     const userId = this.state.auth.userId
-    globalAxios.get(`/vessels.json?auth=${getters.idToken}`)
+    globalAxios.get(`/vessels.json?orderBy="owner"&equalTo="${userId}"`)
       .then(res => {
-        const data = res.data
-        const vessels = []
-        for (let key in data) {
-          const vessel = data[key]
-          vessel.id = key
-          vessels.push(vessel)
-        }
-        const userVessels = vessels.filter(vessel => {
-          return vessel.owners[userId] === true
-        })
+        const userVessels = res.data
+        console.log(userVessels)
         commit(types.STORE_VESSEL, userVessels)
       })
       .catch(error => console.log(error))
