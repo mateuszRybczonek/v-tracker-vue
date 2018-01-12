@@ -11,50 +11,53 @@ const getters = {
 }
 
 const actions = {
-  createNewVessel ({ getters }, vesselData) {
+  async createNewVessel ({ getters }, vesselData) {
     if (!getters.idToken) {
       return
     }
-    globalAxios.post(`/vessels.json?auth=${getters.idToken}`, vesselData)
-      .then(res => {
-        const vesselId = res.data.name
-        globalAxios.patch(`users/${getters.user.userId}/vessels.json?auth=${getters.idToken}`, { [vesselId]: true })
-          .then(() => {
-            router.push('/dashboard/vessels')
-          })
-          .catch(error => console.log(error))
-      })
-      .catch(error => console.log(error))
+    try {
+      const { data } = await globalAxios.post(`/vessels.json?auth=${getters.idToken}`, vesselData)
+      const vesselId = data.name
+      try {
+        await globalAxios.patch(`users/${getters.user.userId}/vessels.json?auth=${getters.idToken}`, { [vesselId]: true })
+        router.push('/dashboard/vessels')
+      } catch (error) { console.log(error) }
+    } catch (error) { console.log(error) }
   },
 
-  editVessel ({ getters }, vesselData) {
+  async editVessel ({ getters }, vesselData) {
     if (!getters.idToken) {
       return
     }
-    globalAxios.patch(`/vessels/${vesselData.id}.json?auth=${getters.idToken}`, vesselData)
-      .then(() => router.push('/dashboard/vessels'))
-      .catch(error => console.log(error))
+    try {
+      await globalAxios.patch(`/vessels/${vesselData.id}.json?auth=${getters.idToken}`, vesselData)
+      router.push('/dashboard/vessels')
+    } catch (error) { console.log(error) }
   },
 
-  fetchVessels ({ getters, commit }) {
-    const userId = this.state.auth.userId
-    globalAxios.get(`/vessels.json?orderBy="owner"&equalTo="${userId}"`)
-      .then(res => {
-        const userVessels = res.data
-        console.log(userVessels)
-        commit(types.STORE_VESSEL, userVessels)
-      })
-      .catch(error => console.log(error))
+  async fetchVessels ({ getters, commit }) {
+    try {
+      const userId = this.state.auth.userId
+      const { data } = await globalAxios.get(`/vessels.json?orderBy="owner"&equalTo="${userId}"`)
+      const userVessels = []
+      for (let key in data) {     // add id to the vessel
+        const vessel = data[key]
+        vessel.id = key
+        userVessels.push(vessel)
+      }
+      console.log(userVessels)
+      commit(types.STORE_VESSEL, userVessels)
+    } catch (error) { console.log(error) }
   },
 
-  deleteVessel ({ getters, commit }, vesselId) {
-    globalAxios.delete(`/vessels/${vesselId}.json?auth=${getters.idToken}`)
-      .then(() => {
-        globalAxios.patch(`users/${getters.user.userId}/vessels.json?auth=${getters.idToken}`, { [vesselId]: null })
-          .then(res => commit(types.DELETE_VESSEL, vesselId))
-          .catch(error => console.log(error))
-      })
-      .catch(error => console.log(error))
+  async deleteVessel ({ getters, commit }, vesselId) {
+    try {
+      await globalAxios.delete(`/vessels/${vesselId}.json?auth=${getters.idToken}`)
+      try {
+        await globalAxios.patch(`users/${getters.user.userId}/vessels.json?auth=${getters.idToken}`, { [vesselId]: null })
+        commit(types.DELETE_VESSEL, vesselId)
+      } catch (error) { console.log(error) }
+    } catch (error) { console.log(error) }
   }
 }
 
