@@ -7,9 +7,7 @@ const state = {
 }
 
 const getters = {
-  vessels (state) {
-    return state.vessels
-  }
+  vessels: state => state.vessels
 }
 
 const actions = {
