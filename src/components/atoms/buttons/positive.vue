@@ -35,6 +35,7 @@
     justify-content: center;
     min-width: 100px;
     margin-top: 60px;
+    text-transform: uppercase;
 
     @include common-button();
     @include green-button();

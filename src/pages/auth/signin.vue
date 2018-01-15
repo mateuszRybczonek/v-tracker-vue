@@ -1,33 +1,26 @@
 <template>
   <div class="signin">
-    <form-wrapper title="Please login using the form below:">
+    <form-wrapper title="Login to your account">
       <form slot="content" @submit.prevent="onSubmit">
-        <div class="error">
-          <span class="validation-error auth-error" v-if="isAuthError">
+        <div class="content__error">
+          <span class="content__error__validation-error__auth-error" v-if="isAuthError">
             Invalid credentials
           </span>
         </div>
-        <md-field class="input-with-error" :class="{ invalid: validationsEnabled && $v.email.$invalid }">
-          <label>Email</label>
-          <md-input
-            v-model="email"
-            @input="clearAuthError()"
-            @blur="$v.email.$touch()">
-          </md-input>
-        </md-field>
+        <input class="input__email input--with-error" :class="{ invalid: validationsEnabled && $v.email.$invalid }"
+          v-model="email"
+          placeholder="Email"
+          @input="clearAuthError()"
+          @blur="$v.email.$touch()">
         <div class="error">
           <span class="validation-error" v-if="validationsEnabled && !$v.email.required">This field must not be empty.</span>
           <span class="validation-error" v-else-if="validationsEnabled && !$v.email.email">Please provide a valid email address.</span>
         </div>
-
-        <md-field class="input-with-error" :class="{ invalid: validationsEnabled && $v.password.$invalid }">
-          <label>Password</label>
-          <md-input
+        <input class="input__password input--with-error" :class="{ invalid: validationsEnabled && $v.password.$invalid }"
             type="password"
+            placeholder="Password"
             v-model="password"
             @input="$v.password.$touch()">
-          </md-input>
-        </md-field>
         <div class="error">
           <span class="validation-error" v-if="validationsEnabled && !$v.password.required">This field must not be empty.</span>
         </div>
@@ -87,8 +80,12 @@
           password: this.password
         }
         this.validationsEnabled = true
-        this.isSubmitted = true
-        return !this.$v.$invalid ? this.login({ email: formData.email, password: formData.password }) : false
+        if (!this.$v.$invalid) {
+          this.login({ email: formData.email, password: formData.password })
+          this.isSubmitted = true
+        } else {
+          return false
+        }
       },
 
       falseSubmit () {
@@ -108,28 +105,61 @@
     @include main-page-background();
 
     form {
-      .md-field > input {
-        border-bottom: 1px solid $color-dark-grey;
-        color: $color-dark-grey;
+      padding: 30px;
+
+      .content {
+        &__error {
+          min-height: 30px;
+
+          &__validation-error {
+            color: $color-tomato;
+            font-size: 12px;
+
+            &__auth-error {
+              color: $color-tomato;
+              font-size: 12px;
+              display: flex;
+              justify-content: center;
+            }
+          }
+        }
       }
 
-      .error {
-        min-height: 30px;
+
+      .input__email {
+        background: url('../../assets/icons.svg') no-repeat;
+        background-position-y: -370px;
+        background-size: 15%;
+        padding-left: 0;
+        opacity: 0.5;
       }
 
-      .input-with-error {
+      .input__password {
+        background: url('../../assets/icons.svg') no-repeat;
+        background-position-y: -416px;
+        background-size: 15%;
+        padding-left: 0;
+        opacity: 0.5;
+      }
+
+      .input--with-error {
         display: flex;
         flex-direction: column;
-        margin: 15px 0 0;
-      }
+        width: 100%;
+        height: 50px;
+        background-color: $color-whitey-darker;
+        color: $color-black;
+        border-radius: 4px;
+        border: none;
+        font-size: 17px;
+        padding: 10px 10px 10px 50px;
 
-      .validation-error {
-        color: $color-tomato;
-        font-size: 12px;
+        &::placeholder {
+          color: $color-black
+        }
 
-        &.auth-error {
-          display: flex;
-          justify-content: center;
+        &:focus {
+          outline-color: $color-dark-grey;
         }
       }
 
