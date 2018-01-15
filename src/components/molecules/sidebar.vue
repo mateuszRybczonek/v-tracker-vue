@@ -1,34 +1,53 @@
 <template>
-  <div class="sidebar">
-    <div class="sidebar__header">
-      <h5>{{vessel.name}}</h5>
-      <router-link tag="i"
-        :to="editLink"
-        class="sidebar__header__edit-link">
-        <v-icon icon="pencil" size="small" color="white"></v-icon>
-      </router-link>
-    </div>
-    <div class="sidebar__quick-links">
+  <div class="wrapper">
+    <div class="sidebar" :class="{ 'sidebar--contracted': !show }">
+      <div class="sidebar__header">
+        <h5>{{vessel.name}}</h5>
+        <router-link tag="i"
+          :to="editLink"
+          class="sidebar__header__edit-link">
+          <v-icon
+            icon="pencil"
+            size="small"
+            color="white">
+          </v-icon>
+        </router-link>
+        <div class="sidebar__header__close" @click="toggle">
+          <div class="sidebar__header__close__icon" :class="{ 'sidebar__header__close__icon--open': !show }">
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar__quick-links">
 
-    </div>
-    <div class="sidebar__content">
-      <ul class="sidebar__content__list">
-        <li class="sidebar__content__list__item" v-for="item in items">
-          <span class="sidebar__content__list__item__title">{{item.title}}</span>
-          <span class="sidebar__content__list__item__value">{{item.value}}</span>
-        </li>
-      </ul>
+      </div>
+      <div class="sidebar__content">
+        <ul class="sidebar__content__list">
+          <li class="sidebar__content__list__item" v-for="item in items">
+            <span class="sidebar__content__list__item__title">{{item.title}}</span>
+            <span class="sidebar__content__list__item__value">{{item.value}}</span>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
   import VIcon from '../../components/atoms/icon.vue'
+  import EventBus from '../../services/event-bus.js'
 
   export default {
     props: [
       'vessel'
     ],
+
+    data () {
+      return {
+        show: true
+      }
+    },
 
     computed: {
       editLink () {
@@ -60,6 +79,13 @@
       }
     },
 
+    methods: {
+      toggle () {
+        this.show = !this.show
+        EventBus.sidebarToggle(this.show)
+      }
+    },
+
     components: {
       VIcon
     }
@@ -76,6 +102,11 @@
     margin-top: 56px;
     background-color: $color-blue;
     color: $color-whitey;
+    transition: margin-left .5s;
+
+    &--contracted {
+      margin-left: -250px;
+    }
 
     &__header {
       background-color: $color-dark-blue;
@@ -91,9 +122,68 @@
       }
 
       &__edit-link {
-        position: absolute;
-        right: 10px;
+        margin-left: 10px;
         cursor: pointer;
+      }
+
+      &__close {
+        position: absolute;
+        right: 35px;
+        top: 17px;
+        cursor: pointer;
+
+        &__icon {
+          width: 20px;
+          height: 20px;
+          position: absolute;
+          transform: rotate(0deg);
+          transition: .5s ease-in-out;
+          cursor: pointer;
+
+          > span {
+            display: block;
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: $color-whitey;
+            border-radius: 1px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .6s ease-in-out;
+
+            &:nth-child(1) {
+              top: -3px;
+              width: 30px;
+              transform: rotate(45deg);
+              transform-origin: left center;
+            }
+
+            &:nth-child(2) {
+              top: 18px;
+              width: 30px;
+              transform: rotate(-45deg);
+              transform-origin: left center;
+            }
+          }
+
+          &--open {
+            > span {
+              &:nth-child(1) {
+                transform: rotate(405deg);
+                width: 20px;
+                top: -4px;
+                left: 0;
+              }
+
+              &:nth-child(2) {
+                transform: rotate(315deg);
+                width: 20px;
+                top: 24px;
+              }
+            }
+          }
+        }
       }
     }
 

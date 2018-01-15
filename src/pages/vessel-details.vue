@@ -1,16 +1,9 @@
 <template>
   <div class="vessel-details">
-    <!--<md-app md-waterfall md-mode="fixed" class="vessel-details__header">-->
-      <!--<md-app-toolbar class="md-primary">-->
-        <!--<span class="md-title">Vessel details</span>-->
-      <!--</md-app-toolbar>-->
-
     <v-sidebar
-      :vessel="vessel"
-    >
-
+      :vessel="vessel">
     </v-sidebar>
-    <div class="vessel-details__content">
+    <div class="vessel-details__content" :class="{ 'vessel-details__content--expanded': expandContent }">
       <div class="vessel-details__last-report">
         <h3>Last reported data: {{lastReport.reportTime}}</h3>
       </div>
@@ -20,9 +13,6 @@
         :lastReport="lastReport">
       </remaining-on-board>
     </div>
-
-      <!--</md-app-content>-->
-    <!--</md-app>-->
   </div>
 </template>
 
@@ -31,12 +21,28 @@
   import VesselInfo from '../components/vessel-details/vessel-info.vue'
   import RemainingOnBoard from '../components/vessel-details/remaining-on-board.vue'
   import VSidebar from '../components/molecules/sidebar.vue'
+  import EventBus from '../services/event-bus.js'
 
   export default {
     name: 'Waterfall',
 
+    data () {
+      return {
+        expandContent: false
+      }
+    },
+
     created () {
       this.$store.dispatch('fetchReports')
+
+      EventBus.$on('sidebarToggle', this.sidebarToggleHandler)
+    },
+
+    methods: {
+      sidebarToggleHandler (sidebarVisible) {
+        console.log(`sidebarToggle handler ${sidebarVisible}`)
+        this.expandContent = !sidebarVisible
+      }
     },
 
     computed: {
@@ -141,8 +147,13 @@
     }
 
     &__content {
+      transition: margin-left .5s;
       margin-left: 300px;
       padding: 0 15px;
+
+      &--expanded {
+        margin-left: 50px;
+      }
     }
 
     &__last-report {
