@@ -81,7 +81,7 @@
 
       .description__header {
         @include font(28px, 600, 32px);
-        color: $color-font-grey;
+        color: $color-dark-grey;
 
         @media all and (min-width: $tablet) {
           margin-bottom: 5px;
@@ -94,7 +94,7 @@
 
       .description__text {
         @include font(12px, 300);
-        color: $color-font-grey;
+        color: $color-dark-grey;
         text-transform: uppercase;
         letter-spacing: 2px;
 

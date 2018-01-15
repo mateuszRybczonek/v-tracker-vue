@@ -45,7 +45,6 @@ const actions = {
         vessel.id = key
         userVessels.push(vessel)
       }
-      console.log(userVessels)
       commit(types.STORE_VESSEL, userVessels)
     } catch (error) { console.log(error) }
   },

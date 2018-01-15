@@ -88,8 +88,8 @@
         pointer-events: none;
 
         .badge {
-          border-color: $color-font-light-grey;
-          color: $color-font-light-grey;
+          border-color: $color-light-grey;
+          color: $color-light-grey;
         }
       }
 
@@ -109,14 +109,14 @@
         pointer-events: none;
 
         .badge {
-          border: 1px solid $color-font-light-grey;
-          color: $color-font-light-grey;
+          border: 1px solid $color-light-grey;
+          color: $color-light-grey;
           background-color: transparent;
         }
 
         .progress-bar {
           &.visible {
-            background-color: $color-font-light-grey;
+            background-color: $color-light-grey;
           }
         }
       }

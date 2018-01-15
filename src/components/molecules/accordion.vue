@@ -61,7 +61,7 @@
 
 <style scoped lang="scss">
   .accordion {
-    border: 1px solid $color-font-light-grey;
+    border: 1px solid $color-light-grey;
     text-align: center;
     @include border-radius(5px);
 

@@ -48,9 +48,9 @@
 <style scoped lang="scss">
   .step-3 {
     .md-field {
-      border: 1px solid $color-font-grey;
+      border: 1px solid $color-dark-grey;
       border-radius: 3px;
-      color: $color-font-grey;
+      color: $color-dark-grey;
       display: flex;
       flex-direction: column;
       margin: 15px 0 0;

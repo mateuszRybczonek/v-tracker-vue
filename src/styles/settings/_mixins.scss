@@ -42,12 +42,12 @@
 @mixin base-typo-header() {
   padding: 0;
   margin: 0 0 8px;
-  color: $color-font-grey;
+  color: $color-dark-grey;
 }
 
 @mixin base-typo-subheader() {
   margin: 0 0 8px;
-  color: $color-font-light-grey;
+  color: $color-light-grey;
 }
 
 @mixin main-page-background() {

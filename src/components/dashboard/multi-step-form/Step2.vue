@@ -105,8 +105,8 @@
 <style scoped lang="scss">
   .step-2 {
     .md-field > input {
-      border-bottom: 1px solid $color-font-grey;
-      color: $color-font-grey;
+      border-bottom: 1px solid $color-dark-grey;
+      color: $color-dark-grey;
     }
 
     .error {

@@ -32,11 +32,11 @@
   }
 
   .icon {
-    fill: $color-font-light-grey;
+    fill: $color-light-grey;
 
     // themes
     &--positive {
-      background-color: $color-font-light-grey;
+      background-color: $color-light-grey;
 
       &:hover {
         transition: $color-transition;
@@ -45,7 +45,7 @@
     }
 
     &--negative {
-      background-color: $color-font-light-grey;
+      background-color: $color-light-grey;
 
       &:hover {
         transition: $color-transition;
@@ -59,7 +59,7 @@
     }
 
     &--light-grey {
-      background-color: $color-font-light-grey;
+      background-color: $color-light-grey;
     }
 
     //sizes
