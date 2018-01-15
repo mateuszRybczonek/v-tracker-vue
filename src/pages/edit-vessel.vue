@@ -79,8 +79,8 @@
       </div>
 
       <div class="actions">
-        <positive-button :inProgress="isSubmitted">
-          <span @click="onSubmit">
+        <positive-button :inProgress="isSubmitted" :on-click="onSubmit">
+          <span>
             Submit
           </span>
         </positive-button>

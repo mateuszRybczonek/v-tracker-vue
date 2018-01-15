@@ -1,18 +1,28 @@
 <template>
-  <div id="vessel-details">
-    <h1>Vessel details</h1>
-    <vessel-info
-      class="vessel-details__item"
-      :vessel="vessel">
-    </vessel-info>
-    <div class="vessel-details__last-report">
-      <h3>Last reported data: {{lastReport.reportTime}}</h3>
-    </div>
-    <remaining-on-board
-      class="vessel-details__item"
+  <div class="vessel-details">
+    <!--<md-app md-waterfall md-mode="fixed" class="vessel-details__header">-->
+      <!--<md-app-toolbar class="md-primary">-->
+        <!--<span class="md-title">Vessel details</span>-->
+      <!--</md-app-toolbar>-->
+
+    <v-sidebar
       :vessel="vessel"
-      :lastReport="lastReport">
-    </remaining-on-board>
+    >
+
+    </v-sidebar>
+    <div class="vessel-details__content">
+      <div class="vessel-details__last-report">
+        <h3>Last reported data: {{lastReport.reportTime}}</h3>
+      </div>
+      <remaining-on-board
+        class="vessel-details__item"
+        :vessel="vessel"
+        :lastReport="lastReport">
+      </remaining-on-board>
+    </div>
+
+      <!--</md-app-content>-->
+    <!--</md-app>-->
   </div>
 </template>
 
@@ -20,8 +30,11 @@
   import { mapGetters } from 'vuex'
   import VesselInfo from '../components/vessel-details/vessel-info.vue'
   import RemainingOnBoard from '../components/vessel-details/remaining-on-board.vue'
+  import VSidebar from '../components/molecules/sidebar.vue'
 
   export default {
+    name: 'Waterfall',
+
     created () {
       this.$store.dispatch('fetchReports')
     },
@@ -111,15 +124,14 @@
 
     components: {
       RemainingOnBoard,
-      VesselInfo
+      VesselInfo,
+      VSidebar
     }
   }
 </script>
 
 <style scoped lang="scss">
-  #vessel-details {
-    margin: 0 20px;
-
+  .vessel-details {
     h1, p {
       text-align: center;
     }
@@ -128,16 +140,19 @@
       margin: 50px 0;
     }
 
-    .vessel-details {
-      &__last-report {
-        display: flex;
-        justify-content: center;
-        margin: 40px 20px;
-      }
+    &__content {
+      margin-left: 300px;
+      padding: 0 15px;
+    }
 
-      &__item {
-        margin-top: 40px;
-      }
+    &__last-report {
+      display: flex;
+      justify-content: center;
+      margin: 40px 20px;
+    }
+
+    &__item {
+      margin-top: 40px;
     }
   }
 </style>

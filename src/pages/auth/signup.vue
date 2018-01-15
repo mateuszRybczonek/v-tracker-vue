@@ -36,7 +36,7 @@
         The confirmation password and password must be the same.
       </span>
         <div class="actions">
-          <positive-button type="submit">Submit</positive-button>
+          <positive-button :on-click="onSubmit" :inProgress="isSubmitted">Submit</positive-button>
         </div>
       </form>
     </form-wrapper>
@@ -57,7 +57,8 @@
         email: '',
         password: '',
         confirmPassword: '',
-        validationsEnabled: false
+        validationsEnabled: false,
+        isSubmitted: false
       }
     },
 
@@ -94,6 +95,7 @@
           confirmPassword: this.confirmPassword
         }
         this.validationsEnabled = true
+        this.isSubmitted = false
         return !this.$v.$invalid ? this.signup(formData) : false
       }
     },

@@ -65,7 +65,6 @@
       align-items: center;
       justify-content: center;
       height: 50px;
-      background-color: $color-font-grey;
 
       > h3 {
         margin: 0;

@@ -1,5 +1,5 @@
 <template>
-  <button :class="{'in-progress': inProgress}">
+  <button :class="{'in-progress': inProgress}" @click="onClick">
     <md-progress-spinner
       v-if="inProgress"
       :md-diameter="20"
@@ -14,7 +14,16 @@
   export default {
     name: 'ProgressSpinnerSizes',
 
-    props: ['inProgress']
+    props: {
+      inProgress: {
+        type: Boolean,
+        required: true
+      },
+      onClick: {
+        type: Function,
+        required: true
+      }
+    }
   }
 </script>
 

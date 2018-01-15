@@ -32,8 +32,8 @@
           <span class="validation-error" v-if="validationsEnabled && !$v.password.required">This field must not be empty.</span>
         </div>
         <div class="actions">
-          <positive-button type="submit">Log in</positive-button>
-          <positive-button>
+          <positive-button :on-click="onSubmit" :inProgress="isSubmitted">Log in</positive-button>
+          <positive-button :on-click="falseSubmit" :inProgress=false>
             <router-link to="/signup" class="login-button">Sign Up</router-link>
           </positive-button>
         </div>
@@ -54,7 +54,8 @@
       return {
         email: '',
         password: '',
-        validationsEnabled: false
+        validationsEnabled: false,
+        isSubmitted: false
       }
     },
 
@@ -86,7 +87,12 @@
           password: this.password
         }
         this.validationsEnabled = true
+        this.isSubmitted = true
         return !this.$v.$invalid ? this.login({ email: formData.email, password: formData.password }) : false
+      },
+
+      falseSubmit () {
+        return false
       }
     },
 
