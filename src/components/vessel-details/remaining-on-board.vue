@@ -21,7 +21,7 @@
   import VAccordion from '../../components/molecules/accordion.vue'
 
   export default {
-    props: ['vessel', 'lastReport'],
+    props: ['lastReport'],
 
     computed: {
       miniStatsItems () {

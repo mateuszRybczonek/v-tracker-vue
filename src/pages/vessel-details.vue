@@ -5,46 +5,48 @@
       :lastReport="lastReport">
     </v-sidebar>
     <div class="vessel-details__content" :class="{ 'vessel-details__content--expanded': expandContent }">
-      <div class="vessel-details__last-report">
-        <h4>Last reported data: {{lastReport.reportTime}}</h4>
-        <p>({{lastReportDaysAgo}})</p>
-        <p>{{vesselStatus}}</p>
-      </div>
-      <remaining-on-board
-        class="vessel-details__item"
-        :vessel="vessel"
-        :lastReport="lastReport">
-      </remaining-on-board>
+      <keep-alive>
+        <component
+          :is="selectedComponent" :componentProps="componentProps"
+        >
+        </component>
+      </keep-alive>
+      <v-vessel-dashboard
+      :lastReport="lastReport">
+      </v-vessel-dashboard>
     </div>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
-  import VesselInfo from '../components/vessel-details/vessel-info.vue'
-  import RemainingOnBoard from '../components/vessel-details/remaining-on-board.vue'
-  import VSidebar from '../components/sidebar.vue'
   import EventBus from '../services/event-bus.js'
+  import VesselInfo from '../components/vessel-details/vessel-info.vue'
+  import VSidebar from '../components/sidebar.vue'
+  import VVesselDashboard from '../components/vessel-details/dashboard.vue'
+  import VVesselStatistics from '../components/vessel-details/statistics.vue'
 
   export default {
-    name: 'Waterfall',
-
     data () {
       return {
-        expandContent: false
+        expandContent: false,
+        selectedComponent: 'v-vessel-dashboard'
       }
     },
 
     created () {
       this.$store.dispatch('fetchReports')
-
       EventBus.$on('sidebarToggle', this.sidebarToggleHandler)
+      EventBus.$on('selectVesselDetailsComponent', this.selectVesselDetailsComponentHandler)
     },
 
     methods: {
       sidebarToggleHandler (sidebarVisible) {
-        console.log(`sidebarToggle handler ${sidebarVisible}`)
         this.expandContent = !sidebarVisible
+      },
+
+      selectVesselDetailsComponentHandler (component) {
+        this.selectedComponent = component
       }
     },
 
@@ -58,8 +60,10 @@
         return this.vessels.find(vessel => vessel.id === this.$route.params.id)
       },
 
-      lastReportDaysAgo () {
-        return this.$moment(this.lastReport.reportTime).fromNow()
+      componentProps () {
+        if (this.selectedComponent === 'v-vessel-dashboard') {
+          return { lastReport: this.lastReport }
+        }
       },
 
       reports () {
@@ -136,9 +140,10 @@
     },
 
     components: {
-      RemainingOnBoard,
       VesselInfo,
-      VSidebar
+      VSidebar,
+      VVesselDashboard,
+      VVesselStatistics
     }
   }
 </script>

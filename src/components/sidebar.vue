@@ -20,6 +20,14 @@
         </div>
       </div>
       <div class="sidebar__quick-links">
+        <button class="sidebar__quick-links__icon" @click="selectVesselDetailsComponent('v-vessel-dashboard')">
+        </button>
+        <button class="sidebar__quick-links__icon" @click="selectVesselDetailsComponent('v-vessel-statistics')">
+        </button>
+        <button class="sidebar__quick-links__icon" @click="selectVesselDetailsComponent('v-vessel-dashboard')">
+        </button>
+        <button class="sidebar__quick-links__icon" @click="selectVesselDetailsComponent('v-vessel-statistics')">
+        </button>
 
       </div>
       <div class="sidebar__content">
@@ -99,6 +107,10 @@
       toggle () {
         this.show = !this.show
         EventBus.sidebarToggle(this.show)
+      },
+
+      selectVesselDetailsComponent (component) {
+        EventBus.selectVesselDetailsComponent(component)
       }
     },
 
@@ -204,11 +216,22 @@
     }
 
     &__quick-links {
-      &__icons {
-        display: flex;
-        justify-content: space-around;
+      display: flex;
+      justify-content: center;
+      padding: 0 30px;
+      margin-top: 20px;
+      &__icon {
+        transition: .6s ease-out;
+        width: 90px;
+        height: 30px;
+        background-color: $color-blue-grey;
         list-style-type: none;
         padding: 0;
+        border: none;
+
+        &:hover {
+          background-color: $color-dark-blue;
+        }
       }
     }
 
