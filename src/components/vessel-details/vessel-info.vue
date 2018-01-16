@@ -35,32 +35,6 @@
     computed: {
       editLink () {
         return `/dashboard/vessels/${this.vessel.id}/edit`
-      },
-
-      miniStatsItems () {
-        return [
-          {
-            icon: 'fuel',
-            header: `${this.lastReport.foRob} cbm`,
-            description: 'Remaining FO',
-            customClass: 'mini-stats__item--fo'
-          }, {
-            icon: 'fuel',
-            header: `${this.lastReport.doRob} cbm`,
-            description: 'Remaining DO',
-            customClass: 'mini-stats__item--do'
-          }, {
-            icon: 'water',
-            header: `${this.lastReport.fwRob} cbm`,
-            description: 'Remaining FW',
-            customClass: 'mini-stats__item--fw'
-          }, {
-            icon: 'people',
-            header: `${this.lastReport.pob}`,
-            description: 'POB',
-            customClass: 'mini-stats__item--pob'
-          }
-        ]
       }
     },
 

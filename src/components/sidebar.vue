@@ -24,6 +24,11 @@
       </div>
       <div class="sidebar__content">
         <ul class="sidebar__content__list">
+          <li class="sidebar__content__list__item__status" v-if="show">
+            <span class="sidebar__content__list__item__title">Status</span>
+            <span class="sidebar__content__list__item__status__marker" :class="vesselStatusClass"></span>
+          </li>
+
           <li class="sidebar__content__list__item" v-for="item in items">
             <span class="sidebar__content__list__item__title">{{item.title}}</span>
             <span class="sidebar__content__list__item__value">{{item.value}}</span>
@@ -35,12 +40,13 @@
 </template>
 
 <script>
-  import VIcon from '../../components/atoms/icon.vue'
-  import EventBus from '../../services/event-bus.js'
+  import VIcon from './atoms/icon.vue'
+  import EventBus from '../services/event-bus.js'
 
   export default {
     props: [
-      'vessel'
+      'vessel',
+      'lastReport'
     ],
 
     data () {
@@ -52,6 +58,16 @@
     computed: {
       editLink () {
         return `/dashboard/vessels/${this.vessel.id}/edit`
+      },
+
+      vesselStatusClass () {
+        if (this.$moment.duration(this.$moment().diff(this.lastReport.reportTime)).asHours() <= 24) {
+          return `status--green`
+        } else if (this.$moment.duration(this.$moment().diff(this.lastReport.reportTime)).asHours() <= 48) {
+          return `status--amber`
+        } else {
+          return `status--red`
+        }
       },
 
       items () {
@@ -199,7 +215,36 @@
     &__content {
       padding-left: 15px;
       &__list {
+        display: flex;
+        flex-direction: column;
         padding: 0;
+        &__item__status {
+          display: flex;
+          align-self: flex-end;
+          margin: 0 27px 15px;
+          font-weight: 700;
+          &__marker {
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            border: 2px solid $color-whitey-lighter;
+            position: relative;
+            top: 3px;
+            left: 10px;
+
+            &.status--green {
+              background-color: $color-hover-green;
+            }
+
+            &.status--amber {
+              background-color: $color-amber;
+            }
+
+            &.status--red {
+              background-color: $color-tomato;
+            }
+          }
+        }
         &__item {
           display: flex;
           flex-direction: column;

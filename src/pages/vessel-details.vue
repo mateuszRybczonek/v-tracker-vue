@@ -1,11 +1,14 @@
 <template>
   <div class="vessel-details">
     <v-sidebar
-      :vessel="vessel">
+      :vessel="vessel"
+      :lastReport="lastReport">
     </v-sidebar>
     <div class="vessel-details__content" :class="{ 'vessel-details__content--expanded': expandContent }">
       <div class="vessel-details__last-report">
-        <h3>Last reported data: {{lastReport.reportTime}}</h3>
+        <h4>Last reported data: {{lastReport.reportTime}}</h4>
+        <p>({{lastReportDaysAgo}})</p>
+        <p>{{vesselStatus}}</p>
       </div>
       <remaining-on-board
         class="vessel-details__item"
@@ -20,7 +23,7 @@
   import { mapGetters } from 'vuex'
   import VesselInfo from '../components/vessel-details/vessel-info.vue'
   import RemainingOnBoard from '../components/vessel-details/remaining-on-board.vue'
-  import VSidebar from '../components/molecules/sidebar.vue'
+  import VSidebar from '../components/sidebar.vue'
   import EventBus from '../services/event-bus.js'
 
   export default {
@@ -53,6 +56,10 @@
 
       vessel () {
         return this.vessels.find(vessel => vessel.id === this.$route.params.id)
+      },
+
+      lastReportDaysAgo () {
+        return this.$moment(this.lastReport.reportTime).fromNow()
       },
 
       reports () {
@@ -158,7 +165,9 @@
 
     &__last-report {
       display: flex;
+      flex-direction: column;
       justify-content: center;
+      align-items: center;
       margin: 40px 20px;
     }
 
