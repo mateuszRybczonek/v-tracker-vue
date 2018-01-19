@@ -5,15 +5,12 @@
         <p>Weather info</p>
       </div>
       <div slot="body" class="weather-info__content">
-        <div class="weather-info__content__section">
-          <ul class="weather-info__content__section__list">
-            <li class="weather-info__content__section__list__item"
-                v-for="weatherElement in weatherData">
-              <span>{{weatherElement.title}}</span>
-              <span>{{weatherElement.value}}</span>
-            </li>
-          </ul>
-        </div>
+        <ul class="weather-info__content__list">
+          <li class="weather-info__content__list__item" v-for="weatherElement in weatherData">
+            <span>{{weatherElement.title}}</span>
+            <span>{{weatherElement.value}}</span>
+          </li>
+        </ul>
       </div>
     </v-accordion>
   </div>
@@ -65,18 +62,15 @@
       justify-content: space-around;
       text-align: left;
 
-      &__section {
+      &__list {
         width: 100%;
-
-        &__list {
-          padding: 0 20px;
-          &__item {
-            display: flex;
-            justify-content: space-between;
-            list-style-type: none;
-            font-weight: 300;
-            cursor: default;
-          }
+        padding: 0 20px;
+        &__item {
+          display: flex;
+          justify-content: space-between;
+          list-style-type: none;
+          font-weight: 300;
+          cursor: default;
         }
       }
     }

@@ -40,7 +40,7 @@
 
       &:hover {
         transition: $color-transition;
-        background-color: $color-green;
+        background-color: $color-blue;
       }
     }
 

@@ -40,7 +40,7 @@
         height: 2px;
         content: "";
         display: inherit;
-        background-color: $color-green;
+        background-color: $color-blue;
         transform: translateX(-50%);
       }
     }

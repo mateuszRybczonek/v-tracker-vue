@@ -67,6 +67,7 @@
           {
             reportTime: '2018-01-02',
             course: 230,
+            spd: 15,
             doRob: 200,
             foRob: 100,
             fwRob: 300,
@@ -85,11 +86,12 @@
           }, {
             reportTime: '2018-01-04',
             course: 230,
+            spd: 14,
             doRob: 200,
             foRob: 100,
             fwRob: 300,
-            lat: 20,
-            lng: 20,
+            lat: 13.505,
+            lng: 73.893,
             pitch: 0.5,
             pob: 50,
             roll: 1,
@@ -103,6 +105,7 @@
           }, {
             reportTime: '2018-01-03',
             course: 230,
+            spd: 15,
             doRob: 200,
             foRob: 100,
             fwRob: 300,

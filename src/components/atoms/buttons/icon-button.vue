@@ -25,7 +25,7 @@
 
     &.positive {
       &:hover {
-        fill: $color-green;
+        fill: $color-blue;
       }
     }
 

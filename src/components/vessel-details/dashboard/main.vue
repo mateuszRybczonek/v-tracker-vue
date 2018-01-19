@@ -5,12 +5,12 @@
       <p>({{lastReportDaysAgo}})</p>
     </div>
     <div class="vessel-details__row">
-      <weather-data class="vessel-details__item"
+      <position-data class="vessel-details__item"
         :lastReport="lastReport">
-      </weather-data>
-      <weather-data class="vessel-details__item"
+      </position-data>
+      <navigation-data class="vessel-details__item"
         :lastReport="lastReport">
-      </weather-data>
+      </navigation-data>
       <weather-data class="vessel-details__item"
         :lastReport="lastReport">
       </weather-data>
@@ -24,6 +24,8 @@
 
 <script>
   import WeatherData from './weather-data.vue'
+  import PositionData from './position-data.vue'
+  import NavigationData from './navigation-data.vue'
   import RemainingOnBoard from './remaining-on-board.vue'
 
   export default {
@@ -43,7 +45,9 @@
 
     components: {
       RemainingOnBoard,
-      WeatherData
+      WeatherData,
+      PositionData,
+      NavigationData
     }
   }
 </script>
