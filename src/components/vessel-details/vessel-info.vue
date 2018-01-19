@@ -48,7 +48,6 @@
 
 <style scoped lang="scss">
   .vessel-info {
-
     &__header {
       display: flex;
       align-items: center;

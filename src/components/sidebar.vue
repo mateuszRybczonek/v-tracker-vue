@@ -22,13 +22,12 @@
       <div class="sidebar__quick-links">
         <button class="sidebar__quick-links__icon" @click="selectVesselDetailsComponent('v-vessel-dashboard')">
         </button>
-        <button class="sidebar__quick-links__icon" @click="selectVesselDetailsComponent('v-vessel-statistics')">
+        <button class="sidebar__quick-links__icon" @click="selectVesselDetailsComponent('v-vessel-weather')">
         </button>
         <button class="sidebar__quick-links__icon" @click="selectVesselDetailsComponent('v-vessel-dashboard')">
         </button>
         <button class="sidebar__quick-links__icon" @click="selectVesselDetailsComponent('v-vessel-statistics')">
         </button>
-
       </div>
       <div class="sidebar__content">
         <ul class="sidebar__content__list">
@@ -146,7 +145,7 @@
       > h5 {
         color: $color-whitey;
         margin: 0;
-        font-weight: 100;
+        font-weight: 400;
       }
 
       &__edit-link {
@@ -241,6 +240,7 @@
         display: flex;
         flex-direction: column;
         padding: 0;
+        cursor: default;
         &__item__status {
           display: flex;
           align-self: flex-end;

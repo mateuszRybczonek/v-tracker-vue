@@ -12,9 +12,7 @@
       @before-leave="beforeLeave"
       @leave="leave">
       <div class="accordion__body" v-show="show">
-        <div class="accordion__body-inner">
-          <slot name="body"></slot>
-        </div>
+        <slot name="body"></slot>
       </div>
     </transition>
   </div>
@@ -68,13 +66,15 @@
     &__header {
       display: flex;
       align-items: center;
-      justify-content: center;
-      height: 50px;
+      padding-left: 20px;
+      height: 40px;
       background-color: $color-dark-grey;
+      cursor: pointer;
 
-      > h3 {
+      p {
         margin: 0;
         color: $color-whitey;
+        font-weight: 700;
       }
     }
 
@@ -90,11 +90,6 @@
       overflow: hidden;
       border-top: 0;
       transition: 150ms ease-out;
-    }
-
-    &__body-inner {
-      padding: 35px 50px 20px;
-      overflow-wrap: break-word;
     }
 
     &__header-icon.rotate {

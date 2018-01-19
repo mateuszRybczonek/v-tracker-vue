@@ -73,7 +73,7 @@ const actions = {
       userId,
       userEmail
     })
-    router.back()
+    router.push('/dashboard')
   },
 
   logout ({ commit }) {

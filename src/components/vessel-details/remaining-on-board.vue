@@ -2,7 +2,7 @@
   <div class="remaining-on-board">
     <v-accordion :showOnInit=true>
       <div slot="header" class="remaining-on-board__header">
-        <h3>Remaining on board</h3>
+        <p>Remaining on board</p>
       </div>
       <div slot="body" class="remaining-on-board__content">
         <mini-stats-item v-for="(item, index) in miniStatsItems"
@@ -60,20 +60,10 @@
 
 <style scoped lang="scss">
   .remaining-on-board {
-    &__header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 50px;
-
-      > h3 {
-        margin: 0;
-        color: $color-whitey;
-      }
-    }
-
     &__content {
       display: flex;
+      padding: 35px 50px 20px;
+      overflow-wrap: break-word;
     }
   }
 </style>
