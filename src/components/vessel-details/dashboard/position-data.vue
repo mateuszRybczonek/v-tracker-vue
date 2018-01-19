@@ -18,6 +18,7 @@
 </template>
 
 <script>
+  import { decimalToDMS } from '../../../utils/coordinates-utils'
   import VIcon from '../../../components/atoms/icon.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
 
@@ -28,13 +29,15 @@
 
     computed: {
       positionData () {
+        const lat = this.lastReport.lat
+        const lng = this.lastReport.lng
         return [
           {
             title: 'Latitude',
-            value: `${this.lastReport.lat}°` || NOT_PROVIDED
+            value: lat ? decimalToDMS(lat) : NOT_PROVIDED
           }, {
             title: 'Longitude',
-            value: `${this.lastReport.lng}°` || NOT_PROVIDED
+            value: lng ? decimalToDMS(lng) : NOT_PROVIDED
           }
         ]
       }

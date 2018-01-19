@@ -27,22 +27,28 @@
 
     computed: {
       weatherData () {
+        const windDir = this.lastReport.windDir
+        const windSpd = this.lastReport.windSpd
+        const seaState = this.lastReport.seaState
+        const swellDir = this.lastReport.swellDir
+        const swellHeight = this.lastReport.swellHeight
+
         return [
           {
             title: 'Wind direction',
-            value: `${this.lastReport.windDir}°` || NOT_PROVIDED
+            value: windDir ? `${windDir}°` : NOT_PROVIDED
           }, {
             title: 'Wind speed',
-            value: `${this.lastReport.windSpd} kn` || NOT_PROVIDED
+            value: windSpd ? `${windSpd} kn` : NOT_PROVIDED
           }, {
             title: 'Sea state',
-            value: this.lastReport.seaState || NOT_PROVIDED
+            value: seaState || NOT_PROVIDED
           }, {
             title: 'Swell direction',
-            value: `${this.lastReport.swellDir}°` || NOT_PROVIDED
+            value: swellDir ? `${swellDir}°` : NOT_PROVIDED
           }, {
             title: 'Swell height',
-            value: `${this.lastReport.swellHeight.toFixed(1)} m` || NOT_PROVIDED
+            value: swellHeight ? `${swellHeight.toFixed(1)} m` : NOT_PROVIDED
           }
         ]
       }

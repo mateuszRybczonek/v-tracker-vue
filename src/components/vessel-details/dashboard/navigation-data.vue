@@ -28,19 +28,24 @@
 
     computed: {
       navigationData () {
+        const course = this.lastReport.course
+        const spd = this.lastReport.spd
+        const roll = this.lastReport.roll
+        const pitch = this.lastReport.pitch
+
         return [
           {
             title: 'Course',
-            value: `${this.lastReport.course}°` || NOT_PROVIDED
+            value: course ? `${course}°` : NOT_PROVIDED
           }, {
             title: 'Speed',
-            value: `${this.lastReport.spd} kn` || NOT_PROVIDED
+            value: spd ? `${spd} kn` : NOT_PROVIDED
           }, {
             title: 'Roll',
-            value: `${this.lastReport.roll}°` || NOT_PROVIDED
+            value: roll ? `${roll}°` : NOT_PROVIDED
           }, {
             title: 'Pitch',
-            value: `${this.lastReport.pitch}°` || NOT_PROVIDED
+            value: pitch ? `${pitch}°` : NOT_PROVIDED
           }
         ]
       }
