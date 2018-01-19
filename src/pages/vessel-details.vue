@@ -7,13 +7,9 @@
     <div class="vessel-details__content" :class="{ 'vessel-details__content--expanded': expandContent }">
       <keep-alive>
         <component
-          :is="selectedComponent" :componentProps="componentProps"
-        >
+          :is="selectedComponent" :componentProps="componentProps">
         </component>
       </keep-alive>
-      <v-vessel-dashboard
-      :lastReport="lastReport">
-      </v-vessel-dashboard>
     </div>
   </div>
 </template>
@@ -21,10 +17,10 @@
 <script>
   import { mapGetters } from 'vuex'
   import EventBus from '../services/event-bus.js'
-  import VesselInfo from '../components/vessel-details/vessel-info.vue'
-  import VSidebar from '../components/sidebar.vue'
-  import VVesselDashboard from '../components/vessel-details/dashboard.vue'
-  import VVesselStatistics from '../components/vessel-details/statistics.vue'
+  import VSidebar from '../components/sidebar/main.vue'
+  import VVesselDashboard from '../components/vessel-details/dashboard/main.vue'
+  import VStatistics from '../components/vessel-details/statistics/main.vue'
+  import VWeather from '../components/vessel-details/weather/main.vue'
 
   export default {
     data () {
@@ -140,10 +136,10 @@
     },
 
     components: {
-      VesselInfo,
       VSidebar,
       VVesselDashboard,
-      VVesselStatistics
+      VStatistics,
+      VWeather
     }
   }
 </script>

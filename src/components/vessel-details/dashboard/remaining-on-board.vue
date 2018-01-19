@@ -17,8 +17,8 @@
 </template>
 
 <script>
-  import MiniStatsItem from '../../components/molecules/mini-stats-item.vue'
-  import VAccordion from '../../components/molecules/accordion.vue'
+  import MiniStatsItem from '../../../components/molecules/mini-stats-item.vue'
+  import VAccordion from '../../../components/molecules/accordion.vue'
 
   export default {
     props: ['lastReport'],

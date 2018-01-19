@@ -1,23 +1,23 @@
 <template>
   <div class="vessel-details__dashboard">
     <div class="vessel-details__last-report">
-      <h4>Last reported data: {{componentProps.lastReport.reportTime}}</h4>
+      <h4>Last reported data: {{lastReport.reportTime}}</h4>
       <p>({{lastReportDaysAgo}})</p>
     </div>
     <div class="vessel-details__row">
       <weather-data class="vessel-details__item"
-        :lastReport="componentProps.lastReport">
+        :lastReport="lastReport">
       </weather-data>
       <weather-data class="vessel-details__item"
-        :lastReport="componentProps.lastReport">
+        :lastReport="lastReport">
       </weather-data>
       <weather-data class="vessel-details__item"
-        :lastReport="componentProps.lastReport">
+        :lastReport="lastReport">
       </weather-data>
     </div>
     <remaining-on-board
       class="vessel-details__item"
-      :lastReport="componentProps.lastReport">
+      :lastReport="lastReport">
     </remaining-on-board>
   </div>
 </template>
@@ -32,8 +32,12 @@
     ],
 
     computed: {
+      lastReport () {
+        return this.componentProps.lastReport
+      },
+
       lastReportDaysAgo () {
-        return this.$moment(this.componentProps.lastReport.reportTime).fromNow()
+        return this.$moment(this.lastReport.reportTime).fromNow()
       }
     },
 

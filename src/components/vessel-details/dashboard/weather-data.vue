@@ -20,8 +20,8 @@
 </template>
 
 <script>
-  import VIcon from '../../components/atoms/icon.vue'
-  import VAccordion from '../../components/molecules/accordion.vue'
+  import VIcon from '../../../components/atoms/icon.vue'
+  import VAccordion from '../../../components/molecules/accordion.vue'
 
   const NOT_PROVIDED = 'not provided'
 
