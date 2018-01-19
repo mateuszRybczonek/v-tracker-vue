@@ -3,6 +3,7 @@
     <v-accordion :showOnInit=true>
       <div slot="header" class="navigation-info__header">
         <p>Navigation</p>
+        <v-icon icon="navigation" size="medium" color="white"></v-icon>
       </div>
       <div slot="body" class="navigation-info__content">
         <ul class="navigation-info__content__list">
@@ -60,6 +61,11 @@
 
 <style scoped lang="scss">
   .navigation-info {
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
     &__content {
       display: flex;
       justify-content: space-around;

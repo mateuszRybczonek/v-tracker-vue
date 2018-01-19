@@ -3,6 +3,7 @@
     <v-accordion :showOnInit=true>
       <div slot="header" class="position-info__header">
         <p>Position</p>
+        <v-icon icon="position" size="medium" color="white"></v-icon>
       </div>
       <div slot="body" class="position-info__content">
         <ul class="position-info__content__list">
@@ -52,6 +53,11 @@
 
 <style scoped lang="scss">
   .position-info {
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
     &__content {
       display: flex;
       justify-content: space-around;

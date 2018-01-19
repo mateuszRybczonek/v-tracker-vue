@@ -3,6 +3,7 @@
     <v-accordion :showOnInit=true>
       <div slot="header" class="remaining-on-board__header">
         <p>Remaining on board</p>
+        <v-icon icon="fuel" size="medium" color="white"></v-icon>
       </div>
       <div slot="body" class="remaining-on-board__content">
         <mini-stats-item v-for="(item, index) in miniStatsItems"
@@ -18,6 +19,7 @@
 
 <script>
   import MiniStatsItem from '../../../components/molecules/mini-stats-item.vue'
+  import VIcon from '../../../components/atoms/icon.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
 
   export default {
@@ -53,13 +55,19 @@
 
     components: {
       MiniStatsItem,
-      VAccordion
+      VAccordion,
+      VIcon
     }
   }
 </script>
 
 <style scoped lang="scss">
   .remaining-on-board {
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
     &__content {
       display: flex;
       padding: 35px 50px 20px;

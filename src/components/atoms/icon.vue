@@ -87,6 +87,11 @@
     &--fuel {
       mask-image: url('../../assets/icons.svg');
 
+      &--medium {
+        mask-position: 0 5px;
+        mask-size: 800%;
+      }
+
       &--large {
         mask-position: 2px 0;
       }
@@ -146,6 +151,30 @@
         mask-image: url('../../assets/icons.svg');
         mask-position: 50% -206px;
         mask-size: 141%;
+      }
+    }
+
+    &--position {
+      &--medium {
+        mask-image: url('../../assets/icons.svg');
+        mask-position: 50% -600px;
+        mask-size: 130%;
+      }
+    }
+
+    &--navigation {
+      &--medium {
+        mask-image: url('../../assets/icons.svg');
+        mask-position: 50% -660px;
+        mask-size: 130%;
+      }
+    }
+
+    &--weather {
+      &--medium {
+        mask-image: url('../../assets/icons.svg');
+        mask-position: 50% -720px;
+        mask-size: 130%;
       }
     }
   }

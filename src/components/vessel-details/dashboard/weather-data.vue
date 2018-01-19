@@ -3,6 +3,7 @@
     <v-accordion :showOnInit=true>
       <div slot="header" class="weather-info__header">
         <p>Weather info</p>
+        <v-icon icon="weather" size="medium" color="white"></v-icon>
       </div>
       <div slot="body" class="weather-info__content">
         <ul class="weather-info__content__list">
@@ -63,6 +64,11 @@
 
 <style scoped lang="scss">
   .weather-info {
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
     &__content {
       display: flex;
       justify-content: space-around;

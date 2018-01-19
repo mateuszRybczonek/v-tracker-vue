@@ -65,7 +65,9 @@
 
     &__header {
       display: flex;
+      justify-content: space-between;
       align-items: center;
+      width: 100%;
       padding-left: 20px;
       height: 40px;
       background-color: $color-dark-grey;
@@ -75,6 +77,7 @@
         margin: 0;
         color: $color-whitey;
         font-weight: 700;
+        align-self: center;
       }
     }
 
