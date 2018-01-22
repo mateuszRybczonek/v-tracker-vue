@@ -4,7 +4,7 @@
       v-for="button in buttons"
       class="sidebar__quick-links__icon"
       @click="selectVesselDetailsComponent(button.component)">
-      {{button.icon}}
+      <v-icon :icon=button.icon size="small" color="white"></v-icon>
     </button>
   </div>
 </template>
@@ -18,13 +18,13 @@
       buttons () {
         return [
           {
-            'icon': 'A',
+            'icon': 'trash',
             'component': 'v-vessel-dashboard'
           }, {
-            'icon': 'B',
+            'icon': 'trash',
             'component': 'v-weather'
           }, {
-            'icon': 'C',
+            'icon': 'trash',
             'component': 'v-statistics'
           }
         ]
@@ -50,6 +50,8 @@
     padding: 0 30px;
     margin-top: 20px;
     &__icon {
+      display: flex;
+      justify-content: center;
       transition: .6s ease-out;
       width: 90px;
       height: 30px;
