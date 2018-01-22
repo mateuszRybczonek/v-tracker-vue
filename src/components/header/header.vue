@@ -4,11 +4,17 @@
       <router-link to="/">V-Tracker</router-link>
     </div>
     <nav>
-      <ul>
-        <li v-if="isAuthenticated">
+      <ul v-if="isAuthenticated">
+        <li>
           <router-link to="/dashboard">Dashboard</router-link>
         </li>
-        <li v-if="isAuthenticated">
+        <li>
+          <router-link to="/dashboard/vessels">Vessels</router-link>
+        </li>
+        <li>
+          <router-link to="/dashboard/reports">Reports</router-link>
+        </li>
+        <li>
           <button @click="onLogout" class="logout">Logout</button>
         </li>
       </ul>
@@ -17,11 +23,13 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
-    computed: { //  map getter to property
-      isAuthenticated () {
-        return this.$store.getters.isAuthenticated
-      }
+    computed: {
+      ...mapGetters([
+        'isAuthenticated'
+      ])
     },
 
     methods: {
@@ -39,7 +47,7 @@
     flex-flow: row;
     justify-content: space-between;
     align-items: center;
-    background-color: $color-green;
+    background-color: $color-dark-grey;
     padding: 0 20px;
   }
 

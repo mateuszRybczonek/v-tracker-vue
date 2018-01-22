@@ -4601,6 +4601,10 @@ mocha-nightwatch@3.2.2:
     mkdirp "0.5.1"
     supports-color "3.1.2"
 
+moment@^2.20.1:
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -7003,6 +7007,10 @@ vue-material@^1.0.0-beta-7:
     raf "^3.4.0"
     vue "^2.5.3"
     vue-ga "^1.0.0"
+
+vue-momentjs@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/vue-momentjs/-/vue-momentjs-0.1.1.tgz#ff22e6b0e71b134629e030cd52d915a2869d8022"
 
 vue-router@^3.0.1:
   version "3.0.1"

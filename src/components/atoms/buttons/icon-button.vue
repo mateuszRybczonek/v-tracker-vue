@@ -21,11 +21,11 @@
   $huge: 85px;
 
   i {
-    fill: $color-font-light-grey;
+    fill: $color-light-grey;
 
     &.positive {
       &:hover {
-        fill: $color-green;
+        fill: $color-blue;
       }
     }
 

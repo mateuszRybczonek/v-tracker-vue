@@ -4,12 +4,13 @@ import axios from 'axios'
 import Vuelidate from 'vuelidate'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
-
+import moment from 'moment'
+import VueMomentJS from 'vue-momentjs'
 import { sync } from 'vuex-router-sync'
-
 import router from './router/index'
 import store from './store/index'
 
+Vue.use(VueMomentJS, moment)
 Vue.use(Vuelidate)
 Vue.use(VueMaterial)
 Vue.config.productionTip = false

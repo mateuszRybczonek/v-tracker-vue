@@ -14,7 +14,7 @@
       this.$store.dispatch('fetchVessels')
     },
 
-    computed: { //  map getter to property
+    computed: {
       ...mapGetters([
         'vessels'
       ])

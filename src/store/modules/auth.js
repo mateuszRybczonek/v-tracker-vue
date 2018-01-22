@@ -13,25 +13,10 @@ const state = {
 }
 
 const getters = {
-  user (state) {
-    return state.user
-  },
-
-  isAuthenticated (state) {
-    return state.idToken !== null
-  },
-
-  isAuthError (state) {
-    return state.authError
-  },
-
-  idToken (state) {
-    return state.idToken
-  },
-
-  userId (state) {
-    return state.user.id
-  }
+  user: state => state.user,
+  isAuthenticated: state => state.idToken !== null,
+  isAuthError: state => state.authError,
+  idToken: state => state.idToken
 }
 
 const actions = {
@@ -41,31 +26,31 @@ const actions = {
     }, expirationTime * 1000)
   },
 
-  login ({ commit, dispatch }, authData) { // login action dispatched in the component
-    authAxios.post(`/verifyPassword?key=${API_KEY}`,
-      { email: authData.email,
-        password: authData.password,
-        returnSecureToken: true
-      })
-      .then(res => {
-        commit(types.AUTH_USER, {
-          token: res.data.idToken,
-          userId: res.data.localId
+  async login ({ commit, dispatch }, authData) { // login action dispatched in the component
+    try {
+      const { data } = await authAxios.post(`/verifyPassword?key=${API_KEY}`,
+        { email: authData.email,
+          password: authData.password,
+          returnSecureToken: true
         })
+      commit(types.AUTH_USER, {
+        token: data.idToken,
+        userId: data.localId,
+        userEmail: data.email
+      })
 
-        const now = new Date()
-        const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000)
-        localStorage.setItem('token', res.data.idToken)  // store token in local storage for auto login
-        localStorage.setItem('userId', res.data.localId)
-        localStorage.setItem('expirationDate', expirationDate)
-        localStorage.setItem('userEmail', authData.email)
-        dispatch('setLogoutTimer', res.data.expiresIn)
-        router.push('/dashboard')
-      })
-      .catch(error => {
-        commit(types.AUTH_ERROR, true)
-        console.log(error)
-      })
+      const now = new Date()
+      const expirationDate = new Date(now.getTime() + data.expiresIn * 1000)
+      localStorage.setItem('token', data.idToken)  // store token in local storage for auto login
+      localStorage.setItem('userId', data.localId)
+      localStorage.setItem('expirationDate', expirationDate)
+      localStorage.setItem('userEmail', authData.email)
+      await dispatch('setLogoutTimer', data.expiresIn)
+      router.push('/dashboard')
+    } catch (error) {
+      commit(types.AUTH_ERROR, true)
+      console.log(error)
+    }
   },
 
   tryAutoLogin ({ commit }) {
@@ -82,9 +67,11 @@ const actions = {
     }
 
     const userId = localStorage.getItem('userId')
+    const userEmail = localStorage.getItem('userEmail')
     commit(types.AUTH_USER, {
       token,
-      userId
+      userId,
+      userEmail
     })
     router.push('/dashboard')
   },
@@ -97,61 +84,61 @@ const actions = {
     router.replace('/signin') // redirect after logout
   },
 
-  signup ({ commit, dispatch }, authData) { // signup action dispatched in the component
-    authAxios.post(`/signupNewUser?key=${API_KEY}`, // store user in auth database
-      { email: authData.email,
-        password: authData.password,
-        returnSecureToken: true
-      })
-      .then(res => {
-        commit(types.AUTH_USER, {
-          token: res.data.idToken,
-          userId: res.data.localId
+  async signup ({ commit, dispatch }, authData) { // signup action dispatched in the component
+    try {
+      const { data } = await authAxios.post(`/signupNewUser?key=${API_KEY}`, // store user in auth database
+        { email: authData.email,
+          password: authData.password,
+          returnSecureToken: true
         })
 
-        const now = new Date()
-        const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000)
-        localStorage.setItem('token', res.data.idToken)  // store token in local storage for auto login
-        localStorage.setItem('userId', res.data.localId)
-        localStorage.setItem('expirationDate', expirationDate)
-        localStorage.setItem('userEmail', authData.email)
-
-        dispatch('storeUser', authData) // save user to firebase /users
-        dispatch('setLogoutTimer', res.data.expiresIn)
-        router.push('/dashboard')
+      commit(types.AUTH_USER, {
+        token: data.idToken,
+        userId: data.localId,
+        userEmail: data.email
       })
-      .catch(error => console.log(error))
+
+      const now = new Date()
+      const expirationDate = new Date(now.getTime() + data.expiresIn * 1000)
+      authData.userId = data.localId
+      localStorage.setItem('token', data.idToken)  // store token in local storage for auto login
+      localStorage.setItem('userId', authData.userId)
+      localStorage.setItem('expirationDate', expirationDate)
+      localStorage.setItem('userEmail', authData.email)
+
+      await dispatch('storeUser', authData) // save user to firebase /users
+      await dispatch('setLogoutTimer', data.expiresIn)
+      router.push('/dashboard')
+    } catch (error) {
+      console.log(error)
+    }
   },
 
-  storeUser ({ commit, state }, userData) { // save user to firebase /users
+  async storeUser ({ commit, state }, userData) { // save user to firebase /users
     if (!state.idToken) {
       return
     }
-    globalAxios.post(`/users.json?auth=${state.idToken}`, userData) //  path from main.js axios defaults
-      .then(() => { commit(types.STORE_USER, userData) }) // store user in store
-      .catch(error => console.log(error))
+    try {
+      await globalAxios.put(`/users/${userData.userId}.json?auth=${state.idToken}`, userData) //  path from main.js axios defaults
+      commit(types.STORE_USER, userData) // store user in store
+    } catch (error) {
+      console.log(error)
+    }
   },
 
   clearAuthError ({ commit }) {
     commit(types.CLEAR_AUTH_ERROR)
   },
 
-  fetchUser ({ commit, state }) {
-    globalAxios.get(`/users.json?auth=${state.idToken}`)
-      .then(res => {
-        const data = res.data
-        const users = []
-        for (let key in data) {
-          const user = data[key]
-          user.id = key
-          users.push(user)
-        }
-        const presentUser = users.filter(user => {
-          return user.email === localStorage.getItem('userEmail')
-        })
-        commit(types.STORE_USER, presentUser[0])
-      })
-      .catch(error => console.log(error))
+  async fetchUser ({ commit, state }) {
+    try {
+      const { data } = await globalAxios.get(`/users/${state.userId}.json?auth=${state.idToken}`)
+      const user = data
+      localStorage.setItem('user', user)
+      commit(types.STORE_USER, user)
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
@@ -159,6 +146,7 @@ const mutations = {
   [types.AUTH_USER] (state, userData) {      // storing the token in the vuex store
     state.idToken = userData.token
     state.userId = userData.userId
+    state.userEmail = userData.userEmail
   },
 
   [types.STORE_USER] (state, user) {

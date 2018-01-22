@@ -1,13 +1,25 @@
 <template>
-    <v-card :to="vesselDetailsLink" class="vessels-list-item">
-      <p class="subheader-small">{{vessel.name}}<p>
-      <p class="subheader-small">IMO number: {{vessel.imoNumber}}</p>
-      <div class="buttons">
-        <router-link :to="editLink" class="icon-button">
-          <icon-button src="../src/assets/icons/pencil.svg" type="positive" size="small"></icon-button>
+    <v-card :to="vesselDetailsLink" class="vessels-list-item" :class="{ 'vessels-list-item--faded': inProgress}">
+      <md-progress-spinner
+        v-if="inProgress"
+        :md-diameter="130"
+        :md-stroke="10"
+        md-mode="indeterminate">
+      </md-progress-spinner>
+      <p class="vessels-list-item__subheader--small">
+        {{vessel.name}}
+      <p>
+      <p class="vessels-list-item__subheader--small">
+        IMO number: {{vessel.imoNumber}}
+      </p>
+      <div class="vessels-list-item__buttons">
+        <router-link tag="i"
+          :to="editLink"
+          class="button__edit">
+          <v-icon icon="pencil" size="small" type="positive"></v-icon>
         </router-link>
-        <span @click="deleteVessel(vessel.id)" class="icon-button">
-          <icon-button src="../src/assets/icons/trash-o.svg" type="negative" size="small"></icon-button>
+        <span @click.prevent.stop="deleteVessel(vessel.id)">
+          <v-icon icon="trash" size="small" type="negative"></v-icon>
         </span>
       </div>
     </v-card>
@@ -15,14 +27,23 @@
 
 <script>
   import VCard from '../../molecules/card.vue'
-  import IconButton from '../../atoms/buttons/icon-button'
+  import VIcon from '../../atoms/icon.vue'
 
   export default {
+    name: 'ProgressSpinnerSizes',
+
+    data () {
+      return {
+        inProgress: false
+      }
+    },
+
     props: ['vessel'],
     components: {
       VCard,
-      IconButton
+      VIcon
     },
+
     computed: {
       vesselDetailsLink () {
         return `/dashboard/vessels/${this.vessel.id}`
@@ -34,6 +55,7 @@
     methods: {
       deleteVessel (vesselId) {
         this.$store.dispatch('deleteVessel', vesselId)
+        this.inProgress = true
       }
     }
   }
@@ -41,6 +63,7 @@
 
 <style scoped lang="scss">
   .vessels-list-item {
+    position: relative;
     display: flex;
     align-items: baseline;
     background-color: #FFF;
@@ -62,19 +85,13 @@
       }
     }
 
-    img {
-      height: 150px;
-      width: auto;
-      margin-top: 20px;
-      @include border-radius(2px);
-
-      @media all and (max-width: $phone) {
-        height: 200px;
-        padding-top: 30px;
-      }
+    &--faded {
+      opacity: 0.3;
+      cursor: auto;
+      pointer-events: none;
     }
 
-    .subheader-small {
+    &__subheader--small {
       padding: 0 0 15px;
 
       @media all and (max-width: $phone) {
@@ -82,16 +99,26 @@
       }
     }
 
-    .buttons {
+    &__buttons {
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
       width: 100%;
 
-      > .icon-button {
-        margin: 10px;
+      .button__edit {
+        width: 30px;
+        height: 30px;
+      }
+
+      &__icon-button {
+        margin: 3px;
       }
     }
-  }
 
+    .md-progress-spinner {
+      position: absolute;
+      top: 25%;
+      stroke: $color-black;
+    }
+  }
 </style>

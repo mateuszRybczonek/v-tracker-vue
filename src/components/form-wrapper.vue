@@ -1,6 +1,8 @@
 <template>
   <div class="form">
-    <h4>{{ title }}</h4>
+    <div class="form__header">
+      <h4>{{ title }}</h4>
+    </div>
     <slot name="content"></slot>
   </div>
 </template>
@@ -17,12 +19,22 @@
     width: 400px;
     margin: 30px auto;
     border: 1px solid $color-whitey;
-    padding: 20px;
     box-shadow: 0 2px 3px $color-whitey;
 
-    > h4 {
-      margin-bottom: 20px;
-      text-align: center;
+    &__header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70px;
+      background-color: $color-light-grey;
+      text-transform: uppercase;
+
+      > h4 {
+        text-align: center;
+        color: $color-whitey;
+        margin: 0;
+        line-height: 70px;
+      }
     }
   }
 </style>

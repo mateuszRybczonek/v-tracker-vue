@@ -53,8 +53,8 @@
 
 <style scoped lang="scss">
   .stepper-wrapper {
-    border-top: solid 1px $color-green;
-    border-bottom: solid 1px $color-green;
+    border-top: solid 1px $color-blue;
+    border-bottom: solid 1px $color-blue;
   }
 
   .stepper {
@@ -68,7 +68,7 @@
       display: flex;
 
       &.active {
-        color: $color-green;
+        color: $color-blue;
         font-weight: 700;
 
         .badge {
@@ -80,7 +80,7 @@
         color: $color-whitey;
 
         .badge {
-          background-color: $color-green;
+          background-color: $color-blue;
         }
       }
 
@@ -88,8 +88,8 @@
         pointer-events: none;
 
         .badge {
-          border-color: $color-font-light-grey;
-          color: $color-font-light-grey;
+          border-color: $color-light-grey;
+          color: $color-light-grey;
         }
       }
 
@@ -109,14 +109,14 @@
         pointer-events: none;
 
         .badge {
-          border: 1px solid $color-font-light-grey;
-          color: $color-font-light-grey;
+          border: 1px solid $color-light-grey;
+          color: $color-light-grey;
           background-color: transparent;
         }
 
         .progress-bar {
           &.visible {
-            background-color: $color-font-light-grey;
+            background-color: $color-light-grey;
           }
         }
       }
@@ -128,7 +128,7 @@
         justify-content: center;
         align-items: center;
         align-self: center;
-        border: 1px solid $color-green;
+        border: 1px solid $color-blue;
         border-radius: 50%;
       }
 
@@ -139,7 +139,7 @@
         height: 2px;
 
         &.visible {
-          background-color: $color-green;
+          background-color: $color-blue;
         }
       }
     }

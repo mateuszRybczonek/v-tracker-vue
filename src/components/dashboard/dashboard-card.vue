@@ -1,19 +1,29 @@
 <template>
-  <v-card :to="destination">
-    <icon-button :src="iconSrc" size="huge"></icon-button>
-    <p>{{label}}</p>
+  <v-card class="dashboard-card" :to="destination">
+    <v-icon class="dashboard-card__icon" :icon=icon size="huge" color="light-grey"></v-icon>
+    <p class="dashboard-card__label">{{label}}</p>
   </v-card>
 </template>
 
 <script>
   import VCard from '../../components/molecules/card.vue'
-  import IconButton from '../../components/atoms/buttons/icon-button'
+  import VIcon from '../../components/atoms/icon.vue'
 
   export default {
-    props: ['destination', 'iconSrc', 'label'],
+    props: ['destination', 'icon', 'label'],
     components: {
       VCard,
-      IconButton
+      VIcon
     }
   }
 </script>
+
+<style scoped lang="scss">
+  .dashboard-card {
+    &__icon {
+      width: 151px;
+      height: 151px;
+      margin-bottom: 70px;
+    }
+  }
+</style>
