@@ -70,6 +70,7 @@
       display: flex;
       justify-content: space-around;
       text-align: left;
+      min-height: 130px;
       &__list {
         width: 100%;
         padding: 0 20px;

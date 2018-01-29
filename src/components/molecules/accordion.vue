@@ -1,7 +1,7 @@
 <template>
   <div class="accordion">
-    <div class="accordion__header" @click="toggle">
-      <slot name="header"></slot>
+    <div class="accordion__header" :class="color" @click="toggle">
+      <slot name="header" ></slot>
       <i class="fa fa-2x fa-angle-down ccordion__header-icon"
          :class="{ rotate: show }">
       </i>
@@ -20,7 +20,7 @@
 
 <script>
   export default {
-    props: ['showOnInit'],
+    props: ['showOnInit', 'color'],
 
     data () {
       return {
@@ -72,7 +72,12 @@
       padding-left: 20px;
       height: 40px;
       background-color: $color-dark-grey;
+      border: 1px solid $color-dark-grey;
       cursor: pointer;
+
+      &.blue {
+        background-color: $color-blue;
+      }
 
       p {
         margin: 0;

@@ -5,20 +5,22 @@
       <p>({{lastReportDaysAgo}})</p>
     </div>
     <div class="vessel-details__row">
-      <position-data class="vessel-details__item"
+      <position-data class="vessel-details__row__item"
         :lastReport="lastReport">
       </position-data>
-      <navigation-data class="vessel-details__item"
+      <navigation-data class="vessel-details__row__item"
         :lastReport="lastReport">
       </navigation-data>
-      <weather-data class="vessel-details__item"
-        :lastReport="lastReport">
-      </weather-data>
     </div>
     <remaining-on-board
       class="vessel-details__item"
       :lastReport="lastReport">
     </remaining-on-board>
+    <div class="vessel-details__row">
+      <weather-data class="vessel-details__row__item"
+        :lastReport="lastReport">
+      </weather-data>
+    </div>
   </div>
 </template>
 
@@ -66,11 +68,16 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      flex-wrap: wrap;
+
+      &__item {
+        margin-top: 40px;
+        min-width: 49%;
+      }
     }
 
     &__item {
       margin-top: 40px;
-      min-width: 30%;
     }
   }
 </style>

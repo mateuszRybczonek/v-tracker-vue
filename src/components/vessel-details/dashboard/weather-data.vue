@@ -1,11 +1,12 @@
 <template>
   <div class="weather-data">
-    <v-accordion :showOnInit=true>
+    <v-accordion :showOnInit=true color="blue">
       <div slot="header" class="weather-info__header">
         <p>Weather info</p>
         <v-icon icon="weather" size="medium" color="white"></v-icon>
       </div>
       <div slot="body" class="weather-info__content">
+        <v-weather-flag :speed="lastReport.windSpd" :direction="lastReport.windDir"></v-weather-flag>
         <ul class="weather-info__content__list">
           <li class="weather-info__content__list__item" v-for="weatherElement in weatherData">
             <span>{{weatherElement.title}}</span>
@@ -19,6 +20,7 @@
 
 <script>
   import VIcon from '../../../components/atoms/icon.vue'
+  import VWeatherFlag from '../../../components/atoms/weather-flag.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
 
   const NOT_PROVIDED = 'not provided'
@@ -57,7 +59,8 @@
 
     components: {
       VIcon,
-      VAccordion
+      VAccordion,
+      VWeatherFlag
     }
   }
 </script>
@@ -73,6 +76,7 @@
       display: flex;
       justify-content: space-around;
       text-align: left;
+      min-height: 130px;
 
       &__list {
         width: 100%;
