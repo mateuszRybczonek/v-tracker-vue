@@ -28,6 +28,10 @@
     margin: 50px 0;
   }
 
+  #dashboard {
+    height: 100vh;
+    background-color: $color-whitey;
+  }
   .cards {
     display: flex;
     justify-content: space-around;

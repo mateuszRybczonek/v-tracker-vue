@@ -1,7 +1,7 @@
 <template>
   <div class="accordion">
     <div class="accordion__header" :class="color" @click="toggle">
-      <slot name="header" ></slot>
+      <slot name="header"></slot>
       <i class="fa fa-2x fa-angle-down ccordion__header-icon"
          :class="{ rotate: show }">
       </i>
@@ -59,10 +59,10 @@
 
 <style scoped lang="scss">
   .accordion {
-    border: 1px solid $color-light-grey;
     text-align: center;
     @include border-radius(5px);
-    box-shadow: 0 0 25px -5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 15px -5px rgba(0, 0, 0, 0.5);
+    background-color: $color-white;
 
     &__header {
       display: flex;
@@ -70,9 +70,8 @@
       align-items: center;
       width: 100%;
       padding-left: 20px;
-      height: 40px;
-      background-color: $color-dark-grey;
-      border: 1px solid $color-dark-grey;
+      height: 60px;
+      background-color: $color-white;
       cursor: pointer;
 
       &.blue {

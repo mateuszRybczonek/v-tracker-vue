@@ -2,8 +2,8 @@
   <div class="navigation-data">
     <v-accordion :showOnInit=true>
       <div slot="header" class="navigation-info__header">
+        <v-icon icon="navigation" size="small" color="white"></v-icon>
         <p>Navigation</p>
-        <v-icon icon="navigation" size="medium" color="white"></v-icon>
       </div>
       <div slot="body" class="navigation-info__content">
         <ul class="navigation-info__content__list">
@@ -63,14 +63,17 @@
   .navigation-info {
     &__header {
       display: flex;
-      justify-content: space-between;
-      width: 100%;
+      background-color: $color-blue;
+      padding: 0 30px 0 20px;
+      height: 30px;
+      @include border-radius(20px)
     }
     &__content {
       display: flex;
       justify-content: space-around;
       text-align: left;
       min-height: 130px;
+
       &__list {
         width: 100%;
         padding: 0 20px;

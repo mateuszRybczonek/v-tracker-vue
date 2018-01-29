@@ -2,8 +2,8 @@
   <div class="position-data">
     <v-accordion :showOnInit=true>
       <div slot="header" class="position-info__header">
+        <v-icon icon="position" size="small" color="white"></v-icon>
         <p>Position</p>
-        <v-icon icon="position" size="medium" color="white"></v-icon>
       </div>
       <div slot="body" class="position-info__content">
         <ul class="position-info__content__list">
@@ -55,14 +55,17 @@
   .position-info {
     &__header {
       display: flex;
-      justify-content: space-between;
-      width: 100%;
+      background-color: $color-blue;
+      padding: 0 30px 0 20px;
+      height: 30px;
+      @include border-radius(20px)
     }
     &__content {
       display: flex;
       justify-content: space-around;
       text-align: left;
       min-height: 130px;
+
       &__list {
         width: 100%;
         padding: 0 20px;

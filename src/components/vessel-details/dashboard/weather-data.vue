@@ -1,9 +1,9 @@
 <template>
   <div class="weather-data">
-    <v-accordion :showOnInit=true color="blue">
+    <v-accordion :showOnInit=true>
       <div slot="header" class="weather-info__header">
+        <v-icon icon="weather" size="small" color="white"></v-icon>
         <p>Weather info</p>
-        <v-icon icon="weather" size="medium" color="white"></v-icon>
       </div>
       <div slot="body" class="weather-info__content">
         <v-weather-flag :speed="lastReport.windSpd" :direction="lastReport.windDir"></v-weather-flag>
@@ -69,8 +69,10 @@
   .weather-info {
     &__header {
       display: flex;
-      justify-content: space-between;
-      width: 100%;
+      background-color: $color-blue;
+      padding: 0 30px 0 20px;
+      height: 30px;
+      @include border-radius(20px)
     }
     &__content {
       display: flex;

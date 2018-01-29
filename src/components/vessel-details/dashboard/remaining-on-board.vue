@@ -2,8 +2,8 @@
   <div class="remaining-on-board">
     <v-accordion :showOnInit=true>
       <div slot="header" class="remaining-on-board__header">
+        <v-icon icon="fuel" size="small" color="white"></v-icon>
         <p>Remaining on board</p>
-        <v-icon icon="fuel" size="medium" color="white"></v-icon>
       </div>
       <div slot="body" class="remaining-on-board__content">
         <mini-stats-item v-for="(item, index) in miniStatsItems"
@@ -65,8 +65,10 @@
   .remaining-on-board {
     &__header {
       display: flex;
-      justify-content: space-between;
-      width: 100%;
+      background-color: $color-dark-grey;
+      padding: 0 30px 0 20px;
+      height: 30px;
+      @include border-radius(20px)
     }
     &__content {
       display: flex;
