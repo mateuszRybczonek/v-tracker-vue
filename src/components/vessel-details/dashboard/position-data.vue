@@ -1,7 +1,7 @@
 <template>
   <div class="position-data">
     <v-accordion :showOnInit=true>
-      <div slot="header" class="position-info__header">
+      <div slot="header" class="v-accordion-header__slot">
         <v-icon icon="position" size="small" color="white"></v-icon>
         <p>Position</p>
       </div>
@@ -53,13 +53,6 @@
 
 <style scoped lang="scss">
   .position-info {
-    &__header {
-      display: flex;
-      background-color: $color-blue;
-      padding: 0 30px 0 20px;
-      height: 30px;
-      @include border-radius(20px)
-    }
     &__content {
       display: flex;
       justify-content: space-around;

@@ -1,19 +1,11 @@
 <template>
   <div class="remaining-on-board">
-    <v-accordion :showOnInit=true>
-      <div slot="header" class="remaining-on-board__header">
-        <v-icon icon="fuel" size="small" color="white"></v-icon>
-        <p>Remaining on board</p>
-      </div>
-      <div slot="body" class="remaining-on-board__content">
-        <mini-stats-item v-for="(item, index) in miniStatsItems"
-          :icon="item.icon"
-          :header="item.header"
-          :description="item.description"
-          :class="item.customClass">
-        </mini-stats-item>
-      </div>
-    </v-accordion>
+    <mini-stats-item v-for="(item, index) in miniStatsItems"
+      :icon="item.icon"
+      :header="item.header"
+      :description="item.description"
+      :class="item.customClass">
+    </mini-stats-item>
   </div>
 </template>
 
@@ -31,22 +23,22 @@
           {
             icon: 'fuel',
             header: `${this.lastReport.foRob} cbm`,
-            description: 'Remaining FO',
+            description: 'Remaining Fuel Oil',
             customClass: 'mini-stats__item--fo'
           }, {
             icon: 'fuel',
             header: `${this.lastReport.doRob} cbm`,
-            description: 'Remaining DO',
+            description: 'Remaining Diesel Oil',
             customClass: 'mini-stats__item--do'
           }, {
             icon: 'water',
             header: `${this.lastReport.fwRob} cbm`,
-            description: 'Remaining FW',
+            description: 'Remaining Fresh Water',
             customClass: 'mini-stats__item--fw'
           }, {
             icon: 'people',
             header: `${this.lastReport.pob}`,
-            description: 'POB',
+            description: 'People On Board',
             customClass: 'mini-stats__item--pob'
           }
         ]

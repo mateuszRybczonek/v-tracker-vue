@@ -1,26 +1,37 @@
 <template>
-  <div class="mini-stats__item">
-    <div class="item__badge">
-      <v-icon :icon=icon size="large" color="white"></v-icon>
-    </div>
-    <div class="item__description">
-      <div class="description__header">
-        {{header}}
+  <div class="mini-stats-item">
+    <v-accordion :showOnInit=true>
+      <div slot="header" class="v-accordion-header__slot">
+        <v-icon :icon=icon size="small" color="white"></v-icon>
+        <p>{{description}}</p>
       </div>
-      <div class="description__text">
-        {{description}}
+      <div slot="body" class="mini-stats-item__content">
+        <div class="item__badge">
+          <v-icon :icon=icon size="large" color="white"></v-icon>
+        </div>
+        <div class="item__description">
+          <div class="description__header">
+            {{header}}
+          </div>
+          <div class="description__text">
+            {{description}}
+          </div>
+        </div>
       </div>
-    </div>
+    </v-accordion>
   </div>
 </template>
 
 <script>
   import VIcon from '../../components/atoms/icon.vue'
+  import VAccordion from '../../components/molecules/accordion.vue'
+
   export default {
     props: ['icon', 'header', 'description'],
 
     components: {
-      VIcon
+      VIcon,
+      VAccordion
     }
   }
 </script>
@@ -28,45 +39,39 @@
 <style scoped lang="scss">
   $icon-size: 80px;
 
-  .mini-stats__item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-wrap: wrap;
-    flex-grow: 1;
-
-    @media all and (max-width: $tablet) {
-      flex-direction: row;
-      width: 100%;
-      padding: 24px 0 24px 16px;
-      margin-bottom: 0;
-    }
-
+  .mini-stats-item {
     &--fo > .item__badge { background-color: $color-black; }
     &--do > .item__badge { background-color: $color-brown; }
     &--fw > .item__badge { background-color: $color-blue; }
     &--pob > .item__badge { background-color: $color-green; }
 
-    .item__badge {
+    &__content {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: $icon-size;
-      min-width: $icon-size;
-      text-align: center;
-      @include border-radius(50%);
-      @media all and (max-width: $tablet) {
-        margin: 0 16px 0 0;
-      }
+      justify-content: space-around;
+      text-align: left;
+      min-height: 130px;
 
-      > i {
-        fill: #FFF;
-      }
+      .item__badge {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: $icon-size;
+        min-width: $icon-size;
+        text-align: center;
+        @include border-radius(50%);
+        @media all and (max-width: $tablet) {
+          margin: 0 16px 0 0;
+        }
 
-      .badge__icon {
-        background-size: cover;
-        padding: 0;
+        > i {
+          fill: #FFF;
+        }
+
+        .badge__icon {
+          background-size: cover;
+          padding: 0;
+        }
       }
     }
 

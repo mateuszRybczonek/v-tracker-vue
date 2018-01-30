@@ -1,7 +1,7 @@
 <template>
   <div class="navigation-data">
     <v-accordion :showOnInit=true>
-      <div slot="header" class="navigation-info__header">
+      <div slot="header" class="v-accordion-header__slot">
         <v-icon icon="navigation" size="small" color="white"></v-icon>
         <p>Navigation</p>
       </div>
@@ -61,13 +61,6 @@
 
 <style scoped lang="scss">
   .navigation-info {
-    &__header {
-      display: flex;
-      background-color: $color-blue;
-      padding: 0 30px 0 20px;
-      height: 30px;
-      @include border-radius(20px)
-    }
     &__content {
       display: flex;
       justify-content: space-around;

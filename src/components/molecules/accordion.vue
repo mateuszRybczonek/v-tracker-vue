@@ -1,8 +1,10 @@
 <template>
   <div class="accordion">
     <div class="accordion__header" :class="color" @click="toggle">
-      <slot name="header"></slot>
-      <i class="fa fa-2x fa-angle-down ccordion__header-icon"
+      <v-accordion-header>
+        <slot name="header"></slot>
+      </v-accordion-header>
+      <i class="fa fa-2x fa-angle-down accordion__header-icon"
          :class="{ rotate: show }">
       </i>
     </div>
@@ -19,6 +21,8 @@
 </template>
 
 <script>
+  import VAccordionHeader from './accordion-header.vue'
+
   export default {
     props: ['showOnInit', 'color'],
 
@@ -53,6 +57,10 @@
       leave (el) {
         el.style.height = '0'
       }
+    },
+
+    components: {
+      VAccordionHeader
     }
   }
 </script>
@@ -76,13 +84,6 @@
 
       &.blue {
         background-color: $color-blue;
-      }
-
-      p {
-        margin: 0;
-        color: $color-whitey;
-        font-weight: 700;
-        align-self: center;
       }
     }
 

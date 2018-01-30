@@ -1,7 +1,7 @@
 <template>
   <div class="weather-data">
     <v-accordion :showOnInit=true>
-      <div slot="header" class="weather-info__header">
+      <div slot="header" class="v-accordion-header__slot">
         <v-icon icon="weather" size="small" color="white"></v-icon>
         <p>Weather info</p>
       </div>
@@ -67,13 +67,6 @@
 
 <style scoped lang="scss">
   .weather-info {
-    &__header {
-      display: flex;
-      background-color: $color-blue;
-      padding: 0 30px 0 20px;
-      height: 30px;
-      @include border-radius(20px)
-    }
     &__content {
       display: flex;
       justify-content: space-around;
