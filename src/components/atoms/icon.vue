@@ -62,6 +62,22 @@
       background-color: $color-light-grey;
     }
 
+    &--black {
+      background-color: $color-black;
+    }
+
+    &--brown {
+      background-color: $color-brown;
+    }
+
+    &--light-blue {
+      background-color: $color-light-blue;
+    }
+
+    &--green {
+      background-color: $color-green;
+    }
+
     //sizes
     &--small {
       width: $small;
@@ -93,8 +109,8 @@
       }
 
       &--medium {
-        mask-position: 0 5px;
-        mask-size: 800%;
+        mask-position: 0 0;
+        mask-size: 100%;
       }
 
       &--large {
@@ -110,6 +126,10 @@
         mask-size: 120%;
       }
 
+      &--medium {
+        mask-position: -14px -365px;
+      }
+
       &--large {
         mask-position: 0 -350px;
       }
@@ -121,6 +141,10 @@
       &--small {
         mask-position: 50% -234px;
         mask-size: 120%;
+      }
+
+      &--medium {
+        mask-position: -14px -503px;
       }
 
       &--large {

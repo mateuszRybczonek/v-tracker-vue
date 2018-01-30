@@ -1,11 +1,7 @@
 <template>
   <div class="remaining-on-board">
     <mini-stats-item v-for="(item, index) in miniStatsItems"
-      :icon="item.icon"
-      :header="item.header"
-      :description="item.description"
-      :class="item.customClass"
-      :color="item.color">
+      :item="item">
     </mini-stats-item>
   </div>
 </template>
@@ -23,25 +19,29 @@
         return [
           {
             icon: 'fuel',
-            header: `${this.lastReport.foRob} cbm`,
-            description: 'Remaining Fuel Oil',
+            header: this.lastReport.foRob,
+            unit: 'cbm',
+            description: 'Fuel Oil',
             customClass: 'mini-stats__item--fo',
             color: 'black'
           }, {
             icon: 'fuel',
-            header: `${this.lastReport.doRob} cbm`,
-            description: 'Remaining Diesel Oil',
+            header: this.lastReport.doRob,
+            unit: 'cbm',
+            description: 'Diesel Oil',
             customClass: 'mini-stats__item--do',
             color: 'brown'
           }, {
             icon: 'water',
-            header: `${this.lastReport.fwRob} cbm`,
-            description: 'Remaining Fresh Water',
+            header: this.lastReport.fwRob,
+            unit: 'cbm',
+            description: 'Fresh Water',
             customClass: 'mini-stats__item--fw',
             color: 'light-blue'
           }, {
             icon: 'people',
-            header: `${this.lastReport.pob}`,
+            header: this.lastReport.pob,
+            unit: 'persons',
             description: 'People On Board',
             customClass: 'mini-stats__item--pob',
             color: 'green'

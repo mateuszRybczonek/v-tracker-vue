@@ -1,20 +1,20 @@
 <template>
   <div class="mini-stats-item">
-    <v-accordion :showOnInit=true :color=color>
+    <v-accordion :showOnInit=true :color=item.color>
       <div slot="header" class="v-accordion-header__slot">
-        <v-icon :icon=icon size="small" color="white"></v-icon>
-        <p>{{description}}</p>
+        <v-icon :icon=item.icon size="small" color="white"></v-icon>
+        <p>{{item.description}}</p>
       </div>
-      <div slot="body" class="mini-stats-item__content">
+      <div slot="body" class="mini-stats-item__content" :class=item.color>
         <div class="item__badge">
-          <v-icon :icon=icon size="large" color="white"></v-icon>
+          <v-icon :icon='item.icon' size="medium" :color=item.color></v-icon>
         </div>
         <div class="item__description">
           <div class="description__header">
-            {{header}}
+            {{item.header}}
           </div>
           <div class="description__text">
-            {{description}}
+            {{item.unit}}
           </div>
         </div>
       </div>
@@ -27,7 +27,7 @@
   import VAccordion from '../../components/molecules/accordion.vue'
 
   export default {
-    props: ['icon', 'header', 'description', 'color'],
+    props: ['item'],
 
     components: {
       VIcon,
@@ -37,71 +37,55 @@
 </script>
 
 <style scoped lang="scss">
-  $icon-size: 80px;
 
   .mini-stats-item {
     min-width: 320px;
     &__content {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-evenly;
       text-align: left;
       min-height: 130px;
 
       .item__badge {
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: $icon-size;
-        min-width: $icon-size;
-        text-align: center;
-        @include border-radius(50%);
-        @media all and (max-width: $tablet) {
-          margin: 0 16px 0 0;
-        }
+      }
 
-        > i {
-          fill: #FFF;
-        }
+      &.black {
+        color: $color-black;
+      }
 
-        .badge__icon {
-          background-size: cover;
-          padding: 0;
-        }
+      &.brown {
+        color: $color-brown;
+      }
+
+      &.light-blue {
+        color: $color-light-blue;
+      }
+
+      &.green {
+        color: $color-green
       }
     }
 
     .item__description {
-      text-align: center;
-      margin-top: 16px;
-
-      @media all and (max-width: $tablet) {
-        text-align: left;
-        margin-top: 0;
-      }
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-self: center;
+      max-height: 60px;
 
       .description__header {
-        @include font(28px, 600, 32px);
-        color: $color-dark-grey;
-
-        @media all and (min-width: $tablet) {
-          margin-bottom: 5px;
-        }
-
-        @media all and (max-width: $tablet) {
-          @include font(42px, 600, 46px);
-        }
+        @include font(60px, 400, 60px);
       }
 
       .description__text {
+        margin-left: 10px;
         @include font(12px, 300);
-        color: $color-dark-grey;
         text-transform: uppercase;
         letter-spacing: 2px;
-
-        @media all and (max-width: $tablet) {
-          font-size: 17px;
-        }
+        align-self: flex-end;
       }
     }
   }
