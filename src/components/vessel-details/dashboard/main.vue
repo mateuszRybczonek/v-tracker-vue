@@ -14,7 +14,8 @@
     </div>
     <remaining-on-board
       class="vessel-details__item"
-      :lastReport="lastReport">
+      :lastReport="lastReport"
+      :previousReport="previousReport">
     </remaining-on-board>
     <div class="vessel-details__row">
       <weather-data class="vessel-details__row__item"
@@ -38,6 +39,10 @@
     computed: {
       lastReport () {
         return this.componentProps.lastReport
+      },
+
+      previousReport () {
+        return this.componentProps.previousReport
       },
 
       lastReportDaysAgo () {

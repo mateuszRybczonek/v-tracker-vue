@@ -18,6 +18,11 @@
           </div>
         </div>
       </div>
+      <div slot="footer" class="mini-stats-item__change">
+        <v-mini-stats-change
+          :change=item.change
+          :unit=item.unit></v-mini-stats-change>
+      </div>
     </v-accordion>
   </div>
 </template>
@@ -25,13 +30,15 @@
 <script>
   import VIcon from '../../components/atoms/icon.vue'
   import VAccordion from '../../components/molecules/accordion.vue'
+  import VMiniStatsChange from '../../components/molecules/mini-stats-change.vue'
 
   export default {
     props: ['item'],
 
     components: {
       VIcon,
-      VAccordion
+      VAccordion,
+      VMiniStatsChange
     }
   }
 </script>
@@ -67,6 +74,10 @@
       &.green {
         color: $color-green
       }
+    }
+
+    &__change {
+      width: 100%;
     }
 
     .item__description {

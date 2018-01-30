@@ -58,7 +58,10 @@
 
       componentProps () {
         if (this.selectedComponent === 'v-vessel-dashboard') {
-          return { lastReport: this.lastReport }
+          return {
+            lastReport: this.lastReport,
+            previousReport: this.previousReport
+          }
         }
       },
 
@@ -87,9 +90,9 @@
             reportTime: '2018-01-04',
             course: 230,
             spd: 17,
-            doRob: 200,
+            doRob: 160,
             foRob: 100,
-            fwRob: 300,
+            fwRob: 320,
             lat: 13.505,
             lng: 73.893,
             pitch: 0.5,
@@ -106,7 +109,7 @@
             reportTime: '2018-01-03',
             course: 230,
             spd: 15,
-            doRob: 200,
+            doRob: 180,
             foRob: 100,
             fwRob: 300,
             lat: 20,
@@ -134,7 +137,11 @@
       },
 
       lastReport () {
-        return this.reportsSortedAsc.pop()
+        return this.reportsSortedAsc.slice(-1)[0]
+      },
+
+      previousReport () {
+        return this.reportsSortedAsc.slice(-2)[0]
       }
     },
 

@@ -15,6 +15,9 @@
         <slot name="body"></slot>
       </div>
     </transition>
+    <div class="accordion__footer" v-show="show">
+      <slot name="footer"></slot>
+    </div>
   </div>
 </template>
 
@@ -104,6 +107,10 @@
       overflow: hidden;
       border-top: 0;
       transition: 150ms ease-out;
+    }
+
+    &__footer {
+      display: flex;
     }
   }
 </style>

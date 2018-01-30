@@ -12,7 +12,7 @@
   import VAccordion from '../../../components/molecules/accordion.vue'
 
   export default {
-    props: ['lastReport'],
+    props: ['lastReport', 'previousReport'],
 
     computed: {
       miniStatsItems () {
@@ -20,6 +20,7 @@
           {
             icon: 'fuel',
             header: this.lastReport.foRob,
+            change: this.lastReport.foRob - this.previousReport.foRob,
             unit: 'cbm',
             description: 'Fuel Oil',
             customClass: 'mini-stats__item--fo',
@@ -27,6 +28,7 @@
           }, {
             icon: 'fuel',
             header: this.lastReport.doRob,
+            change: this.lastReport.doRob - this.previousReport.doRob,
             unit: 'cbm',
             description: 'Diesel Oil',
             customClass: 'mini-stats__item--do',
@@ -34,6 +36,7 @@
           }, {
             icon: 'water',
             header: this.lastReport.fwRob,
+            change: this.lastReport.fwRob - this.previousReport.fwRob,
             unit: 'cbm',
             description: 'Fresh Water',
             customClass: 'mini-stats__item--fw',
@@ -41,6 +44,7 @@
           }, {
             icon: 'people',
             header: this.lastReport.pob,
+            change: this.lastReport.pob - this.previousReport.pob,
             unit: 'persons',
             description: 'People On Board',
             customClass: 'mini-stats__item--pob',
