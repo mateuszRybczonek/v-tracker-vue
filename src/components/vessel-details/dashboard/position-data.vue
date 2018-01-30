@@ -1,6 +1,6 @@
 <template>
   <div class="position-data">
-    <v-accordion :showOnInit=true>
+    <v-accordion :showOnInit=true color="red">
       <div slot="header" class="v-accordion-header__slot">
         <v-icon icon="position" size="small" color="white"></v-icon>
         <p>Position</p>

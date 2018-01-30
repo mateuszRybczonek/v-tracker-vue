@@ -105,6 +105,11 @@
     &--water {
       mask-image: url('../../assets/icons.svg');
 
+      &--small {
+        mask-position: 50% -169px;
+        mask-size: 120%;
+      }
+
       &--large {
         mask-position: 0 -350px;
       }
@@ -112,6 +117,11 @@
 
     &--people {
       mask-image: url('../../assets/icons.svg');
+
+      &--small {
+        mask-position: 50% -234px;
+        mask-size: 120%;
+      }
 
       &--large {
         mask-position: 0 -490px;
@@ -179,6 +189,14 @@
       &--small {
         mask-image: url('../../assets/icons.svg');
         mask-position: 50% -1464px;
+        mask-size: 200%;
+      }
+    }
+
+    &--arrow-down {
+      &--small {
+        mask-image: url('../../assets/icons.svg');
+        mask-position: 50% -1514px;
         mask-size: 200%;
       }
     }

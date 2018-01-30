@@ -1,6 +1,6 @@
 <template>
   <div class="weather-data">
-    <v-accordion :showOnInit=true>
+    <v-accordion :showOnInit=true color="blue">
       <div slot="header" class="v-accordion-header__slot">
         <v-icon icon="weather" size="small" color="white"></v-icon>
         <p>Weather info</p>

@@ -4,7 +4,8 @@
       :icon="item.icon"
       :header="item.header"
       :description="item.description"
-      :class="item.customClass">
+      :class="item.customClass"
+      :color="item.color">
     </mini-stats-item>
   </div>
 </template>
@@ -24,22 +25,26 @@
             icon: 'fuel',
             header: `${this.lastReport.foRob} cbm`,
             description: 'Remaining Fuel Oil',
-            customClass: 'mini-stats__item--fo'
+            customClass: 'mini-stats__item--fo',
+            color: 'black'
           }, {
             icon: 'fuel',
             header: `${this.lastReport.doRob} cbm`,
             description: 'Remaining Diesel Oil',
-            customClass: 'mini-stats__item--do'
+            customClass: 'mini-stats__item--do',
+            color: 'brown'
           }, {
             icon: 'water',
             header: `${this.lastReport.fwRob} cbm`,
             description: 'Remaining Fresh Water',
-            customClass: 'mini-stats__item--fw'
+            customClass: 'mini-stats__item--fw',
+            color: 'light-blue'
           }, {
             icon: 'people',
             header: `${this.lastReport.pob}`,
             description: 'People On Board',
-            customClass: 'mini-stats__item--pob'
+            customClass: 'mini-stats__item--pob',
+            color: 'green'
           }
         ]
       }
@@ -55,17 +60,8 @@
 
 <style scoped lang="scss">
   .remaining-on-board {
-    &__header {
-      display: flex;
-      background-color: $color-dark-grey;
-      padding: 0 30px 0 20px;
-      height: 30px;
-      @include border-radius(20px)
-    }
-    &__content {
-      display: flex;
-      padding: 35px 50px 20px;
-      overflow-wrap: break-word;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 </style>

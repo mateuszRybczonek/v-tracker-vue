@@ -1,6 +1,6 @@
 <template>
   <div class="mini-stats-item">
-    <v-accordion :showOnInit=true>
+    <v-accordion :showOnInit=true :color=color>
       <div slot="header" class="v-accordion-header__slot">
         <v-icon :icon=icon size="small" color="white"></v-icon>
         <p>{{description}}</p>
@@ -27,7 +27,7 @@
   import VAccordion from '../../components/molecules/accordion.vue'
 
   export default {
-    props: ['icon', 'header', 'description'],
+    props: ['icon', 'header', 'description', 'color'],
 
     components: {
       VIcon,
@@ -40,11 +40,7 @@
   $icon-size: 80px;
 
   .mini-stats-item {
-    &--fo > .item__badge { background-color: $color-black; }
-    &--do > .item__badge { background-color: $color-brown; }
-    &--fw > .item__badge { background-color: $color-blue; }
-    &--pob > .item__badge { background-color: $color-green; }
-
+    min-width: 320px;
     &__content {
       display: flex;
       justify-content: space-around;

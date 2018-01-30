@@ -1,12 +1,10 @@
 <template>
   <div class="accordion">
-    <div class="accordion__header" :class="color" @click="toggle">
-      <v-accordion-header>
+    <div class="accordion__header" @click="toggle">
+      <v-accordion-header :color="color">
         <slot name="header"></slot>
       </v-accordion-header>
-      <i class="fa fa-2x fa-angle-down accordion__header-icon"
-         :class="{ rotate: show }">
-      </i>
+      <v-icon class="accordion__header__arrow" icon="arrow-down" size="small" color="light-grey" :class="{ rotate: show }"></v-icon>
     </div>
     <transition name="accordion"
       @before-enter="beforeEnter"
@@ -22,6 +20,7 @@
 
 <script>
   import VAccordionHeader from './accordion-header.vue'
+  import VIcon from '../../components/atoms/icon.vue'
 
   export default {
     props: ['showOnInit', 'color'],
@@ -60,7 +59,8 @@
     },
 
     components: {
-      VAccordionHeader
+      VAccordionHeader,
+      VIcon
     }
   }
 </script>
@@ -77,14 +77,19 @@
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      padding-left: 20px;
+      padding: 0 20px;
       height: 60px;
       background-color: $color-white;
       cursor: pointer;
+      border-bottom: 1px solid $color-whitey;
 
-      &.blue {
-        background-color: $color-blue;
+      &__arrow {
+        &.rotate {
+          transform: rotate(180deg);
+        }
+        transition-duration: 0.3s;
       }
+
     }
 
     &__header-icon {
@@ -99,11 +104,6 @@
       overflow: hidden;
       border-top: 0;
       transition: 150ms ease-out;
-    }
-
-    &__header-icon.rotate {
-      transform: rotate(180deg);
-      transition-duration: 0.3s;
     }
   }
 </style>
