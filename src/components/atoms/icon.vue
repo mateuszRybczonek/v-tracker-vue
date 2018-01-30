@@ -78,6 +78,10 @@
       background-color: $color-green;
     }
 
+    &--red {
+      background-color: $color-tomato;
+    }
+
     //sizes
     &--small {
       width: $small;
@@ -196,7 +200,7 @@
     &--position {
       &--small {
         mask-image: url('../../assets/icons.svg');
-        mask-position: 50% -1353px;
+        mask-position: 50% -564px;
         mask-size: 200%;
       }
     }
@@ -204,7 +208,7 @@
     &--navigation {
       &--small {
         mask-image: url('../../assets/icons.svg');
-        mask-position: 50% -1407px;
+        mask-position: 50% -618px;
         mask-size: 200%;
       }
     }
@@ -212,7 +216,7 @@
     &--weather {
       &--small {
         mask-image: url('../../assets/icons.svg');
-        mask-position: 50% -1464px;
+        mask-position: 50% -675px;
         mask-size: 200%;
       }
     }
@@ -220,7 +224,15 @@
     &--arrow-down {
       &--small {
         mask-image: url('../../assets/icons.svg');
-        mask-position: 50% -1514px;
+        mask-position: 50% -725px;
+        mask-size: 200%;
+      }
+    }
+
+    &--change {
+      &--small {
+        mask-image: url('../../assets/icons.svg');
+        mask-position: 50% -787px;
         mask-size: 200%;
       }
     }

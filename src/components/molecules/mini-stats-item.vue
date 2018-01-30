@@ -47,6 +47,7 @@
 
   .mini-stats-item {
     min-width: 320px;
+    margin-top: 20px;
     &__content {
       display: flex;
       justify-content: space-evenly;
