@@ -1,6 +1,7 @@
 <template>
   <div class="remaining-on-board">
-    <mini-stats-item v-for="(item, index) in miniStatsItems"
+    <mini-stats-item v-for="item in miniStatsItems"
+      :key="item.index"
       :item="item">
     </mini-stats-item>
   </div>

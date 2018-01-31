@@ -9,8 +9,8 @@
         <ul class="position-info__content__list">
           <li class="position-info__content__list__item"
               v-for="coordinate in positionData">
-            <span>{{coordinate.title}}</span>
-            <span>{{coordinate.value}}</span>
+            <span class="position-info__content__list__item__title">{{coordinate.title}}</span>
+            <span class="position-info__content__list__item__value">{{coordinate.value}}</span>
           </li>
         </ul>
       </div>
@@ -38,7 +38,7 @@
             value: lat ? decimalToDMS(lat) : NOT_PROVIDED
           }, {
             title: 'Longitude',
-            value: lng ? decimalToDMS(lng) : NOT_PROVIDED
+            value: lng ? decimalToDMS(lng, false) : NOT_PROVIDED
           }
         ]
       }
@@ -57,17 +57,29 @@
       display: flex;
       justify-content: space-around;
       text-align: left;
-      min-height: 130px;
+      min-height: 150px;
 
       &__list {
         width: 100%;
         padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         &__item {
           display: flex;
           justify-content: space-between;
+          align-items: baseline;
           list-style-type: none;
-          font-weight: 300;
           cursor: default;
+          &:nth-child(2) {
+            margin-top: 15px;
+          }
+          &__title {
+            @include font(18px, 500);
+          }
+          &__value {
+            @include font(26px, 300);
+          }
         }
       }
     }

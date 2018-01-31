@@ -9,8 +9,8 @@
         <ul class="navigation-info__content__list">
           <li class="navigation-info__content__list__item"
               v-for="navItem in navigationData">
-            <span>{{navItem.title}}</span>
-            <span>{{navItem.value}}</span>
+            <span class="navigation-info__content__list__item__title">{{navItem.title}}</span>
+            <span class="navigation-info__content__list__item__value">{{navItem.value}}</span>
           </li>
         </ul>
       </div>
@@ -64,8 +64,9 @@
     &__content {
       display: flex;
       justify-content: space-around;
+      align-items: baseline;
       text-align: left;
-      min-height: 130px;
+      min-height: 150px;
 
       &__list {
         width: 100%;
@@ -76,6 +77,13 @@
           list-style-type: none;
           font-weight: 300;
           cursor: default;
+          margin-top: 10px;
+          &__title {
+            @include font(18px, 500);
+          }
+          &__value {
+            @include font(26px, 300);
+          }
         }
       }
     }

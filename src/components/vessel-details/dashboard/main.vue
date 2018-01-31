@@ -5,23 +5,26 @@
       <p>({{lastReportDaysAgo}})</p>
     </div>
     <div class="vessel-details__row">
-      <position-data class="vessel-details__row__item"
-        :lastReport="lastReport">
-      </position-data>
-      <navigation-data class="vessel-details__row__item"
-        :lastReport="lastReport">
-      </navigation-data>
+      <div class="vessel-details__row__item">
+      </div>
+      <div class="vessel-details__row__item">
+        <position-data
+          :lastReport="lastReport">
+        </position-data>
+        <navigation-data class="vessel-details__row__item"
+          :lastReport="lastReport">
+        </navigation-data>
+      </div>
     </div>
+
+    <weather-data class="vessel-details__row__item"
+                  :lastReport="lastReport">
+    </weather-data>
     <remaining-on-board
       class="vessel-details__item"
       :lastReport="lastReport"
       :previousReport="previousReport">
     </remaining-on-board>
-    <div class="vessel-details__row">
-      <weather-data class="vessel-details__row__item"
-        :lastReport="lastReport">
-      </weather-data>
-    </div>
   </div>
 </template>
 

@@ -6,13 +6,23 @@
         <p>Weather info</p>
       </div>
       <div slot="body" class="weather-info__content">
-        <v-weather-flag :speed="lastReport.windSpd" :direction="lastReport.windDir"></v-weather-flag>
-        <ul class="weather-info__content__list">
-          <li class="weather-info__content__list__item" v-for="weatherElement in weatherData">
-            <span>{{weatherElement.title}}</span>
-            <span>{{weatherElement.value}}</span>
-          </li>
-        </ul>
+        <div class="weather-info__content__wind">
+          <v-weather-flag class="weather-info__content__wind__flag" :speed="lastReport.windSpd" :direction="lastReport.windDir"></v-weather-flag>
+          <ul class="weather-info__content__list">
+            <li class="weather-info__content__list__item" v-for="windElement in windData">
+              <span class="weather-info__content__list__item__title">{{windElement.title}}</span>
+              <span class="weather-info__content__list__item__value">{{windElement.value}}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="weather-info__content__sea">
+          <ul class="weather-info__content__list">
+            <li class="weather-info__content__list__item" v-for="seaElement in seaData">
+              <span class="weather-info__content__list__item__title">{{seaElement.title}}</span>
+              <span class="weather-info__content__list__item__value">{{seaElement.value}}</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </v-accordion>
   </div>
@@ -29,12 +39,9 @@
     props: ['lastReport'],
 
     computed: {
-      weatherData () {
+      windData () {
         const windDir = this.lastReport.windDir
         const windSpd = this.lastReport.windSpd
-        const seaState = this.lastReport.seaState
-        const swellDir = this.lastReport.swellDir
-        const swellHeight = this.lastReport.swellHeight
 
         return [
           {
@@ -43,7 +50,17 @@
           }, {
             title: 'Wind speed',
             value: windSpd ? `${windSpd} kn` : NOT_PROVIDED
-          }, {
+          }
+        ]
+      },
+
+      seaData () {
+        const seaState = this.lastReport.seaState
+        const swellDir = this.lastReport.swellDir
+        const swellHeight = this.lastReport.swellHeight
+
+        return [
+          {
             title: 'Sea state',
             value: seaState || NOT_PROVIDED
           }, {
@@ -66,22 +83,39 @@
 </script>
 
 <style scoped lang="scss">
-  .weather-info {
-    &__content {
-      display: flex;
-      justify-content: space-around;
-      text-align: left;
-      min-height: 130px;
+  .weather-info__content {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    min-height: 200px;
 
-      &__list {
-        width: 100%;
-        padding: 0 20px;
-        &__item {
-          display: flex;
-          justify-content: space-between;
-          list-style-type: none;
-          font-weight: 300;
-          cursor: default;
+    &__wind, &__sea {
+      display: flex;
+      justify-content: baseline;
+      width: 45%;
+    }
+
+    &__wind__flag {
+      margin-right: 20px;
+    }
+
+    &__list {
+      padding: 0 20px;
+      align-self: center;
+      &__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        list-style-type: none;
+        font-weight: 300;
+        cursor: default;
+        margin-top: 15px;
+        &__title {
+          @include font(18px, 300);
+          margin-right: 15px;
+        }
+        &__value {
+          @include font(26px, 400);
         }
       }
     }
