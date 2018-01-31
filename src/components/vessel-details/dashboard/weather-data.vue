@@ -112,7 +112,7 @@
         margin-top: 15px;
         &__title {
           @include font(18px, 300);
-          margin-right: 15px;
+          margin-right: 25px;
         }
         &__value {
           @include font(26px, 400);

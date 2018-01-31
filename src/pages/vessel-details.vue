@@ -104,7 +104,7 @@
             updatedAt: '2017-09-01T10:46:14.631Z',
             vessel: this.$route.params.id,
             windDir: 120,
-            windSpd: 40
+            windSpd: 25
           }, {
             reportTime: '2018-01-03',
             course: 230,

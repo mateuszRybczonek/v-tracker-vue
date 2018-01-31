@@ -1,5 +1,5 @@
 <template>
-  <div id="weather-flag">
+  <div id="weather-flag" :class="colorClass">
     <i :class="classes"></i>
   </div>
 </template>
@@ -8,16 +8,22 @@
   export default {
     props: ['speed', 'direction'],
 
-    data () {
-      return {
-        flagInterval1: '',
-        flagInterval2: ''
-      }
-    },
+//    data () {
+//      return {
+//        flagInterval1: '',
+//        flagInterval2: ''
+//      }
+//    },
 
     computed: {
       classes () {
         return `icon--${this.iconSpeed}kn`
+      },
+
+      colorClass () {
+        if (this.speed < 25) return ''
+        if (this.speed < 40) return 'amber'
+        return 'red'
       },
 
       iconSpeed () {
@@ -67,6 +73,14 @@
       width: $icon-size;
       height: $icon-size;
       background-color: $color-blue;
+    }
+
+    &.red {
+      border-color: $color-tomato;
+    }
+
+    &.amber {
+      border-color: $color-amber;
     }
 
     .icon {

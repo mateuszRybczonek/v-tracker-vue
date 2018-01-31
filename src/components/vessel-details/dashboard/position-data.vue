@@ -75,10 +75,10 @@
             margin-top: 15px;
           }
           &__title {
-            @include font(18px, 500);
+            @include font(18px, 300);
           }
           &__value {
-            @include font(26px, 300);
+            @include font(26px, 400);
           }
         }
       }
