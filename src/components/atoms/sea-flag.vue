@@ -1,7 +1,7 @@
 <template>
-  <div id="sea-flag">
-    <v-icon icon="arrow" size="small" color="black" id="arrow"></v-icon>
-    <v-icon icon="wave" size="small" color="black"></v-icon>
+  <div id="sea-flag" :class="colorClass">
+    <v-icon icon="arrow" size="small" color="black" id="arrow" :class="colorClass"></v-icon>
+    <v-icon icon="wave" size="small" color="black" :class="colorClass"></v-icon>
   </div>
 </template>
 
@@ -14,6 +14,12 @@
     computed: {
       classes () {
         return `icon--${this.height}m`
+      },
+
+      colorClass () {
+        if (this.height < 3) return ''
+        if (this.height < 6) return 'amber'
+        return 'red'
       },
 
       swellDirectionFrom () {
@@ -59,14 +65,20 @@
       left: 9px;
     }
 
-    .icon {
-      //icons
-      &--2m {
-        mask-image: url('../../assets/wind-flags.svg');
-        mask-position: 3px -58px;
-        mask-size: 1800%;
-        background-color: $color-amber;
-      }
+    .amber {
+      background-color: $color-amber;
+    }
+
+    .red {
+      background-color: $color-tomato;
+    }
+
+    &.red {
+      border-color: $color-tomato;
+    }
+
+    &.amber {
+      border-color: $color-amber;
     }
   }
 </style>

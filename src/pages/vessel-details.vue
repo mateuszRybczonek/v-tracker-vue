@@ -100,7 +100,7 @@
             roll: 1,
             seaState: 3,
             swellDir: 200,
-            swellHeight: 2,
+            swellHeight: 6,
             updatedAt: '2017-09-01T10:46:14.631Z',
             vessel: this.$route.params.id,
             windDir: 120,
