@@ -5,7 +5,8 @@
       <p>({{lastReportDaysAgo}})</p>
     </div>
     <div class="vessel-details__row">
-      <div class="vessel-details__row__item">
+      <div class="vessel-details__row__item google-map">
+        Mini-Google map will go here
       </div>
       <div class="vessel-details__row__item">
         <position-data
@@ -86,6 +87,13 @@
 
     &__item {
       margin-top: 40px;
+    }
+
+    .google-map {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid $color-light-blue;
     }
   }
 </style>

@@ -16,6 +16,7 @@
           </ul>
         </div>
         <div class="weather-info__content__sea">
+          <v-sea-flag class="weather-info__content__sea__flag" :height="lastReport.swellHeight" :direction="lastReport.swellDir"></v-sea-flag>
           <ul class="weather-info__content__list">
             <li class="weather-info__content__list__item" v-for="seaElement in seaData">
               <span class="weather-info__content__list__item__title">{{seaElement.title}}</span>
@@ -31,6 +32,7 @@
 <script>
   import VIcon from '../../../components/atoms/icon.vue'
   import VWeatherFlag from '../../../components/atoms/weather-flag.vue'
+  import VSeaFlag from '../../../components/atoms/sea-flag.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
 
   const NOT_PROVIDED = 'not provided'
@@ -77,7 +79,8 @@
     components: {
       VIcon,
       VAccordion,
-      VWeatherFlag
+      VWeatherFlag,
+      VSeaFlag
     }
   }
 </script>

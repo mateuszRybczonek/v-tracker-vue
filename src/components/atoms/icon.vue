@@ -236,5 +236,21 @@
         mask-size: 200%;
       }
     }
+
+    &--wave {
+      &--small {
+        mask-image: url('../../assets/icons.svg');
+        mask-position: 0px -890px;
+        mask-size: 80%;
+      }
+    }
+
+    &--arrow {
+      &--small {
+        mask-image: url('../../assets/icons.svg');
+        mask-position: -28px -1577px;
+        mask-size: 130%;
+      }
+    }
   }
 </style>
