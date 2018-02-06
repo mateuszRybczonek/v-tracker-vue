@@ -8,12 +8,12 @@
   export default {
     props: ['speed', 'direction'],
 
-//    data () {
-//      return {
-//        flagInterval1: '',
-//        flagInterval2: ''
-//      }
-//    },
+    data () {
+      return {
+        flagInterval1: '',
+        flagInterval2: ''
+      }
+    },
 
     computed: {
       classes () {
@@ -34,20 +34,20 @@
     mounted () {
       const weatherFlag = document.getElementById('weather-flag')
       weatherFlag.style.transform = `rotate(${this.direction}deg)`
-//      setTimeout(() => {
-//        const windDirVariation = this.iconSpeed <= 20 ? 20 : 100
-//        this.flagInterval1 = setInterval(() => {
-//          weatherFlag.style.transform = `rotate(${this.direction - windDirVariation}deg)`
-//        }, 10000 / this.iconSpeed)
-//        this.flagInterval2 = setInterval(() => {
-//          weatherFlag.style.transform = `rotate(${this.direction + windDirVariation}deg)`
-//        }, 20000 / this.iconSpeed)
-//      }, 1500)
+      setTimeout(() => {
+        const windDirVariation = this.iconSpeed <= 20 ? 20 : 100
+        this.flagInterval1 = setInterval(() => {
+          weatherFlag.style.transform = `rotate(${this.direction - windDirVariation}deg)`
+        }, 10000 / this.iconSpeed)
+        this.flagInterval2 = setInterval(() => {
+          weatherFlag.style.transform = `rotate(${this.direction + windDirVariation}deg)`
+        }, 20000 / this.iconSpeed)
+      }, 1500)
     },
 
     beforeDestroy () {
-//      clearInterval(this.flagInterval1)
-//      clearInterval(this.flagInterval2)
+      clearInterval(this.flagInterval1)
+      clearInterval(this.flagInterval2)
     }
   }
 </script>

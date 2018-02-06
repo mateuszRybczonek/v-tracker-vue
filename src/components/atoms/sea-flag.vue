@@ -53,7 +53,10 @@
     min-width: $wrapper-size;
     align-self: center;
     margin-left: 15px;
-    transition: all 2s ease-in-out;
+
+    #arrow {
+      transition: all 2s ease-in-out;
+    }
 
     > i {
       display: block;

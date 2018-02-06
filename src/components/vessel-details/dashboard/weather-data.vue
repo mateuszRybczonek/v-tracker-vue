@@ -6,24 +6,27 @@
         <p>Weather info</p>
       </div>
       <div slot="body" class="weather-info__content">
-        <div class="weather-info__content__wind">
-          <v-weather-flag class="weather-info__content__wind__flag" :speed="lastReport.windSpd" :direction="lastReport.windDir"></v-weather-flag>
-          <ul class="weather-info__content__list">
-            <li class="weather-info__content__list__item" v-for="windElement in windData">
-              <span class="weather-info__content__list__item__title">{{windElement.title}}</span>
-              <span class="weather-info__content__list__item__value">{{windElement.value}}</span>
-            </li>
-          </ul>
+        <div class="weather-info__content__data">
+          <div class="weather-info__content__wind">
+            <v-weather-flag class="weather-info__content__wind__flag" :speed="lastReport.windSpd" :direction="lastReport.windDir"></v-weather-flag>
+            <ul class="weather-info__content__list">
+              <li class="weather-info__content__list__item" v-for="windElement in windData">
+                <span class="weather-info__content__list__item__title">{{windElement.title}}</span>
+                <span class="weather-info__content__list__item__value">{{windElement.value}}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="weather-info__content__sea">
+            <v-sea-flag class="weather-info__content__sea__flag" :height="lastReport.swellHeight" :direction="lastReport.swellDir"></v-sea-flag>
+            <ul class="weather-info__content__list">
+              <li class="weather-info__content__list__item" v-for="seaElement in seaData">
+                <span class="weather-info__content__list__item__title">{{seaElement.title}}</span>
+                <span class="weather-info__content__list__item__value">{{seaElement.value}}</span>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="weather-info__content__sea">
-          <v-sea-flag class="weather-info__content__sea__flag" :height="lastReport.swellHeight" :direction="lastReport.swellDir"></v-sea-flag>
-          <ul class="weather-info__content__list">
-            <li class="weather-info__content__list__item" v-for="seaElement in seaData">
-              <span class="weather-info__content__list__item__title">{{seaElement.title}}</span>
-              <span class="weather-info__content__list__item__value">{{seaElement.value}}</span>
-            </li>
-          </ul>
-        </div>
+        <v-weather-situation class="weather-info__content__situation" :speed="lastReport.windSpd" :direction="lastReport.windDir"></v-weather-situation>
       </div>
     </v-accordion>
   </div>
@@ -33,6 +36,7 @@
   import VIcon from '../../../components/atoms/icon.vue'
   import VWeatherFlag from '../../../components/atoms/weather-flag.vue'
   import VSeaFlag from '../../../components/atoms/sea-flag.vue'
+  import VWeatherSituation from '../weather/weather-situation.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
 
   const NOT_PROVIDED = 'not provided'
@@ -80,7 +84,8 @@
       VIcon,
       VAccordion,
       VWeatherFlag,
-      VSeaFlag
+      VSeaFlag,
+      VWeatherSituation
     }
   }
 </script>
@@ -91,19 +96,32 @@
     justify-content: space-between;
     text-align: left;
     min-height: 200px;
+    padding: 30px;
 
     &__wind, &__sea {
       display: flex;
       justify-content: baseline;
-      width: 45%;
     }
 
-    &__wind__flag {
-      margin-right: 20px;
+    &__sea {
+      margin-top: 100px;
+    }
+
+    &__data {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+      align-items: baseline;
+      align-self: center;
+    }
+
+    &__situation {
+      width: 50%;
     }
 
     &__list {
-      padding: 0 20px;
+      padding: 0 0 0 40px;
       align-self: center;
       &__item {
         display: flex;
