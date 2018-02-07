@@ -1,43 +1,89 @@
 <template>
-  <div id="weather-situation">
+  <div class="weather-situation">
+    <div class="weather-situation__vessel-wrapper" id="weather-situation__vessel-wrapper">
+      <v-icon
+        class="weather-situation__vessel"
+        icon="vessel"
+        size="huge"
+        color="light-blue"></v-icon>
+    </div>
 
+    <div class="weather-situation__wind-flag-wrapper" id="weather-situation__wind-flag-wrapper">
+      <v-wind-flag
+        class="weather-situation__wind-flag"
+        :speed="lastReport.windSpd"
+        :withBorder=false>
+      </v-wind-flag>
+    </div>
+
+    <div class="weather-situation__sea-flag-wrapper" id="weather-situation__sea-flag-wrapper">
+      <v-sea-flag
+        class="weather-situation__sea-flag"
+        :height="lastReport.swellHeight"
+        :direction="lastReport.swellDir"
+        :withBorder=false>
+      </v-sea-flag>
+    </div>
   </div>
 </template>
 
 <script>
+  import VWindFlag from '../../atoms/wind-flag.vue'
+  import VSeaFlag from '../../atoms/sea-flag.vue'
+  import VIcon from '../../atoms/icon.vue'
+
   export default {
-    props: ['speed', 'direction'],
+    props: ['lastReport'],
 
-    computed: {
-      classes () {
-        return `icon--${this.iconSpeed}kn`
-      },
-
-      colorClass () {
-        if (this.speed < 25) return ''
-        if (this.speed < 40) return 'amber'
-        return 'red'
-      },
-
-      iconSpeed () {
-        return this.speed <= 50 ? Math.floor(this.speed / 5) * 5 : 50
-      }
+    components: {
+      VWindFlag,
+      VSeaFlag,
+      VIcon
     },
 
     mounted () {
-      const weatherFlag = document.getElementById('weather-flag')
-      weatherFlag.style.transform = `rotate(${this.direction}deg)`
+      const windFlagWrapper = document.getElementById('weather-situation__wind-flag-wrapper')
+      windFlagWrapper.style.transform = `rotate(${this.lastReport.windDir}deg)`
+
+      const seaFlagWrapper = document.getElementById('weather-situation__sea-flag-wrapper')
+      seaFlagWrapper.style.transform = `rotate(${this.lastReport.swellDir}deg)`
+
+      const vesselWrapper = document.getElementById('weather-situation__vessel-wrapper')
+      vesselWrapper.style.transform = `rotate(${this.lastReport.course}deg)`
     }
   }
 </script>
 
 <style scoped lang="scss">
-  #weather-situation {
-    display: block;
-    text-indent: -9999px;
-    width: 500px;
+  .weather-situation {
+    display: flex;
+    position: relative;
     height: 500px;
+    width: 500px;
     background: url(../../../assets/compass-rose.svg);
     background-size: 500px;
+
+    &__wind-flag, &__sea-flag {
+      position: relative;
+    }
+
+    &__wind-flag-wrapper, &__sea-flag-wrapper, &__vessel-wrapper {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+    }
+
+    &__wind-flag, &__sea-flag {
+      position: relative;
+      top: 45px;
+      transform: rotate(180deg);
+    }
+
+    &__vessel {
+      position: relative;
+      top: 140px;
+      left: 221px;
+      opacity: 0.7;
+    }
   }
 </style>

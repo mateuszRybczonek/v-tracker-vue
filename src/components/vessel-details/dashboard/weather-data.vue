@@ -8,7 +8,11 @@
       <div slot="body" class="weather-info__content">
         <div class="weather-info__content__data">
           <div class="weather-info__content__wind">
-            <v-weather-flag class="weather-info__content__wind__flag" :speed="lastReport.windSpd" :direction="lastReport.windDir"></v-weather-flag>
+            <v-wind-flag
+              class="weather-info__content__wind__flag"
+              :speed="lastReport.windSpd"
+              :direction="lastReport.windDir"
+              :withBorder=true></v-wind-flag>
             <ul class="weather-info__content__list">
               <li class="weather-info__content__list__item" v-for="windElement in windData">
                 <span class="weather-info__content__list__item__title">{{windElement.title}}</span>
@@ -17,7 +21,11 @@
             </ul>
           </div>
           <div class="weather-info__content__sea">
-            <v-sea-flag class="weather-info__content__sea__flag" :height="lastReport.swellHeight" :direction="lastReport.swellDir"></v-sea-flag>
+            <v-sea-flag
+              class="weather-info__content__sea__flag"
+              :height="lastReport.swellHeight"
+              :direction="lastReport.swellDir"
+              :withBorder=true></v-sea-flag>
             <ul class="weather-info__content__list">
               <li class="weather-info__content__list__item" v-for="seaElement in seaData">
                 <span class="weather-info__content__list__item__title">{{seaElement.title}}</span>
@@ -26,7 +34,10 @@
             </ul>
           </div>
         </div>
-        <v-weather-situation class="weather-info__content__situation" :speed="lastReport.windSpd" :direction="lastReport.windDir"></v-weather-situation>
+        <v-weather-situation
+          class="weather-info__content__situation"
+          :lastReport="lastReport">
+        </v-weather-situation>
       </div>
     </v-accordion>
   </div>
@@ -34,7 +45,7 @@
 
 <script>
   import VIcon from '../../../components/atoms/icon.vue'
-  import VWeatherFlag from '../../../components/atoms/weather-flag.vue'
+  import VWindFlag from '../../../components/atoms/wind-flag.vue'
   import VSeaFlag from '../../../components/atoms/sea-flag.vue'
   import VWeatherSituation from '../weather/weather-situation.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
@@ -83,7 +94,7 @@
     components: {
       VIcon,
       VAccordion,
-      VWeatherFlag,
+      VWindFlag,
       VSeaFlag,
       VWeatherSituation
     }
@@ -101,6 +112,7 @@
     &__wind, &__sea {
       display: flex;
       justify-content: baseline;
+      margin-left: 15px;
     }
 
     &__sea {

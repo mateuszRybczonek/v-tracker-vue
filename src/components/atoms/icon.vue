@@ -252,5 +252,15 @@
         mask-size: 130%;
       }
     }
+
+    &--vessel {
+      &--huge {
+        width: 60px;
+        height: 200px;
+        mask-image: url('../../assets/icons.svg');
+        mask-position: -2px -968px;
+        mask-size: 100%;
+      }
+    }
   }
 </style>

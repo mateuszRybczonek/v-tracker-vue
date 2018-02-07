@@ -1,7 +1,9 @@
 <template>
-  <div id="sea-flag" :class="colorClass">
-    <v-icon icon="arrow" size="small" color="black" id="arrow" :class="colorClass"></v-icon>
-    <v-icon icon="wave" size="small" color="black" :class="colorClass"></v-icon>
+  <div id="sea-flag" class="sea-flag" :class="classes">
+    <div class="sea-flag__icons-wrapper">
+      <v-icon icon="arrow" size="small" color="black" id="arrow" :class="colorClass"></v-icon>
+      <v-icon icon="wave" size="small" color="black" :class="colorClass"></v-icon>
+    </div>
   </div>
 </template>
 
@@ -9,11 +11,15 @@
   import VIcon from '../../components/atoms/icon.vue'
 
   export default {
-    props: ['height', 'direction'],
+    props: ['height', 'direction', 'withBorder'],
 
     computed: {
+      border () {
+        return this.withBorder ? 'with-border' : ''
+      },
+
       classes () {
-        return `icon--${this.height}m`
+        return `${this.colorClass} ${this.border}`
       },
 
       colorClass () {
@@ -42,30 +48,38 @@
   $icon-size: 80px;
   $wrapper-size: 100px;
 
-  #sea-flag {
+  .sea-flag {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    border: 2px solid $color-blue;
-    @include border-radius(50%);
     height: $wrapper-size;
     min-width: $wrapper-size;
     align-self: center;
-    margin-left: 15px;
 
-    #arrow {
-      transition: all 2s ease-in-out;
+    &.with-border {
+      border: 2px solid $color-blue;
+      @include border-radius(50%);
     }
 
-    > i {
-      display: block;
-      width: $icon-size;
-      height: $icon-size;
-      background-color: $color-blue;
-      position: absolute;
-      top: 9px;
-      left: 9px;
+    &__icons-wrapper {
+      position: relative;
+      height: $wrapper-size;
+      width: $wrapper-size;
+
+      #arrow {
+        transition: all 2s ease-in-out;
+      }
+
+      > i {
+        display: block;
+        width: $icon-size;
+        height: $icon-size;
+        background-color: $color-blue;
+        position: absolute;
+        top: 9px;
+        left: 9px;
+      }
     }
 
     .amber {
