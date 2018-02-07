@@ -5,19 +5,26 @@
       <p>({{lastReportDaysAgo}})</p>
     </div>
     <div class="vessel-details__row">
-      <position-data class="vessel-details__item"
-        :lastReport="lastReport">
-      </position-data>
-      <navigation-data class="vessel-details__item"
-        :lastReport="lastReport">
-      </navigation-data>
-      <weather-data class="vessel-details__item"
-        :lastReport="lastReport">
-      </weather-data>
+      <div class="vessel-details__row__item google-map">
+        Mini-Google map will go here
+      </div>
+      <div class="vessel-details__row__item">
+        <position-data
+          :lastReport="lastReport">
+        </position-data>
+        <navigation-data class="vessel-details__row__item"
+          :lastReport="lastReport">
+        </navigation-data>
+      </div>
     </div>
+
+    <weather-data class="vessel-details__row__item"
+                  :lastReport="lastReport">
+    </weather-data>
     <remaining-on-board
       class="vessel-details__item"
-      :lastReport="lastReport">
+      :lastReport="lastReport"
+      :previousReport="previousReport">
     </remaining-on-board>
   </div>
 </template>
@@ -36,6 +43,10 @@
     computed: {
       lastReport () {
         return this.componentProps.lastReport
+      },
+
+      previousReport () {
+        return this.componentProps.previousReport
       },
 
       lastReportDaysAgo () {
@@ -59,18 +70,30 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin: 40px 20px;
+      padding: 40px 20px;
     }
 
     &__row {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      flex-wrap: wrap;
+
+      &__item {
+        margin-top: 40px;
+        min-width: 49%;
+      }
     }
 
     &__item {
       margin-top: 40px;
-      min-width: 30%;
+    }
+
+    .google-map {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid $color-light-blue;
     }
   }
 </style>

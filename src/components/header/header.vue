@@ -43,12 +43,16 @@
 <style scoped lang="scss">
   #header {
     height: 56px;
+    width: 100%;
+    position: fixed;
+    top: 0;
     display: flex;
     flex-flow: row;
     justify-content: space-between;
     align-items: center;
     background-color: $color-dark-grey;
     padding: 0 20px;
+    z-index: 999;
   }
 
   .logo {

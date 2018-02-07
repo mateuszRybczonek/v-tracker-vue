@@ -58,7 +58,10 @@
 
       componentProps () {
         if (this.selectedComponent === 'v-vessel-dashboard') {
-          return { lastReport: this.lastReport }
+          return {
+            lastReport: this.lastReport,
+            previousReport: this.previousReport
+          }
         }
       },
 
@@ -86,10 +89,10 @@
           }, {
             reportTime: '2018-01-04',
             course: 230,
-            spd: 14,
-            doRob: 200,
+            spd: 17,
+            doRob: 160,
             foRob: 100,
-            fwRob: 300,
+            fwRob: 320,
             lat: 13.505,
             lng: 73.893,
             pitch: 0.5,
@@ -97,16 +100,16 @@
             roll: 1,
             seaState: 3,
             swellDir: 200,
-            swellHeight: 2,
+            swellHeight: 3,
             updatedAt: '2017-09-01T10:46:14.631Z',
             vessel: this.$route.params.id,
             windDir: 120,
-            windSpd: 14
+            windSpd: 15
           }, {
             reportTime: '2018-01-03',
             course: 230,
             spd: 15,
-            doRob: 200,
+            doRob: 180,
             foRob: 100,
             fwRob: 300,
             lat: 20,
@@ -134,7 +137,11 @@
       },
 
       lastReport () {
-        return this.reportsSortedAsc.pop()
+        return this.reportsSortedAsc.slice(-1)[0]
+      },
+
+      previousReport () {
+        return this.reportsSortedAsc.slice(-2)[0]
       }
     },
 
@@ -154,7 +161,7 @@
     }
 
     h1 {
-      margin: 50px 0;
+      padding: 50px 0;
     }
 
     &__content {
@@ -167,16 +174,8 @@
       }
     }
 
-    &__last-report {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin: 40px 20px;
-    }
-
     &__item {
-      margin-top: 40px;
+      margin-top: 20px;
     }
   }
 </style>

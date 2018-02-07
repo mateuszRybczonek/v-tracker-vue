@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="76" height="1000">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="76" height="5000">
   <defs>
     <symbol id="fuel">
       <path d="M 42.75,19L 42.75,31.4977C 44.5834,31.378 48.9184,32.7881 48.2917,49.0833C 49.0833,53.8333 54.625,53.8333 55.8125,47.5C 57,42.75 53.8333,42.75 52.25,28.5C 52.25,26.9167 52.25,22.1667 45.9167,19L 45.9167,17.4167C 52.25,17.4167 57,25.3333 57,26.9167C 57,28.5 55.4167,28.5 55.4167,28.5C 55.4167,28.5 55.8125,38 57.3958,39.5833C 58.9792,41.1667 58.5833,45.9167 58.5833,49.0833C 58.5833,52.25 53.8333,55.4167 52.25,55.4167C 50.6667,55.4167 45.9167,55.4167 45.9167,50.6667C 45.9167,46.3403 45.2599,36.7598 42.75,35.0854L 42.75,55.4167C 43.6244,55.4167 44.3333,56.1255 44.3333,57L 44.3333,60.1667L 19,60.1667L 19,57C 19,56.1255 19.7089,55.4167 20.5833,55.4167L 20.5833,19C 20.5833,17.2511 22.0011,15.8333 23.75,15.8333L 39.5833,15.8333C 41.3322,15.8333 42.75,17.2511 42.75,19 Z M 25.7291,33.2501L 37.6041,33.25C 38.4786,33.25 39.5833,32.1453 39.5833,31.2709L 39.5833,20.9792C 39.5833,20.1048 38.4786,19 37.6041,19L 25.7292,19C 24.8547,19 23.75,20.1048 23.75,20.9792L 23.75,31.2709C 23.75,32.1453 24.8547,33.2501 25.7291,33.2501 Z "/>
@@ -52,6 +52,29 @@
     <symbol id="weather">
       <path d="M20.422 11.516c-.178-3.233-3.031-5.778-6.432-5.492-1.087-1.239-2.693-2.024-4.49-2.024-3.172 0-5.754 2.443-5.922 5.516-2.033.359-3.578 2.105-3.578 4.206 0 2.362 1.949 4.278 4.354 4.278h1.326c.771 1.198 2.124 2 3.674 2h10.291c2.406 0 4.355-1.916 4.355-4.278 0-2.101-1.545-3.847-3.578-4.206zm-15.395 4.484h-.673c-1.297 0-2.354-1.022-2.354-2.278 0-2.118 2.104-2.597 3.488-2.512-.05-1.356.137-5.21 4.012-5.21.967 0 1.714.25 2.29.644-1.823.922-3.096 2.746-3.212 4.872-2.022.358-3.697 2.127-3.551 4.484zm14.618 2h-10.291c-1.297 0-2.354-1.022-2.354-2.278 0-2.118 2.104-2.597 3.488-2.512-.05-1.356.137-5.21 4.012-5.21 3.771 0 4.229 3.771 4.012 5.209 1.509-.105 3.488.437 3.488 2.513 0 1.256-1.057 2.278-2.355 2.278z"/>
     </symbol>
+
+    <symbol id="arrow-down">
+      <line id="e1_line" x1="0" y1="0" x2="15" y2="15" style="stroke:black;fill:none;stroke-width:1px;"/><line id="e2_line" x1="30" y1="0" x2="15" y2="15" style="stroke:black;fill:none;stroke-width:1px;" />
+    </symbol>
+
+    <symbol id="change">
+      <path d='M0,0 V32 L16,16 Z' fill="black" />
+    </symbol>
+
+    <symbol id="wave">
+      <line x1="2" y1="65" x2="45" y2="65" style="stroke:black;fill:none;stroke-width:2px;" />
+      <path d="M2.46,65.18q16.72,-38.4,35.7,-18.6" style="fill:none;stroke:black;stroke-width:2px;"/>
+      <path d="M45.4,65.2c-41.1,-4.2,-14.5,-28.7,-7.2,-18.6" style="fill:none;stroke:black;stroke-width:2px;"/>
+    </symbol>
+
+    <symbol id="arrow">
+      <path d="M1.3,-3.8h1.13l-1.5,-2.2l-1.5,2.1h1.0v4.4h0.8Z" style="stroke:black; vector-effect:non-scaling-stroke;stroke-width:1px;" transform="matrix(1.85821 0 0 1.85821 22.6791 35.1791)"/>
+      <path d="M-3.2,-3.2l0,6.4h0.9l0,-6.4Z" style="stroke:black; vector-effect:non-scaling-stroke;stroke-width:1px;" transform="matrix(1.66791 0 0 1.66791 28.6343 73.8209)"/>
+    </symbol>
+
+    <symbol id="vessel">
+      <polygon style="stroke:black;stroke-width:6px;" points="40 0 10 50 10 200 70 200 70 50" />
+    </symbol>
   </defs>
 
   <use xlink:href="#fuel"/>
@@ -67,4 +90,9 @@
   <use xlink:href="#position" transform="translate(25, 720)"/>
   <use xlink:href="#navigation" transform="translate(25, 790)"/>
   <use xlink:href="#weather" transform="translate(25, 860)"/>
+  <use xlink:href="#arrow-down" transform="translate(25, 930)"/>
+  <use xlink:href="#change" transform="translate(25, 1000)"/>
+  <use xlink:href="#wave" transform="translate(25, 1050)"/>
+  <use xlink:href="#arrow" transform="translate(25, 1130)"/>
+  <use xlink:href="#vessel" transform="translate(0, 1250)"/>
 </svg>

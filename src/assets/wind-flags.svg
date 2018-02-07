@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="990px" height="670px" viewBox="0 0 990 670" preserveAspectRatio="xMidYMid meet" >
+  <defs>
+    <symbol id="5kn">
+      <line x1="24" y1="48" x2="24" y2="86" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="24" y1="78.75" x2="32.75" y2="87" style="stroke:black;fill:none;stroke-width:1px;" />
+    </symbol>
+
+    <symbol id="10kn">
+      <line x1="24" y1="137.75" x2="38" y2="151" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="24" y1="100" x2="24" y2="138" style="stroke:black;fill:none;stroke-width:1px;" />
+    </symbol>
+
+    <symbol id="15kn">
+      <line x1="23.75" y1="160.50" x2="23.75" y2="198.5" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="23.75" y1="192.25" x2="32.5" y2="200.5" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="23.75" y1="198.25" x2="37.75" y2="211.5" style="stroke:black;fill:none;stroke-width:1px;" />
+    </symbol>
+
+    <symbol id="20kn">
+      <line x1="23.25" y1="217" x2="23.25" y2="255" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="23.25" y1="254.75" x2="37.25" y2="268" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="23" y1="277.25" x2="23" y2="315.25" style="stroke:black;fill:none;stroke-width:1px;" />
+    </symbol>
+
+    <symbol id="25kn">
+      <line x1="23.25" y1="304" x2="32" y2="312.25" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="23" y1="315" x2="37" y2="328.25" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="23.5" y1="249.50" x2="37.5" y2="262.75" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="23.5" y1="310" x2="37.5" y2="323.25" style="stroke:black;fill:none;stroke-width:1px;" />
+    </symbol>
+
+    <symbol id="30kn">
+      <line x1="23" y1="335.25" x2="23" y2="373.25" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="23" y1="373" x2="37" y2="386.25" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="23.5" y1="368" x2="37.5" y2="381.25" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="23.25" y1="362" x2="37.25" y2="375.25" style="stroke:black;fill:none;stroke-width:1px;" />
+    </symbol>
+
+    <symbol id="35kn">
+      <line x1="22.5" y1="390.50" x2="22.5" y2="428.5" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="22.5" y1="428.25" x2="36.5" y2="441.5" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="23" y1="423.25" x2="37" y2="436.5" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="22.75" y1="417.25" x2="36.75" y2="430.5" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="22.75" y1="410.75" x2="31.5" y2="419" style="stroke:black;fill:none;stroke-width:1px;" />
+    </symbol>
+
+    <symbol id="40kn">
+      <line x1="21.5" y1="446.25" x2="21.5" y2="484.25" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="21.5" y1="484" x2="35.5" y2="497.25" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="22" y1="479" x2="36" y2="492.25" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="21.75" y1="473" x2="35.75" y2="486.25" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="21.75" y1="466.75" x2="35.75" y2="480" style="stroke:black;fill:none;stroke-width:1px;" />
+    </symbol>
+
+    <symbol id="45kn">
+      <line x1="20.5" y1="504" x2="20.5" y2="542" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="20.5" y1="541.75" x2="34.5" y2="555" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="21" y1="536.75" x2="35" y2="550" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="20.75" y1="530.75" x2="34.75" y2="544" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="20.75" y1="524.5" x2="34.753" y2="537.75" style="stroke:black;fill:none;stroke-width:1px;" />
+      <line x1="20.75" y1="517.75" x2="29.50" y2="526" style="stroke:black;fill:none;stroke-width:1px;" />
+    </symbol>
+
+    <symbol id="50kn">
+      <line x1="20.25" y1="564" x2="20.25" y2="602" style="stroke:black;fill:none;stroke-width:1px;" />
+      <path d="M-3.529411751906234,-11.811764918356745v7.9999999999999964h8Z" style="fill:black; stroke:black; vector-effect:non-scaling-stroke;stroke-width:1px;" id="e4_shape" transform="matrix(1.32813 0 0 1.32813 25.2755 606.976)"/>
+    </symbol>
+
+    <symbol id="0kn">
+      <line x1="21" y1="625" x2="2" y2="665" style="stroke:black;fill:none;stroke-width:1px;" />
+    </symbol>
+  </defs>
+
+  <use xlink:href="#0kn"/>
+  <use xlink:href="#5kn"/>
+  <use xlink:href="#10kn"/>
+  <use xlink:href="#15kn"/>
+  <use xlink:href="#20kn"/>
+  <use xlink:href="#25kn"/>
+  <use xlink:href="#30kn"/>
+  <use xlink:href="#35kn"/>
+  <use xlink:href="#40kn"/>
+  <use xlink:href="#45kn"/>
+  <use xlink:href="#50kn"/>
+</svg>

@@ -55,7 +55,7 @@
   .sidebar {
     width: 300px;
     height: 100%;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     margin-top: 56px;

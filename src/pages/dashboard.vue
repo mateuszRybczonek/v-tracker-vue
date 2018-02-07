@@ -25,9 +25,17 @@
   }
 
   h1 {
-    margin: 50px 0;
+    padding: 50px 0;
   }
 
+  #dashboard {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    top: 56px;
+    background-color: $color-whitey;
+    background-attachment: fixed;
+  }
   .cards {
     display: flex;
     justify-content: space-around;

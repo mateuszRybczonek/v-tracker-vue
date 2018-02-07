@@ -1,19 +1,9 @@
 <template>
   <div class="remaining-on-board">
-    <v-accordion :showOnInit=true>
-      <div slot="header" class="remaining-on-board__header">
-        <p>Remaining on board</p>
-        <v-icon icon="fuel" size="medium" color="white"></v-icon>
-      </div>
-      <div slot="body" class="remaining-on-board__content">
-        <mini-stats-item v-for="(item, index) in miniStatsItems"
-          :icon="item.icon"
-          :header="item.header"
-          :description="item.description"
-          :class="item.customClass">
-        </mini-stats-item>
-      </div>
-    </v-accordion>
+    <mini-stats-item v-for="item in miniStatsItems"
+      :key="item.index"
+      :item="item">
+    </mini-stats-item>
   </div>
 </template>
 
@@ -23,31 +13,43 @@
   import VAccordion from '../../../components/molecules/accordion.vue'
 
   export default {
-    props: ['lastReport'],
+    props: ['lastReport', 'previousReport'],
 
     computed: {
       miniStatsItems () {
         return [
           {
             icon: 'fuel',
-            header: `${this.lastReport.foRob} cbm`,
-            description: 'Remaining FO',
-            customClass: 'mini-stats__item--fo'
+            header: this.lastReport.foRob,
+            change: this.lastReport.foRob - this.previousReport.foRob,
+            unit: 'cbm',
+            description: 'Fuel Oil',
+            customClass: 'mini-stats__item--fo',
+            color: 'black'
           }, {
             icon: 'fuel',
-            header: `${this.lastReport.doRob} cbm`,
-            description: 'Remaining DO',
-            customClass: 'mini-stats__item--do'
+            header: this.lastReport.doRob,
+            change: this.lastReport.doRob - this.previousReport.doRob,
+            unit: 'cbm',
+            description: 'Diesel Oil',
+            customClass: 'mini-stats__item--do',
+            color: 'brown'
           }, {
             icon: 'water',
-            header: `${this.lastReport.fwRob} cbm`,
-            description: 'Remaining FW',
-            customClass: 'mini-stats__item--fw'
+            header: this.lastReport.fwRob,
+            change: this.lastReport.fwRob - this.previousReport.fwRob,
+            unit: 'cbm',
+            description: 'Fresh Water',
+            customClass: 'mini-stats__item--fw',
+            color: 'light-blue'
           }, {
             icon: 'people',
-            header: `${this.lastReport.pob}`,
-            description: 'POB',
-            customClass: 'mini-stats__item--pob'
+            header: this.lastReport.pob,
+            change: this.lastReport.pob - this.previousReport.pob,
+            unit: 'persons',
+            description: 'People On Board',
+            customClass: 'mini-stats__item--pob',
+            color: 'green'
           }
         ]
       }
@@ -63,15 +65,8 @@
 
 <style scoped lang="scss">
   .remaining-on-board {
-    &__header {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-    }
-    &__content {
-      display: flex;
-      padding: 35px 50px 20px;
-      overflow-wrap: break-word;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 </style>

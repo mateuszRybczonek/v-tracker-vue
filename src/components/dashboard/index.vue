@@ -2,7 +2,8 @@
   <div id="dashboard-index">
     <h1>Dashboard</h1>
     <div class="cards">
-      <dashboard-card v-for="(card, index) in cards"
+      <dashboard-card v-for="card in cards"
+        :key="card.index"
         :destination="card.destination"
         :icon="card.icon"
         :label="card.label">
@@ -42,7 +43,7 @@
   }
 
   h1 {
-    margin: 50px 0;
+    padding: 50px 0;
   }
 
   .cards {

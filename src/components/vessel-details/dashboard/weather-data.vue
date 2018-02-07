@@ -1,17 +1,43 @@
 <template>
   <div class="weather-data">
-    <v-accordion :showOnInit=true>
-      <div slot="header" class="weather-info__header">
+    <v-accordion :showOnInit=true color="blue">
+      <div slot="header" class="v-accordion-header__slot">
+        <v-icon icon="weather" size="small" color="white"></v-icon>
         <p>Weather info</p>
-        <v-icon icon="weather" size="medium" color="white"></v-icon>
       </div>
       <div slot="body" class="weather-info__content">
-        <ul class="weather-info__content__list">
-          <li class="weather-info__content__list__item" v-for="weatherElement in weatherData">
-            <span>{{weatherElement.title}}</span>
-            <span>{{weatherElement.value}}</span>
-          </li>
-        </ul>
+        <div class="weather-info__content__data">
+          <div class="weather-info__content__wind">
+            <v-wind-flag
+              class="weather-info__content__wind__flag"
+              :speed="lastReport.windSpd"
+              :direction="lastReport.windDir"
+              :withBorder=true></v-wind-flag>
+            <ul class="weather-info__content__list">
+              <li class="weather-info__content__list__item" v-for="windElement in windData">
+                <span class="weather-info__content__list__item__title">{{windElement.title}}</span>
+                <span class="weather-info__content__list__item__value">{{windElement.value}}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="weather-info__content__sea">
+            <v-sea-flag
+              class="weather-info__content__sea__flag"
+              :height="lastReport.swellHeight"
+              :direction="lastReport.swellDir"
+              :withBorder=true></v-sea-flag>
+            <ul class="weather-info__content__list">
+              <li class="weather-info__content__list__item" v-for="seaElement in seaData">
+                <span class="weather-info__content__list__item__title">{{seaElement.title}}</span>
+                <span class="weather-info__content__list__item__value">{{seaElement.value}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <v-weather-situation
+          class="weather-info__content__situation"
+          :lastReport="lastReport">
+        </v-weather-situation>
       </div>
     </v-accordion>
   </div>
@@ -19,6 +45,9 @@
 
 <script>
   import VIcon from '../../../components/atoms/icon.vue'
+  import VWindFlag from '../../../components/atoms/wind-flag.vue'
+  import VSeaFlag from '../../../components/atoms/sea-flag.vue'
+  import VWeatherSituation from '../weather/weather-situation.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
 
   const NOT_PROVIDED = 'not provided'
@@ -27,12 +56,9 @@
     props: ['lastReport'],
 
     computed: {
-      weatherData () {
+      windData () {
         const windDir = this.lastReport.windDir
         const windSpd = this.lastReport.windSpd
-        const seaState = this.lastReport.seaState
-        const swellDir = this.lastReport.swellDir
-        const swellHeight = this.lastReport.swellHeight
 
         return [
           {
@@ -41,7 +67,17 @@
           }, {
             title: 'Wind speed',
             value: windSpd ? `${windSpd} kn` : NOT_PROVIDED
-          }, {
+          }
+        ]
+      },
+
+      seaData () {
+        const seaState = this.lastReport.seaState
+        const swellDir = this.lastReport.swellDir
+        const swellHeight = this.lastReport.swellHeight
+
+        return [
+          {
             title: 'Sea state',
             value: seaState || NOT_PROVIDED
           }, {
@@ -57,32 +93,62 @@
 
     components: {
       VIcon,
-      VAccordion
+      VAccordion,
+      VWindFlag,
+      VSeaFlag,
+      VWeatherSituation
     }
   }
 </script>
 
 <style scoped lang="scss">
-  .weather-info {
-    &__header {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-    }
-    &__content {
-      display: flex;
-      justify-content: space-around;
-      text-align: left;
+  .weather-info__content {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    min-height: 200px;
+    padding: 30px;
 
-      &__list {
-        width: 100%;
-        padding: 0 20px;
-        &__item {
-          display: flex;
-          justify-content: space-between;
-          list-style-type: none;
-          font-weight: 300;
-          cursor: default;
+    &__wind, &__sea {
+      display: flex;
+      justify-content: baseline;
+      margin-left: 15px;
+    }
+
+    &__sea {
+      margin-top: 100px;
+    }
+
+    &__data {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+      align-items: baseline;
+      align-self: center;
+    }
+
+    &__situation {
+      width: 50%;
+    }
+
+    &__list {
+      padding: 0 0 0 40px;
+      align-self: center;
+      &__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        list-style-type: none;
+        font-weight: 300;
+        cursor: default;
+        margin-top: 15px;
+        &__title {
+          @include font(18px, 300);
+          margin-right: 25px;
+        }
+        &__value {
+          @include font(26px, 400);
         }
       }
     }

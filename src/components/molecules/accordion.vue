@@ -1,10 +1,10 @@
 <template>
   <div class="accordion">
     <div class="accordion__header" @click="toggle">
-      <slot name="header"></slot>
-      <i class="fa fa-2x fa-angle-down ccordion__header-icon"
-         :class="{ rotate: show }">
-      </i>
+      <v-accordion-header :color="color">
+        <slot name="header"></slot>
+      </v-accordion-header>
+      <v-icon class="accordion__header__arrow" icon="arrow-down" size="small" color="light-grey" :class="{ rotate: show }"></v-icon>
     </div>
     <transition name="accordion"
       @before-enter="beforeEnter"
@@ -15,12 +15,18 @@
         <slot name="body"></slot>
       </div>
     </transition>
+    <div class="accordion__footer" v-show="show">
+      <slot name="footer"></slot>
+    </div>
   </div>
 </template>
 
 <script>
+  import VAccordionHeader from './accordion-header.vue'
+  import VIcon from '../../components/atoms/icon.vue'
+
   export default {
-    props: ['showOnInit'],
+    props: ['showOnInit', 'color'],
 
     data () {
       return {
@@ -53,33 +59,40 @@
       leave (el) {
         el.style.height = '0'
       }
+    },
+
+    components: {
+      VAccordionHeader,
+      VIcon
     }
   }
 </script>
 
 <style scoped lang="scss">
   .accordion {
-    border: 1px solid $color-light-grey;
     text-align: center;
     @include border-radius(5px);
-    box-shadow: 0 0 25px -5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 15px -5px rgba(0, 0, 0, 0.5);
+    background-color: $color-white;
 
     &__header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       width: 100%;
-      padding-left: 20px;
-      height: 40px;
-      background-color: $color-dark-grey;
+      padding: 0 20px;
+      height: 60px;
+      background-color: $color-white;
       cursor: pointer;
+      border-bottom: 1px solid $color-whitey;
 
-      p {
-        margin: 0;
-        color: $color-whitey;
-        font-weight: 700;
-        align-self: center;
+      &__arrow {
+        &.rotate {
+          transform: rotate(180deg);
+        }
+        transition-duration: 0.3s;
       }
+
     }
 
     &__header-icon {
@@ -96,9 +109,8 @@
       transition: 150ms ease-out;
     }
 
-    &__header-icon.rotate {
-      transform: rotate(180deg);
-      transition-duration: 0.3s;
+    &__footer {
+      display: flex;
     }
   }
 </style>
