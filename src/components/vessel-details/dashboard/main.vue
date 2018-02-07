@@ -70,7 +70,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      margin: 40px 20px;
+      padding: 40px 20px;
     }
 
     &__row {

@@ -8,13 +8,6 @@
   export default {
     props: ['speed', 'direction', 'withBorder'],
 
-//    data () {
-//      return {
-//        flagInterval1: '',
-//        flagInterval2: ''
-//      }
-//    },
-
     computed: {
       iconClasses () {
         return `icon--${this.iconSpeed}kn`
@@ -35,6 +28,7 @@
       },
 
       iconSpeed () {
+        if (this.speed <= 5) return 5
         return this.speed <= 50 ? Math.floor(this.speed / 5) * 5 : 50
       },
 
@@ -46,21 +40,7 @@
     mounted () {
       const weatherFlag = document.getElementById('weather-flag')
       weatherFlag.style.transform = `rotate(${this.windDirectionFrom}deg)`
-//      setTimeout(() => {
-//        const windDirVariation = this.iconSpeed <= 20 ? 20 : 100
-//        this.flagInterval1 = setInterval(() => {
-//          weatherFlag.style.transform = `rotate(${this.direction - windDirVariation}deg)`
-//        }, 10000 / this.iconSpeed)
-//        this.flagInterval2 = setInterval(() => {
-//          weatherFlag.style.transform = `rotate(${this.direction + windDirVariation}deg)`
-//        }, 20000 / this.iconSpeed)
-//      }, 1500)
     }
-
-//    beforeDestroy () {
-//      clearInterval(this.flagInterval1)
-//      clearInterval(this.flagInterval2)
-//    }
   }
 </script>
 

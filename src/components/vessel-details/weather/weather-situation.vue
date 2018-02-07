@@ -35,6 +35,13 @@
   export default {
     props: ['lastReport'],
 
+    data () {
+      return {
+        flagInterval1: '',
+        flagInterval2: ''
+      }
+    },
+
     components: {
       VWindFlag,
       VSeaFlag,
@@ -44,12 +51,26 @@
     mounted () {
       const windFlagWrapper = document.getElementById('weather-situation__wind-flag-wrapper')
       windFlagWrapper.style.transform = `rotate(${this.lastReport.windDir}deg)`
+      setTimeout(() => {
+        const windDirVariation = 10
+        this.flagInterval1 = setInterval(() => {
+          windFlagWrapper.style.transform = `rotate(${this.lastReport.windDir - windDirVariation}deg)`
+        }, 10000 / this.lastReport.windSpd)
+        this.flagInterval2 = setInterval(() => {
+          windFlagWrapper.style.transform = `rotate(${this.lastReport.windDir + windDirVariation}deg)`
+        }, 20000 / this.lastReport.windSpd)
+      }, 5000)
 
       const seaFlagWrapper = document.getElementById('weather-situation__sea-flag-wrapper')
       seaFlagWrapper.style.transform = `rotate(${this.lastReport.swellDir}deg)`
 
       const vesselWrapper = document.getElementById('weather-situation__vessel-wrapper')
       vesselWrapper.style.transform = `rotate(${this.lastReport.course}deg)`
+    },
+
+    beforeDestroy () {
+      clearInterval(this.flagInterval1)
+      clearInterval(this.flagInterval2)
     }
   }
 </script>
@@ -71,6 +92,7 @@
       position: absolute;
       width: 500px;
       height: 500px;
+      transition: all 5s ease-in-out;
     }
 
     &__wind-flag, &__sea-flag {

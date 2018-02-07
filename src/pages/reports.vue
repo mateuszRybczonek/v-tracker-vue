@@ -13,6 +13,6 @@
   }
 
   h1 {
-    margin: 50px 0;
+    padding: 50px 0;
   }
 </style>
