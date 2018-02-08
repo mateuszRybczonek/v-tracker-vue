@@ -157,8 +157,13 @@
     }
 
     &--tiles-plus {
+      mask-image: url('../../assets/icons.svg');
+
+      &--medium {
+        mask-position: -13px -222px;
+      }
+
       &--huge {
-        mask-image: url('../../assets/icons.svg');
         mask-position: 50% -600px;
         mask-size: 141%;
       }

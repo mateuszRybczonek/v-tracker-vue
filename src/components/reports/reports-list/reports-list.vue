@@ -26,6 +26,7 @@
 
     &__item {
       margin: 20px;
+      width: 100%;
 
       @media all and (max-width: $phone) {
         margin: 0;
