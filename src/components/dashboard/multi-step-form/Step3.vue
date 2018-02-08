@@ -1,6 +1,5 @@
 <template>
   <div class="step-3">
-    <h4>Message</h4>
     <md-field>
       <label>Tell us something more...</label>
       <md-textarea
@@ -9,13 +8,13 @@
       </md-textarea>
     </md-field>
     <div class="actions">
-      <positive-button :disabled="isSubmitted">
-        <span @click="previousStep">
+      <positive-button :disabled="isSubmitted" :on-click="previousStep" :inProgress="isSubmitted">
+        <span>
           Back
         </span>
       </positive-button>
-      <positive-button :disabled="isSubmitted">
-        <span @click="submit">
+      <positive-button :disabled="isSubmitted" :on-click="submit" :inProgress="isSubmitted">
+        <span>
           Submit
         </span>
       </positive-button>

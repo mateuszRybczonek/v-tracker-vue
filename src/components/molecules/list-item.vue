@@ -1,16 +1,8 @@
 <template>
-  <router-link :to="to">
-    <div class="v-list-item">
-      <slot></slot>
-    </div>
-  </router-link>
+  <div class="v-list-item">
+    <slot></slot>
+  </div>
 </template>
-
-<script>
-  export default {
-    props: ['to']
-  }
-</script>
 
 <style scoped lang="scss">
   .v-list-item {

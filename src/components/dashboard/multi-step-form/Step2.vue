@@ -1,6 +1,5 @@
 <template>
   <div class="step-2">
-    <h4>Address</h4>
     <md-field class="input-with-error" :class="{ invalid: showErrors && $v.userData.address.street.$invalid }">
       <label>Address</label>
       <md-input
@@ -45,13 +44,13 @@
       <span class="validation-error" v-if="showErrors && !$v.userData.address.country.required">This field must not be empty.</span>
     </div>
     <div class="actions">
-      <positive-button>
-        <span @click="previousStep">
+      <positive-button :on-click="previousStep" :inProgress=false>
+        <span>
           Back
         </span>
       </positive-button>
-      <positive-button>
-        <span @click="nextStep">
+      <positive-button :on-click="nextStep" :inProgress=false>
+        <span>
           Continue
         </span>
       </positive-button>

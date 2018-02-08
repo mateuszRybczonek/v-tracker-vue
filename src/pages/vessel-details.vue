@@ -21,6 +21,7 @@
   import VVesselDashboard from '../components/vessel-details/dashboard/main.vue'
   import VStatistics from '../components/vessel-details/statistics/main.vue'
   import VWeather from '../components/vessel-details/weather/main.vue'
+  import VReports from '../components/vessel-details/reports/main.vue'
 
   export default {
     data () {
@@ -88,13 +89,13 @@
             windSpd: 14
           }, {
             reportTime: '2018-01-04',
+            lat: 13.505,
+            lng: 73.893,
             course: 230,
             spd: 17,
             doRob: 160,
             foRob: 100,
             fwRob: 320,
-            lat: 13.505,
-            lng: 73.893,
             pitch: 0.5,
             pob: 50,
             roll: 1,
@@ -149,7 +150,8 @@
       VSidebar,
       VVesselDashboard,
       VStatistics,
-      VWeather
+      VWeather,
+      VReports
     }
   }
 </script>

@@ -1,42 +1,37 @@
 <template>
 	<div class="step-1">
-    <h4>Personal details</h4>
-    <md-field class="input-with-error" :class="{ invalid: showErrors && $v.userData.firstName.$invalid }">
-      <label>First Name</label>
-      <md-input
-        @blur="$v.userData.firstName.$touch()"
-        v-model="userData.firstName">
-      </md-input>
-    </md-field>
+    <input class="input input__report-time input--with-error" :class="{ invalid: showErrors && $v.reportData.reportTime.$invalid }"
+       type="text"
+       placeholder="Report date"
+       v-model="reportData.reportTime"
+       @input="$v.reportData.reportTime.$touch()">
     <div class="error">
-      <span class="validation-error" v-if="showErrors && !$v.userData.firstName.required">This field must not be empty.</span>
+      <span class="validation-error" v-if="showErrors && !$v.reportData.reportTime.required">This field must not be empty.</span>
+      <span class="validation-error" v-if="showErrors && !$v.reportData.reportTime.date">Please input date in format yyyy-mm-dd.</span>
     </div>
 
-    <md-field class="input-with-error" :class="{ invalid: showErrors && $v.userData.lastName.$invalid }">
-      <label>Last Name</label>
-      <md-input
-        @blur="$v.userData.lastName.$touch()"
-        v-model="userData.lastName">
-      </md-input>
-    </md-field>
+    <input class="input input__latitude input--with-error" :class="{ invalid: showErrors && $v.reportData.lat.$invalid }"
+           type="text"
+           placeholder="Latitude"
+           v-model="reportData.lat"
+           @input="$v.reportData.lat.$touch()">
     <div class="error">
-      <span class="validation-error" v-if="showErrors && !$v.userData.lastName.required">This field must not be empty.</span>
+      <span class="validation-error" v-if="showErrors && !$v.reportData.lat.required">This field must not be empty.</span>
     </div>
 
-    <md-field class="input-with-error" :class="{ invalid: showErrors && $v.userData.age.$invalid }">
-      <label>Age</label>
-      <md-input
-        @blur="$v.userData.age.$touch()"
-        v-model="userData.age">
-      </md-input>
-    </md-field>
+    <input class="input input__longitude input--with-error" :class="{ invalid: showErrors && $v.reportData.lng.$invalid }"
+           type="text"
+           placeholder="Longitude"
+           v-model="reportData.lng"
+           @input="$v.reportData.lng.$touch()">
     <div class="error">
-      <span class="validation-error" v-if="showErrors && !$v.userData.age.required">This field must not be empty.</span>
+      <span class="validation-error" v-if="showErrors && !$v.reportData.lng.required">This field must not be empty.</span>
     </div>
+
     <div class="actions">
       <span></span>
-      <positive-button>
-        <span @click="nextStep">
+      <positive-button :on-click="nextStep" :inProgress=false>
+      <span>
           Continue
         </span>
       </positive-button>
@@ -49,17 +44,23 @@
   import { required } from 'vuelidate/lib/validators'
 
   export default {
-    props: ['userData', 'showErrors'],
+    props: ['reportData', 'showErrors'],
 
     validations: {
-      userData: {
-        firstName: {
+      reportData: {
+        reportTime: {
+          required,
+          date: value => {
+            if (value === 'undefined' || value === null || value === '') {
+              return true
+            }
+            return /^\d{4}[- ]?\d{2}[- ]?\d{2}$/.test(value)
+          }
+        },
+        lat: {
           required
         },
-        lastName: {
-          required
-        },
-        age: {
+        lng: {
           required
         }
       }
@@ -71,9 +72,9 @@
 
     computed: {
       invalidStep () {
-        return this.$v.userData.firstName.$invalid ||
-        this.$v.userData.lastName.$invalid ||
-        this.$v.userData.age.$invalid
+        return this.$v.reportData.lat.$invalid ||
+        this.$v.reportData.lng.$invalid ||
+        this.$v.reportData.reportTime.$invalid
       }
     },
 
@@ -91,24 +92,43 @@
 
 <style scoped lang="scss">
   .step-1 {
-    .md-field > input {
-      border-bottom: 1px solid $color-dark-grey;
-      color: $color-dark-grey;
-    }
+    padding: 15px;
 
-    .error {
-      min-height: 30px;
-    }
+    .input {
+      padding-left: 0;
+      opacity: 0.5;
+      background: url('../../../assets/icons.svg') no-repeat;
 
-    .input-with-error {
-      display: flex;
-      flex-direction: column;
-      margin: 15px 0 0;
-    }
+      &__report-time {
+        background-position-y: -370px;
+        background-size: 15%;
+      }
 
-    .validation-error {
-      color: $color-tomato;
-      font-size: 12px;
+      &__password {
+        background-position-y: -416px;
+        background-size: 15%;
+      }
+
+      &--with-error {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 50px;
+        background-color: $color-whitey-darker;
+        color: $color-black;
+        border-radius: 4px;
+        border: none;
+        font-size: 17px;
+        padding: 10px 10px 10px 50px;
+
+        &::placeholder {
+          color: $color-black
+        }
+
+        &:focus {
+          outline-color: $color-dark-grey;
+        }
+      }
     }
   }
 </style>

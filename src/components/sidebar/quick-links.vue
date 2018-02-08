@@ -30,6 +30,9 @@
             'icon': 'overview',
             'component': 'v-vessel-dashboard'
           }, {
+            'icon': 'files',
+            'component': 'v-reports'
+          }, {
             'icon': 'weather',
             'component': 'v-weather'
           }, {

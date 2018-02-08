@@ -7,8 +7,6 @@ import DashboardPage from '../pages/dashboard.vue'
 import DashboardIndex from '../components/dashboard/index.vue'
 import SignupPage from '../pages/auth/signup.vue'
 import SigninPage from '../pages/auth/signin.vue'
-import ReportsPage from '../pages/reports.vue'
-import NewReport from '../pages/new-report.vue'
 import VesselsPage from '../pages/vessels.vue'
 import NewVessel from '../pages/new-vessel.vue'
 import EditVessel from '../pages/edit-vessel.vue'
@@ -26,8 +24,6 @@ const routes = [
     children: [
       { path: '', component: DashboardIndex },
       { path: 'vessels', component: VesselsPage },
-      { path: 'reports', component: ReportsPage },
-      { path: 'reports/new', component: NewReport },
       { path: 'vessels/new', component: NewVessel },
       { path: 'vessels/:id/edit', component: EditVessel },
       { path: 'vessels/:id', component: VesselDetails }
