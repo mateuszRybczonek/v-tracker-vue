@@ -1,11 +1,13 @@
 <template>
   <div class="wrapper">
-    <div class="sidebar" :class="{ 'sidebar--contracted': !show }">
+    <div class="sidebar" :class="{ 'sidebar--collapsed': !show }">
       <sidebar-header
         :vessel="vessel">
       </sidebar-header>
 
-      <sidebar-quick-links></sidebar-quick-links>
+      <sidebar-quick-links
+        :vertical="!show">
+      </sidebar-quick-links>
 
       <sidebar-content
         :vessel="vessel"
@@ -53,6 +55,8 @@
 
 <style scoped lang="scss">
   .sidebar {
+    display: flex;
+    flex-direction: column;
     width: 300px;
     height: 100%;
     position: fixed;
@@ -63,8 +67,16 @@
     color: $color-whitey;
     transition: margin-left .5s;
 
-    &--contracted {
+    &--collapsed {
       margin-left: -250px;
+
+      .sidebar__quick-links {
+        order: 3;
+      }
+
+      .sidebar___content {
+        order: 2;
+      }
     }
   }
 </style>

@@ -1,12 +1,12 @@
 <template>
   <div class="sidebar__content">
     <ul class="sidebar__content__list">
-      <li class="sidebar__content__list__item__status" v-if="show">
-        <span class="sidebar__content__list__item__title">Status</span>
+      <li class="sidebar__content__list__item__status">
+        <span class="sidebar__content__list__item__title" v-if="show">Status</span>
         <span class="sidebar__content__list__item__status__marker" :class="vesselStatusClass"></span>
       </li>
 
-      <li class="sidebar__content__list__item" v-for="item in items">
+      <li class="sidebar__content__list__item" v-for="item in items" v-if="show">
         <span class="sidebar__content__list__item__title">{{item.title}}</span>
         <span class="sidebar__content__list__item__value">{{item.value}}</span>
       </li>
