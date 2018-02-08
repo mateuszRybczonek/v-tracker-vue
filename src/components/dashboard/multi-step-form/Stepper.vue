@@ -7,7 +7,7 @@
         completed: selectedStep !== 'step1',
         submitted: isSubmitted}">
       <span class="badge">
-        <span class="badge-content">Position</span>
+        <span class="badge-content">Navigation</span>
       </span>
       <span class="progress-bar" :class="{ visible: selectedStep !== 'step1' }"></span>
     </div>

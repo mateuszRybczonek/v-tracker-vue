@@ -116,7 +116,7 @@
       stepTitle () {
         switch (this.step) {
           case 1:
-            return 'Position data'
+            return 'Navigation data'
           case 2:
             return 'Weather data'
           case 3:

@@ -11,21 +11,41 @@
     </div>
 
     <input class="input input__latitude input--with-error" :class="{ invalid: showErrors && $v.reportData.lat.$invalid }"
-           type="text"
-           placeholder="Latitude"
-           v-model="reportData.lat"
-           @input="$v.reportData.lat.$touch()">
+       type="text"
+       placeholder="Latitude"
+       v-model="reportData.lat"
+       @input="$v.reportData.lat.$touch()">
     <div class="error">
       <span class="validation-error" v-if="showErrors && !$v.reportData.lat.required">This field must not be empty.</span>
     </div>
 
     <input class="input input__longitude input--with-error" :class="{ invalid: showErrors && $v.reportData.lng.$invalid }"
-           type="text"
-           placeholder="Longitude"
-           v-model="reportData.lng"
-           @input="$v.reportData.lng.$touch()">
+      type="text"
+      placeholder="Longitude"
+      v-model="reportData.lng"
+      @input="$v.reportData.lng.$touch()">
     <div class="error">
       <span class="validation-error" v-if="showErrors && !$v.reportData.lng.required">This field must not be empty.</span>
+    </div>
+
+    <input class="input input__course input--with-error" :class="{ invalid: showErrors && $v.reportData.course.$invalid }"
+      type="number"
+      placeholder="Course"
+      v-model="reportData.course"
+      @input="$v.reportData.course.$touch()">
+    <div class="error">
+      <span class="validation-error" v-if="showErrors && !$v.reportData.course.required">This field must not be empty.</span>
+      <span class="validation-error" v-if="showErrors && !$v.reportData.course.format">Course must be in 'xxx' format.</span>
+      <span class="validation-error" v-if="showErrors && !$v.reportData.course.range">Course must be between 000 - 360.</span>
+    </div>
+
+    <input class="input input__speed input--with-error" :class="{ invalid: showErrors && $v.reportData.spd.$invalid }"
+           type="number"
+           placeholder="Speed"
+           v-model="reportData.spd"
+           @input="$v.reportData.spd.$touch()">
+    <div class="error">
+      <span class="validation-error" v-if="showErrors && !$v.reportData.spd.required">This field must not be empty.</span>
     </div>
 
     <div class="actions">
@@ -61,6 +81,24 @@
           required
         },
         lng: {
+          required
+        },
+        course: {
+          required,
+          format: value => {
+            if (value === 'undefined' || value === null || value === '') {
+              return true
+            }
+            return /^\d{3}$/.test(value)
+          },
+          range: value => {
+            if (value === 'undefined' || value === null || value === '') {
+              return true
+            }
+            return /^[0-3][0-9][0-9]$/.test(value)
+          }
+        },
+        spd: {
           required
         }
       }
@@ -112,6 +150,16 @@
       &__longitude {
         background-position: -18px -2287px;
         background-size: 30%;
+      }
+
+      &__course {
+        background-position: -9px -687px;
+        background-size: 20%;
+      }
+
+      &__speed {
+        background-position: -7px -1569px;
+        background-size: 20%;
       }
 
       &--with-error {

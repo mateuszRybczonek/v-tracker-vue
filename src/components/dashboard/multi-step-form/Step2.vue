@@ -1,14 +1,12 @@
 <template>
   <div class="step-2">
-    <md-field class="input-with-error" :class="{ invalid: showErrors && $v.userData.address.street.$invalid }">
-      <label>Address</label>
-      <md-input
-        @blur="$v.userData.address.street.$touch()"
-        v-model="userData.address.street">
-      </md-input>
-    </md-field>
+    <input class="input input__latitude input--with-error" :class="{ invalid: showErrors && $v.reportData.lat.$invalid }"
+           type="text"
+           placeholder="Latitude"
+           v-model="reportData.lat"
+           @input="$v.reportData.lat.$touch()">
     <div class="error">
-      <span class="validation-error" v-if="showErrors && !$v.userData.address.street.required">This field must not be empty.</span>
+      <span class="validation-error" v-if="showErrors && !$v.reportData.lat.required">This field must not be empty.</span>
     </div>
 
     <md-field class="input-with-error" :class="{ invalid: showErrors && $v.userData.address.postalCode.$invalid }">
