@@ -287,5 +287,13 @@
         mask-size: 130%;
       }
     }
+
+    &--calendar {
+      &--small {
+        mask-image: url('../../assets/icons.svg');
+        mask-position: 50% -8000px;
+        mask-size: 130%;
+      }
+    }
   }
 </style>

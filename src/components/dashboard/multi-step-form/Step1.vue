@@ -100,13 +100,18 @@
       background: url('../../../assets/icons.svg') no-repeat;
 
       &__report-time {
-        background-position-y: -370px;
-        background-size: 15%;
+        background-position: -7px -1409px;
+        background-size: 20%;
       }
 
-      &__password {
-        background-position-y: -416px;
-        background-size: 15%;
+      &__latitude {
+        background-position: -7px -1466px;
+        background-size: 20%;
+      }
+
+      &__longitude {
+        background-position: -18px -2287px;
+        background-size: 30%;
       }
 
       &--with-error {
