@@ -75,6 +75,20 @@
     <symbol id="vessel">
       <polygon style="stroke:black;stroke-width:6px;" points="40 0 10 50 10 200 70 200 70 50" />
     </symbol>
+
+    <symbol id="statistics">
+      <rect x="21" y="110" style="stroke:black;stroke-width:1px;" width="40" height="5"  ry="0" rx="0"/>
+      <rect x="35" y="82" style="stroke:black;stroke-width:1px;" width="10" height="25"  ry="0" rx="0"/>
+      <rect x="48" y="87" style="stroke:black;stroke-width:1px;" width="10" height="20"  ry="0" rx="0"/>
+      <rect x="23" y="97" style="stroke:black;stroke-width:1px;" width="10" height="10"  ry="0" rx="0"/>
+    </symbol>
+
+    <symbol id="overview">
+      <rect x="20" y="83" style="stroke:black;stroke-width:1px;" width="15" height="15"  ry="0" rx="0"/>
+      <rect x="40" y="83" style="stroke:black;stroke-width:1px;" width="15" height="15"  ry="0" rx="0"/>
+      <rect x="20" y="103" style="stroke:black;stroke-width:1px;" width="15" height="15"  ry="0" rx="0"/>
+      <rect x="40" y="103" style="stroke:black;stroke-width:1px;" width="15" height="15"  ry="0" rx="0"/>
+    </symbol>
   </defs>
 
   <use xlink:href="#fuel"/>
@@ -95,4 +109,6 @@
   <use xlink:href="#wave" transform="translate(25, 1050)"/>
   <use xlink:href="#arrow" transform="translate(25, 1130)"/>
   <use xlink:href="#vessel" transform="translate(0, 1250)"/>
+  <use xlink:href="#statistics" transform="translate(0, 1400)"/>
+  <use xlink:href="#overview" transform="translate(0, 1450)"/>
 </svg>

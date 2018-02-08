@@ -262,5 +262,21 @@
         mask-size: 100%;
       }
     }
+
+    &--statistics {
+      &--small {
+        mask-image: url('../../assets/icons.svg');
+        mask-position: 50% -754px;
+        mask-size: 130%;
+      }
+    }
+
+    &--overview {
+      &--small {
+        mask-image: url('../../assets/icons.svg');
+        mask-position: 50% -780px;
+        mask-size: 130%;
+      }
+    }
   }
 </style>
