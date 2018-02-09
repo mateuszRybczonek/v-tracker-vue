@@ -4,7 +4,7 @@
       :selectedStep="selectedStep"
       :isSubmitted="isSubmitted"
       @selectStep="selectStep"></v-stepper>
-    <v-form-wrapper :title="stepTitle">
+    <v-form-wrapper :title="stepTitle" size="wide" color="blue">
       <form class="new-report__form-content" slot="content" @submit.prevent>
         <transition name="slide" type="animation">
           <component
@@ -37,35 +37,23 @@
       return {
         newReportData: {
           reportTime: '',
-          course: '',
-          spd: '',
-          doRob: '',
-          foRob: '',
-          fwRob: '',
           lat: '',
           lng: '',
-          pitch: '',
-          pob: '',
-          roll: '',
+          course: '',
+          spd: '',
+          windDir: '',
+          windSpd: '',
           seaState: '',
           swellDir: '',
           swellHeight: '',
+          pitch: '',
+          roll: '',
+          doRob: '',
+          foRob: '',
+          fwRob: '',
+          pob: '',
           updatedAt: '',
-          vessel: this.$route.params.id,
-          windDir: '',
-          windSpd: ''
-        },
-        userData: {
-          firstName: '',
-          lastName: '',
-          age: '',
-          address: {
-            street: '',
-            postalCode: '',
-            city: '',
-            country: ''
-          },
-          message: ''
+          vessel: this.$route.params.id
         },
         step: 1, // initial step
         numberOfSteps: 3,
@@ -123,10 +111,6 @@
             return 'Remaining on board'
         }
       }
-    },
-
-    created () {
-      this.$store.dispatch('fetchUser')
     },
 
     components: {

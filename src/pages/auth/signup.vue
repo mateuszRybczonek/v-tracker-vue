@@ -1,6 +1,6 @@
 <template>
   <div class="signup">
-    <form-wrapper title="Register new account">
+    <form-wrapper title="Register new account" size="narrow">
       <form slot="content" @submit.prevent="onSubmit">
         <input class="input__email input--with-error" :class="{ invalid: validationsEnabled && $v.email.$invalid }"
           v-model="email"

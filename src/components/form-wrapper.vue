@@ -1,5 +1,5 @@
 <template>
-  <div class="form">
+  <div class="form" :class="classes">
     <div class="form__header">
       <h4>{{ title }}</h4>
     </div>
@@ -9,17 +9,36 @@
 
 <script>
   export default {
-    props: ['title']
+    props: ['title', 'size', 'color'],
+
+    computed: {
+      classes () {
+        return `${this.color} ${this.size}`
+      }
+    }
   }
 </script>
 
 <style scoped lang="scss">
   .form {
     background-color: #FFF;
-    width: 400px;
     margin: 30px auto;
     border: 1px solid $color-whitey;
     box-shadow: 0 2px 3px $color-whitey;
+
+    &.narrow {
+      width: 400px;
+    }
+
+    &.wide {
+      width: 80%;
+    }
+
+    &.blue {
+      .form__header {
+        background-color: $color-blue;
+      }
+    }
 
     &__header {
       display: flex;

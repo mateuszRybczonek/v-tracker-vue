@@ -1,46 +1,63 @@
 <template>
   <div class="step-2">
-    <input class="input input__latitude input--with-error" :class="{ invalid: showErrors && $v.reportData.lat.$invalid }"
-           type="text"
-           placeholder="Latitude"
-           v-model="reportData.lat"
-           @input="$v.reportData.lat.$touch()">
-    <div class="error">
-      <span class="validation-error" v-if="showErrors && !$v.reportData.lat.required">This field must not be empty.</span>
+    <div class="form-sections">
+      <div class="form-section">
+        <h4 class="form-section__heading">Wind</h4>
+        <input class="input input__wind-direction input--with-error" :class="{ invalid: showErrors && $v.reportData.windDir.$invalid }"
+               type="text"
+               placeholder="Direction"
+               v-model="reportData.windDir"
+               @input="$v.reportData.windDir.$touch()">
+        <div class="error">
+          <span class="validation-error" v-if="showErrors && !$v.reportData.course.required">This field must not be empty.</span>
+          <span class="validation-error" v-if="showErrors && !$v.reportData.course.format">Wind direction must be in 'xxx' format.</span>
+          <span class="validation-error" v-if="showErrors && !$v.reportData.course.range">Wind direction must be between 000 - 360.</span>
+        </div>
+
+        <input class="input input__wind-speed input--with-error" :class="{ invalid: showErrors && $v.reportData.windSpd.$invalid }"
+               type="text"
+               placeholder="Speed"
+               v-model="reportData.windSpd"
+               @input="$v.reportData.windSpd.$touch()">
+        <div class="error">
+          <span class="validation-error" v-if="showErrors && !$v.reportData.windSpd.required">This field must not be empty.</span>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h4 class="form-section__heading">Sea</h4>
+        <input class="input input__sea-state input--with-error" :class="{ invalid: showErrors && $v.reportData.seaState.$invalid }"
+               type="text"
+               placeholder="State"
+               v-model="reportData.seaState"
+               @input="$v.reportData.seaState.$touch()">
+        <div class="error">
+          <span class="validation-error" v-if="showErrors && !$v.reportData.seaState.required">This field must not be empty.</span>
+          <span class="validation-error" v-if="showErrors && !$v.reportData.seaState.range">Sea state must be between 0 - 9.</span>
+        </div>
+
+        <input class="input input__swell-direction input--with-error" :class="{ invalid: showErrors && $v.reportData.swellDir.$invalid }"
+               type="text"
+               placeholder="Swell direction"
+               v-model="reportData.swellDir"
+               @input="$v.reportData.swellDir.$touch()">
+        <div class="error">
+          <span class="validation-error" v-if="showErrors && !$v.reportData.swellDir.required">This field must not be empty.</span>
+          <span class="validation-error" v-if="showErrors && !$v.reportData.swellDir.format">Swell direction must be in 'xxx' format.</span>
+          <span class="validation-error" v-if="showErrors && !$v.reportData.swellDir.range">Swell direction must be between 000 - 360.</span>
+        </div>
+
+        <input class="input input__swell-height input--with-error" :class="{ invalid: showErrors && $v.reportData.swellHeight.$invalid }"
+               type="text"
+               placeholder="Swell height"
+               v-model="reportData.swellHeight"
+               @input="$v.reportData.swellHeight.$touch()">
+        <div class="error">
+          <span class="validation-error" v-if="showErrors && !$v.reportData.swellHeight.required">This field must not be empty.</span>
+        </div>
+      </div>
     </div>
 
-    <md-field class="input-with-error" :class="{ invalid: showErrors && $v.userData.address.postalCode.$invalid }">
-      <label>Postal Code</label>
-      <md-input
-        @blur="$v.userData.address.postalCode.$touch()"
-        v-model="userData.address.postalCode">
-      </md-input>
-    </md-field>
-    <div class="error">
-      <span class="validation-error" v-if="showErrors && !$v.userData.address.postalCode.required">This field must not be empty.</span>
-    </div>
-
-    <md-field class="input-with-error" :class="{ invalid: showErrors && $v.userData.address.city.$invalid }">
-      <label>City</label>
-      <md-input
-        @blur="$v.userData.address.city.$touch()"
-        v-model="userData.address.city">
-      </md-input>
-    </md-field>
-    <div class="error">
-      <span class="validation-error" v-if="showErrors && !$v.userData.address.city.required">This field must not be empty.</span>
-    </div>
-
-    <md-field class="input-with-error" :class="{ invalid: showErrors && $v.userData.address.country.$invalid }">
-      <label>Country</label>
-      <md-input
-        @blur="$v.userData.address.country.$touch()"
-        v-model="userData.address.country">
-      </md-input>
-    </md-field>
-    <div class="error">
-      <span class="validation-error" v-if="showErrors && !$v.userData.address.country.required">This field must not be empty.</span>
-    </div>
     <div class="actions">
       <positive-button :on-click="previousStep" :inProgress=false>
         <span>
@@ -61,15 +78,54 @@
   import { required } from 'vuelidate/lib/validators'
 
   export default {
-    props: ['userData', 'showErrors'],
+    props: ['reportData', 'showErrors'],
 
     validations: {
-      userData: {
-        address: {
-          street: { required },
-          postalCode: { required },
-          city: { required },
-          country: { required }
+      reportData: {
+        windDir: {
+          required,
+          format: value => {
+            if (value === 'undefined' || value === null || value === '') {
+              return true
+            }
+            return /^\d{3}$/.test(value)
+          },
+          range: value => {
+            if (value === 'undefined' || value === null || value === '') {
+              return true
+            }
+            return /^(?:36[0]|3[0-5][0-9]|[12][0-9][0-9]|[1-9]?[0-9])?$/.test(value)
+          }
+        },
+        windSpd: {
+          required
+        },
+        seaState: {
+          required,
+          range: value => {
+            if (value === 'undefined' || value === null || value === '') {
+              return true
+            }
+            return /^[0-9]$/.test(value)
+          }
+        },
+        swellDir: {
+          required,
+          format: value => {
+            if (value === 'undefined' || value === null || value === '') {
+              return true
+            }
+            return /^\d{3}$/.test(value)
+          },
+          range: value => {
+            if (value === 'undefined' || value === null || value === '') {
+              return true
+            }
+            return /^(?:36[0]|3[0-5][0-9]|[12][0-9][0-9]|[1-9]?[0-9])?$/.test(value)
+          }
+        },
+        swellHeight: {
+          required
         }
       }
     },
@@ -80,10 +136,11 @@
 
     computed: {
       invalidStep () {
-        return this.$v.userData.address.street.$invalid ||
-          this.$v.userData.address.postalCode.$invalid ||
-          this.$v.userData.address.city.$invalid ||
-          this.$v.userData.address.country.$invalid
+        return this.$v.reportData.windDir.$invalid ||
+          this.$v.reportData.windSpd.$invalid ||
+          this.$v.reportData.seaState.$invalid ||
+          this.$v.reportData.swellDir.$invalid ||
+          this.$v.reportData.swellHeight.$invalid
       }
     },
 
@@ -101,24 +158,47 @@
 
 <style scoped lang="scss">
   .step-2 {
-    .md-field > input {
-      border-bottom: 1px solid $color-dark-grey;
-      color: $color-dark-grey;
-    }
+    padding: 10px;
 
-    .error {
-      min-height: 30px;
-    }
-
-    .input-with-error {
+    .form-sections {
       display: flex;
-      flex-direction: column;
-      margin: 15px 0 0;
+      justify-content: space-evenly;
+
+      .form-section {
+        border-radius: 3px;
+        padding: 10px;
+
+        &__heading {
+          margin-bottom: 30px;
+        }
+      }
     }
 
-    .validation-error {
-      color: $color-tomato;
-      font-size: 12px;
+    .input {
+      padding-left: 0;
+      opacity: 0.5;
+      background: url('../../../assets/icons.svg') no-repeat;
+
+      &--with-error {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 50px;
+        background-color: $color-whitey-darker;
+        color: $color-black;
+        border-radius: 4px;
+        border: none;
+        font-size: 17px;
+        padding: 10px 10px 10px 50px;
+
+        &::placeholder {
+          color: $color-black
+        }
+
+        &:focus {
+          outline-color: $color-dark-grey;
+        }
+      }
     }
   }
 </style>

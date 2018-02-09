@@ -31,8 +31,6 @@
       navigationData () {
         const course = this.lastReport.course
         const spd = this.lastReport.spd
-        const roll = this.lastReport.roll
-        const pitch = this.lastReport.pitch
 
         return [
           {
@@ -41,12 +39,6 @@
           }, {
             title: 'Speed',
             value: spd ? `${spd} kn` : NOT_PROVIDED
-          }, {
-            title: 'Roll',
-            value: roll ? `${roll}°` : NOT_PROVIDED
-          }, {
-            title: 'Pitch',
-            value: pitch ? `${pitch}°` : NOT_PROVIDED
           }
         ]
       }
@@ -64,20 +56,23 @@
     &__content {
       display: flex;
       justify-content: space-around;
-      align-items: baseline;
       text-align: left;
       min-height: 150px;
 
       &__list {
         width: 100%;
         padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         &__item {
           display: flex;
           justify-content: space-between;
           list-style-type: none;
-          font-weight: 300;
           cursor: default;
-          margin-top: 10px;
+          &:nth-child(2) {
+            margin-top: 15px;
+          }
           &__title {
             @include font(18px, 300);
           }
