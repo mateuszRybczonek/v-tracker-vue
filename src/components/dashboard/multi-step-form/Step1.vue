@@ -95,7 +95,7 @@
             if (value === 'undefined' || value === null || value === '') {
               return true
             }
-            return /^[0-3][0-9][0-9]$/.test(value)
+            return /^(?:36[0]|3[0-5][0-9]|[12][0-9][0-9]|[1-9]?[0-9])?$/.test(value)
           }
         },
         spd: {
@@ -112,7 +112,9 @@
       invalidStep () {
         return this.$v.reportData.lat.$invalid ||
         this.$v.reportData.lng.$invalid ||
-        this.$v.reportData.reportTime.$invalid
+        this.$v.reportData.reportTime.$invalid ||
+        this.$v.reportData.course.$invalid ||
+        this.$v.reportData.spd.$invalid
       }
     },
 
