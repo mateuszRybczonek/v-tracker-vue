@@ -9,7 +9,7 @@
       <span class="badge">
         <span class="badge-content">Navigation</span>
       </span>
-      <span class="progress-bar" :class="{ visible: selectedStep !== 'step1' }"></span>
+      <span class="progress-bar" :class="{ 'progress-bar--visible': selectedStep !== 'step1' }"></span>
     </div>
     <div class="step"
       @click="selectStep(2)"
@@ -21,7 +21,7 @@
       <span class="badge">
         <span class="badge-content">Weather</span>
       </span>
-      <span class="progress-bar" :class="{ visible: selectedStep === 'step3' }"></span>
+      <span class="progress-bar" :class="{ 'progress-bar--visible': selectedStep === 'step3' }"></span>
     </div>
     <div class="step"
       @click="selectStep(3)"
@@ -65,6 +65,8 @@
 
         .badge {
           border: solid 2px;
+          height: 50px;
+          transition: height 1s;
         }
       }
 
@@ -72,7 +74,17 @@
         color: $color-whitey;
 
         .badge {
-          background-color: $color-blue;
+          border-color: $color-light-blue;
+          background-color: $color-light-blue;
+          transition: all 600ms;
+
+          &:before {
+            content: "\2713";
+          }
+
+          .badge-content {
+            margin-left: 5px;
+          }
         }
       }
 
@@ -82,18 +94,6 @@
         .badge {
           border-color: $color-light-grey;
           color: $color-light-grey;
-        }
-      }
-
-      &.completed {
-        .badge {
-          &:after {
-            content: "\2713";
-          }
-
-          .badge-content {
-            display: none;
-          }
         }
       }
 
@@ -107,7 +107,8 @@
         }
 
         .progress-bar {
-          &.visible {
+          &--visible {
+            width: 100%;
             background-color: $color-light-grey;
           }
         }
@@ -127,11 +128,13 @@
       .progress-bar {
         position: relative;
         top: 23px;
-        width: 100%;
+        width: 0;
         height: 2px;
+        transition: width 1s;
+        background-color: $color-light-blue;
 
-        &.visible {
-          background-color: $color-blue;
+        &--visible {
+          width: 100%;
         }
       }
     }
