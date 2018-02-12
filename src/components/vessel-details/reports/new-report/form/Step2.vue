@@ -3,71 +3,87 @@
     <div class="form-sections">
       <div class="form-section">
         <h4 class="form-section__heading">Wind</h4>
-        <input class="input input__wind-direction input__direction input--with-error" :class="{ invalid: showErrors && $v.reportData.windDir.$invalid }"
-               type="text"
-               placeholder="Direction"
-               v-model="reportData.windDir"
-               @input="$v.reportData.windDir.$touch()">
-        <div class="error">
-          <span class="validation-error" v-if="showErrors && !$v.reportData.course.required">This field must not be empty.</span>
-          <span class="validation-error" v-if="showErrors && !$v.reportData.course.format">Wind direction must be in 'xxx' format.</span>
-          <span class="validation-error" v-if="showErrors && !$v.reportData.course.range">Wind direction must be between 000 - 360.</span>
-        </div>
+        <input-with-errors unit="°">
+          <input slot="input"
+            class="input input__wind-direction input__direction input--with-error"
+            :class="{ invalid: showErrors && $v.reportData.windDir.$invalid }"
+            type="number"
+            placeholder="Direction"
+            v-model="reportData.windDir"
+            @input="$v.reportData.windDir.$touch()">
+          <div slot="errors">
+            <span class="validation-error" v-if="showErrors && !$v.reportData.windDir.required">This field must not be empty.</span>
+            <span class="validation-error" v-if="showErrors && !$v.reportData.windDir.format">Wind direction direction must be in 'xxx' format.</span>
+            <span class="validation-error" v-if="showErrors && !$v.reportData.windDir.range">Wind direction must be between 000 - 360.</span>
+          </div>
+        </input-with-errors>
 
-        <input class="input input__wind-speed input__speed input--with-error" :class="{ invalid: showErrors && $v.reportData.windSpd.$invalid }"
-               type="text"
-               placeholder="Speed"
-               v-model="reportData.windSpd"
-               @input="$v.reportData.windSpd.$touch()">
-        <div class="error">
-          <span class="validation-error" v-if="showErrors && !$v.reportData.windSpd.required">This field must not be empty.</span>
-        </div>
+        <input-with-errors unit="kn">
+          <input slot="input"
+            class="input input__wind-speed input__speed input--with-error"
+            :class="{ invalid: showErrors && $v.reportData.windSpd.$invalid }"
+            type="number"
+            placeholder="Speed"
+            v-model="reportData.windSpd"
+            @input="$v.reportData.windSpd.$touch()">
+          <div slot="errors">
+            <span class="validation-error" v-if="showErrors && !$v.reportData.windSpd.required">This field must not be empty.</span>
+          </div>
+        </input-with-errors>
       </div>
 
       <div class="form-section">
         <h4 class="form-section__heading">Sea</h4>
-        <input class="input input__sea-state  input__wave input--with-error" :class="{ invalid: showErrors && $v.reportData.seaState.$invalid }"
-               type="text"
-               placeholder="State"
-               v-model="reportData.seaState"
-               @input="$v.reportData.seaState.$touch()">
-        <div class="error">
-          <span class="validation-error" v-if="showErrors && !$v.reportData.seaState.required">This field must not be empty.</span>
-          <span class="validation-error" v-if="showErrors && !$v.reportData.seaState.range">Sea state must be between 0 - 9.</span>
-        </div>
+        <input-with-errors>
+          <input slot="input"
+            class="input input__sea-state input__wave input--with-error"
+            :class="{ invalid: showErrors && $v.reportData.seaState.$invalid }"
+            type="number"
+            placeholder="State"
+            v-model="reportData.seaState"
+            @input="$v.reportData.seaState.$touch()">
+          <div slot="errors">
+            <span class="validation-error" v-if="showErrors && !$v.reportData.seaState.required">This field must not be empty.</span>
+            <span class="validation-error" v-if="showErrors && !$v.reportData.seaState.range">Sea state must be between 0 - 9.</span>
+          </div>
+        </input-with-errors>
 
-        <input class="input input__swell-direction  input__direction input--with-error" :class="{ invalid: showErrors && $v.reportData.swellDir.$invalid }"
-               type="text"
-               placeholder="Swell direction"
-               v-model="reportData.swellDir"
-               @input="$v.reportData.swellDir.$touch()">
-        <div class="error">
-          <span class="validation-error" v-if="showErrors && !$v.reportData.swellDir.required">This field must not be empty.</span>
-          <span class="validation-error" v-if="showErrors && !$v.reportData.swellDir.format">Swell direction must be in 'xxx' format.</span>
-          <span class="validation-error" v-if="showErrors && !$v.reportData.swellDir.range">Swell direction must be between 000 - 360.</span>
-        </div>
+        <input-with-errors unit="°">
+          <input slot="input"
+            class="input input__swell-direction input__direction input--with-error"
+            :class="{ invalid: showErrors && $v.reportData.swellDir.$invalid }"
+            type="number"
+            placeholder="Swell direction"
+            v-model="reportData.swellDir"
+            @input="$v.reportData.swellDir.$touch()">
+          <div slot="errors">
+            <span class="validation-error" v-if="showErrors && !$v.reportData.swellDir.required">This field must not be empty.</span>
+            <span class="validation-error" v-if="showErrors && !$v.reportData.swellDir.format">Swell direction must be in 'xxx' format.</span>
+            <span class="validation-error" v-if="showErrors && !$v.reportData.swellDir.range">Swell direction must be between 000 - 360.</span>
+          </div>
+        </input-with-errors>
 
-        <input class="input input__swell-height input__wave input--with-error" :class="{ invalid: showErrors && $v.reportData.swellHeight.$invalid }"
-               type="text"
-               placeholder="Swell height"
-               v-model="reportData.swellHeight"
-               @input="$v.reportData.swellHeight.$touch()">
-        <div class="error">
-          <span class="validation-error" v-if="showErrors && !$v.reportData.swellHeight.required">This field must not be empty.</span>
-        </div>
+        <input-with-errors unit="m">
+          <input slot="input"
+            class="input input__swell-height input__wave input--with-error"
+            :class="{ invalid: showErrors && $v.reportData.swellHeight.$invalid }"
+            type="number"
+            placeholder="Swell height"
+            v-model="reportData.swellHeight"
+            @input="$v.reportData.swellHeight.$touch()">
+          <div slot="errors">
+            <span class="validation-error" v-if="showErrors && !$v.reportData.swellHeight.required">This field must not be empty.</span>
+          </div>
+        </input-with-errors>
       </div>
     </div>
 
     <div class="actions">
       <positive-button :on-click="previousStep" :inProgress=false>
-        <span>
-          Back
-        </span>
+        <span>Back</span>
       </positive-button>
       <positive-button :on-click="nextStep" :inProgress=false>
-        <span>
-          Continue
-        </span>
+        <span>Continue</span>
       </positive-button>
     </div>
   </div>
@@ -75,6 +91,7 @@
 
 <script>
   import PositiveButton from '../../../../atoms/buttons/positive.vue'
+  import InputWithErrors from '../../../../molecules/input-with-errors.vue'
   import { required } from 'vuelidate/lib/validators'
 
   export default {
@@ -131,7 +148,8 @@
     },
 
     components: {
-      'positive-button': PositiveButton
+      PositiveButton,
+      InputWithErrors
     },
 
     computed: {
@@ -175,44 +193,19 @@
     }
 
     .input {
-      padding-left: 0;
-      opacity: 0.5;
-      background: url('../../../../../assets/icons.svg') no-repeat;
-
       &__direction {
-        background-position: -7px -625px;
+        background-position: -7px -633px;
         background-size: 25%;
       }
 
       &__speed {
-        background-position: -3px -1432px;
+        background-position: -3px -1448px;
         background-size: 25%;
       }
 
       &__wave {
-        background-position: -7px -692px;
+        background-position: -7px -699px;
         background-size: 20%;
-      }
-
-      &--with-error {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 50px;
-        background-color: $color-whitey-darker;
-        color: $color-black;
-        border-radius: 4px;
-        border: none;
-        font-size: 17px;
-        padding: 10px 10px 10px 50px;
-
-        &::placeholder {
-          color: $color-black
-        }
-
-        &:focus {
-          outline-color: $color-dark-grey;
-        }
       }
     }
   }

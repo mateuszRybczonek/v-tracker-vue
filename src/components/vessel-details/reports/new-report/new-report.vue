@@ -46,12 +46,12 @@
           seaState: '',
           swellDir: '',
           swellHeight: '',
-          pitch: '',
-          roll: '',
           doRob: '',
           foRob: '',
           fwRob: '',
           pob: '',
+          pitch: '',
+          roll: '',
           updatedAt: '',
           vessel: this.$route.params.id
         },
@@ -108,7 +108,7 @@
           case 2:
             return 'Weather data'
           case 3:
-            return 'Remaining on board'
+            return 'Other data'
         }
       }
     },

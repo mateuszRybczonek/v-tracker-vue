@@ -31,7 +31,7 @@
         completed: isSubmitted,
         submitted: isSubmitted}">
       <span class="badge">
-        <span class="badge-content">ROB</span>
+        <span class="badge-content">Other</span>
       </span>
     </div>
   </div>

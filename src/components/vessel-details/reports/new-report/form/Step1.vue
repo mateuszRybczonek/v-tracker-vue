@@ -3,56 +3,76 @@
     <div class="form-sections">
       <div class="form-section">
         <h4 class="form-section__heading">Position</h4>
-        <input class="input input__report-time input--with-error" :class="{ invalid: showErrors && $v.reportData.reportTime.$invalid }"
-           type="text"
-           placeholder="Report date"
-           v-model="reportData.reportTime"
-           @input="$v.reportData.reportTime.$touch()">
-        <div class="error">
-          <span class="validation-error" v-if="showErrors && !$v.reportData.reportTime.required">This field must not be empty.</span>
-          <span class="validation-error" v-if="showErrors && !$v.reportData.reportTime.date">Please input date in format yyyy-mm-dd.</span>
-        </div>
+        <input-with-errors>
+          <input slot="input"
+            class="input input__report-time input--with-error"
+            :class="{ invalid: showErrors && $v.reportData.reportTime.$invalid }"
+            type="text"
+            placeholder="Report date"
+            v-model="reportData.reportTime"
+            @input="$v.reportData.reportTime.$touch()">
+          <div slot="errors">
+            <span class="validation-error" v-if="showErrors && !$v.reportData.reportTime.required">This field must not be empty.</span>
+            <span class="validation-error" v-if="showErrors && !$v.reportData.reportTime.date">Please input date in format yyyy-mm-dd.</span>
+          </div>
+        </input-with-errors>
 
-        <input class="input input__latitude input--with-error" :class="{ invalid: showErrors && $v.reportData.lat.$invalid }"
-           type="text"
-           placeholder="Latitude"
-           v-model="reportData.lat"
-           @input="$v.reportData.lat.$touch()">
-        <div class="error">
-          <span class="validation-error" v-if="showErrors && !$v.reportData.lat.required">This field must not be empty.</span>
-        </div>
+        <input-with-errors unit="°">
+          <input slot="input"
+            class="input input__latitude input--with-error"
+            :class="{ invalid: showErrors && $v.reportData.lat.$invalid }"
+            type="text"
+            placeholder="Latitude"
+            v-model="reportData.lat"
+            @input="$v.reportData.lat.$touch()">
+          <div slot="errors">
+            <span class="validation-error" v-if="showErrors && !$v.reportData.lat.required">This field must not be empty.</span>
+          </div>
+        </input-with-errors>
 
-        <input class="input input__longitude input--with-error" :class="{ invalid: showErrors && $v.reportData.lng.$invalid }"
-          type="text"
-          placeholder="Longitude"
-          v-model="reportData.lng"
-          @input="$v.reportData.lng.$touch()">
-        <div class="error">
-          <span class="validation-error" v-if="showErrors && !$v.reportData.lng.required">This field must not be empty.</span>
-        </div>
+        <input-with-errors unit="°">
+          <input slot="input"
+            class="input input__longitude input--with-error"
+            :class="{ invalid: showErrors && $v.reportData.lng.$invalid }"
+            type="text"
+            placeholder="Longitude"
+            v-model="reportData.lng"
+            @input="$v.reportData.lng.$touch()">
+          <div slot="errors">
+            <span class="validation-error" v-if="showErrors && !$v.reportData.lng.required">This field must not be empty.</span>
+          </div>
+        </input-with-errors>
       </div>
 
       <div class="form-section">
         <h4 class="form-section__heading">Navigation</h4>
-        <input class="input input__course input--with-error" :class="{ invalid: showErrors && $v.reportData.course.$invalid }"
-          type="number"
-          placeholder="Course"
-          v-model="reportData.course"
-          @input="$v.reportData.course.$touch()">
-        <div class="error">
-          <span class="validation-error" v-if="showErrors && !$v.reportData.course.required">This field must not be empty.</span>
-          <span class="validation-error" v-if="showErrors && !$v.reportData.course.format">Course must be in 'xxx' format.</span>
-          <span class="validation-error" v-if="showErrors && !$v.reportData.course.range">Course must be between 000 - 360.</span>
-        </div>
+        <input-with-errors unit="°">
+          <input slot="input"
+            class="input input__course input--with-error"
+            :class="{ invalid: showErrors && $v.reportData.course.$invalid }"
+            type="number"
+            placeholder="Course"
+            v-model="reportData.course"
+            @input="$v.reportData.course.$touch()">
+          <div slot="errors">
+            <span class="validation-error" v-if="showErrors && !$v.reportData.course.required">This field must not be empty.</span>
+            <span class="validation-error" v-if="showErrors && !$v.reportData.course.format">Course must be in 'xxx' format.</span>
+            <span class="validation-error" v-if="showErrors && !$v.reportData.course.range">Course must be between 000 - 360.</span>
+          </div>
+        </input-with-errors>
 
-        <input class="input input__speed input--with-error" :class="{ invalid: showErrors && $v.reportData.spd.$invalid }"
-               type="number"
-               placeholder="Speed"
-               v-model="reportData.spd"
-               @input="$v.reportData.spd.$touch()">
-        <div class="error">
-          <span class="validation-error" v-if="showErrors && !$v.reportData.spd.required">This field must not be empty.</span>
-        </div>
+        <input-with-errors unit="kn">
+          <input slot="input"
+            class="input input__speed input--with-error"
+            :class="{ invalid: showErrors && $v.reportData.spd.$invalid }"
+            type="number"
+            placeholder="Speed"
+            v-model="reportData.spd"
+            @input="$v.reportData.spd.$touch()">
+          <div slot="errors">
+            <span class="validation-error" v-if="showErrors && !$v.reportData.spd.required">This field must not be empty.</span>
+          </div>
+        </input-with-errors>
       </div>
     </div>
 
@@ -69,6 +89,7 @@
 
 <script>
   import PositiveButton from '../../../../atoms/buttons/positive.vue'
+  import InputWithErrors from '../../../../molecules/input-with-errors.vue'
   import { required } from 'vuelidate/lib/validators'
 
   export default {
@@ -113,7 +134,8 @@
     },
 
     components: {
-      'positive-button': PositiveButton
+      PositiveButton,
+      InputWithErrors
     },
 
     computed: {
@@ -157,55 +179,29 @@
     }
 
     .input {
-      padding-left: 0;
-      opacity: 0.5;
-      max-width: 300px;
-      background: url('../../../../../assets/icons.svg') no-repeat;
-
       &__report-time {
-        background-position: -7px -1286px;
+        background-position: -7px -1301px;
         background-size: 25%;
       }
 
       &__latitude {
-        background-position: -7px -1338px;
+        background-position: -7px -1353px;
         background-size: 25%;
       }
 
       &__longitude {
-        background-position: -14px -1946px;
+        background-position: -14px -1970px;
         background-size: 35%;
       }
 
       &__course {
-        background-position: -7px -625px;
+        background-position: -7px -635px;
         background-size: 25%;
       }
 
       &__speed {
-        background-position: -3px -1432px;
+        background-position: -3px -1450px;
         background-size: 25%;
-      }
-
-      &--with-error {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 50px;
-        background-color: $color-whitey-darker;
-        color: $color-black;
-        border-radius: 4px;
-        border: none;
-        font-size: 17px;
-        padding: 10px 10px 10px 50px;
-
-        &::placeholder {
-          color: $color-black
-        }
-
-        &:focus {
-          outline-color: $color-dark-grey;
-        }
       }
     }
   }
