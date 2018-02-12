@@ -9,7 +9,7 @@
 <script>
   import VCard from '../../../molecules/card.vue'
   import VListNew from './list-item-new.vue'
-  import VNewReportForm from '../new-report.vue'
+  import VNewReportForm from '../new-report/new-report.vue'
 
   export default {
 //    props: ['reports'],

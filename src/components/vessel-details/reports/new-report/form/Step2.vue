@@ -3,7 +3,7 @@
     <div class="form-sections">
       <div class="form-section">
         <h4 class="form-section__heading">Wind</h4>
-        <input class="input input__wind-direction input--with-error" :class="{ invalid: showErrors && $v.reportData.windDir.$invalid }"
+        <input class="input input__wind-direction input__direction input--with-error" :class="{ invalid: showErrors && $v.reportData.windDir.$invalid }"
                type="text"
                placeholder="Direction"
                v-model="reportData.windDir"
@@ -14,7 +14,7 @@
           <span class="validation-error" v-if="showErrors && !$v.reportData.course.range">Wind direction must be between 000 - 360.</span>
         </div>
 
-        <input class="input input__wind-speed input--with-error" :class="{ invalid: showErrors && $v.reportData.windSpd.$invalid }"
+        <input class="input input__wind-speed input__speed input--with-error" :class="{ invalid: showErrors && $v.reportData.windSpd.$invalid }"
                type="text"
                placeholder="Speed"
                v-model="reportData.windSpd"
@@ -26,7 +26,7 @@
 
       <div class="form-section">
         <h4 class="form-section__heading">Sea</h4>
-        <input class="input input__sea-state input--with-error" :class="{ invalid: showErrors && $v.reportData.seaState.$invalid }"
+        <input class="input input__sea-state  input__wave input--with-error" :class="{ invalid: showErrors && $v.reportData.seaState.$invalid }"
                type="text"
                placeholder="State"
                v-model="reportData.seaState"
@@ -36,7 +36,7 @@
           <span class="validation-error" v-if="showErrors && !$v.reportData.seaState.range">Sea state must be between 0 - 9.</span>
         </div>
 
-        <input class="input input__swell-direction input--with-error" :class="{ invalid: showErrors && $v.reportData.swellDir.$invalid }"
+        <input class="input input__swell-direction  input__direction input--with-error" :class="{ invalid: showErrors && $v.reportData.swellDir.$invalid }"
                type="text"
                placeholder="Swell direction"
                v-model="reportData.swellDir"
@@ -47,7 +47,7 @@
           <span class="validation-error" v-if="showErrors && !$v.reportData.swellDir.range">Swell direction must be between 000 - 360.</span>
         </div>
 
-        <input class="input input__swell-height input--with-error" :class="{ invalid: showErrors && $v.reportData.swellHeight.$invalid }"
+        <input class="input input__swell-height input__wave input--with-error" :class="{ invalid: showErrors && $v.reportData.swellHeight.$invalid }"
                type="text"
                placeholder="Swell height"
                v-model="reportData.swellHeight"
@@ -74,7 +74,7 @@
 </template>
 
 <script>
-  import PositiveButton from '../../../components/atoms/buttons/positive.vue'
+  import PositiveButton from '../../../../atoms/buttons/positive.vue'
   import { required } from 'vuelidate/lib/validators'
 
   export default {
@@ -177,7 +177,22 @@
     .input {
       padding-left: 0;
       opacity: 0.5;
-      background: url('../../../assets/icons.svg') no-repeat;
+      background: url('../../../../../assets/icons.svg') no-repeat;
+
+      &__direction {
+        background-position: -7px -625px;
+        background-size: 25%;
+      }
+
+      &__speed {
+        background-position: -3px -1432px;
+        background-size: 25%;
+      }
+
+      &__wave {
+        background-position: -7px -692px;
+        background-size: 20%;
+      }
 
       &--with-error {
         display: flex;

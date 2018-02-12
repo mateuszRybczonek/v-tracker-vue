@@ -4,7 +4,20 @@
 
 <script>
   export default {
-    props: ['src', 'type', 'size'],
+    props: {
+      src: {
+        type: String,
+        required: true
+      },
+      type: {
+        type: String,
+        required: true
+      },
+      size: {
+        type: String,
+        required: true
+      }
+    },
 
     computed: {
       classes () {

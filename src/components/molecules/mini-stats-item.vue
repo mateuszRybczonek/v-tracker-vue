@@ -33,7 +33,12 @@
   import VMiniStatsChange from '../../components/molecules/mini-stats-change.vue'
 
   export default {
-    props: ['item'],
+    props: {
+      item: {
+        type: Object,
+        required: true
+      }
+    },
 
     components: {
       VIcon,

@@ -8,7 +8,12 @@
 
 <script>
   export default {
-    props: ['to']
+    props: {
+      to: {
+        type: String,
+        required: true
+      }
+    }
   }
 </script>
 

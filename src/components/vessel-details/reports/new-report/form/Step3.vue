@@ -23,7 +23,7 @@
 </template>
 
 <script>
-  import PositiveButton from '../../../components/atoms/buttons/positive.vue'
+  import PositiveButton from '../../../../atoms/buttons/positive.vue'
 
   export default {
     props: ['userData', 'isSubmitted'],

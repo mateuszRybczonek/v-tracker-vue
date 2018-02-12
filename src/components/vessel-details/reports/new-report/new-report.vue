@@ -26,11 +26,11 @@
 </template>
 
 <script>
-  import vFormWrapper from '../../form-wrapper.vue'
-  import vStepper from '../../dashboard/multi-step-form/Stepper.vue'
-  import Step1 from '../../dashboard/multi-step-form/Step1.vue'
-  import Step2 from '../../dashboard/multi-step-form/Step2.vue'
-  import Step3 from '../../dashboard/multi-step-form/Step3.vue'
+  import vFormWrapper from '../../../form-wrapper.vue'
+  import vStepper from './form/Stepper.vue'
+  import Step1 from './form/Step1.vue'
+  import Step2 from './form/Step2.vue'
+  import Step3 from './form/Step3.vue'
 
   export default {
     data () {

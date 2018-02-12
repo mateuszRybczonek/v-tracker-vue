@@ -68,7 +68,7 @@
 </template>
 
 <script>
-  import PositiveButton from '../../../components/atoms/buttons/positive.vue'
+  import PositiveButton from '../../../../atoms/buttons/positive.vue'
   import { required } from 'vuelidate/lib/validators'
 
   export default {
@@ -160,7 +160,7 @@
       padding-left: 0;
       opacity: 0.5;
       max-width: 300px;
-      background: url('../../../assets/icons.svg') no-repeat;
+      background: url('../../../../../assets/icons.svg') no-repeat;
 
       &__report-time {
         background-position: -7px -1286px;

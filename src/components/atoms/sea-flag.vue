@@ -11,7 +11,20 @@
   import VIcon from '../../components/atoms/icon.vue'
 
   export default {
-    props: ['height', 'direction', 'withBorder'],
+    props: {
+      height: {
+        type: Number,
+        required: true
+      },
+      direction: {
+        type: Number,
+        required: true
+      },
+      withBorder: {
+        type: Boolean,
+        default: true
+      }
+    },
 
     computed: {
       border () {

@@ -4,7 +4,23 @@
 
 <script>
   export default {
-    props: ['icon', 'size', 'type', 'color'],
+    props: {
+      icon: {
+        type: String,
+        required: true
+      },
+      size: {
+        type: String,
+        required: true
+      },
+      type: {
+        type: String,
+        default: 'type'
+      },
+      color: {
+        type: String
+      }
+    },
 
     computed: {
       classes () {

@@ -26,7 +26,16 @@
   import VIcon from '../../components/atoms/icon.vue'
 
   export default {
-    props: ['showOnInit', 'color'],
+    props: {
+      showOnInit: {
+        type: Boolean,
+        default: true
+      },
+      color: {
+        type: String,
+        default: 'black'
+      }
+    },
 
     data () {
       return {
