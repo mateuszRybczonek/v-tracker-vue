@@ -13,7 +13,7 @@
             @input="$v.reportData.reportTime.$touch()">
           <div slot="errors">
             <span class="validation-error" v-if="showErrors && !$v.reportData.reportTime.required">This field must not be empty.</span>
-            <span class="validation-error" v-if="showErrors && !$v.reportData.reportTime.date">Please input date in format yyyy-mm-dd.</span>
+            <span class="validation-error" v-if="showErrors && !$v.reportData.reportTime.date">Please input date in format yyyy-mm-dd (years range 1950-2099).</span>
           </div>
         </input-with-errors>
 
@@ -27,6 +27,7 @@
             @input="$v.reportData.lat.$touch()">
           <div slot="errors">
             <span class="validation-error" v-if="showErrors && !$v.reportData.lat.required">This field must not be empty.</span>
+            <span class="validation-error" v-if="showErrors && !$v.reportData.lat.format">Please provide latitude in a valid format (dd mm.m), + for N / - for S hemisphere</span>
           </div>
         </input-with-errors>
 
@@ -40,6 +41,7 @@
             @input="$v.reportData.lng.$touch()">
           <div slot="errors">
             <span class="validation-error" v-if="showErrors && !$v.reportData.lng.required">This field must not be empty.</span>
+            <span class="validation-error" v-if="showErrors && !$v.reportData.lng.format">Please provide longitude in a valid format (ddd mm.m), + for E / - for W hemisphere</span>
           </div>
         </input-with-errors>
       </div>
@@ -103,14 +105,26 @@
             if (value === 'undefined' || value === null || value === '') {
               return true
             }
-            return /^\d{4}[- ]?\d{2}[- ]?\d{2}$/.test(value)
+            return /((19[5-9]\d|20[0-9]\d|2090)-([0-1][1-2])-(0[1-9]|[12]\d|3[01]))/.test(value)
           }
         },
         lat: {
-          required
+          required,
+          format: value => {
+            if (value === 'undefined' || value === null || value === '') {
+              return true
+            }
+            return /([0-8][0-9]|90)\s([0-5][0-9].[0-9])\s([N, S])/.test(value)
+          }
         },
         lng: {
-          required
+          required,
+          format: value => {
+            if (value === 'undefined' || value === null || value === '') {
+              return true
+            }
+            return /([0-1][0-9][0-9]|180)\s([0-5][0-9].[0-9])\s([E, W])/.test(value)
+          }
         },
         course: {
           required,

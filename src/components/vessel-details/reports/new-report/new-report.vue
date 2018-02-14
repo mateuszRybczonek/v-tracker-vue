@@ -21,7 +21,6 @@
       </form>
     </v-form-wrapper>
     <h4>Form submitted: {{isSubmitted}}</h4>
-    <p>{{userData}}</p>
   </div>
 </template>
 
@@ -31,29 +30,31 @@
   import Step1 from './form/Step1.vue'
   import Step2 from './form/Step2.vue'
   import Step3 from './form/Step3.vue'
+  import { formatLatForPersistanceLayer, formatLngForPersistanceLayer } from '../../../../utils/coordinates-utils'
 
   export default {
     data () {
       return {
         newReportData: {
-          reportTime: '',
-          lat: '',
-          lng: '',
-          course: '',
-          spd: '',
-          windDir: '',
-          windSpd: '',
-          seaState: '',
-          swellDir: '',
-          swellHeight: '',
-          doRob: '',
-          foRob: '',
-          fwRob: '',
-          pob: '',
-          pitch: '',
-          roll: '',
+          reportTime: '2017-12-12',
+          lat: '12 20.3 N',
+          lng: '012 20.4 W',
+          course: '123',
+          spd: '12',
+          windDir: '200',
+          windSpd: '14',
+          seaState: '2',
+          swellDir: '300',
+          swellHeight: '2',
+          doRob: '100',
+          foRob: '90',
+          fwRob: '80',
+          pob: '67',
+          pitch: '1',
+          roll: '0.3',
           updatedAt: '',
-          vessel: this.$route.params.id
+          vessel: this.$route.params.id,
+          createdBy: this.$store.state.auth.userId
         },
         step: 1, // initial step
         numberOfSteps: 3,
@@ -87,8 +88,24 @@
         this.step = step
       },
 
-      submit () {
-        this.isSubmitted = true
+      submit (invalidStep) {
+        const newReportData = {
+          ...this.newReportData,
+          createdAt: new Date(Date.now())
+        }
+
+        newReportData.lat = formatLatForPersistanceLayer(newReportData.lat)
+        newReportData.lng = formatLngForPersistanceLayer(newReportData.lng)
+
+        debugger
+
+        if (invalidStep) {
+          this.showErrors = true
+          return false
+        } else {
+          this.isSubmitted = true
+          this.$store.dispatch('createNewReport', newReportData)
+        }
       }
     },
 

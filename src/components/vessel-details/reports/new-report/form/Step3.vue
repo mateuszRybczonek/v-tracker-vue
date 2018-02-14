@@ -66,7 +66,8 @@
           <input slot="input"
             class="input input__pitch input__movements input--with-error"
             :class="{ invalid: showErrors && $v.reportData.pitch.$invalid }"
-            type="number"
+            type="number "
+            step="0.1"
             placeholder="Pitch"
             v-model="reportData.pitch"
             @input="$v.reportData.pitch.$touch()">
@@ -80,6 +81,7 @@
             class="input input__pitch input__movements input--with-error"
             :class="{ invalid: showErrors && $v.reportData.roll.$invalid }"
             type="number"
+            step="0.1"
             placeholder="Roll"
             v-model="reportData.roll"
             @input="$v.reportData.roll.$touch()">
@@ -94,7 +96,7 @@
       <positive-button :on-click="previousStep" :inProgress=false>
         <span>Back</span>
       </positive-button>
-      <positive-button :on-click="nextStep" :inProgress=false>
+      <positive-button :on-click="submit" :inProgress=isSubmitted>
         <span>Continue</span>
       </positive-button>
     </div>
@@ -107,7 +109,7 @@
   import { required } from 'vuelidate/lib/validators'
 
   export default {
-    props: ['reportData', 'showErrors'],
+    props: ['reportData', 'showErrors', 'isSubmitted'],
 
     validations: {
       reportData: {
@@ -179,8 +181,8 @@
         this.$emit('previousStep')
       },
 
-      nextStep () {
-        this.$emit('nextStep', this.invalidStep)
+      submit () {
+        this.$emit('submit', this.invalidStep)
       }
     }
   }
