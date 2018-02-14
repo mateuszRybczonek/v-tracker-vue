@@ -1,5 +1,12 @@
 <template>
-  <div class="step-2">
+  <div class="step-3" :class="{ 'step-3--faded': inProgress}">
+    <div class="step-3__spinner" v-if="inProgress">
+      <md-progress-spinner
+        :md-diameter="130"
+        :md-stroke="10"
+        md-mode="indeterminate">
+      </md-progress-spinner>
+    </div>
     <div class="form-sections">
       <div class="form-section">
         <h4 class="form-section__heading">Remaining on board</h4>
@@ -96,7 +103,7 @@
       <positive-button :on-click="previousStep" :inProgress=false>
         <span>Back</span>
       </positive-button>
-      <positive-button :on-click="submit" :inProgress=isSubmitted>
+      <positive-button :on-click="submit" :inProgress=false>
         <span>Continue</span>
       </positive-button>
     </div>
@@ -109,7 +116,7 @@
   import { required } from 'vuelidate/lib/validators'
 
   export default {
-    props: ['reportData', 'showErrors', 'isSubmitted'],
+    props: ['reportData', 'showErrors', 'isSubmitted', 'inProgress'],
 
     validations: {
       reportData: {
@@ -189,8 +196,20 @@
 </script>
 
 <style scoped lang="scss">
-  .step-2 {
+  .step-3 {
     padding: 10px;
+
+    &--faded {
+      opacity: 0.3;
+      cursor: auto;
+      pointer-events: none;
+    }
+
+    &__spinner {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
 
     .form-sections {
       display: flex;
@@ -226,6 +245,14 @@
         background-position: 5px -1196px;
         background-size: 20%;
       }
+    }
+
+    .md-progress-spinner {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      top: 25%;
+      stroke: $color-black;
     }
   }
 </style>

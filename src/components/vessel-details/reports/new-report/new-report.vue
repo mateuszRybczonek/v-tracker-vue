@@ -12,6 +12,7 @@
             :reportData="newReportData"
             :showErrors="showErrors"
             :isSubmitted="isSubmitted"
+            :inProgress="inProgress"
             @nextStep="nextStep"
             @previousStep="previousStep"
             @submit="submit"
@@ -20,7 +21,6 @@
         </transition>
       </form>
     </v-form-wrapper>
-    <h4>Form submitted: {{isSubmitted}}</h4>
   </div>
 </template>
 
@@ -59,6 +59,7 @@
         step: 1, // initial step
         numberOfSteps: 3,
         isSubmitted: false,
+        inProgress: false,
         showErrors: false
       }
     },
@@ -88,7 +89,7 @@
         this.step = step
       },
 
-      submit (invalidStep) {
+      async submit (invalidStep) {
         const newReportData = {
           ...this.newReportData,
           createdAt: new Date(Date.now())
@@ -97,14 +98,14 @@
         newReportData.lat = formatLatForPersistanceLayer(newReportData.lat)
         newReportData.lng = formatLngForPersistanceLayer(newReportData.lng)
 
-        debugger
-
         if (invalidStep) {
           this.showErrors = true
           return false
         } else {
+          this.inProgress = true
+          await this.$store.dispatch('createNewReport', newReportData)
+          this.inProgress = false
           this.isSubmitted = true
-          this.$store.dispatch('createNewReport', newReportData)
         }
       }
     },

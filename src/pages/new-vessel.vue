@@ -110,6 +110,7 @@
           mmsi: this.vessel.mmsi,
           yob: this.vessel.yob,
           flag: this.vessel.flag,
+          reports: [],
           owner: this.$store.state.auth.userId
         }
 
