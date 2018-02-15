@@ -74,7 +74,7 @@
       seaData () {
         const seaState = this.lastReport.seaState
         const swellDir = this.lastReport.swellDir
-        const swellHeight = this.lastReport.swellHeight
+        const swellHeight = parseInt(this.lastReport.swellHeight)
 
         return [
           {

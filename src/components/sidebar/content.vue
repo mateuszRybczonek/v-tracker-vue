@@ -35,6 +35,7 @@
 
     computed: {
       vesselStatusClass () {
+        if (!this.lastReport) return `status--red`
         if (this.$moment.duration(this.$moment().diff(this.lastReport.reportTime)).asHours() <= 24) {
           return `status--green`
         } else if (this.$moment.duration(this.$moment().diff(this.lastReport.reportTime)).asHours() <= 48) {

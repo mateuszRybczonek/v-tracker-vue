@@ -1,28 +1,50 @@
 <template>
   <div class="vessel-details__dashboard">
-    <div class="vessel-details__last-report">
-      <h4>Last reported data: {{lastReport.reportTime}}</h4>
+    <content-placeholders v-if="fetchingReports" class="vessel-details__last-report">
+      <content-placeholders-img></content-placeholders-img>
+    </content-placeholders>
+    <div class="vessel-details__last-report" v-else>
+      <h4>Last reported data: {{lastReportDate}}</h4>
       <p>({{lastReportDaysAgo}})</p>
     </div>
+
     <div class="vessel-details__row">
-      <div class="vessel-details__row__item google-map">
+      <content-placeholders class="vessel-details__row__item google-map" v-if="fetchingReports">
+        <content-placeholders-img></content-placeholders-img>
+      </content-placeholders>
+      <div
+        class="vessel-details__row__item google-map" v-else>
         Mini-Google map will go here
       </div>
+
       <div class="vessel-details__row__item">
-        <position-data
+        <content-placeholders v-if="fetchingReports">
+          <content-placeholders-img></content-placeholders-img>
+        </content-placeholders>
+        <position-data v-else
           :lastReport="lastReport">
         </position-data>
-        <navigation-data class="vessel-details__row__item"
+
+        <content-placeholders v-if="fetchingReports" class="vessel-details__row__item">
+          <content-placeholders-img></content-placeholders-img>
+        </content-placeholders>
+        <navigation-data class="vessel-details__row__item" v-else
           :lastReport="lastReport">
         </navigation-data>
       </div>
     </div>
 
-    <weather-data class="vessel-details__row__item"
-                  :lastReport="lastReport">
+    <content-placeholders v-if="fetchingReports">
+      <content-placeholders-img></content-placeholders-img>
+    </content-placeholders>
+    <weather-data class="vessel-details__row__item" v-else
+      :lastReport="lastReport">
     </weather-data>
-    <remaining-on-board
-      class="vessel-details__item"
+
+    <content-placeholders v-if="fetchingReports">
+      <content-placeholders-img></content-placeholders-img>
+    </content-placeholders>
+    <remaining-on-board class="vessel-details__item" v-else
       :lastReport="lastReport"
       :previousReport="previousReport">
     </remaining-on-board>
@@ -30,6 +52,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import WeatherData from './weather-data.vue'
   import PositionData from './position-data.vue'
   import NavigationData from './navigation-data.vue'
@@ -41,6 +64,10 @@
     ],
 
     computed: {
+      ...mapGetters([
+        'fetchingReports'
+      ]),
+
       lastReport () {
         return this.componentProps.lastReport
       },
@@ -49,7 +76,13 @@
         return this.componentProps.previousReport
       },
 
+      lastReportDate () {
+        if (!this.lastReport) return '---'
+        return this.lastReport.reportTime
+      },
+
       lastReportDaysAgo () {
+        if (!this.lastReport) return '---'
         return this.$moment(this.lastReport.reportTime).fromNow()
       }
     },

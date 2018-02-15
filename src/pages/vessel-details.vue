@@ -32,7 +32,7 @@
     },
 
     created () {
-      this.$store.dispatch('fetchReports')
+      this.$store.dispatch('fetchReports', this.$route.params.id)
       EventBus.$on('sidebarToggle', this.sidebarToggleHandler)
       EventBus.$on('selectVesselDetailsComponent', this.selectVesselDetailsComponentHandler)
     },
@@ -50,7 +50,7 @@
     computed: {
       ...mapGetters([
         'vessels',
-        'reports'
+        'reports',
       ]),
 
       vessel () {
@@ -66,68 +66,68 @@
         }
       },
 
-      reports () {
-        return [
-          {
-            reportTime: '2018-01-02',
-            course: 230,
-            spd: 15,
-            doRob: 200,
-            foRob: 100,
-            fwRob: 300,
-            lat: 20,
-            lng: 20,
-            pitch: 0.5,
-            pob: 50,
-            roll: 1,
-            seaState: 3,
-            swellDir: 200,
-            swellHeight: 2,
-            updatedAt: '2017-09-01T10:46:14.631Z',
-            vessel: this.$route.params.id,
-            windDir: 120,
-            windSpd: 14
-          }, {
-            reportTime: '2018-01-04',
-            lat: 13.505,
-            lng: 73.893,
-            course: 230,
-            spd: 17,
-            windDir: 120,
-            windSpd: 15,
-            seaState: 3,
-            swellDir: 200,
-            swellHeight: 3,
-            pitch: 0.5,
-            roll: 1,
-            doRob: 160,
-            foRob: 100,
-            fwRob: 320,
-            pob: 50,
-            updatedAt: '2017-09-01T10:46:14.631Z',
-            vessel: this.$route.params.id
-          }, {
-            reportTime: '2018-01-03',
-            course: 230,
-            spd: 15,
-            doRob: 180,
-            foRob: 100,
-            fwRob: 300,
-            lat: 20,
-            lng: 20,
-            pitch: 0.5,
-            pob: 50,
-            roll: 1,
-            seaState: 3,
-            swellDir: 200,
-            swellHeight: 2,
-            updatedAt: '2017-09-01T10:46:14.631Z',
-            vessel: this.$route.params.id,
-            windDir: 120,
-            windSpd: 14
-          }
-        ]
-      },
+//      reports () {
+//        return [
+//          {
+//            reportTime: '2018-01-02',
+//            course: 230,
+//            spd: 15,
+//            doRob: 200,
+//            foRob: 100,
+//            fwRob: 300,
+//            lat: 20,
+//            lng: 20,
+//            pitch: 0.5,
+//            pob: 50,
+//            roll: 1,
+//            seaState: 3,
+//            swellDir: 200,
+//            swellHeight: 2,
+//            updatedAt: '2017-09-01T10:46:14.631Z',
+//            vessel: this.$route.params.id,
+//            windDir: 120,
+//            windSpd: 14
+//          }, {
+//            reportTime: '2018-01-04',
+//            lat: 13.505,
+//            lng: 73.893,
+//            course: 230,
+//            spd: 17,
+//            windDir: 120,
+//            windSpd: 15,
+//            seaState: 3,
+//            swellDir: 200,
+//            swellHeight: 3,
+//            pitch: 0.5,
+//            roll: 1,
+//            doRob: 160,
+//            foRob: 100,
+//            fwRob: 320,
+//            pob: 50,
+//            updatedAt: '2017-09-01T10:46:14.631Z',
+//            vessel: this.$route.params.id
+//          }, {
+//            reportTime: '2018-01-03',
+//            course: 230,
+//            spd: 15,
+//            doRob: 180,
+//            foRob: 100,
+//            fwRob: 300,
+//            lat: 20,
+//            lng: 20,
+//            pitch: 0.5,
+//            pob: 50,
+//            roll: 1,
+//            seaState: 3,
+//            swellDir: 200,
+//            swellHeight: 2,
+//            updatedAt: '2017-09-01T10:46:14.631Z',
+//            vessel: this.$route.params.id,
+//            windDir: 120,
+//            windSpd: 14
+//          }
+//        ]
+//      },
 
       reportsSortedAsc () {
         return this.reports.sort((a, b) => a.reportTime > b.reportTime)
