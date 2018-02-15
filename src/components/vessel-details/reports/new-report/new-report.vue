@@ -30,6 +30,7 @@
   import Step1 from './form/Step1.vue'
   import Step2 from './form/Step2.vue'
   import Step3 from './form/Step3.vue'
+  import Step4 from './form/Step4.vue'
   import { formatLatForPersistanceLayer, formatLngForPersistanceLayer } from '../../../../utils/coordinates-utils'
 
   export default {
@@ -57,10 +58,10 @@
           createdBy: this.$store.state.auth.userId
         },
         step: 1, // initial step
-        numberOfSteps: 3,
+        numberOfSteps: 4,
         isSubmitted: false,
         inProgress: false,
-        showErrors: false
+        showErrors: false,
       }
     },
 
@@ -103,9 +104,19 @@
           return false
         } else {
           this.inProgress = true
-          await this.$store.dispatch('createNewReport', newReportData)
-          this.inProgress = false
-          this.isSubmitted = true
+          try {
+            await this.$store.dispatch('createNewReport', newReportData)
+            this.inProgress = false
+            this.isSubmitted = true
+            this.step++
+            setTimeout(() => {
+              this.$emit('hideReportForm')
+            }, 2000)
+          } catch (error) {
+            this.inProgress = false
+            // flash message shall go here
+            alert('Something went wrong')
+          }
         }
       }
     },
@@ -127,6 +138,8 @@
             return 'Weather data'
           case 3:
             return 'Other data'
+          case 4:
+            return 'Success'
         }
       }
     },
@@ -134,9 +147,10 @@
     components: {
       vFormWrapper,
       vStepper,
-      step1: Step1,
-      step2: Step2,
-      step3: Step3
+      Step1,
+      Step2,
+      Step3,
+      Step4
     }
   }
 </script>
@@ -147,6 +161,7 @@
 
     &__form-content {
       padding: 15px;
+      min-height: 460px;
     }
   }
 </style>

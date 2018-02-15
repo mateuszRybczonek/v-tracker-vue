@@ -5,6 +5,7 @@
       :class="{
         active: selectedStep === 'step1',
         completed: selectedStep !== 'step1',
+        successful: selectedStep === 'step4',
         submitted: isSubmitted}">
       <span class="badge">
         <span class="badge-content">Navigation</span>
@@ -16,19 +17,21 @@
       :class="{
         active: selectedStep === 'step2',
         disabled: selectedStep === 'step1',
-        completed: selectedStep === 'step3',
+        completed: selectedStep === 'step3' || selectedStep === 'step4',
+        successful: selectedStep === 'step4',
         submitted: isSubmitted}">
       <span class="badge">
         <span class="badge-content">Weather</span>
       </span>
-      <span class="progress-bar" :class="{ 'progress-bar--visible': selectedStep === 'step3' }"></span>
+      <span class="progress-bar" :class="{ 'progress-bar--visible': selectedStep === 'step3' || selectedStep === 'step4'}"></span>
     </div>
     <div class="step"
       @click="selectStep(3)"
       :class="{
         active: selectedStep === 'step3',
         disabled: selectedStep !== 'step3',
-        completed: isSubmitted,
+        completed: selectedStep === 'step4',
+        successful: selectedStep === 'step4',
         submitted: isSubmitted}">
       <span class="badge">
         <span class="badge-content">Other</span>
@@ -110,6 +113,21 @@
           &--visible {
             width: 100%;
             background-color: $color-light-grey;
+          }
+        }
+      }
+
+      &.successful {
+        .badge {
+          border: 1px solid $color-light-blue;
+          color: $color-light-blue;
+          background-color: transparent;
+        }
+
+        .progress-bar {
+          &--visible {
+            width: 100%;
+            background-color: $color-light-blue;
           }
         }
       }

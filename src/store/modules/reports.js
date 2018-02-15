@@ -22,8 +22,8 @@ const actions = {
 
       try {
         await globalAxios.patch(`vessels/${vesselId}/reports.json?auth=${getters.idToken}`, { [reportId]: true })
-      } catch (error) { console.log(error) }
-    } catch (error) { console.log(error) }
+      } catch (error) { throw error }
+    } catch (error) { throw error }
   }
 
   // async editVessel ({ getters }, vesselData) {
@@ -35,7 +35,6 @@ const actions = {
   //     router.push('/dashboard/vessels')
   //   } catch (error) { console.log(error) }
   // },
-	//
   // async fetchVessels ({ getters, commit }) {
   //   try {
   //     const userId = this.state.auth.userId
@@ -49,7 +48,6 @@ const actions = {
   //     commit(types.STORE_VESSEL, userVessels)
   //   } catch (error) { console.log(error) }
   // },
-	//
   // async deleteVessel ({ getters, commit }, vesselId) {
   //   try {
   //     await globalAxios.delete(`/vessels/${vesselId}.json?auth=${getters.idToken}`)
