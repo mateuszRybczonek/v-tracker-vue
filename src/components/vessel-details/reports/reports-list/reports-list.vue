@@ -9,22 +9,27 @@
       v-bind="{showNewReportFormAction}"
       class="reports-list__item">
     </v-list-new>
-    <div v-for="report in reports"></div>
+    <div v-for="report in reports">{{report.reportTime}}</div>
   </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import VCard from '../../../molecules/card.vue'
   import VListNew from './list-item-new.vue'
   import VNewReportForm from '../new-report/new-report.vue'
 
   export default {
-    props: ['reports'],
-
     data () {
       return {
         showNewReportForm: false
       }
+    },
+
+    computed: {
+      ...mapGetters([
+        'reports'
+      ])
     },
 
     components: {

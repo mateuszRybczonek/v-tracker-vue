@@ -1,6 +1,9 @@
 <template>
   <div class="vessel-details__reports">
-    <reports-list class="vessel-details__reports__list"></reports-list>
+    <reports-list
+      :reports="reports"
+      class="vessel-details__reports__list">
+    </reports-list>
   </div>
 </template>
 
