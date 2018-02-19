@@ -13,11 +13,14 @@
 <script>
   import VIcon from '../atoms/icon.vue'
   import EventBus from '../../services/event-bus.js'
+  import { COMPONENT_NAMES } from '../../constants/vessel-details'
+
+  const { VESSEL_DASHBOARD, REPORTS, WEATHER, STATISTICS } = COMPONENT_NAMES
 
   export default {
     data () {
       return {
-        selectedComponent: 'v-vessel-dashboard'
+        selectedComponent: VESSEL_DASHBOARD
       }
     },
 
@@ -28,16 +31,16 @@
         return [
           {
             'icon': 'overview',
-            'component': 'v-vessel-dashboard'
+            'component': VESSEL_DASHBOARD
           }, {
             'icon': 'files',
-            'component': 'v-reports'
+            'component': REPORTS
           }, {
             'icon': 'weather',
-            'component': 'v-weather'
+            'component': WEATHER
           }, {
             'icon': 'statistics',
-            'component': 'v-statistics'
+            'component': STATISTICS
           }
         ]
       }

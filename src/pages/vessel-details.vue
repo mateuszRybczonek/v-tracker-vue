@@ -22,12 +22,15 @@
   import VStatistics from '../components/vessel-details/statistics/main.vue'
   import VWeather from '../components/vessel-details/weather/main.vue'
   import VReports from '../components/vessel-details/reports/main.vue'
+  import { COMPONENT_NAMES } from '../constants/vessel-details'
+
+  const { VESSEL_DASHBOARD, REPORTS, WEATHER, STATISTICS } = COMPONENT_NAMES
 
   export default {
     data () {
       return {
         expandContent: false,
-        selectedComponent: 'v-vessel-dashboard'
+        selectedComponent: VESSEL_DASHBOARD
       }
     },
 
@@ -58,11 +61,18 @@
       },
 
       componentProps () {
-        if (this.selectedComponent === 'v-vessel-dashboard') {
-          return {
-            lastReport: this.lastReport,
-            previousReport: this.previousReport
-          }
+        switch (this.selectedComponent) {
+          case VESSEL_DASHBOARD:
+            return {
+              lastReport: this.lastReport,
+              previousReport: this.previousReport
+            }
+          case REPORTS:
+            return {
+              reports: this.reports
+            }
+          case WEATHER: return {}
+          case STATISTICS: return {}
         }
       },
 

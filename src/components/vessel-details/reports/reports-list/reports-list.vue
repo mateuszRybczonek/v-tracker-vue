@@ -9,6 +9,7 @@
       v-bind="{showNewReportFormAction}"
       class="reports-list__item">
     </v-list-new>
+    <div v-for="report in reports"></div>
   </div>
 </template>
 
@@ -18,7 +19,7 @@
   import VNewReportForm from '../new-report/new-report.vue'
 
   export default {
-//    props: ['reports'],
+    props: ['reports'],
 
     data () {
       return {
