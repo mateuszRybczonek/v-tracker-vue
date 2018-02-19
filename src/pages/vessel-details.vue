@@ -4,10 +4,10 @@
       :vessel="vessel"
       :lastReport="lastReport">
     </v-sidebar>
-    <div class="vessel-details__content" :class="{ 'vessel-details__content--expanded': expandContent }">
+    <div class="vessel-details__content" :class="{ 'vessel-details__content--expanded': !sidebarVisible }">
       <keep-alive>
         <component
-          :is="selectedComponent" :componentProps="componentProps">
+          :is="selectedVesselDetailsComponent" :componentProps="componentProps">
         </component>
       </keep-alive>
     </div>
@@ -16,7 +16,6 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import EventBus from '../services/event-bus.js'
   import VSidebar from '../components/sidebar/main.vue'
   import VVesselDashboard from '../components/vessel-details/dashboard/main.vue'
   import VStatistics from '../components/vessel-details/statistics/main.vue'
@@ -27,33 +26,16 @@
   const { VESSEL_DASHBOARD, REPORTS, WEATHER, STATISTICS } = COMPONENT_NAMES
 
   export default {
-    data () {
-      return {
-        expandContent: false,
-        selectedComponent: VESSEL_DASHBOARD
-      }
-    },
-
     created () {
       this.$store.dispatch('fetchReports', this.$route.params.id)
-      EventBus.$on('sidebarToggle', this.sidebarToggleHandler)
-      EventBus.$on('selectVesselDetailsComponent', this.selectVesselDetailsComponentHandler)
-    },
-
-    methods: {
-      sidebarToggleHandler (sidebarVisible) {
-        this.expandContent = !sidebarVisible
-      },
-
-      selectVesselDetailsComponentHandler (component) {
-        this.selectedComponent = component
-      }
     },
 
     computed: {
       ...mapGetters([
         'vessels',
-        'reports'
+        'reports',
+        'sidebarVisible',
+        'selectedVesselDetailsComponent'
       ]),
 
       vessel () {
@@ -61,7 +43,7 @@
       },
 
       componentProps () {
-        switch (this.selectedComponent) {
+        switch (this.selectedVesselDetailsComponent) {
           case VESSEL_DASHBOARD:
             return {
               lastReport: this.lastReport,

@@ -2,11 +2,11 @@
   <div class="sidebar__content">
     <ul class="sidebar__content__list">
       <li class="sidebar__content__list__item__status">
-        <span class="sidebar__content__list__item__title" v-if="show">Status</span>
+        <span class="sidebar__content__list__item__title" v-if="sidebarVisible">Status</span>
         <span class="sidebar__content__list__item__status__marker" :class="vesselStatusClass"></span>
       </li>
 
-      <li class="sidebar__content__list__item" v-for="item in items" v-if="show">
+      <li class="sidebar__content__list__item" v-for="item in items" v-if="sidebarVisible">
         <span class="sidebar__content__list__item__title">{{item.title}}</span>
         <span class="sidebar__content__list__item__value">{{item.value}}</span>
       </li>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import EventBus from '../../services/event-bus.js'
+  import { mapGetters } from 'vuex'
 
   export default {
     props: [
@@ -23,17 +23,11 @@
       'lastReport'
     ],
 
-    created () {
-      EventBus.$on('sidebarToggle', this.sidebarToggleHandler)
-    },
-
-    data () {
-      return {
-        show: true
-      }
-    },
-
     computed: {
+      ...mapGetters([
+        'sidebarVisible'
+      ]),
+
       vesselStatusClass () {
         if (!this.lastReport) return `status--red`
         if (this.$moment.duration(this.$moment().diff(this.lastReport.reportTime)).asHours() <= 24) {
@@ -67,12 +61,6 @@
             'value': this.vessel.flag
           }
         ]
-      }
-    },
-
-    methods: {
-      sidebarToggleHandler () {
-        this.show = !this.show
       }
     }
   }

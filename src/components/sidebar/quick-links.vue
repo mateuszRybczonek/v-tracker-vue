@@ -3,7 +3,7 @@
     <button
       v-for="button in buttons"
       class="sidebar__quick-links__icon"
-      :class="{ 'sidebar__quick-links__icon--active': selectedComponent === button.component }"
+      :class="{ 'sidebar__quick-links__icon--active': selectedVesselDetailsComponent === button.component }"
       @click="selectVesselDetailsComponent(button.component)">
       <v-icon :icon=button.icon size="small" color="white"></v-icon>
     </button>
@@ -11,22 +11,20 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import VIcon from '../atoms/icon.vue'
-  import EventBus from '../../services/event-bus.js'
   import { COMPONENT_NAMES } from '../../constants/vessel-details'
 
   const { VESSEL_DASHBOARD, REPORTS, WEATHER, STATISTICS } = COMPONENT_NAMES
 
   export default {
-    data () {
-      return {
-        selectedComponent: VESSEL_DASHBOARD
-      }
-    },
-
     props: ['vertical'],
 
     computed: {
+      ...mapGetters([
+        'selectedVesselDetailsComponent'
+      ]),
+
       buttons () {
         return [
           {
@@ -47,9 +45,8 @@
     },
 
     methods: {
-      selectVesselDetailsComponent (component) {
-        this.selectedComponent = component
-        EventBus.selectVesselDetailsComponent(component)
+      selectVesselDetailsComponent (componentName) {
+        this.$store.dispatch('selectedVesselDetailsComponent', componentName)
       }
     },
 
