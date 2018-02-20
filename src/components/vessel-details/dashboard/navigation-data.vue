@@ -29,8 +29,7 @@
 
     computed: {
       navigationData () {
-        const course = this.lastReport.course
-        const spd = this.lastReport.spd
+        const { course, spd } = this.lastReport
 
         return [
           {

@@ -30,8 +30,8 @@
 
     computed: {
       positionData () {
-        const lat = this.lastReport.lat
-        const lng = this.lastReport.lng
+        const { lat, lng } = this.lastReport
+
         return [
           {
             title: 'Latitude',

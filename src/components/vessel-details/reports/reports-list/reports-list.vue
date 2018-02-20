@@ -9,7 +9,11 @@
       v-bind="{showNewReportFormAction}"
       class="reports-list__item">
     </v-list-new>
-    <div v-for="report in reports">{{report.reportTime}}</div>
+    <v-report-item
+      v-for="report in reports"
+      :report="report"
+    >
+    </v-report-item>
   </div>
 </template>
 
@@ -18,6 +22,7 @@
   import VCard from '../../../molecules/card.vue'
   import VListNew from './list-item-new.vue'
   import VNewReportForm from '../new-report/new-report.vue'
+  import VReportItem from './report-item.vue'
 
   export default {
     data () {
@@ -35,7 +40,8 @@
     components: {
       VListNew,
       VCard,
-      VNewReportForm
+      VNewReportForm,
+      VReportItem
     },
 
     methods: {
