@@ -1,5 +1,5 @@
 <template>
-  <div class="v-accordion-header" :class="color">
+  <div class="header-badge" :class="color">
     <slot></slot>
   </div>
 </template>
@@ -16,20 +16,24 @@
 </script>
 
 <style scoped lang="scss">
-  .v-accordion-header {
+  .header-badge {
     display: flex;
-    padding: 0 30px 0 20px;
+    padding: 0 30px;
     height: 30px;
     @include border-radius(20px);
 
-    .v-accordion-header__slot {
+    .header-badge__slot {
       display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      color: $color-whitey;
+      font-weight: 700;
 
       p {
         margin: 0;
         color: $color-whitey;
         font-weight: 700;
-        align-self: center;
       }
     }
   }

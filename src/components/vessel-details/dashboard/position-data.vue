@@ -1,7 +1,7 @@
 <template>
   <div class="position-data">
     <v-accordion :showOnInit=true color="red">
-      <div slot="header" class="v-accordion-header__slot">
+      <div slot="header" class="header-badge__slot">
         <v-icon icon="position" size="small" color="white"></v-icon>
         <p>Position</p>
       </div>

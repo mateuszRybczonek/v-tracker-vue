@@ -1,22 +1,21 @@
 <template>
-  <v-accordion :showOnInit=true color="blue" class="report-item">
-    <div slot="header" class="v-accordion-header__slot">
+  <v-accordion :showOnInit=false color="blue" class="report-item">
+    <div slot="header" class="header-badge__slot">
       <p>{{report.reportTime}}</p>
     </div>
     <div slot="body" class="report-item__content">
-      <ul class="report-item__content__list">
-        <li class="report-item__content__list__item"
-            v-for="reportItem in reportData">
-          <span class="report-item__content__list__item__title">{{reportItem.title}}</span>
-          <span class="report-item__content__list__item__value">{{reportItem.value}}</span>
-        </li>
-      </ul>
+      <report-item-details-section v-for="sectionData in reportSections" class="report-item__content__item"
+        :color="sectionData.color"
+        :sectionData="sectionData">
+      </report-item-details-section>
     </div>
   </v-accordion>
 </template>
 
 <script>
   import VAccordion from '../../../molecules/accordion.vue'
+  import ReportItemDetailsSection from './report-item-details-section.vue'
+  import { decimalToDMS } from '../../../../utils/coordinates-utils'
 
   const NOT_PROVIDED = 'not provided'
 
@@ -24,7 +23,7 @@
     props: ['report'],
 
     computed: {
-      reportData () {
+      reportSections () {
         const {
           course,
           createdAt,
@@ -46,60 +45,88 @@
 
         return [
           {
-            title: 'Course',
-            value: course || NOT_PROVIDED
+            sectionTitle: 'Position',
+            color: 'red',
+            items: [
+              {
+                title: 'Latitude',
+                value: lat ? decimalToDMS(lat) : NOT_PROVIDED
+              }, {
+                title: 'Longitude',
+                value: lng ? decimalToDMS(lng, false) : NOT_PROVIDED
+              }
+            ]
           }, {
-            title: 'Speed',
-            value: spd || NOT_PROVIDED
+            sectionTitle: 'Navigation',
+            color: 'blue',
+            items: [
+              {
+                title: 'Course',
+                value: course ? `${course}°` : NOT_PROVIDED
+              }, {
+                title: 'Speed',
+                value: spd ? `${spd} kn` : NOT_PROVIDED
+              }
+            ]
           }, {
-            title: 'Created At',
-            value: createdAt || NOT_PROVIDED
+            sectionTitle: 'Weather',
+            color: 'blue',
+            items: [
+              {
+                title: 'Sea state',
+                value: seaState || NOT_PROVIDED
+              }, {
+                title: 'Swell direction',
+                value: swellDir ? `${swellDir}°` : NOT_PROVIDED
+              }, {
+                title: 'Swell height',
+                value: swellHeight ? `${swellHeight.toFixed(1)} m` : NOT_PROVIDED
+              }, {
+                title: 'Wind direction',
+                value: windDir ? `${windDir}°` : NOT_PROVIDED
+              }, {
+                title: 'Wind speed',
+                value: windSpd ? `${windSpd} kn` : NOT_PROVIDED
+              }
+            ]
           }, {
-            title: 'Diesel Oil',
-            value: doRob || NOT_PROVIDED
+            sectionTitle: 'Remaining on board',
+            color: 'black',
+            items: [
+              {
+                title: 'Diesel Oil',
+                value: doRob ? `${doRob} cbm` : NOT_PROVIDED
+              }, {
+                title: 'Fuel Oil',
+                value: foRob ? `${foRob} cbm` : NOT_PROVIDED
+              }, {
+                title: 'Fresh Water',
+                value: fwRob ? `${fwRob} cbm` : NOT_PROVIDED
+              }, {
+                title: 'POB',
+                value: pob ? `${pob} persons` : NOT_PROVIDED
+              }
+            ]
           }, {
-            title: 'Fuel Oil',
-            value: foRob || NOT_PROVIDED
-          }, {
-            title: 'Fresh Water',
-            value: fwRob || NOT_PROVIDED
-          }, {
-            title: 'Latitude',
-            value: lat || NOT_PROVIDED
-          }, {
-            title: 'Longitude',
-            value: lng || NOT_PROVIDED
-          }, {
-            title: 'Pitch',
-            value: pitch || NOT_PROVIDED
-          }, {
-            title: 'Roll',
-            value: roll || NOT_PROVIDED
-          }, {
-            title: 'POB',
-            value: pob || NOT_PROVIDED
-          }, {
-            title: 'Sea state',
-            value: seaState || NOT_PROVIDED
-          }, {
-            title: 'Swell direction',
-            value: swellDir || NOT_PROVIDED
-          }, {
-            title: 'Swell height',
-            value: swellHeight || NOT_PROVIDED
-          }, {
-            title: 'Wind direction',
-            value: windDir || NOT_PROVIDED
-          }, {
-            title: 'Wind speed',
-            value: windSpd || NOT_PROVIDED
+            sectionTitle: 'Other',
+            color: 'green',
+            items: [
+              {
+               title: 'Pitch',
+               value: pitch ? `${pitch}°` : NOT_PROVIDED
+              }, {
+               title: 'Roll',
+               value: roll ? `${roll}°` : NOT_PROVIDED
+             }
+            ]
           }
         ]
       }
     },
 
     components: {
-      VAccordion
+      VAccordion,
+      ReportItemDetailsSection
     }
   }
 </script>
@@ -111,31 +138,13 @@
 
      &__content {
       display: flex;
-      justify-content: space-around;
+      flex-wrap: wrap;
+      margin: 20px;
       text-align: left;
       min-height: 150px;
 
-      &__list {
-        width: 100%;
-        padding: 0 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        &__item {
-          display: flex;
-          justify-content: space-between;
-          list-style-type: none;
-          cursor: default;
-          &:nth-child(2) {
-            margin-top: 15px;
-          }
-          &__title {
-            @include font(18px, 300);
-          }
-          &__value {
-            @include font(26px, 400);
-          }
-        }
+      &__item {
+        min-width: 200px;
       }
     }
   }

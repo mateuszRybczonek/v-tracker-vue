@@ -1,7 +1,7 @@
 <template>
   <div class="navigation-data">
     <v-accordion :showOnInit=true color="blue">
-      <div slot="header" class="v-accordion-header__slot">
+      <div slot="header" class="header-badge__slot">
         <v-icon icon="navigation" size="small" color="white"></v-icon>
         <p>Navigation</p>
       </div>

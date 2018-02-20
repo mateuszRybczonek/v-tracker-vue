@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import VAccordionHeader from './accordion-header.vue'
+  import VAccordionHeader from './header-badge.vue'
   import VIcon from '../../components/atoms/icon.vue'
 
   export default {
