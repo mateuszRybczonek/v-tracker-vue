@@ -15,12 +15,10 @@
   export default {
     props: {
       lastReport: {
-        type: Object,
-        required: true
+        type: Object
       },
       previousReport: {
-        type: Object,
-        required: true
+        type: Object
       }
     },
 

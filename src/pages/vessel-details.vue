@@ -6,9 +6,11 @@
     </v-sidebar>
     <div class="vessel-details__content" :class="{ 'vessel-details__content--expanded': !sidebarVisible }">
       <keep-alive>
-        <component
-          :is="selectedVesselDetailsComponent" :componentProps="componentProps">
-        </component>
+        <transition name="slide" mode="out-in">
+          <component
+            :is="selectedVesselDetailsComponent" :componentProps="componentProps">
+          </component>
+        </transition>
       </keep-alive>
     </div>
   </div>
@@ -107,6 +109,64 @@
 
     &__item {
       margin-top: 20px;
+    }
+  }
+
+  .fade-enter {
+    /*1 frame at the beginning*/
+    opacity: 0;
+  }
+
+  .fade-enter-active {
+      transition:  opacity 500ms;
+  }
+
+  .fade-leave {
+      /*opacity: 1;*/
+  }
+
+  .fade-leave-active {
+      transition:  opacity 500ms;
+      opacity: 0;
+  }
+
+  .slide-enter {
+    opacity: 0;
+  }
+
+  .slide-enter-active {
+    animation: slide-in 250ms ease-out forwards;
+    transition:  opacity 250ms;
+  }
+
+  .slide-leave-active {
+    animation: slide-out 250ms ease-out backwards;
+    transition:  opacity 250ms;
+    opacity: 0;
+
+    /*to animate when the list item is removed*/
+    position: absolute;
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: rotateY(90deg);
+      transform-origin: left;
+    }
+    to {
+      transform: rotateY(0);
+      transform-origin: left;
+    }
+  }
+
+  @keyframes slide-out {
+    from {
+      transform: rotateY(0);
+      transform-origin: left;
+    }
+    to {
+      transform: rotateY(90deg);
+      transform-origin: left;
     }
   }
 </style>

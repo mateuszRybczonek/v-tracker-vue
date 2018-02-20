@@ -9,12 +9,13 @@
       v-bind="{showNewReportFormAction}"
       class="reports-list__item">
     </v-list-new>
-    <v-report-item
-      v-for="report in last14Reports"
-      :key="report.index"
-      :report="report"
-    >
-    </v-report-item>
+    <transition-group name="slide" class="reports-list__transition-group">
+      <v-report-item
+        v-for="(report, index) in last14Reports"
+        :key="index"
+        :report="report"
+      ></v-report-item>
+    </transition-group>
   </div>
 </template>
 
@@ -40,7 +41,7 @@
 
     computed: {
       last14Reports () {
-        return this.reports.slice(-14).reverse()
+        return this.reports.slice(-14)
       }
     },
 
@@ -71,6 +72,9 @@
     align-items: center;
     flex-direction: column;
 
+    &__transition-group {
+      width: 100%;
+    }
 
     &__item {
       margin: 20px;

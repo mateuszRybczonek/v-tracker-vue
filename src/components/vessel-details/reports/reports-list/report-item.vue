@@ -1,16 +1,22 @@
 <template>
-  <v-accordion :showOnInit=false color="blue" class="report-item">
-    <div slot="header" class="header-badge__slot">
-      <p>{{report.reportTime}}</p>
-    </div>
-    <div slot="body" class="report-item__content">
-      <report-item-details-section v-for="sectionData in reportSections" class="report-item__content__item"
-        :key="sectionData.sectionTitle"
-        :color="sectionData.color"
-        :sectionData="sectionData">
-      </report-item-details-section>
-    </div>
-  </v-accordion>
+  <li>
+    <v-accordion :showOnInit=false :collapsedContent=true color="blue" class="report-item">
+      <div slot="header" class="header-badge__slot">
+        <p>{{report.reportTime}}</p>
+      </div>
+      <div slot="body" class="report-item__content">
+        <report-item-details-section v-for="sectionData in reportSections" class="report-item__content__item"
+          :key="sectionData.sectionTitle"
+          :color="sectionData.color"
+          :sectionData="sectionData">
+        </report-item-details-section>
+      </div>
+      <div slot="collapsed-content" class=report-item__collapsed-content>
+        <p>Latitude: {{formattedLat}}</p>
+        <p>Longitude: {{formattedLng}}</p>
+      </div>
+    </v-accordion>
+  </li>
 </template>
 
 <script>
@@ -29,14 +35,22 @@
     },
 
     computed: {
+      formattedLat () {
+        const { lat } = this.report
+        return lat ? decimalToDMS(lat) : NOT_PROVIDED
+      },
+
+      formattedLng () {
+        const { lng } = this.report
+        return lng ? decimalToDMS(lng, false) : NOT_PROVIDED
+      },
+
       reportSections () {
         const {
           course,
           doRob,
           foRob,
           fwRob,
-          lat,
-          lng,
           pitch,
           pob,
           roll,
@@ -55,10 +69,10 @@
             items: [
               {
                 title: 'Latitude',
-                value: lat ? decimalToDMS(lat) : NOT_PROVIDED
+                value: this.formattedLat
               }, {
                 title: 'Longitude',
-                value: lng ? decimalToDMS(lng, false) : NOT_PROVIDED
+                value: this.formattedLng
               }
             ]
           }, {
@@ -137,6 +151,9 @@
 </script>
 
 <style scoped lang="scss">
+  li {
+    list-style-type: none;
+  }
   .report-item {
     width: 100%;
     margin-bottom: 10px;
@@ -149,7 +166,15 @@
       min-height: 150px;
 
       &__item {
-        min-width: 200px;
+        min-width: 300px;
+      }
+    }
+    &__collapsed-content {
+      display: flex;
+      padding: 5px 5px 0;
+
+      p {
+        margin: 0 10px 5px;
       }
     }
   }

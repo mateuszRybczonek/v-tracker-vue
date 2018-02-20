@@ -55,8 +55,7 @@
   export default {
     props: {
       lastReport: {
-        type: Object,
-        required: true
+        type: Object
       }
     },
 

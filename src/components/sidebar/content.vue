@@ -97,7 +97,7 @@
           left: 10px;
 
           &.status--green {
-            background-color: $color-light-blue;
+            background-color: $color-hover-green;
           }
 
           &.status--amber {

@@ -36,16 +36,15 @@
 
 <style scoped lang="scss">
   .report-item-details-section {
+    width: 45%;
     margin: 10px;
 
     &__header-badge {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
+      border-radius: 0;
     }
 
     &__list {
       width: 100%;
-      min-height: 200px;
       margin: 0;
       padding: 0 20px;
       display: flex;
@@ -65,11 +64,11 @@
         }
 
         &__title {
-          @include font(14px, 300);
+          @include font(16px, 300);
         }
 
         &__value {
-          @include font(14px, 400);
+          @include font(16px, 400);
         }
       }
     }

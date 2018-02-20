@@ -18,6 +18,9 @@
     <div class="accordion__footer" v-show="show">
       <slot name="footer"></slot>
     </div>
+    <div class="accordion__footer" v-show="showCollapsedContent">
+      <slot name="collapsed-content"></slot>
+    </div>
   </div>
 </template>
 
@@ -34,12 +37,22 @@
       color: {
         type: String,
         default: 'black'
+      },
+      collapsedContent: {
+        type: Boolean,
+        default: false
       }
     },
 
     data () {
       return {
-        show: this.showOnInit
+        show: this.showOnInit,
+      }
+    },
+
+    computed: {
+      showCollapsedContent () {
+        return !this.show && this.collapsedContent
       }
     },
 

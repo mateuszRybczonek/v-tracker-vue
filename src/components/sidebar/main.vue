@@ -61,6 +61,7 @@
     background-color: $color-blue;
     color: $color-whitey;
     transition: margin-left .5s;
+    z-index: 999;
 
     &--collapsed {
       margin-left: -250px;
