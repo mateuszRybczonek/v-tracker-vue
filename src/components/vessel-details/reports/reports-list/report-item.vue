@@ -11,9 +11,16 @@
           :sectionData="sectionData">
         </report-item-details-section>
       </div>
-      <div slot="collapsed-content" class=report-item__collapsed-content>
-        <p>Latitude: {{formattedLat}}</p>
-        <p>Longitude: {{formattedLng}}</p>
+      <div slot="collapsed-content" class="report-item__collapsed-content">
+        <div class="report-item__collapsed-content__basic-data">
+          <p>Latitude: {{formattedLat}}</p>
+          <p>Longitude: {{formattedLng}}</p>
+        </div>
+        <div class="report-item__collapsed-content__actions">
+          <span @click.prevent.stop="deleteReport(report.id, report.vessel)">
+            <v-icon icon="trash" size="small" type="negative"></v-icon>
+          </span>
+        </div>
       </div>
     </v-accordion>
   </li>
@@ -22,6 +29,7 @@
 <script>
   import VAccordion from '../../../molecules/accordion.vue'
   import ReportItemDetailsSection from './report-item-details-section.vue'
+  import VIcon from '../../../atoms/icon.vue'
   import { decimalToDMS } from '../../../../utils/coordinates-utils'
 
   const NOT_PROVIDED = 'not provided'
@@ -31,6 +39,13 @@
       report: {
         type: Object,
         required: true
+      }
+    },
+
+    methods: {
+      deleteReport (reportId, vesselId) {
+        const payload = { reportId, vesselId }
+        this.$store.dispatch('deleteReport', payload)
       }
     },
 
@@ -145,6 +160,7 @@
 
     components: {
       VAccordion,
+      VIcon,
       ReportItemDetailsSection
     }
   }
@@ -171,7 +187,13 @@
     }
     &__collapsed-content {
       display: flex;
+      justify-content: space-between;
       padding: 5px 5px 0;
+      width: 100%;
+
+      &__basic-data {
+        display: flex;
+      }
 
       p {
         margin: 0 10px 5px;

@@ -46,7 +46,7 @@
 
     data () {
       return {
-        show: this.showOnInit,
+        show: this.showOnInit
       }
     },
 

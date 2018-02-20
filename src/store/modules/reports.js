@@ -56,6 +56,18 @@ const actions = {
       commit(types.STORE_REPORTS, reports)
       commit(types.FETCHING_REPORTS, false)
     } catch (error) { console.log(error) }
+  },
+
+  async deleteReport ({ getters, commit }, payload) {
+    const { reportId, vesselId } = payload
+
+    try {
+      await globalAxios.delete(`/reports/${reportId}.json?auth=${getters.idToken}`)
+      try {
+        await globalAxios.patch(`vessels/${vesselId}/reports.json?auth=${getters.idToken}`, { [reportId]: null })
+        commit(types.DELETE_REPORT, reportId)
+      } catch (error) { console.log(error) }
+    } catch (error) { console.log(error) }
   }
 }
 
@@ -85,6 +97,12 @@ const mutations = {
     report.windDir = parseInt(report.windDir)
     report.windSpd = parseInt(report.windSpd)
     state.reports.push(report)
+  },
+
+  [types.DELETE_REPORT] (state, reportId) {
+    const report = state.reports.filter(report => report.id === reportId)
+    const reportIndex = state.reports.indexOf(report[0])
+    state.reports.splice(reportIndex, 1)
   }
 }
 
