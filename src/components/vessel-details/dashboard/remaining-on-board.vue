@@ -13,7 +13,16 @@
   import VAccordion from '../../../components/molecules/accordion.vue'
 
   export default {
-    props: ['lastReport', 'previousReport'],
+    props: {
+      lastReport: {
+        type: Object,
+        required: true
+      },
+      previousReport: {
+        type: Object,
+        required: true
+      }
+    },
 
     computed: {
       miniStatsItems () {

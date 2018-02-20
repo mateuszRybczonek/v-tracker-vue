@@ -61,7 +61,7 @@
         numberOfSteps: 4,
         isSubmitted: false,
         inProgress: false,
-        showErrors: false,
+        showErrors: false
       }
     },
 

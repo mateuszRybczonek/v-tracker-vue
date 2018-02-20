@@ -24,10 +24,15 @@
   import VIcon from '../atoms/icon.vue'
 
   export default {
-    props: [
-      'vessel',
-      'lastReport'
-    ],
+    props: {
+      vessel: {
+        type: Object,
+        required: true
+      },
+      lastReport: {
+        type: Object
+      }
+    },
 
     computed: {
       ...mapGetters([

@@ -1,7 +1,7 @@
 <template>
   <div class="vessel-details__reports">
     <reports-list
-      :reports="reports"
+      :reports="componentProps.reports"
       class="vessel-details__reports__list">
     </reports-list>
   </div>
@@ -11,6 +11,13 @@
   import reportsList from '../reports/reports-list/reports-list.vue'
 
   export default {
+    props: {
+      componentProps: {
+        type: Object,
+        required: true
+      }
+    },
+
     components: {
       reportsList
     }

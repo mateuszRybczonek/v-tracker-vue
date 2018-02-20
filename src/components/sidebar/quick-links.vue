@@ -18,7 +18,12 @@
   const { VESSEL_DASHBOARD, REPORTS, WEATHER, STATISTICS } = COMPONENT_NAMES
 
   export default {
-    props: ['vertical'],
+    props: {
+      vertical: {
+        type: Boolean,
+        required: true
+      }
+    },
 
     computed: {
       ...mapGetters([

@@ -58,9 +58,12 @@
   import RemainingOnBoard from './remaining-on-board.vue'
 
   export default {
-    props: [
-      'componentProps'
-    ],
+    props: {
+      componentProps: {
+        type: Object,
+        required: true
+      }
+    },
 
     computed: {
       ...mapGetters([
@@ -148,5 +151,3 @@
     }
   }
 </style>
-
-

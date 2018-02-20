@@ -12,7 +12,7 @@ const getters = {
 }
 
 const actions = {
-  async createNewReport ({ getters }, reportData) {
+  async createNewReport ({ getters, commit }, reportData) {
     if (!getters.idToken) {
       return
     }
@@ -20,6 +20,7 @@ const actions = {
       const { data } = await globalAxios.post(`/reports.json?auth=${getters.idToken}`, reportData)
       const vesselId = reportData.vessel
       const reportId = data.name
+      commit(types.ADD_REPORT, reportData)
 
       try {
         await globalAxios.patch(`vessels/${vesselId}/reports.json?auth=${getters.idToken}`, { [reportId]: true })
@@ -65,6 +66,25 @@ const mutations = {
 
   [types.FETCHING_REPORTS] (state, value) {
     state.fetchingReports = value
+  },
+
+  [types.ADD_REPORT] (state, report) {
+    report.course = parseInt(report.course)
+    report.doRob = parseInt(report.doRob)
+    report.foRob = parseInt(report.foRob)
+    report.fwRob = parseInt(report.fwRob)
+    report.lat = parseFloat(report.lat)
+    report.lng = parseFloat(report.lng)
+    report.pitch = parseFloat(report.pitch)
+    report.roll = parseFloat(report.roll)
+    report.pob = parseInt(report.pob)
+    report.seaState = parseInt(report.seaState)
+    report.spd = parseInt(report.spd)
+    report.swellDir = parseInt(report.swellDir)
+    report.swellHeight = parseFloat(report.swellHeight)
+    report.windDir = parseInt(report.windDir)
+    report.windSpd = parseInt(report.windSpd)
+    state.reports.push(report)
   }
 }
 

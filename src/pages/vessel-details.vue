@@ -49,7 +49,10 @@
               lastReport: this.lastReport,
               previousReport: this.previousReport
             }
-          case REPORTS: return {}
+          case REPORTS:
+            return {
+              reports: this.reports
+            }
           case WEATHER: return {}
           case STATISTICS: return {}
         }

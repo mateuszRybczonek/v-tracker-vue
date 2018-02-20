@@ -5,6 +5,7 @@
     </div>
     <div slot="body" class="report-item__content">
       <report-item-details-section v-for="sectionData in reportSections" class="report-item__content__item"
+        :key="sectionData.sectionTitle"
         :color="sectionData.color"
         :sectionData="sectionData">
       </report-item-details-section>
@@ -20,13 +21,17 @@
   const NOT_PROVIDED = 'not provided'
 
   export default {
-    props: ['report'],
+    props: {
+      report: {
+        type: Object,
+        required: true
+      }
+    },
 
     computed: {
       reportSections () {
         const {
           course,
-          createdAt,
           doRob,
           foRob,
           fwRob,
@@ -112,12 +117,12 @@
             color: 'green',
             items: [
               {
-               title: 'Pitch',
-               value: pitch ? `${pitch}°` : NOT_PROVIDED
+                title: 'Pitch',
+                value: pitch ? `${pitch}°` : NOT_PROVIDED
               }, {
-               title: 'Roll',
-               value: roll ? `${roll}°` : NOT_PROVIDED
-             }
+                title: 'Roll',
+                value: roll ? `${roll}°` : NOT_PROVIDED
+              }
             ]
           }
         ]

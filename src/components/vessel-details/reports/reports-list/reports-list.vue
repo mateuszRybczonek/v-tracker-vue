@@ -10,7 +10,8 @@
       class="reports-list__item">
     </v-list-new>
     <v-report-item
-      v-for="report in reports"
+      v-for="report in last14Reports"
+      :key="report.index"
       :report="report"
     >
     </v-report-item>
@@ -18,13 +19,19 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
   import VCard from '../../../molecules/card.vue'
   import VListNew from './list-item-new.vue'
   import VNewReportForm from '../new-report/new-report.vue'
   import VReportItem from './report-item.vue'
 
   export default {
+    props: {
+      reports: {
+        type: Array,
+        required: true
+      }
+    },
+
     data () {
       return {
         showNewReportForm: false
@@ -32,9 +39,9 @@
     },
 
     computed: {
-      ...mapGetters([
-        'reports'
-      ])
+      last14Reports () {
+        return this.reports.slice(-14).reverse()
+      }
     },
 
     components: {

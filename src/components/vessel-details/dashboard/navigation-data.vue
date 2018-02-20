@@ -25,7 +25,12 @@
   const NOT_PROVIDED = 'not provided'
 
   export default {
-    props: ['lastReport'],
+    props: {
+      lastReport: {
+        type: Object,
+        required: true
+      }
+    },
 
     computed: {
       navigationData () {

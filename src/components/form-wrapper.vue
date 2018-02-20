@@ -9,7 +9,19 @@
 
 <script>
   export default {
-    props: ['title', 'size', 'color'],
+    props: {
+      title: {
+        type: String,
+        required: true
+      },
+      size: {
+        type: String,
+        required: true
+      },
+      color: {
+        type: String
+      }
+    },
 
     computed: {
       classes () {

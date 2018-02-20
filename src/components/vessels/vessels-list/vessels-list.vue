@@ -15,7 +15,11 @@
   import VListNew from './list-item-new.vue'
 
   export default {
-    props: ['vessels'],
+    props: {
+      vessels: {
+        type: Array
+      }
+    },
 
     components: {
       VListItem,

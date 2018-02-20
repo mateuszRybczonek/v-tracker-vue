@@ -5,7 +5,8 @@
     </v-header-badge>
     <ul class="report-item-details-section__list">
       <li class="report-item-details-section__list__item"
-          v-for="sectionDataItem in sectionData.items">
+          v-for="sectionDataItem in sectionData.items"
+          :key="sectionDataItem.title">
         <span class="report-item-details-section__list__item__title">{{sectionDataItem.title}}</span>
         <span class="report-item-details-section__list__item__value">{{sectionDataItem.value}}</span>
       </li>
@@ -23,7 +24,7 @@
         required: true
       },
       color: {
-        type: String,
+        type: String
       }
     },
 

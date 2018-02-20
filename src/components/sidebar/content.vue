@@ -18,10 +18,15 @@
   import { mapGetters } from 'vuex'
 
   export default {
-    props: [
-      'vessel',
-      'lastReport'
-    ],
+    props: {
+      vessel: {
+        type: Object,
+        required: true
+      },
+      lastReport: {
+        type: Object
+      }
+    },
 
     computed: {
       ...mapGetters([
@@ -69,16 +74,19 @@
 <style scoped lang="scss">
   .sidebar__content {
     padding-left: 15px;
+
     &__list {
       display: flex;
       flex-direction: column;
       padding: 0;
       cursor: default;
+
       &__item__status {
         display: flex;
         align-self: flex-end;
         margin: 0 27px 15px;
         font-weight: 700;
+
         &__marker {
           height: 15px;
           width: 15px;
@@ -107,6 +115,7 @@
         margin: 0 0 15px;
         list-style-type: none;
         font-weight: 700;
+
         &__title {
           text-transform: uppercase;
           color: $color-light-blue;

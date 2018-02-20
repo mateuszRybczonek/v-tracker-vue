@@ -10,7 +10,12 @@
   import VIcon from '../../../atoms/icon.vue'
 
   export default {
-    props: ['showNewReportFormAction'],
+    props: {
+      showNewReportFormAction: {
+        type: Function,
+        required: true
+      }
+    },
 
     components: {
       VListItem,
