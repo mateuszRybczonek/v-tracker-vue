@@ -113,6 +113,10 @@
       <path d="M31.8,38.8a22.9,22.9,0,0,1,-10.1,-1.6" style="fill:none;stroke:black;stroke-width:1px;"/>
       <circle cx="32.2" cy="50.4" style="fill:none;stroke:black;stroke-width:1px;" r="1.8"/>
     </symbol>
+
+    <symbol id="save">
+      <path d="M15.003 3h2.997v5h-2.997v-5zm8.997 1v20h-24v-24h20l4 4zm-19 5h14v-7h-14v7zm16 4h-18v9h18v-9z"/>
+    </symbol>
   </defs>
 
   <use xlink:href="#fuel"/>
@@ -140,4 +144,5 @@
   <use xlink:href="#lambda" transform="translate(20, 1720)"/>
   <use xlink:href="#speed" transform="translate(20, 1780)"/>
   <use xlink:href="#angle" transform="translate(0, 1820)"/>
+  <use xlink:href="#save" transform="translate(20, 1900)"/>
 </svg>

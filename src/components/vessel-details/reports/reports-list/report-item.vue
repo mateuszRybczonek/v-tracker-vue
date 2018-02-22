@@ -8,7 +8,8 @@
         <report-item-details-section v-for="sectionData in reportSections" class="report-item__content__item"
           :key="sectionData.sectionTitle"
           :color="sectionData.color"
-          :sectionData="sectionData">
+          :sectionData="sectionData"
+          :report="report">
         </report-item-details-section>
       </div>
       <div slot="collapsed-content" class="report-item__collapsed-content">
@@ -84,10 +85,12 @@
             items: [
               {
                 title: 'Latitude',
-                value: this.formattedLat
+                value: this.formattedLat,
+                key: 'lat'
               }, {
                 title: 'Longitude',
-                value: this.formattedLng
+                value: this.formattedLng,
+                key: 'lng'
               }
             ]
           }, {
@@ -96,10 +99,12 @@
             items: [
               {
                 title: 'Course',
-                value: course ? `${course}°` : NOT_PROVIDED
+                value: course ? `${course}°` : NOT_PROVIDED,
+                key: 'course'
               }, {
                 title: 'Speed',
-                value: spd ? `${spd} kn` : NOT_PROVIDED
+                value: spd ? `${spd} kn` : NOT_PROVIDED,
+                key: 'spd'
               }
             ]
           }, {
@@ -108,19 +113,24 @@
             items: [
               {
                 title: 'Sea state',
-                value: seaState || NOT_PROVIDED
+                value: seaState || NOT_PROVIDED,
+                key: 'seaState'
               }, {
                 title: 'Swell direction',
-                value: swellDir ? `${swellDir}°` : NOT_PROVIDED
+                value: swellDir ? `${swellDir}°` : NOT_PROVIDED,
+                key: 'swellDir'
               }, {
                 title: 'Swell height',
-                value: swellHeight ? `${swellHeight.toFixed(1)} m` : NOT_PROVIDED
+                value: swellHeight ? `${swellHeight.toFixed(1)} m` : NOT_PROVIDED,
+                key: 'swellHeight'
               }, {
                 title: 'Wind direction',
-                value: windDir ? `${windDir}°` : NOT_PROVIDED
+                value: windDir ? `${windDir}°` : NOT_PROVIDED,
+                key: 'windDir'
               }, {
                 title: 'Wind speed',
-                value: windSpd ? `${windSpd} kn` : NOT_PROVIDED
+                value: windSpd ? `${windSpd} kn` : NOT_PROVIDED,
+                key: 'windSpd'
               }
             ]
           }, {
@@ -129,16 +139,20 @@
             items: [
               {
                 title: 'Diesel Oil',
-                value: doRob ? `${doRob} cbm` : NOT_PROVIDED
+                value: doRob ? `${doRob} cbm` : NOT_PROVIDED,
+                key: 'doRob'
               }, {
                 title: 'Fuel Oil',
-                value: foRob ? `${foRob} cbm` : NOT_PROVIDED
+                value: foRob ? `${foRob} cbm` : NOT_PROVIDED,
+                key: 'foRob'
               }, {
                 title: 'Fresh Water',
-                value: fwRob ? `${fwRob} cbm` : NOT_PROVIDED
+                value: fwRob ? `${fwRob} cbm` : NOT_PROVIDED,
+                key: 'fwRob'
               }, {
                 title: 'POB',
-                value: pob ? `${pob} persons` : NOT_PROVIDED
+                value: pob ? `${pob} persons` : NOT_PROVIDED,
+                key: 'pob'
               }
             ]
           }, {
@@ -147,10 +161,12 @@
             items: [
               {
                 title: 'Pitch',
-                value: pitch ? `${pitch}°` : NOT_PROVIDED
+                value: pitch ? `${pitch}°` : NOT_PROVIDED,
+                key: 'pitch'
               }, {
                 title: 'Roll',
-                value: roll ? `${roll}°` : NOT_PROVIDED
+                value: roll ? `${roll}°` : NOT_PROVIDED,
+                key: 'roll'
               }
             ]
           }

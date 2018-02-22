@@ -28,6 +28,20 @@ const actions = {
     } catch (error) { throw error }
   },
 
+  async updateReport ({ getters, commit }, reportData) {
+    if (!getters.idToken) {
+      return
+    }
+    try {
+      Object.keys(reportData).map(objectKey => {
+         return reportData[objectKey] = reportData[objectKey].toString()
+      })
+
+      await globalAxios.patch(`/reports/${reportData.id}.json?auth=${getters.idToken}`, reportData)
+      commit(types.UPDATE_REPORT, reportData)
+    } catch (error) { throw error }
+  },
+
   async fetchReports ({ getters, commit }, vesselId) {
     commit(types.FETCHING_REPORTS, true)
     try {
@@ -36,21 +50,7 @@ const actions = {
       for (let key in data) {     // add id to the report
         const report = data[key]
         report.id = key
-        report.course = parseInt(report.course)
-        report.doRob = parseInt(report.doRob)
-        report.foRob = parseInt(report.foRob)
-        report.fwRob = parseInt(report.fwRob)
-        report.lat = parseInt(report.lat)
-        report.lng = parseInt(report.lng)
-        report.pitch = parseInt(report.pitch)
-        report.roll = parseInt(report.roll)
-        report.pob = parseInt(report.pob)
-        report.seaState = parseInt(report.seaState)
-        report.spd = parseInt(report.spd)
-        report.swellDir = parseInt(report.swellDir)
-        report.swellHeight = parseInt(report.swellHeight)
-        report.windDir = parseInt(report.windDir)
-        report.windSpd = parseInt(report.windSpd)
+        _mapReportForStore(report)
         reports.push(report)
       }
       commit(types.STORE_REPORTS, reports)
@@ -81,21 +81,7 @@ const mutations = {
   },
 
   [types.ADD_REPORT] (state, report) {
-    report.course = parseInt(report.course)
-    report.doRob = parseInt(report.doRob)
-    report.foRob = parseInt(report.foRob)
-    report.fwRob = parseInt(report.fwRob)
-    report.lat = parseFloat(report.lat)
-    report.lng = parseFloat(report.lng)
-    report.pitch = parseFloat(report.pitch)
-    report.roll = parseFloat(report.roll)
-    report.pob = parseInt(report.pob)
-    report.seaState = parseInt(report.seaState)
-    report.spd = parseInt(report.spd)
-    report.swellDir = parseInt(report.swellDir)
-    report.swellHeight = parseFloat(report.swellHeight)
-    report.windDir = parseInt(report.windDir)
-    report.windSpd = parseInt(report.windSpd)
+    _mapReportForStore(report)
     state.reports.push(report)
   },
 
@@ -103,7 +89,32 @@ const mutations = {
     const report = state.reports.filter(report => report.id === reportId)
     const reportIndex = state.reports.indexOf(report[0])
     state.reports.splice(reportIndex, 1)
+  },
+
+  [types.UPDATE_REPORT] (state, reportData) {
+    _mapReportForStore(reportData)
+    const report = state.reports.filter(report => report.id === reportData.id)
+    const reportIndex = state.reports.indexOf(report[0])
+    state.reports[reportIndex] = reportData
   }
+}
+
+function _mapReportForStore(report) {
+  report.course = parseInt(report.course)
+  report.doRob = parseInt(report.doRob)
+  report.foRob = parseInt(report.foRob)
+  report.fwRob = parseInt(report.fwRob)
+  report.lat = parseFloat(report.lat)
+  report.lng = parseFloat(report.lng)
+  report.pitch = parseFloat(report.pitch)
+  report.roll = parseFloat(report.roll)
+  report.pob = parseInt(report.pob)
+  report.seaState = parseInt(report.seaState)
+  report.spd = parseInt(report.spd)
+  report.swellDir = parseInt(report.swellDir)
+  report.swellHeight = parseFloat(report.swellHeight)
+  report.windDir = parseInt(report.windDir)
+  report.windSpd = parseInt(report.windSpd)
 }
 
 export default {

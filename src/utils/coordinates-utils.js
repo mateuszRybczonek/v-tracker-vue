@@ -63,4 +63,8 @@ function formatLngForPersistanceLayer (lng) {
   }
 }
 
-export { decimalToDMS, distanceBetweenPoints, formatLatForPersistanceLayer, formatLngForPersistanceLayer }
+function stripSymbols (coordinate) {
+  return coordinate.replace(String.fromCharCode(176), '').replace("'", '')
+}
+
+export { decimalToDMS, distanceBetweenPoints, formatLatForPersistanceLayer, formatLngForPersistanceLayer, stripSymbols }

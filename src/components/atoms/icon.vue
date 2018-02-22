@@ -307,7 +307,15 @@
     &--calendar {
       &--small {
         mask-image: url('../../assets/icons.svg');
-        mask-position: 50% -8000px;
+        mask-position: 50% -810px;
+        mask-size: 130%;
+      }
+    }
+
+    &--save {
+      &--small {
+        mask-image: url('../../assets/icons.svg');
+        mask-position: 50% -965px;
         mask-size: 130%;
       }
     }
