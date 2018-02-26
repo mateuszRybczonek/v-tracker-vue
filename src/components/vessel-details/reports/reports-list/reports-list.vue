@@ -11,8 +11,8 @@
     </v-list-new>
     <transition-group name="slide" class="reports-list__transition-group">
       <v-report-item
-        v-for="(report, index) in last14Reports"
-        :key="index"
+        v-for="report in last14Reports"
+        :key="report.id"
         :report="report"
       ></v-report-item>
     </transition-group>

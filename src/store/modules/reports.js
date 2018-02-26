@@ -20,6 +20,7 @@ const actions = {
       const { data } = await globalAxios.post(`/reports.json?auth=${getters.idToken}`, reportData)
       const vesselId = reportData.vessel
       const reportId = data.name
+      reportData = { ...reportData, id: reportId }
       commit(types.ADD_REPORT, reportData)
 
       try {
