@@ -69,6 +69,11 @@
     methods: {
       editReportSection () {
         this.isEditing = true
+        this.reportChangeset = {
+          ...this.report,
+          lat: stripSymbols(decimalToDMS(this.report.lat)),
+          lng: stripSymbols(decimalToDMS(this.report.lng, true))
+        }
       },
 
       async updateReport (report) {

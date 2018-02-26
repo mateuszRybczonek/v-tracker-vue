@@ -1,5 +1,6 @@
 import * as types from '../mutation-types'
 import globalAxios from 'axios'
+import Vue from 'vue'
 
 const state = {
   reports: [],
@@ -21,11 +22,8 @@ const actions = {
       const vesselId = reportData.vessel
       const reportId = data.name
       reportData = { ...reportData, id: reportId }
+      await globalAxios.patch(`vessels/${vesselId}/reports.json?auth=${getters.idToken}`, { [reportId]: true })
       commit(types.ADD_REPORT, reportData)
-
-      try {
-        await globalAxios.patch(`vessels/${vesselId}/reports.json?auth=${getters.idToken}`, { [reportId]: true })
-      } catch (error) { throw error }
     } catch (error) { throw error }
   },
 
@@ -35,7 +33,7 @@ const actions = {
     }
     try {
       Object.keys(reportData).map(objectKey => {
-         return reportData[objectKey] = reportData[objectKey].toString()
+        return reportData[objectKey].toString()
       })
 
       await globalAxios.patch(`/reports/${reportData.id}.json?auth=${getters.idToken}`, reportData)
@@ -96,11 +94,11 @@ const mutations = {
     _mapReportForStore(reportData)
     const report = state.reports.filter(report => report.id === reportData.id)
     const reportIndex = state.reports.indexOf(report[0])
-    state.reports[reportIndex] = reportData
+    Vue.set(state.reports, reportIndex, reportData)
   }
 }
 
-function _mapReportForStore(report) {
+function _mapReportForStore (report) {
   report.course = parseInt(report.course)
   report.doRob = parseInt(report.doRob)
   report.foRob = parseInt(report.foRob)
