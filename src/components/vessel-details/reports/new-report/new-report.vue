@@ -6,7 +6,7 @@
       @selectStep="selectStep"></v-stepper>
     <v-form-wrapper :title="stepTitle" size="wide" color="blue">
       <form class="new-report__form-content" slot="content" @submit.prevent>
-        <transition name="slide" type="animation">
+        <transition name="slide-fade" mode="out-in">
           <component
             :is="selectedStep"
             :reportData="newReportData"
@@ -162,6 +162,17 @@
     &__form-content {
       padding: 15px;
       min-height: 460px;
+    }
+
+    .slide-fade-enter-active {
+      transition: all .3s ease;
+    }
+    .slide-fade-leave-active {
+      transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-to {
+      transform: translateX(20px);
+      opacity: 0;
     }
   }
 </style>
