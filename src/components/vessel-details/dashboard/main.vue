@@ -1,7 +1,7 @@
 <template>
   <div class="vessel-details__dashboard">
     <content-placeholders v-if="fetchingReports" class="vessel-details__last-report">
-      <content-placeholders-img class="vessel-details__last-report__placeholder"></content-placeholders-img>
+      <content-placeholders-img class="vessel-details__last-report--placeholder"></content-placeholders-img>
     </content-placeholders>
     <div class="vessel-details__last-report" v-else>
       <h4>Last reported data: {{lastReportDate}}</h4>
@@ -10,7 +10,7 @@
 
     <div class="vessel-details__row">
       <content-placeholders class="vessel-details__row__item" v-if="fetchingReports">
-        <content-placeholders-img class="google-map__placeholder"></content-placeholders-img>
+        <content-placeholders-img class="google-map--placeholder"></content-placeholders-img>
       </content-placeholders>
       <div class="vessel-details__row__item google-map" v-else>
         Mini-Google map will go here
@@ -18,7 +18,7 @@
 
       <div class="vessel-details__row__item">
         <content-placeholders v-if="fetchingReports">
-          <content-placeholders-img class="vessel-details__row__item__placeholder"></content-placeholders-img>
+          <content-placeholders-img class="vessel-details__row__item--placeholder"></content-placeholders-img>
         </content-placeholders>
         <position-data class="vessel-details__row__item" v-else
           :lastReport="lastReport">
@@ -34,7 +34,7 @@
     </div>
 
     <content-placeholders v-if="fetchingReports">
-      <content-placeholders-img class="vessel-details__row__item__weather-data__placeholder"></content-placeholders-img>
+      <content-placeholders-img class="vessel-details__row__item--weather-data-placeholder"></content-placeholders-img>
     </content-placeholders>
     <weather-data class="vessel-details__row__item" v-else
       :lastReport="lastReport">
@@ -112,7 +112,7 @@
       align-items: center;
       padding: 40px 20px;
 
-      &__placeholder {
+      &--placeholder {
         height: 65px;
       }
     }
@@ -127,15 +127,13 @@
         margin-top: 40px;
         min-width: 49%;
 
-        &__placeholder {
+        &--placeholder {
           height: 210px;
         }
 
-        &__weather-data {
-          &__placeholder {
-            margin-top: 35px;
-            height: 460px;
-          }
+        &--weather-data-placeholder {
+          margin-top: 35px;
+          height: 460px;
         }
       }
     }
