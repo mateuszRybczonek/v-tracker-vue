@@ -51,7 +51,7 @@
 }
 
 @mixin main-page-background() {
-  $section-height: 50em;
+  $section-height: 100vh;
   width: 100%;
   height: $section-height;
   display: flex;
@@ -70,6 +70,8 @@
     right: 0;
     position: absolute;
     z-index: -1;
-    height: $section-height;
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
   }
 }

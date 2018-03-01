@@ -42,6 +42,9 @@
         display: inherit;
         background-color: $color-blue;
         transform: translateX(-50%);
+        background-size: cover;
+        height: 100%;
+        overflow: hidden;
       }
     }
 

@@ -26,6 +26,9 @@
 
 <style scoped lang="scss">
   .vessel-details__reports{
+    max-width: 1440px;
+    margin: 0 auto;
+    
     &__list {
       width: 100%;
     }

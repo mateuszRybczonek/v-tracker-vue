@@ -46,7 +46,7 @@ const actions = {
       localStorage.setItem('expirationDate', expirationDate)
       localStorage.setItem('userEmail', authData.email)
       await dispatch('setLogoutTimer', data.expiresIn)
-      router.push('/dashboard')
+      router.push('/dashboard/vessels')
     } catch (error) {
       commit(types.AUTH_ERROR, true)
       console.log(error)

@@ -100,6 +100,11 @@
 
 <style scoped lang="scss">
   .vessel-details {
+    &__dashboard {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
     &__last-report {
       display: flex;
       flex-direction: column;
