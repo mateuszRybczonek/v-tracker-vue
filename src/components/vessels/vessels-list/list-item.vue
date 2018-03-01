@@ -38,7 +38,13 @@
       }
     },
 
-    props: ['vessel'],
+    props: {
+      vessel: {
+        type: Object,
+        required: true
+      }
+    },
+
     components: {
       VCard,
       VIcon

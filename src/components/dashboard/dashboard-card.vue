@@ -10,7 +10,21 @@
   import VIcon from '../../components/atoms/icon.vue'
 
   export default {
-    props: ['destination', 'icon', 'label'],
+    props: {
+      destination: {
+        type: String,
+        required: true
+      },
+      icon: {
+        type: String,
+        required: true
+      },
+      label: {
+        type: String,
+        required: true
+      }
+    },
+
     components: {
       VCard,
       VIcon

@@ -1,31 +1,18 @@
 <template>
-  <router-link :to="to">
-    <div class="v-card">
-      <slot></slot>
-    </div>
-  </router-link>
+  <div class="v-list-item">
+    <slot></slot>
+  </div>
 </template>
 
-<script>
-  export default {
-    props: {
-      to: {
-        type: String,
-        required: true
-      }
-    }
-  }
-</script>
-
 <style scoped lang="scss">
-  .v-card {
-    min-height: 300px;
+  .v-list-item {
+    min-height: 60px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     background-color: #FFF;
-    width: 350px;
+    width: 100%;
     padding: 20px;
     text-align: center;
     @include transitions-all();

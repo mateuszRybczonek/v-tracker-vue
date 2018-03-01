@@ -1,7 +1,7 @@
 <template>
   <div class="position-data">
     <v-accordion :showOnInit=true color="red">
-      <div slot="header" class="v-accordion-header__slot">
+      <div slot="header" class="header-badge__slot">
         <v-icon icon="position" size="small" color="white"></v-icon>
         <p>Position</p>
       </div>
@@ -26,12 +26,16 @@
   const NOT_PROVIDED = 'not provided'
 
   export default {
-    props: ['lastReport'],
+    props: {
+      lastReport: {
+        type: Object
+      }
+    },
 
     computed: {
       positionData () {
-        const lat = this.lastReport.lat
-        const lng = this.lastReport.lng
+        const { lat, lng } = this.lastReport
+
         return [
           {
             title: 'Latitude',
@@ -52,33 +56,40 @@
 </script>
 
 <style scoped lang="scss">
-  .position-info {
-    &__content {
-      display: flex;
-      justify-content: space-around;
-      text-align: left;
-      min-height: 150px;
+  .position-data {
+    margin-top: 0;
 
-      &__list {
-        width: 100%;
-        padding: 0 20px;
+    .position-info {
+      &__content {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        &__item {
+        justify-content: space-around;
+        text-align: left;
+        min-height: 150px;
+
+        &__list {
+          width: 100%;
+          padding: 0 20px;
           display: flex;
-          justify-content: space-between;
-          align-items: baseline;
-          list-style-type: none;
-          cursor: default;
-          &:nth-child(2) {
-            margin-top: 15px;
-          }
-          &__title {
-            @include font(18px, 300);
-          }
-          &__value {
-            @include font(26px, 400);
+          flex-direction: column;
+          justify-content: center;
+
+          &__item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            list-style-type: none;
+            cursor: default;
+
+            &:nth-child(2) {
+              margin-top: 15px;
+            }
+            &__title {
+              @include font(18px, 300);
+            }
+
+            &__value {
+              @include font(26px, 400);
+            }
           }
         }
       }

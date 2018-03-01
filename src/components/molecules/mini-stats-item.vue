@@ -1,7 +1,7 @@
 <template>
   <div class="mini-stats-item">
     <v-accordion :showOnInit=true :color=item.color>
-      <div slot="header" class="v-accordion-header__slot">
+      <div slot="header" class="header-badge__slot">
         <v-icon :icon=item.icon size="small" color="white"></v-icon>
         <p>{{item.description}}</p>
       </div>
@@ -33,7 +33,12 @@
   import VMiniStatsChange from '../../components/molecules/mini-stats-change.vue'
 
   export default {
-    props: ['item'],
+    props: {
+      item: {
+        type: Object,
+        required: true
+      }
+    },
 
     components: {
       VIcon,

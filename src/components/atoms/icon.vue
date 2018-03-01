@@ -4,7 +4,23 @@
 
 <script>
   export default {
-    props: ['icon', 'size', 'type', 'color'],
+    props: {
+      icon: {
+        type: String,
+        required: true
+      },
+      size: {
+        type: String,
+        required: true
+      },
+      type: {
+        type: String,
+        default: 'type'
+      },
+      color: {
+        type: String
+      }
+    },
 
     computed: {
       classes () {
@@ -157,8 +173,13 @@
     }
 
     &--tiles-plus {
+      mask-image: url('../../assets/icons.svg');
+
+      &--medium {
+        mask-position: -13px -222px;
+      }
+
       &--huge {
-        mask-image: url('../../assets/icons.svg');
         mask-position: 50% -600px;
         mask-size: 141%;
       }
@@ -190,8 +211,12 @@
     }
 
     &--files {
+      mask-image: url('../../assets/icons.svg');
+      &--small {
+        mask-position: 50% -45px;
+        mask-size: 141%;
+      }
       &--huge {
-        mask-image: url('../../assets/icons.svg');
         mask-position: 50% -206px;
         mask-size: 141%;
       }
@@ -275,6 +300,22 @@
       &--small {
         mask-image: url('../../assets/icons.svg');
         mask-position: 50% -780px;
+        mask-size: 130%;
+      }
+    }
+
+    &--calendar {
+      &--small {
+        mask-image: url('../../assets/icons.svg');
+        mask-position: 50% -810px;
+        mask-size: 130%;
+      }
+    }
+
+    &--save {
+      &--small {
+        mask-image: url('../../assets/icons.svg');
+        mask-position: 50% -965px;
         mask-size: 130%;
       }
     }

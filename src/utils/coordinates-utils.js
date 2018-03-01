@@ -45,4 +45,26 @@ function distanceBetweenPoints (depLat, depLng, arrLat, arrLng) {
   return R * c
 }
 
-export { decimalToDMS, distanceBetweenPoints }
+function formatLatForPersistanceLayer (lat) {
+  const latArray = lat.split(' ')
+  if (latArray[2] === 'S') {
+    return (-Number(latArray[0]) - Number(latArray[1] / 60)).toFixed(3)
+  } else {
+    return (Number(latArray[0]) + Number(latArray[1] / 60)).toFixed(3)
+  }
+}
+
+function formatLngForPersistanceLayer (lng) {
+  const lngArray = lng.split(' ')
+  if (lngArray[2] === 'W') {
+    return (-Number(lngArray[0]) - Number(lngArray[1] / 60)).toFixed(3)
+  } else {
+    return (Number(lngArray[0]) + Number(lngArray[1] / 60)).toFixed(3)
+  }
+}
+
+function stripSymbols (coordinate) {
+  return coordinate.replace(String.fromCharCode(176), '').replace("'", '')
+}
+
+export { decimalToDMS, distanceBetweenPoints, formatLatForPersistanceLayer, formatLngForPersistanceLayer, stripSymbols }

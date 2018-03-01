@@ -6,7 +6,20 @@
 
 <script>
   export default {
-    props: ['speed', 'direction', 'withBorder'],
+    props: {
+      speed: {
+        type: Number,
+        required: true
+      },
+      direction: {
+        type: Number,
+        required: true
+      },
+      withBorder: {
+        type: Boolean,
+        default: true
+      }
+    },
 
     computed: {
       iconClasses () {

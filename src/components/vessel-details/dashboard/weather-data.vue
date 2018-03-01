@@ -1,7 +1,7 @@
 <template>
   <div class="weather-data">
     <v-accordion :showOnInit=true color="blue">
-      <div slot="header" class="v-accordion-header__slot">
+      <div slot="header" class="header-badge__slot">
         <v-icon icon="weather" size="small" color="white"></v-icon>
         <p>Weather info</p>
       </div>
@@ -53,7 +53,11 @@
   const NOT_PROVIDED = 'not provided'
 
   export default {
-    props: ['lastReport'],
+    props: {
+      lastReport: {
+        type: Object
+      }
+    },
 
     computed: {
       windData () {
@@ -74,7 +78,7 @@
       seaData () {
         const seaState = this.lastReport.seaState
         const swellDir = this.lastReport.swellDir
-        const swellHeight = this.lastReport.swellHeight
+        const swellHeight = parseInt(this.lastReport.swellHeight)
 
         return [
           {

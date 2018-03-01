@@ -1,12 +1,12 @@
 <template>
   <div class="wrapper">
-    <div class="sidebar" :class="{ 'sidebar--collapsed': !show }">
+    <div class="sidebar" :class="{ 'sidebar--collapsed': !sidebarVisible }">
       <sidebar-header
         :vessel="vessel">
       </sidebar-header>
 
       <sidebar-quick-links
-        :vertical="!show">
+        :vertical="!sidebarVisible">
       </sidebar-quick-links>
 
       <sidebar-content
@@ -18,31 +18,26 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import SidebarHeader from './header.vue'
   import SidebarQuickLinks from './quick-links.vue'
   import SidebarContent from './content.vue'
-  import EventBus from '../../services/event-bus.js'
 
   export default {
-    props: [
-      'vessel',
-      'lastReport'
-    ],
-
-    created () {
-      EventBus.$on('sidebarToggle', this.sidebarToggleHandler)
-    },
-
-    data () {
-      return {
-        show: true
+    props: {
+      vessel: {
+        type: Object,
+        required: true
+      },
+      lastReport: {
+        type: Object
       }
     },
 
-    methods: {
-      sidebarToggleHandler () {
-        this.show = !this.show
-      }
+    computed: {
+      ...mapGetters([
+        'sidebarVisible'
+      ])
     },
 
     components: {
@@ -66,6 +61,7 @@
     background-color: $color-blue;
     color: $color-whitey;
     transition: margin-left .5s;
+    z-index: 999;
 
     &--collapsed {
       margin-left: -250px;

@@ -11,7 +11,7 @@
       </v-icon>
     </router-link>
     <div class="sidebar__header__close" @click="toggle">
-      <div class="sidebar__header__close__icon" :class="{ 'sidebar__header__close__icon--open': !show }">
+      <div class="sidebar__header__close__icon" :class="{ 'sidebar__header__close__icon--open': !sidebarVisible }">
         <span></span>
         <span></span>
       </div>
@@ -20,22 +20,25 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import VIcon from '../atoms/icon.vue'
-  import EventBus from '../../services/event-bus.js'
 
   export default {
-    props: [
-      'vessel',
-      'lastReport'
-    ],
-
-    data () {
-      return {
-        show: true
+    props: {
+      vessel: {
+        type: Object,
+        required: true
+      },
+      lastReport: {
+        type: Object
       }
     },
 
     computed: {
+      ...mapGetters([
+        'sidebarVisible'
+      ]),
+
       editLink () {
         return `/dashboard/vessels/${this.vessel.id}/edit`
       },
@@ -77,8 +80,7 @@
 
     methods: {
       toggle () {
-        this.show = !this.show
-        EventBus.sidebarToggle(this.show)
+        this.$store.dispatch('toggleSidebar')
       }
     },
 

@@ -1,0 +1,20 @@
+{
+  "rules": {
+    "users": {
+      "$user_id": {
+      	".read": "auth.uid != null && $user_id == auth.uid",
+      	".write": "auth.uid != null"
+    	}
+    },
+    "vessels": {
+      ".read": "true",
+      ".write": "true",
+      ".indexOn": "owner",
+    },
+    "reports": {
+      ".read": "true",
+      ".write": "true",
+      ".indexOn": "vessel",
+    }
+  }
+}

@@ -12,6 +12,7 @@
       <v-wind-flag
         class="weather-situation__wind-flag"
         :speed="lastReport.windSpd"
+        :direction="lastReport.windDir"
         :withBorder=false>
       </v-wind-flag>
     </div>

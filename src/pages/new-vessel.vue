@@ -1,5 +1,5 @@
 <template>
-  <v-form-wrapper title="Create new vessel">
+  <v-form-wrapper title="Create new vessel" size="narrow">
     <form slot="content" @submit.prevent>
       <input class="input--with-error" :class="{ invalid: showErrors && $v.vessel.name.$invalid }"
         @blur="$v.vessel.name.$touch()"
@@ -110,6 +110,7 @@
           mmsi: this.vessel.mmsi,
           yob: this.vessel.yob,
           flag: this.vessel.flag,
+          reports: [],
           owner: this.$store.state.auth.userId
         }
 

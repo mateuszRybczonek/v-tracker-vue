@@ -1,5 +1,5 @@
 <template>
-  <v-form-wrapper title="Edit vessel details">
+  <v-form-wrapper title="Edit vessel details" size="narrow">
     <form slot="content" @submit.prevent>
       <input class="input--with-error" :class="{ invalid: showErrors && $v.vessel.name.$invalid }"
         @blur="$v.vessel.name.$touch()"

@@ -18,19 +18,41 @@
     <div class="accordion__footer" v-show="show">
       <slot name="footer"></slot>
     </div>
+    <div class="accordion__footer" v-show="showCollapsedContent">
+      <slot name="collapsed-content"></slot>
+    </div>
   </div>
 </template>
 
 <script>
-  import VAccordionHeader from './accordion-header.vue'
+  import VAccordionHeader from './header-badge.vue'
   import VIcon from '../../components/atoms/icon.vue'
 
   export default {
-    props: ['showOnInit', 'color'],
+    props: {
+      showOnInit: {
+        type: Boolean,
+        default: true
+      },
+      color: {
+        type: String,
+        default: 'black'
+      },
+      collapsedContent: {
+        type: Boolean,
+        default: false
+      }
+    },
 
     data () {
       return {
         show: this.showOnInit
+      }
+    },
+
+    computed: {
+      showCollapsedContent () {
+        return !this.show && this.collapsedContent
       }
     },
 

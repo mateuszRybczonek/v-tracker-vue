@@ -19,7 +19,16 @@
   import VIcon from '../../components/atoms/icon.vue'
 
   export default {
-    props: ['change', 'unit'],
+    props: {
+      change: {
+        type: Number,
+        required: true
+      },
+      unit: {
+        type: String,
+        default: ''
+      }
+    },
 
     computed: {
       color () {

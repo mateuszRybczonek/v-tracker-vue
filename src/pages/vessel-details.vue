@@ -4,11 +4,13 @@
       :vessel="vessel"
       :lastReport="lastReport">
     </v-sidebar>
-    <div class="vessel-details__content" :class="{ 'vessel-details__content--expanded': expandContent }">
+    <div class="vessel-details__content" :class="{ 'vessel-details__content--expanded': !sidebarVisible }">
       <keep-alive>
-        <component
-          :is="selectedComponent" :componentProps="componentProps">
-        </component>
+        <transition name="slide" mode="out-in">
+          <component
+            :is="selectedVesselDetailsComponent" :componentProps="componentProps">
+          </component>
+        </transition>
       </keep-alive>
     </div>
   </div>
@@ -16,40 +18,26 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import EventBus from '../services/event-bus.js'
   import VSidebar from '../components/sidebar/main.vue'
   import VVesselDashboard from '../components/vessel-details/dashboard/main.vue'
   import VStatistics from '../components/vessel-details/statistics/main.vue'
   import VWeather from '../components/vessel-details/weather/main.vue'
+  import VReports from '../components/vessel-details/reports/main.vue'
+  import { COMPONENT_NAMES } from '../constants/vessel-details'
+
+  const { VESSEL_DASHBOARD, REPORTS, WEATHER, STATISTICS } = COMPONENT_NAMES
 
   export default {
-    data () {
-      return {
-        expandContent: false,
-        selectedComponent: 'v-vessel-dashboard'
-      }
-    },
-
     created () {
-      this.$store.dispatch('fetchReports')
-      EventBus.$on('sidebarToggle', this.sidebarToggleHandler)
-      EventBus.$on('selectVesselDetailsComponent', this.selectVesselDetailsComponentHandler)
-    },
-
-    methods: {
-      sidebarToggleHandler (sidebarVisible) {
-        this.expandContent = !sidebarVisible
-      },
-
-      selectVesselDetailsComponentHandler (component) {
-        this.selectedComponent = component
-      }
+      this.$store.dispatch('fetchReports', this.$route.params.id)
     },
 
     computed: {
       ...mapGetters([
         'vessels',
-        'reports'
+        'reports',
+        'sidebarVisible',
+        'selectedVesselDetailsComponent'
       ]),
 
       vessel () {
@@ -57,75 +45,19 @@
       },
 
       componentProps () {
-        if (this.selectedComponent === 'v-vessel-dashboard') {
-          return {
-            lastReport: this.lastReport,
-            previousReport: this.previousReport
-          }
+        switch (this.selectedVesselDetailsComponent) {
+          case VESSEL_DASHBOARD:
+            return {
+              lastReport: this.lastReport,
+              previousReport: this.previousReport
+            }
+          case REPORTS:
+            return {
+              reports: this.reports
+            }
+          case WEATHER: return {}
+          case STATISTICS: return {}
         }
-      },
-
-      reports () {
-        return [
-          {
-            reportTime: '2018-01-02',
-            course: 230,
-            spd: 15,
-            doRob: 200,
-            foRob: 100,
-            fwRob: 300,
-            lat: 20,
-            lng: 20,
-            pitch: 0.5,
-            pob: 50,
-            roll: 1,
-            seaState: 3,
-            swellDir: 200,
-            swellHeight: 2,
-            updatedAt: '2017-09-01T10:46:14.631Z',
-            vessel: this.$route.params.id,
-            windDir: 120,
-            windSpd: 14
-          }, {
-            reportTime: '2018-01-04',
-            course: 230,
-            spd: 17,
-            doRob: 160,
-            foRob: 100,
-            fwRob: 320,
-            lat: 13.505,
-            lng: 73.893,
-            pitch: 0.5,
-            pob: 50,
-            roll: 1,
-            seaState: 3,
-            swellDir: 200,
-            swellHeight: 3,
-            updatedAt: '2017-09-01T10:46:14.631Z',
-            vessel: this.$route.params.id,
-            windDir: 120,
-            windSpd: 15
-          }, {
-            reportTime: '2018-01-03',
-            course: 230,
-            spd: 15,
-            doRob: 180,
-            foRob: 100,
-            fwRob: 300,
-            lat: 20,
-            lng: 20,
-            pitch: 0.5,
-            pob: 50,
-            roll: 1,
-            seaState: 3,
-            swellDir: 200,
-            swellHeight: 2,
-            updatedAt: '2017-09-01T10:46:14.631Z',
-            vessel: this.$route.params.id,
-            windDir: 120,
-            windSpd: 14
-          }
-        ]
       },
 
       reportsSortedAsc () {
@@ -149,7 +81,8 @@
       VSidebar,
       VVesselDashboard,
       VStatistics,
-      VWeather
+      VWeather,
+      VReports
     }
   }
 </script>
@@ -176,6 +109,64 @@
 
     &__item {
       margin-top: 20px;
+    }
+  }
+
+  .fade-enter {
+    /*1 frame at the beginning*/
+    opacity: 0;
+  }
+
+  .fade-enter-active {
+      transition:  opacity 500ms;
+  }
+
+  .fade-leave {
+      /*opacity: 1;*/
+  }
+
+  .fade-leave-active {
+      transition:  opacity 500ms;
+      opacity: 0;
+  }
+
+  .slide-enter {
+    opacity: 0;
+  }
+
+  .slide-enter-active {
+    animation: slide-in 250ms ease-out forwards;
+    transition:  opacity 250ms;
+  }
+
+  .slide-leave-active {
+    animation: slide-out 250ms ease-out backwards;
+    transition:  opacity 250ms;
+    opacity: 0;
+
+    /*to animate when the list item is removed*/
+    position: absolute;
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: rotateY(90deg);
+      transform-origin: left;
+    }
+    to {
+      transform: rotateY(0);
+      transform-origin: left;
+    }
+  }
+
+  @keyframes slide-out {
+    from {
+      transform: rotateY(0);
+      transform-origin: left;
+    }
+    to {
+      transform: rotateY(90deg);
+      transform-origin: left;
     }
   }
 </style>
