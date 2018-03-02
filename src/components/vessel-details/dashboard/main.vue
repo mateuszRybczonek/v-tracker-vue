@@ -1,13 +1,9 @@
 <template>
-  <div class="vessel-details__dashboard">
-    <content-placeholders v-if="fetchingReports" class="vessel-details__last-report">
-      <content-placeholders-img class="vessel-details__last-report--placeholder"></content-placeholders-img>
-    </content-placeholders>
-    <div class="vessel-details__last-report" v-else>
-      <h4>Last reported data: {{lastReportDate}}</h4>
-      <p>({{lastReportDaysAgo}})</p>
+  <div class="vessel-details">
+    <h1 class="vessel-details__header">Report details</h1>
+    <div class="vessel-details__report-selection">
+      <calendar-card :report="report" v-for="report in reports"></calendar-card>
     </div>
-
     <div class="vessel-details__row">
       <content-placeholders class="vessel-details__row__item" v-if="fetchingReports">
         <content-placeholders-img class="google-map--placeholder"></content-placeholders-img>
@@ -56,6 +52,7 @@
   import PositionData from './position-data.vue'
   import NavigationData from './navigation-data.vue'
   import RemainingOnBoard from './remaining-on-board.vue'
+  import CalendarCard from '../../molecules/calendar-card.vue'
 
   export default {
     props: {
@@ -67,25 +64,21 @@
 
     computed: {
       ...mapGetters([
-        'fetchingReports'
+        'fetchingReports',
+        'selectedReport'
       ]),
 
+      reports () {
+        return this.componentProps.reports
+      },
+
       report () {
-        return this.componentProps.report
+        return this.selectedReport
       },
 
       previousReport () {
-        return this.componentProps.previousReport
-      },
-
-      lastReportDate () {
-        if (!this.selectReport) return '---'
-        return this.selectReport.reportTime
-      },
-
-      lastReportDaysAgo () {
-        if (!this.lastReport) return '---'
-        return this.$moment(this.lastReport.reportTime).fromNow()
+        const indexOfSelectedReport = this.reports.indexOf(this.report)
+        return this.reports[indexOfSelectedReport - 1]
       }
     },
 
@@ -93,27 +86,27 @@
       RemainingOnBoard,
       WeatherData,
       PositionData,
-      NavigationData
+      NavigationData,
+      CalendarCard
     }
   }
 </script>
 
 <style scoped lang="scss">
   .vessel-details {
-    &__dashboard {
-      max-width: 1440px;
-      margin: 0 auto;
+    max-width: 1440px;
+    margin: 0 auto;
+
+    &__header {
+      padding-top: 50px;
+      text-align: center;
     }
 
-    &__last-report {
+    &__report-selection {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 20px;
 
-      &--placeholder {
-        height: 65px;
+      > div {
+        margin: 10px;
       }
     }
 

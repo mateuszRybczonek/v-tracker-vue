@@ -50,12 +50,13 @@
         switch (this.selectedVesselDetailsComponent) {
           case VESSEL_DASHBOARD:
             return {
-              report: this.selectedReport,
-              previousReport: this.previousReport
+              reports: this.reports,
+              last14Reports: this.last14Reports
             }
           case REPORTS:
             return {
-              reports: this.reports
+              reports: this.reports,
+              last14Reports: this.last14Reports
             }
           case WEATHER: return {}
           case STATISTICS: return {}
@@ -76,6 +77,10 @@
 
       lastReport () {
         return this.reportsSortedAsc.slice(-1)[0]
+      },
+
+      last14Reports () {
+        return this.reportsSortedAsc.slice(-14)
       }
     },
 

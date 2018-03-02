@@ -11,7 +11,7 @@
     </v-list-new>
     <transition-group name="slide" class="reports-list__transition-group">
       <v-report-item
-        v-for="report in last14Reports"
+        v-for="report in reports"
         :key="report.id"
         :report="report"
       ></v-report-item>
@@ -36,12 +36,6 @@
     data () {
       return {
         showNewReportForm: false
-      }
-    },
-
-    computed: {
-      last14Reports () {
-        return this.reports.slice(-14)
       }
     },
 
