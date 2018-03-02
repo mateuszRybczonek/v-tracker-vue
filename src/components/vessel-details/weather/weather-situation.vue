@@ -34,12 +34,10 @@
   import VIcon from '../../atoms/icon.vue'
 
   export default {
-    props: ['report'],
-
-    data () {
-      return {
-        flagInterval1: '',
-        flagInterval2: ''
+    props: {
+      report: {
+        type: Object,
+        required: true
       }
     },
 
@@ -49,29 +47,27 @@
       VIcon
     },
 
-    mounted () {
-      const windFlagWrapper = document.getElementById('weather-situation__wind-flag-wrapper')
-      windFlagWrapper.style.transform = `rotate(${this.report.windDir}deg)`
-      setTimeout(() => {
-        const windDirVariation = 10
-        this.flagInterval1 = setInterval(() => {
-          windFlagWrapper.style.transform = `rotate(${this.report.windDir - windDirVariation}deg)`
-        }, 10000 / this.report.windSpd)
-        this.flagInterval2 = setInterval(() => {
-          windFlagWrapper.style.transform = `rotate(${this.report.windDir + windDirVariation}deg)`
-        }, 20000 / this.report.windSpd)
-      }, 5000)
-
-      const seaFlagWrapper = document.getElementById('weather-situation__sea-flag-wrapper')
-      seaFlagWrapper.style.transform = `rotate(${this.report.swellDir}deg)`
-
-      const vesselWrapper = document.getElementById('weather-situation__vessel-wrapper')
-      vesselWrapper.style.transform = `rotate(${this.report.course}deg)`
+    watch: {
+      report (newVal, oldVal) {
+        this.setSituation()
+      }
     },
 
-    beforeDestroy () {
-      clearInterval(this.flagInterval1)
-      clearInterval(this.flagInterval2)
+    mounted () {
+      this.setSituation()
+    },
+
+    methods: {
+      setSituation (report) {
+        const windFlagWrapper = document.getElementById('weather-situation__wind-flag-wrapper')
+        windFlagWrapper.style.transform = `rotate(${this.report.windDir}deg)`
+
+        const seaFlagWrapper = document.getElementById('weather-situation__sea-flag-wrapper')
+        seaFlagWrapper.style.transform = `rotate(${this.report.swellDir}deg)`
+
+        const vesselWrapper = document.getElementById('weather-situation__vessel-wrapper')
+        vesselWrapper.style.transform = `rotate(${this.report.course}deg)`
+      }
     }
   }
 </script>
@@ -93,7 +89,7 @@
       position: absolute;
       width: 500px;
       height: 500px;
-      transition: all 5s ease-in-out;
+      transition: all 3s ease-in-out;
     }
 
     &__wind-flag, &__sea-flag {

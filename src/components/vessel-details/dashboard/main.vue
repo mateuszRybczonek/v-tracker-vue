@@ -2,7 +2,7 @@
   <div class="vessel-details">
     <h1 class="vessel-details__header">Report details</h1>
     <div class="vessel-details__report-selection">
-      <calendar-card :report="report" v-for="report in reports"></calendar-card>
+      <calendar-card :report="report" v-for="report in reports" @click.native="selectReport(report)"></calendar-card>
     </div>
     <div class="vessel-details__row">
       <content-placeholders class="vessel-details__row__item" v-if="fetchingReports">
@@ -79,6 +79,12 @@
       previousReport () {
         const indexOfSelectedReport = this.reports.indexOf(this.report)
         return this.reports[indexOfSelectedReport - 1]
+      }
+    },
+
+    methods: {
+      selectReport (report) {
+        this.$store.dispatch('selectReport', report)
       }
     },
 

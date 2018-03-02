@@ -46,13 +46,29 @@
       }
     },
 
+    watch: {
+      direction (newVal, oldVal) {
+        this.setFlag()
+      },
+
+      height (newVal, oldVal) {
+        this.setFlag()
+      }
+    },
+
     components: {
       VIcon
     },
 
+    methods: {
+      setFlag () {
+        const arrow = document.getElementById('arrow')
+        arrow.style.transform = `rotate(${this.swellDirectionFrom}deg)`
+      }
+    },
+
     mounted () {
-      const arrow = document.getElementById('arrow')
-      arrow.style.transform = `rotate(${this.swellDirectionFrom}deg)`
+      this.setFlag()
     }
   }
 </script>
