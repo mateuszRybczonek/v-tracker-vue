@@ -11,8 +11,8 @@
     <div class="weather-situation__wind-flag-wrapper" id="weather-situation__wind-flag-wrapper">
       <v-wind-flag
         class="weather-situation__wind-flag"
-        :speed="lastReport.windSpd"
-        :direction="lastReport.windDir"
+        :speed="report.windSpd"
+        :direction="report.windDir"
         :withBorder=false>
       </v-wind-flag>
     </div>
@@ -20,8 +20,8 @@
     <div class="weather-situation__sea-flag-wrapper" id="weather-situation__sea-flag-wrapper">
       <v-sea-flag
         class="weather-situation__sea-flag"
-        :height="lastReport.swellHeight"
-        :direction="lastReport.swellDir"
+        :height="report.swellHeight"
+        :direction="report.swellDir"
         :withBorder=false>
       </v-sea-flag>
     </div>
@@ -34,7 +34,7 @@
   import VIcon from '../../atoms/icon.vue'
 
   export default {
-    props: ['lastReport'],
+    props: ['report'],
 
     data () {
       return {
@@ -51,22 +51,22 @@
 
     mounted () {
       const windFlagWrapper = document.getElementById('weather-situation__wind-flag-wrapper')
-      windFlagWrapper.style.transform = `rotate(${this.lastReport.windDir}deg)`
+      windFlagWrapper.style.transform = `rotate(${this.report.windDir}deg)`
       setTimeout(() => {
         const windDirVariation = 10
         this.flagInterval1 = setInterval(() => {
-          windFlagWrapper.style.transform = `rotate(${this.lastReport.windDir - windDirVariation}deg)`
-        }, 10000 / this.lastReport.windSpd)
+          windFlagWrapper.style.transform = `rotate(${this.report.windDir - windDirVariation}deg)`
+        }, 10000 / this.report.windSpd)
         this.flagInterval2 = setInterval(() => {
-          windFlagWrapper.style.transform = `rotate(${this.lastReport.windDir + windDirVariation}deg)`
-        }, 20000 / this.lastReport.windSpd)
+          windFlagWrapper.style.transform = `rotate(${this.report.windDir + windDirVariation}deg)`
+        }, 20000 / this.report.windSpd)
       }, 5000)
 
       const seaFlagWrapper = document.getElementById('weather-situation__sea-flag-wrapper')
-      seaFlagWrapper.style.transform = `rotate(${this.lastReport.swellDir}deg)`
+      seaFlagWrapper.style.transform = `rotate(${this.report.swellDir}deg)`
 
       const vesselWrapper = document.getElementById('weather-situation__vessel-wrapper')
-      vesselWrapper.style.transform = `rotate(${this.lastReport.course}deg)`
+      vesselWrapper.style.transform = `rotate(${this.report.course}deg)`
     },
 
     beforeDestroy () {

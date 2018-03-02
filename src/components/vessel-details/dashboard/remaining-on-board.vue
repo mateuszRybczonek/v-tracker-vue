@@ -14,7 +14,7 @@
 
   export default {
     props: {
-      lastReport: {
+      report: {
         type: Object
       },
       previousReport: {
@@ -27,32 +27,32 @@
         return [
           {
             icon: 'fuel',
-            header: this.lastReport.foRob,
-            change: this.lastReport.foRob - this.previousReport.foRob,
+            header: this.report.foRob,
+            change: this.report.foRob - this.previousReport.foRob,
             unit: 'cbm',
             description: 'Fuel Oil',
             customClass: 'mini-stats__item--fo',
             color: 'black'
           }, {
             icon: 'fuel',
-            header: this.lastReport.doRob,
-            change: this.lastReport.doRob - this.previousReport.doRob,
+            header: this.report.doRob,
+            change: this.report.doRob - this.previousReport.doRob,
             unit: 'cbm',
             description: 'Diesel Oil',
             customClass: 'mini-stats__item--do',
             color: 'brown'
           }, {
             icon: 'water',
-            header: this.lastReport.fwRob,
-            change: this.lastReport.fwRob - this.previousReport.fwRob,
+            header: this.report.fwRob,
+            change: this.report.fwRob - this.previousReport.fwRob,
             unit: 'cbm',
             description: 'Fresh Water',
             customClass: 'mini-stats__item--fw',
             color: 'light-blue'
           }, {
             icon: 'people',
-            header: this.lastReport.pob,
-            change: this.lastReport.pob - this.previousReport.pob,
+            header: this.report.pob,
+            change: this.report.pob - this.previousReport.pob,
             unit: 'persons',
             description: 'People On Board',
             customClass: 'mini-stats__item--pob',

@@ -21,14 +21,14 @@
           <content-placeholders-img class="vessel-details__row__item--placeholder"></content-placeholders-img>
         </content-placeholders>
         <position-data class="vessel-details__row__item" v-else
-          :lastReport="lastReport">
+          :report="report">
         </position-data>
 
         <content-placeholders v-if="fetchingReports" class="vessel-details__row__item">
           <content-placeholders-img class="vessel-details__row__item__placeholder"></content-placeholders-img>
         </content-placeholders>
         <navigation-data class="vessel-details__row__item" v-else
-          :lastReport="lastReport">
+          :report="report">
         </navigation-data>
       </div>
     </div>
@@ -37,14 +37,14 @@
       <content-placeholders-img class="vessel-details__row__item--weather-data-placeholder"></content-placeholders-img>
     </content-placeholders>
     <weather-data class="vessel-details__row__item" v-else
-      :lastReport="lastReport">
+      :report="report">
     </weather-data>
 
     <content-placeholders v-if="fetchingReports">
       <content-placeholders-img></content-placeholders-img>
     </content-placeholders>
     <remaining-on-board class="vessel-details__item" v-else
-      :lastReport="lastReport"
+      :report="report"
       :previousReport="previousReport">
     </remaining-on-board>
   </div>
@@ -70,8 +70,8 @@
         'fetchingReports'
       ]),
 
-      lastReport () {
-        return this.componentProps.lastReport
+      report () {
+        return this.componentProps.report
       },
 
       previousReport () {
@@ -79,8 +79,8 @@
       },
 
       lastReportDate () {
-        if (!this.lastReport) return '---'
-        return this.lastReport.reportTime
+        if (!this.selectReport) return '---'
+        return this.selectReport.reportTime
       },
 
       lastReportDaysAgo () {

@@ -27,14 +27,14 @@
 
   export default {
     props: {
-      lastReport: {
+      report: {
         type: Object
       }
     },
 
     computed: {
       positionData () {
-        const { lat, lng } = this.lastReport
+        const { lat, lng } = this.report
 
         return [
           {

@@ -11,7 +11,8 @@
 
       <sidebar-content
         :vessel="vessel"
-        :lastReport="lastReport">
+        :lastReport="lastReport"
+        :report="report">
       </sidebar-content>
     </div>
   </div>
@@ -29,6 +30,11 @@
         type: Object,
         required: true
       },
+
+      report: {
+        type: Object
+      },
+
       lastReport: {
         type: Object
       }

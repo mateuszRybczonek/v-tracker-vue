@@ -105,7 +105,7 @@
             if (value === 'undefined' || value === null || value === '') {
               return true
             }
-            return /((19[5-9]\d|20[0-9]\d|2090)-([0-1][1-2])-(0[1-9]|[12]\d|3[01]))/.test(value)
+            return /((19[5-9]\d|20[0-9]\d|2090)-([0-1][0-9])-(0[1-9]|[12]\d|3[01]))/.test(value)
           }
         },
         lat: {

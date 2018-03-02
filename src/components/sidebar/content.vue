@@ -23,6 +23,11 @@
         type: Object,
         required: true
       },
+
+      report: {
+        type: Object
+      },
+
       lastReport: {
         type: Object
       }

@@ -26,14 +26,14 @@
 
   export default {
     props: {
-      lastReport: {
+      report: {
         type: Object
       }
     },
 
     computed: {
       navigationData () {
-        const { course, spd } = this.lastReport
+        const { course, spd } = this.report
 
         return [
           {

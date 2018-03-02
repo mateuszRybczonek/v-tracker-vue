@@ -29,7 +29,7 @@
         type: Object,
         required: true
       },
-      lastReport: {
+      report: {
         type: Object
       }
     },
@@ -44,9 +44,9 @@
       },
 
       vesselStatusClass () {
-        if (this.$moment.duration(this.$moment().diff(this.lastReport.reportTime)).asHours() <= 24) {
+        if (this.$moment.duration(this.$moment().diff(this.report.reportTime)).asHours() <= 24) {
           return `status--green`
-        } else if (this.$moment.duration(this.$moment().diff(this.lastReport.reportTime)).asHours() <= 48) {
+        } else if (this.$moment.duration(this.$moment().diff(this.report.reportTime)).asHours() <= 48) {
           return `status--amber`
         } else {
           return `status--red`

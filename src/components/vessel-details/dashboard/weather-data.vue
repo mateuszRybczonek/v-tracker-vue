@@ -10,8 +10,8 @@
           <div class="weather-info__content__wind">
             <v-wind-flag
               class="weather-info__content__wind__flag"
-              :speed="lastReport.windSpd"
-              :direction="lastReport.windDir"
+              :speed="report.windSpd"
+              :direction="report.windDir"
               :withBorder=true></v-wind-flag>
             <ul class="weather-info__content__list">
               <li class="weather-info__content__list__item" v-for="windElement in windData">
@@ -23,8 +23,8 @@
           <div class="weather-info__content__sea">
             <v-sea-flag
               class="weather-info__content__sea__flag"
-              :height="lastReport.swellHeight"
-              :direction="lastReport.swellDir"
+              :height="report.swellHeight"
+              :direction="report.swellDir"
               :withBorder=true></v-sea-flag>
             <ul class="weather-info__content__list">
               <li class="weather-info__content__list__item" v-for="seaElement in seaData">
@@ -36,7 +36,7 @@
         </div>
         <v-weather-situation
           class="weather-info__content__situation"
-          :lastReport="lastReport">
+          :report="report">
         </v-weather-situation>
       </div>
     </v-accordion>
@@ -54,15 +54,15 @@
 
   export default {
     props: {
-      lastReport: {
+      report: {
         type: Object
       }
     },
 
     computed: {
       windData () {
-        const windDir = this.lastReport.windDir
-        const windSpd = this.lastReport.windSpd
+        const windDir = this.report.windDir
+        const windSpd = this.report.windSpd
 
         return [
           {
@@ -76,9 +76,9 @@
       },
 
       seaData () {
-        const seaState = this.lastReport.seaState
-        const swellDir = this.lastReport.swellDir
-        const swellHeight = parseInt(this.lastReport.swellHeight)
+        const seaState = this.report.seaState
+        const swellDir = this.report.swellDir
+        const swellHeight = parseInt(this.report.swellHeight)
 
         return [
           {
