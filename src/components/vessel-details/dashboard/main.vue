@@ -1,9 +1,16 @@
 <template>
   <div class="vessel-details">
     <h1 class="vessel-details__header">Report details</h1>
-    <div class="vessel-details__report-selection">
-      <calendar-card :report="report" v-for="report in reports" @click.native="selectReport(report)"></calendar-card>
-    </div>
+    <v-carousel ref="carousel"
+      :perPage="7"
+      :navigationEnabled="true"
+      :paginationEnabled="false"
+      class="vessel-details__reports-carousel"
+    >
+      <v-slide v-for="report in reversedReports" :key="report.id" class="vessel-details__report-selection">
+        <calendar-card :report="report" @click.native="selectReport(report)"></calendar-card>
+      </v-slide>
+    </v-carousel>
     <div class="vessel-details__row">
       <content-placeholders class="vessel-details__row__item" v-if="fetchingReports">
         <content-placeholders-img class="google-map--placeholder"></content-placeholders-img>
@@ -53,6 +60,7 @@
   import NavigationData from './navigation-data.vue'
   import RemainingOnBoard from './remaining-on-board.vue'
   import CalendarCard from '../../molecules/calendar-card.vue'
+  import { Carousel, Slide } from 'vue-carousel'
 
   export default {
     props: {
@@ -72,13 +80,17 @@
         return this.componentProps.reports
       },
 
+      reversedReports () {
+        return [...this.componentProps.reports.reverse()]
+      },
+
       report () {
         return this.selectedReport
       },
 
       previousReport () {
         const indexOfSelectedReport = this.reports.indexOf(this.report)
-        return this.reports[indexOfSelectedReport - 1]
+        return this.reports[indexOfSelectedReport + 1]
       }
     },
 
@@ -93,7 +105,9 @@
       WeatherData,
       PositionData,
       NavigationData,
-      CalendarCard
+      CalendarCard,
+      VCarousel: Carousel,
+      VSlide: Slide
     }
   }
 </script>
@@ -102,14 +116,24 @@
   .vessel-details {
     max-width: 1440px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
 
     &__header {
       padding-top: 50px;
       text-align: center;
     }
 
+    &__reports-carousel {
+      margin: auto;
+      width: 90%;
+      max-width: 1000px;
+      height: 180px;
+    }
+
     &__report-selection {
       display: flex;
+      margin-top: 30px;
 
       > div {
         margin: 10px;

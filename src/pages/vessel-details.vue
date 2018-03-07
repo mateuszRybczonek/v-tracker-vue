@@ -50,8 +50,7 @@
         switch (this.selectedVesselDetailsComponent) {
           case VESSEL_DASHBOARD:
             return {
-              reports: this.reports,
-              last14Reports: this.last14Reports
+              reports: this.last14Reports
             }
           case REPORTS:
             return {

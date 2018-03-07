@@ -1,5 +1,5 @@
 <template>
-  <div class="calendar-card">
+  <div class="calendar-card" :class="{'calendar-card--selected': presentReportSelected}">
     <div class="calendar-card__month">{{reportMonth}}</div>
     <span class="calendar-card__day">{{reportDay}}</span>
     <span class="calendar-card__day-of-week">{{reportDayOfWeek}}</span>
@@ -7,6 +7,8 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
+
   export default {
     props: {
       report: {
@@ -16,20 +18,28 @@
     },
 
     computed: {
+      ...mapGetters([
+        'selectedReport'
+      ]),
+
+      presentReportSelected () {
+        return this.report.id === this.selectedReport.id
+      },
+
       reportTime () {
         return this.report.reportTime
       },
 
       reportDay () {
-        return this.$moment(this.reportTime).format("DD")
+        return this.$moment(this.reportTime).format('DD')
       },
 
       reportMonth () {
-        return this.$moment(this.reportTime).format("MMMM")
+        return this.$moment(this.reportTime).format('MMMM')
       },
 
       reportDayOfWeek () {
-        return this.$moment(this.reportTime).format("dddd")
+        return this.$moment(this.reportTime).format('dddd')
       }
     }
   }
@@ -47,6 +57,13 @@
     box-shadow: 0 1px 0 $color-whitey-darker, 0 2px 0 $color-white, 0 3px 0 $color-whitey-darker, 0 4px 0 $color-white, 0 5px 0 $color-whitey-darker, 0 0 0 1px $color-whitey-darker;
     overflow: hidden;
     cursor: pointer;
+    transition: all 400ms;
+    filter: grayscale(100%);
+
+    &:hover {
+      transform: scale(1.1);
+      filter: grayscale(50%);
+    }
 
     * {
       width: 100%;
@@ -74,6 +91,15 @@
       padding-top: 10px;
       font-size: 12px;
       color: $color-blue;
+    }
+
+    &--selected {
+      transform: scale(1.2);
+      filter: grayscale(0%);
+
+      &:hover {
+        transform: scale(1.2);
+      }
     }
   }
 </style>
