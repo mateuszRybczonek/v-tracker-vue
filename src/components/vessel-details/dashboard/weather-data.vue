@@ -1,6 +1,9 @@
 <template>
   <div class="weather-data">
-    <v-accordion :showOnInit=true color="blue">
+    <content-placeholders v-if="fetchingReports">
+      <content-placeholders-img class="weather-data__placeholder"></content-placeholders-img>
+    </content-placeholders>
+    <v-accordion :showOnInit=true color="blue" else>
       <div slot="header" class="header-badge__slot">
         <v-icon icon="weather" size="small" color="white"></v-icon>
         <p>Weather info</p>
@@ -56,6 +59,9 @@
     props: {
       report: {
         type: Object
+      },
+      fetchingReports: {
+        type: Boolean
       }
     },
 
@@ -106,6 +112,12 @@
 </script>
 
 <style scoped lang="scss">
+  .weather-data {
+    &__placeholder {
+      margin-top: 35px;
+      height: 460px;
+    }
+  }
   .weather-info__content {
     display: flex;
     justify-content: space-between;

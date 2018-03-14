@@ -2,7 +2,8 @@
   <div class="remaining-on-board">
     <mini-stats-item v-for="item in miniStatsItems"
       :key="item.index"
-      :item="item">
+      :item="item"
+      :showPlaceholder="fetchingReports">
     </mini-stats-item>
   </div>
 </template>
@@ -19,6 +20,9 @@
       },
       previousReport: {
         type: Object
+      },
+      fetchingReports: {
+        type: Boolean
       }
     },
 

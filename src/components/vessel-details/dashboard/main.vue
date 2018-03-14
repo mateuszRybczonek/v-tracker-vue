@@ -12,49 +12,40 @@
       </v-slide>
     </v-carousel>
     <div class="vessel-details__row">
-      <content-placeholders class="vessel-details__row__item" v-if="fetchingReports">
-        <content-placeholders-img class="google-map--placeholder"></content-placeholders-img>
-      </content-placeholders>
-      <div class="vessel-details__row__item google-map" v-else>
-        Mini-Google map will go here
-      </div>
+      <google-map class="vessel-details__row__item"
+        :report="report"
+        :fetchingReports="fetchingReports">
+      </google-map>
 
       <div class="vessel-details__row__item">
-        <content-placeholders v-if="fetchingReports">
-          <content-placeholders-img class="vessel-details__row__item--placeholder"></content-placeholders-img>
-        </content-placeholders>
-        <position-data class="vessel-details__row__item" v-else
-          :report="report">
+        <position-data class="vessel-details__row__item"
+          :report="report"
+          :fetchingReports="fetchingReports">
         </position-data>
 
-        <content-placeholders v-if="fetchingReports" class="vessel-details__row__item">
-          <content-placeholders-img class="vessel-details__row__item__placeholder"></content-placeholders-img>
-        </content-placeholders>
-        <navigation-data class="vessel-details__row__item" v-else
-          :report="report">
+        <navigation-data class="vessel-details__row__item"
+          :report="report"
+          :fetchingReports="fetchingReports">
         </navigation-data>
       </div>
     </div>
 
-    <content-placeholders v-if="fetchingReports">
-      <content-placeholders-img class="vessel-details__row__item--weather-data-placeholder"></content-placeholders-img>
-    </content-placeholders>
-    <weather-data class="vessel-details__row__item" v-else
-      :report="report">
+    <weather-data class="vessel-details__row__item"
+      :report="report"
+      :fetchingReports="fetchingReports">
     </weather-data>
 
-    <content-placeholders v-if="fetchingReports">
-      <content-placeholders-img></content-placeholders-img>
-    </content-placeholders>
-    <remaining-on-board class="vessel-details__item" v-else
+    <remaining-on-board class="vessel-details__item" v-if="!fetchingReports"
       :report="report"
-      :previousReport="previousReport">
+      :previousReport="previousReport"
+      :fetchingReports="fetchingReports">
     </remaining-on-board>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
+  import GoogleMap from './google-map.vue'
   import WeatherData from './weather-data.vue'
   import PositionData from './position-data.vue'
   import NavigationData from './navigation-data.vue'
@@ -101,6 +92,7 @@
     },
 
     components: {
+      GoogleMap,
       RemainingOnBoard,
       WeatherData,
       PositionData,
@@ -149,31 +141,11 @@
       &__item {
         margin-top: 40px;
         min-width: 49%;
-
-        &--placeholder {
-          height: 210px;
-        }
-
-        &--weather-data-placeholder {
-          margin-top: 35px;
-          height: 460px;
-        }
       }
     }
 
     &__item {
       margin-top: 40px;
-    }
-
-    .google-map {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 2px solid $color-light-blue;
-
-      &__placeholder {
-        height: 450px;
-      }
     }
   }
 </style>

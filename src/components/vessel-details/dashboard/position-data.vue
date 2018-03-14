@@ -1,6 +1,9 @@
 <template>
   <div class="position-data">
-    <v-accordion :showOnInit=true color="red">
+    <content-placeholders v-if="fetchingReports">
+      <content-placeholders-img class="position-data__placeholder"></content-placeholders-img>
+    </content-placeholders>
+    <v-accordion :showOnInit=true color="red" v-else>
       <div slot="header" class="header-badge__slot">
         <v-icon icon="position" size="small" color="white"></v-icon>
         <p>Position</p>
@@ -29,6 +32,9 @@
     props: {
       report: {
         type: Object
+      },
+      fetchingReports: {
+        type: Boolean
       }
     },
 
@@ -58,6 +64,10 @@
 <style scoped lang="scss">
   .position-data {
     margin-top: 0;
+
+    &__placeholder {
+      height: 210px;
+    }
 
     .position-info {
       &__content {

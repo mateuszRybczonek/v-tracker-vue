@@ -1,6 +1,9 @@
 <template>
   <div class="navigation-data">
-    <v-accordion :showOnInit=true color="blue">
+    <content-placeholders v-if="fetchingReports">
+      <content-placeholders-img class="navigation-data__placeholder"></content-placeholders-img>
+    </content-placeholders>
+    <v-accordion :showOnInit=true color="blue" v-else>
       <div slot="header" class="header-badge__slot">
         <v-icon icon="navigation" size="small" color="white"></v-icon>
         <p>Navigation</p>
@@ -28,6 +31,9 @@
     props: {
       report: {
         type: Object
+      },
+      fetchingReports: {
+        type: Boolean
       }
     },
 
@@ -55,6 +61,11 @@
 </script>
 
 <style scoped lang="scss">
+  .navigation-data {
+    &__placeholder {
+      height: 210px;
+    }
+  }
   .navigation-info {
     &__content {
       display: flex;
