@@ -24,10 +24,18 @@
 <script>
   import VIcon from '../../../components/atoms/icon.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
+  import { TweenMax } from 'gsap'
 
   const NOT_PROVIDED = 'not provided'
 
   export default {
+    data () {
+      return {
+        tweenedCourse: this.report ? this.report.course : 0,
+        tweenedSpd: this.report ? this.report.spd : 0
+      }
+    },
+
     props: {
       report: {
         type: Object
@@ -38,18 +46,44 @@
     },
 
     computed: {
+      course () {
+        return this.report ? this.report.course : 0
+      },
+
+      spd () {
+        return this.report ? this.report.spd : 0
+      },
+
+      animatedCourse () {
+        return this.tweenedCourse.toFixed(0)
+      },
+
+      animatedSpd () {
+        return this.tweenedSpd.toFixed(0)
+      },
+
       navigationData () {
-        const { course, spd } = this.report
+        const { spd } = this.report
 
         return [
           {
             title: 'Course',
-            value: course ? `${course}°` : NOT_PROVIDED
+            value: this.animatedCourse ? `${this.animatedCourse}°` : NOT_PROVIDED
           }, {
             title: 'Speed',
-            value: spd ? `${spd} kn` : NOT_PROVIDED
+            value: this.animatedSpd ? `${this.animatedSpd} kn` : NOT_PROVIDED
           }
         ]
+      }
+    },
+
+    watch: {
+      course (newValue) {
+        TweenMax.to(this.$data, 2, { tweenedCourse: newValue })
+      },
+
+      spd (newValue) {
+        TweenMax.to(this.$data, 2, { tweenedSpd: newValue })
       }
     },
 

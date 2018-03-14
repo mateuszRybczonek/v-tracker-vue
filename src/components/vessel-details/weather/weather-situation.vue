@@ -89,7 +89,7 @@
       position: absolute;
       width: 500px;
       height: 500px;
-      transition: all 3s ease-in-out;
+      transition: all 2s ease-in-out;
     }
 
     &__wind-flag, &__sea-flag {
@@ -97,8 +97,7 @@
       top: 45px;
       transform: rotate(180deg);
     }
-
-    &__vessel {
+&__vessel {
       position: relative;
       top: 140px;
       left: 221px;

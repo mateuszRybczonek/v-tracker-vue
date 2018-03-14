@@ -54,20 +54,24 @@
   import VSeaFlag from '../../../components/atoms/sea-flag.vue'
   import VWeatherSituation from '../weather/weather-situation.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
+  import { TweenMax } from 'gsap'
 
   const NOT_PROVIDED = 'not provided'
 
   export default {
+    data () {
+      return {
+        tweenedWindDir: this.report ? this.report.windDir : 0,
+        tweenedWindSpd: this.report ? this.report.windSpd : 0,
+        tweenedSeaState: this.report ? this.report.seaState : 0,
+        tweenedSwellDir: this.report ? this.report.swellDir : 0,
+        tweenedSwellHeight: this.report ? this.report.swellHeight : 0
+      }
+    },
+
     props: {
       report: {
-        type: Object,
-        default: {
-          windDir: 0,
-          windSpd: 0,
-          seaState: 0,
-          swellDir: 0,
-          swellHeight: 0
-        }
+        type: Object
       },
       fetchingReports: {
         type: Boolean
@@ -95,22 +99,42 @@
         return this.report ? this.report.swellHeight : 0
       },
 
+      animatedSeaState () {
+        return this.tweenedSeaState.toFixed(0)
+      },
+
+      animatedWindDir () {
+        return this.tweenedWindDir.toFixed(0)
+      },
+
+      animatedWindSpd () {
+        return this.tweenedWindSpd.toFixed(0)
+      },
+
+      animatedSwellDir () {
+        return this.tweenedSwellDir.toFixed(0)
+      },
+
+      animatedSwellHeight () {
+        return this.tweenedSwellHeight.toFixed(0)
+      },
+
       windData () {
         return [
           {
             title: 'Wind direction',
-            value: this.windDir ? `${this.windDir}°` : NOT_PROVIDED
+            value: this.animatedWindDir ? `${this.animatedWindDir}°` : NOT_PROVIDED
           }, {
             title: 'Wind speed',
-            value: this.windSpd ? `${this.windSpd} kn` : NOT_PROVIDED
+            value: this.animatedWindSpd ? `${this.animatedWindSpd} kn` : NOT_PROVIDED
           }
         ]
       },
 
       seaData () {
-        const seaState = this.seaState
-        const swellDir = this.swellDir
-        const swellHeight = parseInt(this.swellHeight)
+        const seaState = this.animatedSeaState
+        const swellDir = this.animatedSwellDir
+        const swellHeight = parseInt(this.animatedSwellHeight)
 
         return [
           {
@@ -125,6 +149,28 @@
           }
         ]
       }
+    },
+
+    watch: {
+      windSpd (newValue) {
+        TweenMax.to(this.$data, 2, { tweenedWindSpd: newValue })
+      },
+
+      windDir (newValue) {
+        TweenMax.to(this.$data, 2, { tweenedWindDir: newValue })
+      },
+
+      seaState (newValue) {
+        TweenMax.to(this.$data, 2, { tweenedSeaState: newValue })
+      },
+
+      swellDir (newValue) {
+        TweenMax.to(this.$data, 2, { tweenedSwellDir: newValue })
+      },
+
+      swellHeight (newValue) {
+        TweenMax.to(this.$data, 2, { tweenedSwellHeight: newValue })
+      },
     },
 
     components: {
