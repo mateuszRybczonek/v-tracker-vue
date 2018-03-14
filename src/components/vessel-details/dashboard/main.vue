@@ -1,16 +1,11 @@
 <template>
   <div class="vessel-details">
     <h1 class="vessel-details__header">Report details</h1>
-    <v-carousel ref="carousel"
-      :perPage="7"
-      :navigationEnabled="true"
-      :paginationEnabled="false"
-      class="vessel-details__reports-carousel"
-    >
-      <v-slide v-for="report in reversedReports" :key="report.id" class="vessel-details__report-selection">
-        <calendar-card :report="report" @click.native="selectReport(report)"></calendar-card>
-      </v-slide>
-    </v-carousel>
+
+    <report-selector
+      :reports="reversedReports">
+    </report-selector>
+
     <div class="vessel-details__row">
       <google-map class="vessel-details__row__item"
         :report="report"
@@ -50,8 +45,7 @@
   import PositionData from './position-data.vue'
   import NavigationData from './navigation-data.vue'
   import RemainingOnBoard from './remaining-on-board.vue'
-  import CalendarCard from '../../molecules/calendar-card.vue'
-  import { Carousel, Slide } from 'vue-carousel'
+  import ReportSelector from './report-selector'
 
   export default {
     props: {
@@ -85,21 +79,13 @@
       }
     },
 
-    methods: {
-      selectReport (report) {
-        this.$store.dispatch('selectReport', report)
-      }
-    },
-
     components: {
       GoogleMap,
       RemainingOnBoard,
       WeatherData,
       PositionData,
       NavigationData,
-      CalendarCard,
-      VCarousel: Carousel,
-      VSlide: Slide
+      ReportSelector
     }
   }
 </script>
@@ -114,22 +100,6 @@
     &__header {
       padding-top: 50px;
       text-align: center;
-    }
-
-    &__reports-carousel {
-      margin: auto;
-      width: 90%;
-      max-width: 1000px;
-      height: 180px;
-    }
-
-    &__report-selection {
-      display: flex;
-      margin-top: 30px;
-
-      > div {
-        margin: 10px;
-      }
     }
 
     &__row {
