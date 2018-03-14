@@ -13,9 +13,10 @@
           <div class="weather-info__content__wind">
             <v-wind-flag
               class="weather-info__content__wind__flag"
-              :speed="report.windSpd"
-              :direction="report.windDir"
-              :withBorder=true></v-wind-flag>
+              :speed="windSpd"
+              :direction="windDir"
+              :withBorder=true>
+            </v-wind-flag>
             <ul class="weather-info__content__list">
               <li class="weather-info__content__list__item" v-for="windElement in windData">
                 <span class="weather-info__content__list__item__title">{{windElement.title}}</span>
@@ -26,9 +27,10 @@
           <div class="weather-info__content__sea">
             <v-sea-flag
               class="weather-info__content__sea__flag"
-              :height="report.swellHeight"
-              :direction="report.swellDir"
-              :withBorder=true></v-sea-flag>
+              :height="swellHeight"
+              :direction="swellDir"
+              :withBorder=true>
+            </v-sea-flag>
             <ul class="weather-info__content__list">
               <li class="weather-info__content__list__item" v-for="seaElement in seaData">
                 <span class="weather-info__content__list__item__title">{{seaElement.title}}</span>
@@ -37,7 +39,7 @@
             </ul>
           </div>
         </div>
-        <v-weather-situation
+        <v-weather-situation v-if="!fetchingReports"
           class="weather-info__content__situation"
           :report="report">
         </v-weather-situation>
@@ -58,7 +60,14 @@
   export default {
     props: {
       report: {
-        type: Object
+        type: Object,
+        default: {
+          windDir: 0,
+          windSpd: 0,
+          seaState: 0,
+          swellDir: 0,
+          swellHeight: 0
+        }
       },
       fetchingReports: {
         type: Boolean
@@ -66,25 +75,42 @@
     },
 
     computed: {
-      windData () {
-        const windDir = this.report.windDir
-        const windSpd = this.report.windSpd
+      windDir () {
+        return this.report ? this.report.windDir : 0
+      },
 
+      windSpd () {
+        return this.report ? this.report.windSpd : 0
+      },
+
+      seaState () {
+        return this.report ? this.report.seaState : 0
+      },
+
+      swellDir () {
+        return this.report ? this.report.swellDir : 0
+      },
+
+      swellHeight () {
+        return this.report ? this.report.swellHeight : 0
+      },
+
+      windData () {
         return [
           {
             title: 'Wind direction',
-            value: windDir ? `${windDir}°` : NOT_PROVIDED
+            value: this.windDir ? `${this.windDir}°` : NOT_PROVIDED
           }, {
             title: 'Wind speed',
-            value: windSpd ? `${windSpd} kn` : NOT_PROVIDED
+            value: this.windSpd ? `${this.windSpd} kn` : NOT_PROVIDED
           }
         ]
       },
 
       seaData () {
-        const seaState = this.report.seaState
-        const swellDir = this.report.swellDir
-        const swellHeight = parseInt(this.report.swellHeight)
+        const seaState = this.seaState
+        const swellDir = this.swellDir
+        const swellHeight = parseInt(this.swellHeight)
 
         return [
           {
