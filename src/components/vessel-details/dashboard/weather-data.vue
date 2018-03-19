@@ -1,6 +1,9 @@
 <template>
   <div class="weather-data">
-    <v-accordion :showOnInit=true color="blue">
+    <content-placeholders v-if="fetchingReports">
+      <content-placeholders-img class="weather-data__placeholder"></content-placeholders-img>
+    </content-placeholders>
+    <v-accordion :showOnInit=true color="blue" else>
       <div slot="header" class="header-badge__slot">
         <v-icon icon="weather" size="small" color="white"></v-icon>
         <p>Weather info</p>
@@ -10,9 +13,10 @@
           <div class="weather-info__content__wind">
             <v-wind-flag
               class="weather-info__content__wind__flag"
-              :speed="lastReport.windSpd"
-              :direction="lastReport.windDir"
-              :withBorder=true></v-wind-flag>
+              :speed="windSpd"
+              :direction="windDir"
+              :withBorder=true>
+            </v-wind-flag>
             <ul class="weather-info__content__list">
               <li class="weather-info__content__list__item" v-for="windElement in windData">
                 <span class="weather-info__content__list__item__title">{{windElement.title}}</span>
@@ -23,9 +27,10 @@
           <div class="weather-info__content__sea">
             <v-sea-flag
               class="weather-info__content__sea__flag"
-              :height="lastReport.swellHeight"
-              :direction="lastReport.swellDir"
-              :withBorder=true></v-sea-flag>
+              :height="swellHeight"
+              :direction="swellDir"
+              :withBorder=true>
+            </v-sea-flag>
             <ul class="weather-info__content__list">
               <li class="weather-info__content__list__item" v-for="seaElement in seaData">
                 <span class="weather-info__content__list__item__title">{{seaElement.title}}</span>
@@ -34,9 +39,9 @@
             </ul>
           </div>
         </div>
-        <v-weather-situation
+        <v-weather-situation v-if="!fetchingReports"
           class="weather-info__content__situation"
-          :lastReport="lastReport">
+          :report="report">
         </v-weather-situation>
       </div>
     </v-accordion>
@@ -49,36 +54,87 @@
   import VSeaFlag from '../../../components/atoms/sea-flag.vue'
   import VWeatherSituation from '../weather/weather-situation.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
+  import { TweenMax } from 'gsap'
 
   const NOT_PROVIDED = 'not provided'
 
   export default {
+    data () {
+      return {
+        tweenedWindDir: this.report ? this.report.windDir : 0,
+        tweenedWindSpd: this.report ? this.report.windSpd : 0,
+        tweenedSeaState: this.report ? this.report.seaState : 0,
+        tweenedSwellDir: this.report ? this.report.swellDir : 0,
+        tweenedSwellHeight: this.report ? this.report.swellHeight : 0
+      }
+    },
+
     props: {
-      lastReport: {
+      report: {
         type: Object
+      },
+      fetchingReports: {
+        type: Boolean
       }
     },
 
     computed: {
-      windData () {
-        const windDir = this.lastReport.windDir
-        const windSpd = this.lastReport.windSpd
+      windDir () {
+        return this.report ? this.report.windDir : 0
+      },
 
+      windSpd () {
+        return this.report ? this.report.windSpd : 0
+      },
+
+      seaState () {
+        return this.report ? this.report.seaState : 0
+      },
+
+      swellDir () {
+        return this.report ? this.report.swellDir : 0
+      },
+
+      swellHeight () {
+        return this.report ? this.report.swellHeight : 0
+      },
+
+      animatedSeaState () {
+        return this.tweenedSeaState.toFixed(0)
+      },
+
+      animatedWindDir () {
+        return this.tweenedWindDir.toFixed(0)
+      },
+
+      animatedWindSpd () {
+        return this.tweenedWindSpd.toFixed(0)
+      },
+
+      animatedSwellDir () {
+        return this.tweenedSwellDir.toFixed(0)
+      },
+
+      animatedSwellHeight () {
+        return this.tweenedSwellHeight.toFixed(0)
+      },
+
+      windData () {
         return [
           {
             title: 'Wind direction',
-            value: windDir ? `${windDir}°` : NOT_PROVIDED
+            value: this.animatedWindDir ? `${this.animatedWindDir}°` : NOT_PROVIDED
           }, {
             title: 'Wind speed',
-            value: windSpd ? `${windSpd} kn` : NOT_PROVIDED
+            value: this.animatedWindSpd ? `${this.animatedWindSpd} kn` : NOT_PROVIDED
           }
         ]
       },
 
       seaData () {
-        const seaState = this.lastReport.seaState
-        const swellDir = this.lastReport.swellDir
-        const swellHeight = parseInt(this.lastReport.swellHeight)
+        const seaState = this.animatedSeaState
+        const swellDir = this.animatedSwellDir
+        const swellHeight = parseInt(this.animatedSwellHeight)
 
         return [
           {
@@ -95,6 +151,28 @@
       }
     },
 
+    watch: {
+      windSpd (newValue) {
+        TweenMax.to(this.$data, 2, { tweenedWindSpd: newValue })
+      },
+
+      windDir (newValue) {
+        TweenMax.to(this.$data, 2, { tweenedWindDir: newValue })
+      },
+
+      seaState (newValue) {
+        TweenMax.to(this.$data, 2, { tweenedSeaState: newValue })
+      },
+
+      swellDir (newValue) {
+        TweenMax.to(this.$data, 2, { tweenedSwellDir: newValue })
+      },
+
+      swellHeight (newValue) {
+        TweenMax.to(this.$data, 2, { tweenedSwellHeight: newValue })
+      }
+    },
+
     components: {
       VIcon,
       VAccordion,
@@ -106,6 +184,12 @@
 </script>
 
 <style scoped lang="scss">
+  .weather-data {
+    &__placeholder {
+      margin-top: 35px;
+      height: 460px;
+    }
+  }
   .weather-info__content {
     display: flex;
     justify-content: space-between;

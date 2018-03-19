@@ -4,12 +4,14 @@ import Vue from 'vue'
 
 const state = {
   reports: [],
-  fetchingReports: false
+  fetchingReports: false,
+  selectedReport: null
 }
 
 const getters = {
   reports: state => state.reports,
-  fetchingReports: state => state.fetchingReports
+  fetchingReports: state => state.fetchingReports,
+  selectedReport: state => state.selectedReport
 }
 
 const actions = {
@@ -54,6 +56,7 @@ const actions = {
       }
       commit(types.STORE_REPORTS, reports)
       commit(types.FETCHING_REPORTS, false)
+      commit(types.SELECT_REPORT, _getLastReport(reports))
     } catch (error) { console.log(error) }
   },
 
@@ -67,6 +70,10 @@ const actions = {
         commit(types.DELETE_REPORT, reportId)
       } catch (error) { console.log(error) }
     } catch (error) { console.log(error) }
+  },
+
+  selectReport ({ getters, commit }, report) {
+    commit(types.SELECT_REPORT, report)
   }
 }
 
@@ -95,7 +102,16 @@ const mutations = {
     const report = state.reports.filter(report => report.id === reportData.id)
     const reportIndex = state.reports.indexOf(report[0])
     Vue.set(state.reports, reportIndex, reportData)
+  },
+
+  [types.SELECT_REPORT] (state, report) {
+    state.selectedReport = report
   }
+}
+
+function _getLastReport (reports) {
+  const sortedReports = reports.sort((a, b) => a.reportTime > b.reportTime)
+  return sortedReports.slice(-1)[0]
 }
 
 function _mapReportForStore (report) {

@@ -3790,6 +3790,10 @@ grpc@1.4.1:
     node-pre-gyp "^0.6.35"
     protobufjs "^5.0.0"
 
+gsap@^1.20.4:
+  version "1.20.4"
+  resolved "https://registry.yarnpkg.com/gsap/-/gsap-1.20.4.tgz#005fba2a7bfbb3b9d27bd77e1634d2bad365a86a"
+
 gtoken@^1.2.1:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/gtoken/-/gtoken-1.2.3.tgz#5509571b8afd4322e124cf66cf68115284c476d8"
@@ -8542,6 +8546,14 @@ vm-browserify@0.0.4:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-0.0.4.tgz#5d7ea45bbef9e4a6ff65f95438e0a87c357d5a73"
   dependencies:
     indexof "0.0.1"
+
+vue-affix@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/vue-affix/-/vue-affix-0.2.4.tgz#4f599f10517cab95a2d628029f91edb83316afe7"
+
+vue-carousel@^0.6.9:
+  version "0.6.9"
+  resolved "https://registry.yarnpkg.com/vue-carousel/-/vue-carousel-0.6.9.tgz#b5cdd0abefdc8ae99fe48ecde1d765869f91df6d"
 
 vue-content-placeholders@^0.2.1:
   version "0.2.1"

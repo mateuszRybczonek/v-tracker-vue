@@ -1,6 +1,9 @@
 <template>
   <div class="mini-stats-item">
-    <v-accordion :showOnInit=true :color=item.color>
+    <content-placeholders v-if="showPlaceholder">
+      <content-placeholders-img></content-placeholders-img>
+    </content-placeholders>
+    <v-accordion :showOnInit=true :color=item.color v-else>
       <div slot="header" class="header-badge__slot">
         <v-icon :icon=item.icon size="small" color="white"></v-icon>
         <p>{{item.description}}</p>
@@ -37,6 +40,9 @@
       item: {
         type: Object,
         required: true
+      },
+      showPlaceholder: {
+        type: Boolean
       }
     },
 

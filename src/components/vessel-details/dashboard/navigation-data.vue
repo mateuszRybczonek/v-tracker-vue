@@ -1,6 +1,9 @@
 <template>
   <div class="navigation-data">
-    <v-accordion :showOnInit=true color="blue">
+    <content-placeholders v-if="fetchingReports">
+      <content-placeholders-img class="navigation-data__placeholder"></content-placeholders-img>
+    </content-placeholders>
+    <v-accordion :showOnInit=true color="blue" v-else>
       <div slot="header" class="header-badge__slot">
         <v-icon icon="navigation" size="small" color="white"></v-icon>
         <p>Navigation</p>
@@ -21,29 +24,64 @@
 <script>
   import VIcon from '../../../components/atoms/icon.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
+  import { TweenMax } from 'gsap'
 
   const NOT_PROVIDED = 'not provided'
 
   export default {
+    data () {
+      return {
+        tweenedCourse: this.report ? this.report.course : 0,
+        tweenedSpd: this.report ? this.report.spd : 0
+      }
+    },
+
     props: {
-      lastReport: {
+      report: {
         type: Object
+      },
+      fetchingReports: {
+        type: Boolean
       }
     },
 
     computed: {
-      navigationData () {
-        const { course, spd } = this.lastReport
+      course () {
+        return this.report ? this.report.course : 0
+      },
 
+      spd () {
+        return this.report ? this.report.spd : 0
+      },
+
+      animatedCourse () {
+        return this.tweenedCourse.toFixed(0)
+      },
+
+      animatedSpd () {
+        return this.tweenedSpd.toFixed(0)
+      },
+
+      navigationData () {
         return [
           {
             title: 'Course',
-            value: course ? `${course}°` : NOT_PROVIDED
+            value: this.animatedCourse ? `${this.animatedCourse}°` : NOT_PROVIDED
           }, {
             title: 'Speed',
-            value: spd ? `${spd} kn` : NOT_PROVIDED
+            value: this.animatedSpd ? `${this.animatedSpd} kn` : NOT_PROVIDED
           }
         ]
+      }
+    },
+
+    watch: {
+      course (newValue) {
+        TweenMax.to(this.$data, 2, { tweenedCourse: newValue })
+      },
+
+      spd (newValue) {
+        TweenMax.to(this.$data, 2, { tweenedSpd: newValue })
       }
     },
 
@@ -55,6 +93,11 @@
 </script>
 
 <style scoped lang="scss">
+  .navigation-data {
+    &__placeholder {
+      height: 210px;
+    }
+  }
   .navigation-info {
     &__content {
       display: flex;

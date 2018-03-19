@@ -6,6 +6,11 @@
         <span class="sidebar__content__list__item__status__marker" :class="vesselStatusClass"></span>
       </li>
 
+      <div class="sidebar__content__list__item sidebar__content__list__item__last-report" v-if="sidebarVisible">
+        <span class="sidebar__content__list__item__title">Last reported data: {{lastReportDate}}</span>
+        <span class="sidebar__content__list__item__title">({{lastReportDaysAgo}})</span>
+      </div>
+
       <li class="sidebar__content__list__item" v-for="item in items" v-if="sidebarVisible">
         <span class="sidebar__content__list__item__title">{{item.title}}</span>
         <span class="sidebar__content__list__item__value">{{item.value}}</span>
@@ -23,6 +28,11 @@
         type: Object,
         required: true
       },
+
+      report: {
+        type: Object
+      },
+
       lastReport: {
         type: Object
       }
@@ -66,6 +76,16 @@
             'value': this.vessel.flag
           }
         ]
+      },
+
+      lastReportDate () {
+        if (!this.lastReport) return '---'
+        return this.lastReport.reportTime
+      },
+
+      lastReportDaysAgo () {
+        if (!this.lastReport) return '---'
+        return this.$moment(this.lastReport.reportTime).fromNow()
       }
     }
   }
@@ -109,6 +129,12 @@
           }
         }
       }
+
+      &__item__last-report {
+        text-align: right;
+        padding-right: 20px;
+      }
+
       &__item {
         display: flex;
         flex-direction: column;

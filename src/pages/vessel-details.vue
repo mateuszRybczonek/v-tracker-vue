@@ -2,6 +2,7 @@
   <div class="vessel-details">
     <v-sidebar
       :vessel="vessel"
+      :report="selectedReport"
       :lastReport="lastReport">
     </v-sidebar>
     <div class="vessel-details__content" :class="{ 'vessel-details__content--expanded': !sidebarVisible }">
@@ -37,7 +38,8 @@
         'vessels',
         'reports',
         'sidebarVisible',
-        'selectedVesselDetailsComponent'
+        'selectedVesselDetailsComponent',
+        'selectedReport'
       ]),
 
       vessel () {
@@ -48,12 +50,12 @@
         switch (this.selectedVesselDetailsComponent) {
           case VESSEL_DASHBOARD:
             return {
-              lastReport: this.lastReport,
-              previousReport: this.previousReport
+              reports: this.last14Reports
             }
           case REPORTS:
             return {
-              reports: this.reports
+              reports: this.reports,
+              last14Reports: this.last14Reports
             }
           case WEATHER: return {}
           case STATISTICS: return {}
@@ -68,12 +70,16 @@
         return this.reports.sort((a, b) => a.reportTime < b.reportTime)
       },
 
+      previousReport () {
+        return this.reportsSortedAsc.slice(-2)[0]
+      },
+
       lastReport () {
         return this.reportsSortedAsc.slice(-1)[0]
       },
 
-      previousReport () {
-        return this.reportsSortedAsc.slice(-2)[0]
+      last14Reports () {
+        return this.reportsSortedAsc.slice(-14)
       }
     },
 

@@ -11,8 +11,8 @@
     <div class="weather-situation__wind-flag-wrapper" id="weather-situation__wind-flag-wrapper">
       <v-wind-flag
         class="weather-situation__wind-flag"
-        :speed="lastReport.windSpd"
-        :direction="lastReport.windDir"
+        :speed="report.windSpd"
+        :direction="report.windDir"
         :withBorder=false>
       </v-wind-flag>
     </div>
@@ -20,8 +20,8 @@
     <div class="weather-situation__sea-flag-wrapper" id="weather-situation__sea-flag-wrapper">
       <v-sea-flag
         class="weather-situation__sea-flag"
-        :height="lastReport.swellHeight"
-        :direction="lastReport.swellDir"
+        :height="report.swellHeight"
+        :direction="report.swellDir"
         :withBorder=false>
       </v-sea-flag>
     </div>
@@ -34,12 +34,10 @@
   import VIcon from '../../atoms/icon.vue'
 
   export default {
-    props: ['lastReport'],
-
-    data () {
-      return {
-        flagInterval1: '',
-        flagInterval2: ''
+    props: {
+      report: {
+        type: Object,
+        required: true
       }
     },
 
@@ -49,29 +47,27 @@
       VIcon
     },
 
-    mounted () {
-      const windFlagWrapper = document.getElementById('weather-situation__wind-flag-wrapper')
-      windFlagWrapper.style.transform = `rotate(${this.lastReport.windDir}deg)`
-      setTimeout(() => {
-        const windDirVariation = 10
-        this.flagInterval1 = setInterval(() => {
-          windFlagWrapper.style.transform = `rotate(${this.lastReport.windDir - windDirVariation}deg)`
-        }, 10000 / this.lastReport.windSpd)
-        this.flagInterval2 = setInterval(() => {
-          windFlagWrapper.style.transform = `rotate(${this.lastReport.windDir + windDirVariation}deg)`
-        }, 20000 / this.lastReport.windSpd)
-      }, 5000)
-
-      const seaFlagWrapper = document.getElementById('weather-situation__sea-flag-wrapper')
-      seaFlagWrapper.style.transform = `rotate(${this.lastReport.swellDir}deg)`
-
-      const vesselWrapper = document.getElementById('weather-situation__vessel-wrapper')
-      vesselWrapper.style.transform = `rotate(${this.lastReport.course}deg)`
+    watch: {
+      report (newVal, oldVal) {
+        this.setSituation()
+      }
     },
 
-    beforeDestroy () {
-      clearInterval(this.flagInterval1)
-      clearInterval(this.flagInterval2)
+    mounted () {
+      this.setSituation()
+    },
+
+    methods: {
+      setSituation (report) {
+        const windFlagWrapper = document.getElementById('weather-situation__wind-flag-wrapper')
+        windFlagWrapper.style.transform = `rotate(${this.report.windDir}deg)`
+
+        const seaFlagWrapper = document.getElementById('weather-situation__sea-flag-wrapper')
+        seaFlagWrapper.style.transform = `rotate(${this.report.swellDir}deg)`
+
+        const vesselWrapper = document.getElementById('weather-situation__vessel-wrapper')
+        vesselWrapper.style.transform = `rotate(${this.report.course}deg)`
+      }
     }
   }
 </script>
@@ -93,7 +89,7 @@
       position: absolute;
       width: 500px;
       height: 500px;
-      transition: all 5s ease-in-out;
+      transition: all 2s ease-in-out;
     }
 
     &__wind-flag, &__sea-flag {
@@ -101,8 +97,7 @@
       top: 45px;
       transform: rotate(180deg);
     }
-
-    &__vessel {
+&__vessel {
       position: relative;
       top: 140px;
       left: 221px;

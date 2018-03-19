@@ -1,7 +1,7 @@
 <template>
   <div class="vessel-details__reports">
     <reports-list
-      :reports="componentProps.reports"
+      :reports="componentProps.last14Reports"
       class="vessel-details__reports__list">
     </reports-list>
   </div>
@@ -26,6 +26,9 @@
 
 <style scoped lang="scss">
   .vessel-details__reports{
+    max-width: 1440px;
+    margin: 0 auto;
+
     &__list {
       width: 100%;
     }

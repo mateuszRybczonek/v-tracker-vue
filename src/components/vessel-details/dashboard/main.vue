@@ -1,63 +1,68 @@
 <template>
-  <div class="vessel-details__dashboard">
-    <content-placeholders v-if="fetchingReports" class="vessel-details__last-report">
-      <content-placeholders-img class="vessel-details__last-report__placeholder"></content-placeholders-img>
-    </content-placeholders>
-    <div class="vessel-details__last-report" v-else>
-      <h4>Last reported data: {{lastReportDate}}</h4>
-      <p>({{lastReportDaysAgo}})</p>
-    </div>
+  <div class="vessel-details" :class="{ 'vessel-details--full-width': !sidebarVisible }">
+    <h1 class="vessel-details__header">Report details</h1>
+
+    <affix relative-element-selector=".vessel-details"
+      :offset="{ top: -70, bottom: 0 }"
+      @affix="shrinkReportSelect()"
+      @affixtop="expandReportSelect()"
+    >
+      <report-selector
+        class="vessel-details__report-selector"
+        :class="{ 'vessel-details__report-selector--shrunk': shrinkReportSelector }"
+        :reports="reversedReports">
+      </report-selector>
+    </affix>
+
 
     <div class="vessel-details__row">
-      <content-placeholders class="vessel-details__row__item" v-if="fetchingReports">
-        <content-placeholders-img class="google-map__placeholder"></content-placeholders-img>
-      </content-placeholders>
-      <div class="vessel-details__row__item google-map" v-else>
-        Mini-Google map will go here
-      </div>
+      <google-map class="vessel-details__row__item"
+        :report="report"
+        :fetchingReports="fetchingReports">
+      </google-map>
 
       <div class="vessel-details__row__item">
-        <content-placeholders v-if="fetchingReports">
-          <content-placeholders-img class="vessel-details__row__item__placeholder"></content-placeholders-img>
-        </content-placeholders>
-        <position-data class="vessel-details__row__item" v-else
-          :lastReport="lastReport">
+        <position-data class="vessel-details__row__item"
+          :report="report"
+          :fetchingReports="fetchingReports">
         </position-data>
 
-        <content-placeholders v-if="fetchingReports" class="vessel-details__row__item">
-          <content-placeholders-img class="vessel-details__row__item__placeholder"></content-placeholders-img>
-        </content-placeholders>
-        <navigation-data class="vessel-details__row__item" v-else
-          :lastReport="lastReport">
+        <navigation-data class="vessel-details__row__item"
+          :report="report"
+          :fetchingReports="fetchingReports">
         </navigation-data>
       </div>
     </div>
 
-    <content-placeholders v-if="fetchingReports">
-      <content-placeholders-img class="vessel-details__row__item__weather-data__placeholder"></content-placeholders-img>
-    </content-placeholders>
-    <weather-data class="vessel-details__row__item" v-else
-      :lastReport="lastReport">
+    <weather-data class="vessel-details__row__item"
+      :report="report"
+      :fetchingReports="fetchingReports">
     </weather-data>
 
-    <content-placeholders v-if="fetchingReports">
-      <content-placeholders-img></content-placeholders-img>
-    </content-placeholders>
-    <remaining-on-board class="vessel-details__item" v-else
-      :lastReport="lastReport"
-      :previousReport="previousReport">
+    <remaining-on-board class="vessel-details__item" v-if="!fetchingReports"
+      :report="report"
+      :previousReport="previousReport"
+      :fetchingReports="fetchingReports">
     </remaining-on-board>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
+  import GoogleMap from './google-map.vue'
   import WeatherData from './weather-data.vue'
   import PositionData from './position-data.vue'
   import NavigationData from './navigation-data.vue'
   import RemainingOnBoard from './remaining-on-board.vue'
+  import ReportSelector from './report-selector'
 
   export default {
+    data () {
+      return {
+        shrinkReportSelector: false
+      }
+    },
+
     props: {
       componentProps: {
         type: Object,
@@ -67,49 +72,83 @@
 
     computed: {
       ...mapGetters([
-        'fetchingReports'
+        'fetchingReports',
+        'selectedReport',
+        'sidebarVisible'
       ]),
 
-      lastReport () {
-        return this.componentProps.lastReport
+      reports () {
+        return this.componentProps.reports
+      },
+
+      reversedReports () {
+        return [...this.componentProps.reports.reverse()]
+      },
+
+      report () {
+        return this.selectedReport
       },
 
       previousReport () {
-        return this.componentProps.previousReport
+        const indexOfSelectedReport = this.reports.indexOf(this.report)
+        return this.reports[indexOfSelectedReport + 1]
+      }
+    },
+
+    methods: {
+      shrinkReportSelect () {
+        this.shrinkReportSelector = true
       },
 
-      lastReportDate () {
-        if (!this.lastReport) return '---'
-        return this.lastReport.reportTime
-      },
-
-      lastReportDaysAgo () {
-        if (!this.lastReport) return '---'
-        return this.$moment(this.lastReport.reportTime).fromNow()
+      expandReportSelect () {
+        this.shrinkReportSelector = false
       }
     },
 
     components: {
+      GoogleMap,
       RemainingOnBoard,
       WeatherData,
       PositionData,
-      NavigationData
+      NavigationData,
+      ReportSelector
     }
   }
 </script>
 
 <style scoped lang="scss">
   .vessel-details {
-    &__last-report {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 40px 20px;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
 
-      &__placeholder {
-        height: 65px;
+    .vue-affix.affix {
+      transition: left 600ms;
+      box-shadow: 0 0 15px -5px rgba(0, 0, 0, 0.5);
+      background-color: $color-whitey;
+      z-index: 100;
+      left: 300px;
+      right: 0;
+    }
+
+    &--full-width {
+      .vue-affix.affix {
+        left: 0px;
       }
+    }
+
+    &__report-selector {
+      transition: all 600ms ease-in-out;
+      &--shrunk {
+        height: 140px;
+        transform: scale(0.7);
+      }
+    }
+
+    &__header {
+      padding-top: 50px;
+      text-align: center;
     }
 
     &__row {
@@ -121,33 +160,11 @@
       &__item {
         margin-top: 40px;
         min-width: 49%;
-
-        &__placeholder {
-          height: 210px;
-        }
-
-        &__weather-data {
-          &__placeholder {
-            margin-top: 35px;
-            height: 460px;
-          }
-        }
       }
     }
 
     &__item {
       margin-top: 40px;
-    }
-
-    .google-map {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 2px solid $color-light-blue;
-
-      &__placeholder {
-        height: 450px;
-      }
     }
   }
 </style>

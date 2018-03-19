@@ -50,9 +50,25 @@
       }
     },
 
+    watch: {
+      direction (newVal, oldVal) {
+        this.setFlag()
+      },
+
+      speed (newVal, oldVal) {
+        this.setFlag()
+      }
+    },
+
+    methods: {
+      setFlag () {
+        const weatherFlag = document.getElementById('weather-flag')
+        weatherFlag.style.transform = `rotate(${this.windDirectionFrom}deg)`
+      }
+    },
+
     mounted () {
-      const weatherFlag = document.getElementById('weather-flag')
-      weatherFlag.style.transform = `rotate(${this.windDirectionFrom}deg)`
+      this.setFlag()
     }
   }
 </script>
