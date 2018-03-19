@@ -1,10 +1,19 @@
 <template>
-  <div class="vessel-details">
+  <div class="vessel-details" :class="{ 'vessel-details--full-width': !sidebarVisible }">
     <h1 class="vessel-details__header">Report details</h1>
 
-    <report-selector
-      :reports="reversedReports">
-    </report-selector>
+    <affix relative-element-selector=".vessel-details"
+      :offset="{ top: -70, bottom: 0 }"
+      @affix="shrinkReportSelect()"
+      @affixtop="expandReportSelect()"
+    >
+      <report-selector
+        class="vessel-details__report-selector"
+        :class="{ 'vessel-details__report-selector--shrunk': shrinkReportSelector }"
+        :reports="reversedReports">
+      </report-selector>
+    </affix>
+
 
     <div class="vessel-details__row">
       <google-map class="vessel-details__row__item"
@@ -48,6 +57,12 @@
   import ReportSelector from './report-selector'
 
   export default {
+    data () {
+      return {
+        shrinkReportSelector: false
+      }
+    },
+
     props: {
       componentProps: {
         type: Object,
@@ -58,7 +73,8 @@
     computed: {
       ...mapGetters([
         'fetchingReports',
-        'selectedReport'
+        'selectedReport',
+        'sidebarVisible'
       ]),
 
       reports () {
@@ -79,6 +95,16 @@
       }
     },
 
+    methods: {
+      shrinkReportSelect () {
+        this.shrinkReportSelector = true
+      },
+
+      expandReportSelect () {
+        this.shrinkReportSelector = false
+      }
+    },
+
     components: {
       GoogleMap,
       RemainingOnBoard,
@@ -96,6 +122,29 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+
+    .vue-affix.affix {
+      transition: left 600ms;
+      box-shadow: 0 0 15px -5px rgba(0, 0, 0, 0.5);
+      background-color: $color-whitey;
+      z-index: 100;
+      left: 300px;
+      right: 0;
+    }
+
+    &--full-width {
+      .vue-affix.affix {
+        left: 0px;
+      }
+    }
+
+    &__report-selector {
+      transition: all 600ms ease-in-out;
+      &--shrunk {
+        height: 140px;
+        transform: scale(0.7);
+      }
+    }
 
     &__header {
       padding-top: 50px;

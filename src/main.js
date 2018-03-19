@@ -10,11 +10,13 @@ import { sync } from 'vuex-router-sync'
 import router from './router/index'
 import store from './store/index'
 import VueContentPlaceholders from 'vue-content-placeholders'
+import VueAffix from 'vue-affix'
 
 Vue.use(VueContentPlaceholders)
 Vue.use(VueMomentJS, moment)
 Vue.use(Vuelidate)
 Vue.use(VueMaterial)
+Vue.use(VueAffix)
 Vue.config.productionTip = false
 
 axios.defaults.baseURL = 'https://v-tracker-vue.firebaseio.com/'

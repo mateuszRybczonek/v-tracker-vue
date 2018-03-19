@@ -170,7 +170,7 @@
 
       swellHeight (newValue) {
         TweenMax.to(this.$data, 2, { tweenedSwellHeight: newValue })
-      },
+      }
     },
 
     components: {

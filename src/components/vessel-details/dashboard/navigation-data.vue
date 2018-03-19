@@ -63,8 +63,6 @@
       },
 
       navigationData () {
-        const { spd } = this.report
-
         return [
           {
             title: 'Course',
