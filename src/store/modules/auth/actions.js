@@ -1,25 +1,11 @@
-import * as types from '../mutation-types'
-import authAxios from '../../axios-auth'
+import * as types from '../../mutation-types'
+import authAxios from '../../../axios-auth'
 import globalAxios from 'axios'
-import router from '../../router/index'
+import router from '../../../router/index'
 
 const API_KEY = 'AIzaSyAFJIoUJ2ZzcnfA0O-ODvWRHsOvCMjg6ow'
 
-const state = {
-  idToken: null,
-  userId: null,
-  user: null,
-  authError: null
-}
-
-const getters = {
-  user: state => state.user,
-  isAuthenticated: state => state.idToken !== null,
-  isAuthError: state => state.authError,
-  idToken: state => state.idToken
-}
-
-const actions = {
+export default {
   setLogoutTimer ({ commit }, expirationTime) {
     setTimeout(() => {
       commit(types.CLEAR_AUTH_DATA)
@@ -140,37 +126,4 @@ const actions = {
       console.log(error)
     }
   }
-}
-
-const mutations = {
-  [types.AUTH_USER] (state, userData) {      // storing the token in the vuex store
-    state.idToken = userData.token
-    state.userId = userData.userId
-    state.userEmail = userData.userEmail
-  },
-
-  [types.STORE_USER] (state, user) {
-    state.user = user
-  },
-
-  [types.CLEAR_AUTH_DATA] (state) {
-    state.idToken = null
-    state.userId = null
-    state.user = null
-  },
-
-  [types.CLEAR_AUTH_ERROR] (state) {
-    state.authError = false
-  },
-
-  [types.AUTH_ERROR] (state, error) {
-    state.authError = error
-  }
-}
-
-export default {
-  state,
-  getters,
-  actions,
-  mutations
 }

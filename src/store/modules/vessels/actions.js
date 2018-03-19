@@ -1,16 +1,8 @@
-import * as types from '../mutation-types'
+import * as types from '../../mutation-types'
 import globalAxios from 'axios'
-import router from '../../router/index'
+import router from '../../../router/index'
 
-const state = {
-  vessels: null
-}
-
-const getters = {
-  vessels: state => state.vessels
-}
-
-const actions = {
+export default {
   async createNewVessel ({ getters }, vesselData) {
     if (!getters.idToken) {
       return
@@ -58,23 +50,4 @@ const actions = {
       } catch (error) { console.log(error) }
     } catch (error) { console.log(error) }
   }
-}
-
-const mutations = {
-  [types.STORE_VESSEL] (state, vessels) {
-    state.vessels = vessels
-  },
-
-  [types.DELETE_VESSEL] (state, vesselId) {
-    const vessel = state.vessels.filter(vessel => vessel.id === vesselId)
-    const vesselIndex = state.vessels.indexOf(vessel)
-    state.vessels.splice(vesselIndex, 1)
-  }
-}
-
-export default {
-  state,
-  getters,
-  actions,
-  mutations
 }
