@@ -202,26 +202,6 @@
       }
     }
 
-    &--ship {
-      &--huge {
-        mask-image: url('../../assets/icons.svg');
-        mask-position: 50% -790px;
-        mask-size: 141%;
-      }
-    }
-
-    &--files {
-      mask-image: url('../../assets/icons.svg');
-      &--small {
-        mask-position: 50% -45px;
-        mask-size: 141%;
-      }
-      &--huge {
-        mask-position: 50% -206px;
-        mask-size: 141%;
-      }
-    }
-
     &--position {
       &--small {
         mask-image: url('../../assets/icons.svg');
