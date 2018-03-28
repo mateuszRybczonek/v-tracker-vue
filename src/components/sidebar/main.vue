@@ -5,7 +5,7 @@
         :vessel="vessel">
       </sidebar-header>
 
-      <sidebar-quick-links
+      <sidebar-quick-links class="sidebar__quick-links"
         :vertical="!sidebarVisible">
       </sidebar-quick-links>
 

@@ -1,19 +1,30 @@
 <template>
-  <div class="sidebar__quick-links" :class="{ 'sidebar__quick-links--vertical': vertical }">
+  <div class="quick-links" :class="{ 'quick-links--vertical': vertical }">
     <button
       v-for="button in buttons"
-      class="sidebar__quick-links__icon"
-      :class="{ 'sidebar__quick-links__icon--active': selectedVesselDetailsComponent === button.component }"
+      class="quick-links__icon"
+      :class="{ 'quick-links__icon--active': selectedVesselDetailsComponent === button.component }"
       @click="selectVesselDetailsComponent(button.component)">
-      <v-icon :icon=button.icon size="small" color="white"></v-icon>
+      <IconBase
+        :icon-name="button.icon"
+        width="32"
+        height="32"
+        :viewBox="button.viewBox"
+        >
+        <component :is="button.icon"></component>
+      </IconBase>
     </button>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
-  import VIcon from '../atoms/icon.vue'
   import { COMPONENT_NAMES } from '../../constants/vessel-details'
+  import IconBase from '../../components/atoms/icon-base.vue'
+  import IconFiles from '../../components/icons/icon-files.vue'
+  import IconOverview from '../../components/icons/icon-overview.vue'
+  import IconWeather from '../../components/icons/icon-weather.vue'
+  import IconStatistics from '../../components/icons/icon-statistics.vue'
 
   const { VESSEL_DASHBOARD, REPORTS, WEATHER, STATISTICS } = COMPONENT_NAMES
 
@@ -33,16 +44,17 @@
       buttons () {
         return [
           {
-            'icon': 'overview',
+            'icon': 'IconOverview',
             'component': VESSEL_DASHBOARD
           }, {
-            'icon': 'files',
+            'icon': 'IconFiles',
             'component': REPORTS
           }, {
-            'icon': 'weather',
-            'component': WEATHER
+            'icon': 'IconWeather',
+            'component': WEATHER,
+            'viewBox': '0 0 32 32'
           }, {
-            'icon': 'statistics',
+            'icon': 'IconStatistics',
             'component': STATISTICS
           }
         ]
@@ -56,13 +68,17 @@
     },
 
     components: {
-      VIcon
+      IconFiles,
+      IconBase,
+      IconOverview,
+      IconWeather,
+      IconStatistics
     }
   }
 </script>
 
 <style scoped lang="scss">
-  .sidebar__quick-links {
+  .quick-links {
     display: flex;
     justify-content: center;
     padding: 0 30px;
@@ -75,7 +91,7 @@
       margin: 0;
       padding: 0;
 
-      .sidebar__quick-links__icon {
+      .quick-links__icon {
         width: 50px;
         height: 50px;
         transition: all 1s;
@@ -89,6 +105,7 @@
       width: 90px;
       height: 30px;
       background-color: $color-blue-grey;
+      color: $color-whitey;
       list-style-type: none;
       padding: 0;
       border: none;
@@ -99,14 +116,16 @@
 
       &--active {
         background-color: $color-whitey;
+        color: $color-dark-blue;
+
+        g {
+          fill: $color-dark-blue;
+        }
 
         &:hover {
           background-color: $color-whitey;
         }
 
-        > i {
-          background-color: $color-dark-blue;
-        }
       }
     }
   }
