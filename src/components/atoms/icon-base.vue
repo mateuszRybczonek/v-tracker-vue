@@ -1,8 +1,10 @@
 <template>
   <svg xmlns="http://www.w3.org/2000/svg"
+    @click="clickAnimation"
+    @mouseenter="mouseoverAnimation"
     :width="width"
     :height="height"
-    viewBox="0 0 76 76"
+    :viewBox="viewBox"
     :aria-labelledby="iconName"
     role="presentation"
   >
@@ -18,7 +20,7 @@
     props: {
       iconName: {
         type: String,
-        default: 'box'
+        default: 'ship'
       },
       width: {
         type: [Number, String],
@@ -31,6 +33,18 @@
       iconColor: {
         type: String,
         default: 'currentColor'
+      },
+      viewBox: {
+        type: String,
+        default: '0 0 76 76'
+      },
+      clickAnimation: {
+        type: Function,
+        default: () => {}
+      },
+      mouseoverAnimation: {
+        type: Function,
+        default: () => {}
       }
     }
   }
