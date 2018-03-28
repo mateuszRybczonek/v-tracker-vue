@@ -1,18 +1,28 @@
 <template>
   <v-card to='/dashboard/vessels/new' class="vessels-list-new">
-    <v-icon class="vessels-list-new__icon" icon="tiles-plus" size="huge" color="light-grey"></v-icon>
+    <IconBase
+      class="vessels-list-new__icon"
+      icon-name='new vessel icon'
+      iconColor='#999'
+      width='200'
+      height='200'
+    >
+      <IconTilesPlus></IconTilesPlus>
+    </IconBase>
     <p>Add new vessel</p>
   </v-card>
 </template>
 
 <script>
   import VCard from '../../molecules/card.vue'
-  import VIcon from '../../atoms/icon.vue'
+  import IconBase from '../../atoms/icon-base.vue'
+  import IconTilesPlus from '../../icons/icon-tiles-plus.vue'
 
   export default {
     components: {
       VCard,
-      VIcon
+      IconBase,
+      IconTilesPlus,
     }
   }
 </script>
@@ -20,7 +30,7 @@
 <style scoped lang="scss">
   .vessels-list-new {
     &__icon {
-      margin-bottom: 60px;
+      margin-bottom: 20px;
     }
   }
 </style>
