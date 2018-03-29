@@ -18,10 +18,9 @@
 
 <style scoped lang="scss">
   .input {
-    width: 250px;
+    width: 200px;
     padding-left: 0;
     opacity: 0.5;
-    background: url('../../assets/icons.svg') no-repeat;
 
     &--with-unit {
       display: flex;
@@ -47,14 +46,14 @@
       border-radius: 4px;
       border: none;
       font-size: 17px;
-      padding: 10px 10px 10px 50px;
+      padding: 10px;
 
       &::placeholder {
         color: $color-black
       }
 
       &:focus {
-        outline-color: $color-dark-grey;
+        outline: none;
       }
     }
   }

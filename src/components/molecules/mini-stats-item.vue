@@ -5,12 +5,22 @@
     </content-placeholders>
     <v-accordion :showOnInit=true :color=item.color v-else>
       <div slot="header" class="header-badge__slot">
-        <v-icon :icon=item.icon size="small" color="white"></v-icon>
+        <IconBase
+          width=30
+          height=30
+          color="#FFF"
+          viewBox="10 0 76 76">
+          <component :is="item.icon"></component>
+        </IconBase>
         <p>{{item.description}}</p>
       </div>
       <div slot="body" class="mini-stats-item__content" :class=item.color>
         <div class="item__badge">
-          <v-icon :icon='item.icon' size="medium" :color=item.color></v-icon>
+          <IconBase
+            width=80
+            height=80>
+            <component :is="item.icon"></component>
+          </IconBase>
         </div>
         <div class="item__description">
           <div class="description__header">
@@ -31,9 +41,12 @@
 </template>
 
 <script>
-  import VIcon from '../../components/atoms/icon.vue'
   import VAccordion from '../../components/molecules/accordion.vue'
   import VMiniStatsChange from '../../components/molecules/mini-stats-change.vue'
+  import IconBase from '../../components/atoms/icon-base.vue'
+  import IconFuel from '../../components/icons/icon-fuel.vue'
+  import IconWater from '../../components/icons/icon-water.vue'
+  import IconPeople from '../../components/icons/icon-people.vue'
 
   export default {
     props: {
@@ -47,9 +60,12 @@
     },
 
     components: {
-      VIcon,
       VAccordion,
-      VMiniStatsChange
+      VMiniStatsChange,
+      IconBase,
+      IconFuel,
+      IconWater,
+      IconPeople
     }
   }
 </script>

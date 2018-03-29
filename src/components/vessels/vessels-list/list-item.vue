@@ -122,10 +122,6 @@
         width: 30px;
         height: 30px;
       }
-
-      &__icon-button {
-        margin: 3px;
-      }
     }
 
     .md-progress-spinner {
