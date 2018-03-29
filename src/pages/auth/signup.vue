@@ -2,30 +2,55 @@
   <div class="signup">
     <form-wrapper title="Register new account" size="narrow">
       <form slot="content" @submit.prevent="onSubmit">
-        <input class="input__email input--with-error" :class="{ invalid: validationsEnabled && $v.email.$invalid }"
-          v-model="email"
-          placeholder="Email"
-          @blur="$v.email.$touch()">
+        <div class="input__wrapper">
+          <IconBase
+            width=50
+            height=50
+            viewBox='0 0 50 50'>
+            <IconEmail></IconEmail>
+          </IconBase>
+          <input class="input--with-error" :class="{ invalid: validationsEnabled && $v.email.$invalid }"
+            v-model="email"
+            placeholder="Email"
+            @blur="$v.email.$touch()">
+        </div>
         <div class="error">
           <span class="validation-error" v-if="validationsEnabled && !$v.email.required">This field must not be empty.</span>
           <span class="validation-error" v-if="validationsEnabled && !$v.email.email">Please provide a valid email address.</span>
           <!--<span class="validation-error" v-if="validationsEnabled && !$v.email.unique">The email you provided already exist.</span>-->
         </div>
 
-        <input class="input__password input--with-error" :class="{ invalid: validationsEnabled && $v.password.$invalid }"
-          type="password"
-          v-model="password"
-          placeholder="Password"
-          @input="$v.password.$touch()">
+        <div class="input__wrapper">
+          <IconBase
+            width=50
+            height=50
+            viewBox='0 0 50 50'>
+            <IconLock></IconLock>
+          </IconBase>
+          <input class="input__password input--with-error" :class="{ invalid: validationsEnabled && $v.password.$invalid }"
+            type="password"
+            v-model="password"
+            placeholder="Password"
+            @input="$v.password.$touch()">
+        </div>
         <div class="error">
           <span class="validation-error" v-if="validationsEnabled && !$v.password.required">This field must not be empty.</span>
           <span class="validation-error" v-if="validationsEnabled && !$v.password.minLength">The minimum length is {{ $v.password.$params.minLength.min }}.</span>
         </div>
-        <input class="input__password input--with-error" :class="{ invalid: validationsEnabled && $v.confirmPassword.$invalid }"
-          type="password"
-          v-model="confirmPassword"
-          placeholder="Password confirmation"
-          @input="$v.confirmPassword.$touch()">
+
+        <div class="input__wrapper">
+          <IconBase
+            width=50
+            height=50
+            viewBox='0 0 50 50'>
+            <IconLock></IconLock>
+          </IconBase>
+          <input class="input__password input--with-error" :class="{ invalid: validationsEnabled && $v.confirmPassword.$invalid }"
+            type="password"
+            v-model="confirmPassword"
+            placeholder="Password confirmation"
+            @input="$v.confirmPassword.$touch()">
+        </div>
         <div class="error">
           <span class="validation-error" v-if="validationsEnabled && !$v.confirmPassword.sameAs">
             The confirmation password and password must be the same.
@@ -46,6 +71,9 @@
 
   import FormWrapper from '../../components/form-wrapper.vue'
   import PositiveButton from '../../components/atoms/buttons/positive.vue'
+  import IconBase from '../../components/atoms/icon-base.vue'
+  import IconEmail from '../../components/icons/icon-email.vue'
+  import IconLock from '../../components/icons/icon-lock.vue'
 
   export default {
     data () {
@@ -98,7 +126,10 @@
 
     components: {
       PositiveButton,
-      FormWrapper
+      FormWrapper,
+      IconBase,
+      IconEmail,
+      IconLock
     }
   }
 </script>
@@ -128,21 +159,17 @@
         }
       }
 
-
-      .input__email {
-        background: url('../../assets/icons.svg') no-repeat;
-        background-position-y: -370px;
-        background-size: 15%;
-        padding-left: 0;
+      .input__wrapper {
+        display: flex;
+        background-color: $color-whitey-darker;
+        color: $color-dark-grey;
+        border-radius: 4px;
+        border: none;
         opacity: 0.5;
-      }
 
-      .input__password {
-        background: url('../../assets/icons.svg') no-repeat;
-        background-position-y: -416px;
-        background-size: 15%;
-        padding-left: 0;
-        opacity: 0.5;
+        svg {
+          transform: translate(15px, 12px);
+        }
       }
 
       .input--with-error {
@@ -155,14 +182,14 @@
         border-radius: 4px;
         border: none;
         font-size: 17px;
-        padding: 10px 10px 10px 50px;
+        padding: 10px;
 
         &::placeholder {
           color: $color-black
         }
 
         &:focus {
-          outline-color: $color-dark-grey;
+          outline: none;
         }
       }
 
