@@ -4,11 +4,12 @@
     <router-link tag="i"
       :to="editLink"
       class="sidebar__header__edit-link">
-      <v-icon
-        icon="pencil"
-        size="small"
-        color="white">
-      </v-icon>
+      <IconBase
+        width=40
+        height=40
+        viewBox='20 -5 76 76'>
+        <IconPencil></IconPencil>
+      </IconBase>
     </router-link>
     <div class="sidebar__header__close" @click="toggle">
       <div class="sidebar__header__close__icon" :class="{ 'sidebar__header__close__icon--open': !sidebarVisible }">
@@ -21,7 +22,8 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import VIcon from '../atoms/icon.vue'
+  import IconBase from '../../components/atoms/icon-base.vue'
+  import IconPencil from '../../components/icons/icon-pencil.vue'
 
   export default {
     props: {
@@ -85,7 +87,9 @@
     },
 
     components: {
-      VIcon
+      IconPencil,
+      IconBase,
+
     }
   }
 </script>

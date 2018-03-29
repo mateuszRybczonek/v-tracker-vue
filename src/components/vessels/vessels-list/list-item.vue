@@ -16,7 +16,12 @@
         <router-link tag="i"
           :to="editLink"
           class="button__edit">
-          <v-icon icon="pencil" size="small" type="positive"></v-icon>
+          <IconBase
+            width=50
+            height=50
+            color='#999'>
+            <IconPencil></IconPencil>
+          </IconBase>
         </router-link>
         <span @click.prevent.stop="deleteVessel(vessel.id)">
           <v-icon icon="trash" size="small" type="negative"></v-icon>
@@ -27,7 +32,8 @@
 
 <script>
   import VCard from '../../molecules/card.vue'
-  import VIcon from '../../atoms/icon.vue'
+  import IconBase from '../../atoms/icon-base.vue'
+  import IconPencil from '../../icons/icon-pencil.vue'
 
   export default {
     name: 'ProgressSpinnerSizes',
@@ -47,7 +53,8 @@
 
     components: {
       VCard,
-      VIcon
+      IconBase,
+      IconPencil
     },
 
     computed: {

@@ -172,45 +172,11 @@
       }
     }
 
-    &--tiles-plus {
-      mask-image: url('../../assets/icons.svg');
-
-      &--medium {
-        mask-position: -13px -222px;
-      }
-
-      &--huge {
-        mask-position: 50% -600px;
-        mask-size: 141%;
-      }
-    }
-
-    &--pencil {
-      mask-image: url('../../assets/icons.svg');
-
-      &--small {
-        mask-position: 50% -77px;
-        mask-size: 130%;
-      }
-    }
-
     &--trash {
       mask-image: url('../../assets/icons.svg');
       &--small {
         mask-position: 50% -221px;
         mask-size: 130%;
-      }
-    }
-
-    &--files {
-      mask-image: url('../../assets/icons.svg');
-      &--small {
-        mask-position: 50% -45px;
-        mask-size: 141%;
-      }
-      &--huge {
-        mask-position: 50% -206px;
-        mask-size: 141%;
       }
     }
 
@@ -300,14 +266,6 @@
       &--small {
         mask-image: url('../../assets/icons.svg');
         mask-position: 50% -810px;
-        mask-size: 130%;
-      }
-    }
-
-    &--save {
-      &--small {
-        mask-image: url('../../assets/icons.svg');
-        mask-position: 50% -965px;
         mask-size: 130%;
       }
     }
