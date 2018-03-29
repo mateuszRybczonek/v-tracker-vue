@@ -24,7 +24,6 @@
               height=40>
               <IconTrash></IconTrash>
             </IconBase>
-            <v-icon icon="trash" size="small" type="negative"></v-icon>
           </span>
         </div>
       </div>

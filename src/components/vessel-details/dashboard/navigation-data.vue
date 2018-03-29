@@ -5,7 +5,13 @@
     </content-placeholders>
     <v-accordion :showOnInit=true color="blue" v-else>
       <div slot="header" class="header-badge__slot">
-        <v-icon icon="navigation" size="small" color="white"></v-icon>
+        <IconBase
+          width=30
+          height=30
+          color="#FFF"
+          viewBox="-5 -7 40 40">
+          <IconNavigation></IconNavigation>
+        </IconBase>
         <p>Navigation</p>
       </div>
       <div slot="body" class="navigation-info__content">
@@ -22,8 +28,10 @@
 </template>
 
 <script>
-  import VIcon from '../../../components/atoms/icon.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
+  import IconNavigation from '../../../components/icons/icon-navigation.vue'
+  import IconBase from '../../../components/atoms/icon-base.vue'
+
   import { TweenMax } from 'gsap'
 
   const NOT_PROVIDED = 'not provided'
@@ -86,7 +94,8 @@
     },
 
     components: {
-      VIcon,
+      IconNavigation,
+      IconBase,
       VAccordion
     }
   }

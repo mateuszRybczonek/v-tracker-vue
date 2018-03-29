@@ -5,7 +5,13 @@
     </content-placeholders>
     <v-accordion :showOnInit=true color="red" v-else>
       <div slot="header" class="header-badge__slot">
-        <v-icon icon="position" size="small" color="white"></v-icon>
+        <IconBase
+          width=30
+          height=30
+          color="#FFF"
+          viewBox="-5 -7 40 40">
+          <IconPosition></IconPosition>
+        </IconBase>
         <p>Position</p>
       </div>
       <div slot="body" class="position-info__content">
@@ -23,7 +29,8 @@
 
 <script>
   import { decimalToDMS } from '../../../utils/coordinates-utils'
-  import VIcon from '../../../components/atoms/icon.vue'
+  import IconBase from '../../../components/atoms/icon-base.vue'
+  import IconPosition from '../../../components/icons/icon-position.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
 
   const NOT_PROVIDED = 'not provided'
@@ -55,7 +62,8 @@
     },
 
     components: {
-      VIcon,
+      IconBase,
+      IconPosition,
       VAccordion
     }
   }
