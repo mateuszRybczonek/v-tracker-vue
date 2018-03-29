@@ -3,10 +3,8 @@
     :width="width"
     :height="height"
     :viewBox="viewBox"
-    :aria-labelledby="iconName"
     role="presentation"
   >
-    <title :id="iconName" lang="en">{{iconName}} icon</title>
     <g :fill="iconColor">
       <slot/>
     </g>
@@ -16,10 +14,6 @@
 <script>
   export default {
     props: {
-      iconName: {
-        type: String,
-        default: 'ship'
-      },
       width: {
         type: [Number, String],
         default: 76

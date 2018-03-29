@@ -13,18 +13,19 @@
         IMO number: {{vessel.imoNumber}}
       </p>
       <div class="vessels-list-item__buttons">
-        <router-link tag="i"
-          :to="editLink"
-          class="button__edit">
+        <router-link :to="editLink" class="edit-icon">
           <IconBase
-            width=50
-            height=50
-            color='#999'>
+            width=40
+            height=40>
             <IconPencil></IconPencil>
           </IconBase>
         </router-link>
-        <span @click.prevent.stop="deleteVessel(vessel.id)">
-          <v-icon icon="trash" size="small" type="negative"></v-icon>
+        <span class="delete-icon" @click.prevent.stop="deleteVessel(vessel.id)">
+          <IconBase
+            width=40
+            height=40>
+            <IconTrash></IconTrash>
+          </IconBase>
         </span>
       </div>
     </v-card>
@@ -34,6 +35,7 @@
   import VCard from '../../molecules/card.vue'
   import IconBase from '../../atoms/icon-base.vue'
   import IconPencil from '../../icons/icon-pencil.vue'
+  import IconTrash from '../../icons/icon-trash.vue'
 
   export default {
     name: 'ProgressSpinnerSizes',
@@ -54,7 +56,8 @@
     components: {
       VCard,
       IconBase,
-      IconPencil
+      IconPencil,
+      IconTrash
     },
 
     computed: {
@@ -78,8 +81,8 @@
   .vessels-list-item {
     position: relative;
     display: flex;
-    align-items: baseline;
-    background-color: #FFF;
+    align-items: center;
+    background-color: $color-white;
     width: 350px;
     text-align: center;
     @include border-radius(5);
@@ -113,14 +116,24 @@
     }
 
     &__buttons {
+      position: absolute;
+      bottom: 0;
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
       width: 100%;
 
-      .button__edit {
-        width: 30px;
-        height: 30px;
+      .edit-icon, .delete-icon {
+        color: $color-light-grey;
+        transition: color 600ms;
+      }
+
+      .edit-icon:hover {
+        color: $color-green;
+      }
+
+      .delete-icon:hover {
+        color: $color-tomato;
       }
     }
 

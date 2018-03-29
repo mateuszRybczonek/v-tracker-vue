@@ -2,7 +2,6 @@
   <v-card to='/dashboard/vessels/new' class="vessels-list-new">
     <IconBase
       class="vessels-list-new__icon"
-      icon-name='new vessel icon'
       iconColor='#999'
       width='200'
       height='200'

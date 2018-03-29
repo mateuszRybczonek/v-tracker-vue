@@ -1,6 +1,6 @@
 <template>
   <v-list-item @click.native="showNewReportFormAction()" class="reports-list-new">
-    <IconBase class="vessels-list-new__icon" :icon-name='icon' iconColor="#999">
+    <IconBase class="vessels-list-new__icon" iconColor="#999">
       <IconTilesPlus></IconTilesPlus>
     </IconBase>
     <p>Add new report</p>

@@ -6,7 +6,6 @@
       :class="{ 'quick-links__icon--active': selectedVesselDetailsComponent === button.component }"
       @click="selectVesselDetailsComponent(button.component)">
       <IconBase
-        :icon-name="button.icon"
         width="32"
         height="32"
         :viewBox="button.viewBox"
