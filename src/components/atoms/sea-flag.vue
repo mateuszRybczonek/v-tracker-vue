@@ -1,14 +1,29 @@
 <template>
   <div id="sea-flag" class="sea-flag" :class="classes">
     <div class="sea-flag__icons-wrapper">
-      <v-icon icon="arrow" size="small" color="black" id="arrow" :class="colorClass"></v-icon>
-      <v-icon icon="wave" size="small" color="black" :class="colorClass"></v-icon>
+      <IconBase id="arrow"
+        width=100
+        height=100
+        :color='strokeColor'
+        :strokeColor='strokeColor'
+        viewBox="-6 22 60 60">
+        <IconArrow></IconArrow>
+      </IconBase>
+      <IconBase class="sea-flag__icon-wave"
+        width=30
+        height=30
+        :strokeColor='strokeColor'
+        viewBox="0 35 40 40">
+        <IconWave></IconWave>
+      </IconBase>
     </div>
   </div>
 </template>
 
 <script>
-  import VIcon from '../../components/atoms/icon.vue'
+  import IconWave from '../../components/icons/icon-wave.vue'
+  import IconArrow from '../../components/icons/icon-arrow.vue'
+  import IconBase from '../../components/atoms/icon-base.vue'
 
   export default {
     props: {
@@ -35,6 +50,12 @@
         return `${this.colorClass} ${this.border}`
       },
 
+      strokeColor () {
+        if (this.height < 3) return '#4d6d9b'
+        if (this.height < 6) return '#ffc346'
+        return '#F37272'
+      },
+
       colorClass () {
         if (this.height < 3) return ''
         if (this.height < 6) return 'amber'
@@ -57,7 +78,9 @@
     },
 
     components: {
-      VIcon
+      IconWave,
+      IconBase,
+      IconArrow
     },
 
     methods: {
@@ -109,6 +132,12 @@
         top: 9px;
         left: 9px;
       }
+    }
+
+    &__icon-wave {
+      position: relative;
+      top: -70px;
+      left: 33px;
     }
 
     .amber {

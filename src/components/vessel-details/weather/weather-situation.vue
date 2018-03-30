@@ -1,11 +1,14 @@
 <template>
   <div class="weather-situation">
     <div class="weather-situation__vessel-wrapper" id="weather-situation__vessel-wrapper">
-      <v-icon
-        class="weather-situation__vessel"
-        icon="vessel"
-        size="huge"
-        color="light-blue"></v-icon>
+      <IconBase class="weather-situation__vessel"
+        width=60
+        height=265
+        color="#7c9cc9"
+        strokeColor="#7c9cc9"
+        viewBox="0 0 76 76">
+        <IconVessel></IconVessel>
+      </IconBase>
     </div>
 
     <div class="weather-situation__wind-flag-wrapper" id="weather-situation__wind-flag-wrapper">
@@ -31,7 +34,8 @@
 <script>
   import VWindFlag from '../../atoms/wind-flag.vue'
   import VSeaFlag from '../../atoms/sea-flag.vue'
-  import VIcon from '../../atoms/icon.vue'
+  import IconVessel from '../../icons/icon-vessel.vue'
+  import IconBase from '../../atoms/icon-base.vue'
 
   export default {
     props: {
@@ -44,7 +48,8 @@
     components: {
       VWindFlag,
       VSeaFlag,
-      VIcon
+      IconBase,
+      IconVessel
     },
 
     watch: {
@@ -97,10 +102,11 @@
       top: 45px;
       transform: rotate(180deg);
     }
-&__vessel {
+
+    &__vessel {
       position: relative;
-      top: 140px;
-      left: 221px;
+      top: 58px;
+      left: 219px;
       opacity: 0.7;
     }
   }

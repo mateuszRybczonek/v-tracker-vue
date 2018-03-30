@@ -1,13 +1,14 @@
 <template>
   <v-card class="dashboard-card" :to="destination">
-    <v-icon class="dashboard-card__icon" :icon=icon size="huge" color="light-grey"></v-icon>
+    <component :is="icon"></component>
     <p class="dashboard-card__label">{{label}}</p>
   </v-card>
 </template>
 
 <script>
   import VCard from '../../components/molecules/card.vue'
-  import VIcon from '../../components/atoms/icon.vue'
+  import IconFiles from '../../components/icons/animated/icon-files.vue'
+  import IconShip from '../../components/icons/animated/icon-ship.vue'
 
   export default {
     props: {
@@ -27,7 +28,8 @@
 
     components: {
       VCard,
-      VIcon
+      IconFiles,
+      IconShip
     }
   }
 </script>
@@ -35,9 +37,9 @@
 <style scoped lang="scss">
   .dashboard-card {
     &__icon {
-      width: 151px;
-      height: 151px;
-      margin-bottom: 70px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
     }
   }
 </style>

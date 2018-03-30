@@ -13,13 +13,19 @@
         IMO number: {{vessel.imoNumber}}
       </p>
       <div class="vessels-list-item__buttons">
-        <router-link tag="i"
-          :to="editLink"
-          class="button__edit">
-          <v-icon icon="pencil" size="small" type="positive"></v-icon>
+        <router-link :to="editLink" class="edit-icon">
+          <IconBase
+            width=40
+            height=40>
+            <IconPencil></IconPencil>
+          </IconBase>
         </router-link>
-        <span @click.prevent.stop="deleteVessel(vessel.id)">
-          <v-icon icon="trash" size="small" type="negative"></v-icon>
+        <span class="delete-icon" @click.prevent.stop="deleteVessel(vessel.id)">
+          <IconBase
+            width=40
+            height=40>
+            <IconTrash></IconTrash>
+          </IconBase>
         </span>
       </div>
     </v-card>
@@ -27,7 +33,9 @@
 
 <script>
   import VCard from '../../molecules/card.vue'
-  import VIcon from '../../atoms/icon.vue'
+  import IconBase from '../../atoms/icon-base.vue'
+  import IconPencil from '../../icons/icon-pencil.vue'
+  import IconTrash from '../../icons/icon-trash.vue'
 
   export default {
     name: 'ProgressSpinnerSizes',
@@ -47,7 +55,9 @@
 
     components: {
       VCard,
-      VIcon
+      IconBase,
+      IconPencil,
+      IconTrash
     },
 
     computed: {
@@ -71,8 +81,8 @@
   .vessels-list-item {
     position: relative;
     display: flex;
-    align-items: baseline;
-    background-color: #FFF;
+    align-items: center;
+    background-color: $color-white;
     width: 350px;
     text-align: center;
     @include border-radius(5);
@@ -106,18 +116,24 @@
     }
 
     &__buttons {
+      position: absolute;
+      bottom: 0;
       display: flex;
       flex-direction: row;
       justify-content: flex-end;
       width: 100%;
 
-      .button__edit {
-        width: 30px;
-        height: 30px;
+      .edit-icon, .delete-icon {
+        color: $color-light-grey;
+        transition: color 600ms;
       }
 
-      &__icon-button {
-        margin: 3px;
+      .edit-icon:hover {
+        color: $color-green;
+      }
+
+      .delete-icon:hover {
+        color: $color-tomato;
       }
     }
 

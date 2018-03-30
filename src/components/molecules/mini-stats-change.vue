@@ -1,11 +1,13 @@
 <template>
   <div class="mini-stats-change" :class=color>
-    <v-icon
-      icon="change"
-      size="small"
-      class="mini-stats-change__arrow"
-      :color=color
-      :class=rotationClass></v-icon>
+    <IconBase class="mini-stats-change__arrow"
+      :class=rotationClass
+      width=30
+      height=30
+      :color="color"
+      viewBox="-15 -15 50 50">
+      <IconChange></IconChange>
+    </IconBase>
     <span class="mini-stats-change__value">
       {{change}}
     </span>
@@ -16,7 +18,8 @@
 </template>
 
 <script>
-  import VIcon from '../../components/atoms/icon.vue'
+  import IconBase from '../atoms/icon-base.vue'
+  import IconChange from '../icons/icon-change.vue'
 
   export default {
     props: {
@@ -43,7 +46,8 @@
     },
 
     components: {
-      VIcon
+      IconBase,
+      IconChange
     }
   }
 </script>

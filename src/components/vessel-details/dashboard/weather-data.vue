@@ -5,7 +5,13 @@
     </content-placeholders>
     <v-accordion :showOnInit=true color="blue" else>
       <div slot="header" class="header-badge__slot">
-        <v-icon icon="weather" size="small" color="white"></v-icon>
+        <IconBase
+          width=30
+          height=30
+          color="#FFF"
+          viewBox="-5 -7 40 40">
+          <IconWeather></IconWeather>
+        </IconBase>
         <p>Weather info</p>
       </div>
       <div slot="body" class="weather-info__content">
@@ -49,7 +55,8 @@
 </template>
 
 <script>
-  import VIcon from '../../../components/atoms/icon.vue'
+  import IconWeather from '../../../components/icons/icon-weather.vue'
+  import IconBase from '../../../components/atoms/icon-base.vue'
   import VWindFlag from '../../../components/atoms/wind-flag.vue'
   import VSeaFlag from '../../../components/atoms/sea-flag.vue'
   import VWeatherSituation from '../weather/weather-situation.vue'
@@ -174,7 +181,8 @@
     },
 
     components: {
-      VIcon,
+      IconWeather,
+      IconBase,
       VAccordion,
       VWindFlag,
       VSeaFlag,

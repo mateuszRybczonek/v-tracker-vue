@@ -18,8 +18,12 @@
           <p>Longitude: {{formattedLng}}</p>
         </div>
         <div class="report-item__collapsed-content__actions">
-          <span @click.prevent.stop="deleteReport(report.id, report.vessel)">
-            <v-icon icon="trash" size="small" type="negative"></v-icon>
+          <span class="delete-icon" @click.prevent.stop="deleteReport(report.id, report.vessel)">
+            <IconBase
+              width=40
+              height=40>
+              <IconTrash></IconTrash>
+            </IconBase>
           </span>
         </div>
       </div>
@@ -30,7 +34,8 @@
 <script>
   import VAccordion from '../../../molecules/accordion.vue'
   import ReportItemDetailsSection from './report-item-details-section.vue'
-  import VIcon from '../../../atoms/icon.vue'
+  import IconBase from '../../../atoms/icon-base.vue'
+  import IconTrash from '../../../icons/icon-trash.vue'
   import { decimalToDMS } from '../../../../utils/coordinates-utils'
 
   const NOT_PROVIDED = 'not provided'
@@ -176,7 +181,8 @@
 
     components: {
       VAccordion,
-      VIcon,
+      IconBase,
+      IconTrash,
       ReportItemDetailsSection
     }
   }
@@ -213,6 +219,15 @@
 
       p {
         margin: 0 10px 5px;
+      }
+
+      .delete-icon {
+        color: $color-light-grey;
+        transition: color 600ms;
+
+        &:hover {
+          color: $color-tomato;
+        }
       }
     }
   }

@@ -3,7 +3,7 @@
     <h1>Dashboard</h1>
     <div class="cards">
       <dashboard-card v-for="card in cards"
-        :key="card.index"
+        :key="card.label"
         :destination="card.destination"
         :icon="card.icon"
         :label="card.label">
@@ -24,11 +24,11 @@
         return [
           {
             destination: 'dashboard/vessels',
-            icon: 'ship',
+            icon: 'IconShip',
             label: 'Vessels'
           }, {
             destination: 'dashboard/reports',
-            icon: 'files',
+            icon: 'IconFiles',
             label: 'Reports'
           }
         ]

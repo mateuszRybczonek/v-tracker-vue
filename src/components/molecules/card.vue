@@ -22,7 +22,7 @@
     min-height: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     background-color: #FFF;
     width: 350px;

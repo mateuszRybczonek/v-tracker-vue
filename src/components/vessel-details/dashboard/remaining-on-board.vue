@@ -10,7 +10,6 @@
 
 <script>
   import MiniStatsItem from '../../../components/molecules/mini-stats-item.vue'
-  import VIcon from '../../../components/atoms/icon.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
   import { TweenMax } from 'gsap'
 
@@ -72,7 +71,7 @@
       miniStatsItems () {
         return [
           {
-            icon: 'fuel',
+            icon: 'IconFuel',
             header: this.animatedFoRob,
             change: this.animatedFoRob - this.previousReport.foRob,
             unit: 'cbm',
@@ -80,7 +79,7 @@
             customClass: 'mini-stats__item--fo',
             color: 'black'
           }, {
-            icon: 'fuel',
+            icon: 'IconFuel',
             header: this.animatedDoRob,
             change: this.animatedDoRob - this.previousReport.doRob,
             unit: 'cbm',
@@ -88,7 +87,7 @@
             customClass: 'mini-stats__item--do',
             color: 'brown'
           }, {
-            icon: 'water',
+            icon: 'IconWater',
             header: this.animatedFwRob,
             change: this.animatedFwRob - this.previousReport.fwRob,
             unit: 'cbm',
@@ -96,7 +95,7 @@
             customClass: 'mini-stats__item--fw',
             color: 'light-blue'
           }, {
-            icon: 'people',
+            icon: 'IconPeople',
             header: this.animatedPob,
             change: this.animatedPob - this.previousReport.pob,
             unit: 'persons',
@@ -128,8 +127,7 @@
 
     components: {
       MiniStatsItem,
-      VAccordion,
-      VIcon
+      VAccordion
     }
   }
 </script>
