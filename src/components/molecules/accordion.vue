@@ -4,7 +4,12 @@
       <v-accordion-header :color="color">
         <slot name="header"></slot>
       </v-accordion-header>
-      <v-icon class="accordion__header__arrow" icon="arrow-down" size="small" color="light-grey" :class="{ rotate: show }"></v-icon>
+      <IconBase class="accordion__arrow" :class="{ rotate: show }"
+        width=30
+        height=30
+        viewBox="-5 -7 40 40">
+        <IconArrowDown></IconArrowDown>
+      </IconBase>
     </div>
     <transition name="accordion"
       @before-enter="beforeEnter"
@@ -26,7 +31,8 @@
 
 <script>
   import VAccordionHeader from './header-badge.vue'
-  import VIcon from '../../components/atoms/icon.vue'
+  import IconBase from '../atoms/icon-base.vue'
+  import IconArrowDown from '../icons/icon-arrow-down.vue'
 
   export default {
     props: {
@@ -85,7 +91,8 @@
 
     components: {
       VAccordionHeader,
-      VIcon
+      IconBase,
+      IconArrowDown,
     }
   }
 </script>
@@ -107,14 +114,13 @@
       background-color: $color-white;
       cursor: pointer;
       border-bottom: 1px solid $color-whitey;
+    }
 
-      &__arrow {
-        &.rotate {
-          transform: rotate(180deg);
-        }
-        transition-duration: 0.3s;
+    &__arrow {
+      &.rotate {
+        transform: rotate(180deg);
       }
-
+      transition-duration: 0.3s;
     }
 
     &__header-icon {

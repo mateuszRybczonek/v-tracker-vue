@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="76" height="5000">
   <defs>
-    <symbol id="arrow-down">
-      <line id="e1_line" x1="0" y1="0" x2="15" y2="15" style="stroke:black;fill:none;stroke-width:1px;"/><line id="e2_line" x1="30" y1="0" x2="15" y2="15" style="stroke:black;fill:none;stroke-width:1px;" />
-    </symbol>
-
-    <symbol id="change">
-      <path d='M0,0 V32 L16,16 Z' fill="black" />
-    </symbol>
-
-    <symbol id="wave">
-      <line x1="2" y1="65" x2="45" y2="65" style="stroke:black;fill:none;stroke-width:2px;" />
-      <path d="M2.46,65.18q16.72,-38.4,35.7,-18.6" style="fill:none;stroke:black;stroke-width:2px;"/>
-      <path d="M45.4,65.2c-41.1,-4.2,-14.5,-28.7,-7.2,-18.6" style="fill:none;stroke:black;stroke-width:2px;"/>
-    </symbol>
-
-    <symbol id="arrow">
-      <path d="M1.3,-3.8h1.13l-1.5,-2.2l-1.5,2.1h1.0v4.4h0.8Z" style="stroke:black; vector-effect:non-scaling-stroke;stroke-width:1px;" transform="matrix(1.85821 0 0 1.85821 22.6791 35.1791)"/>
-      <path d="M-3.2,-3.2l0,6.4h0.9l0,-6.4Z" style="stroke:black; vector-effect:non-scaling-stroke;stroke-width:1px;" transform="matrix(1.66791 0 0 1.66791 28.6343 73.8209)"/>
-    </symbol>
-
     <symbol id="vessel">
       <polygon style="stroke:black;stroke-width:6px;" points="40 0 10 50 10 200 70 200 70 50" />
     </symbol>
@@ -55,10 +36,6 @@
     </symbol>
   </defs>
 
-  <use xlink:href="#arrow-down" transform="translate(25, 930)"/>
-  <use xlink:href="#change" transform="translate(25, 1000)"/>
-  <use xlink:href="#wave" transform="translate(25, 1050)"/>
-  <use xlink:href="#arrow" transform="translate(25, 1130)"/>
   <use xlink:href="#vessel" transform="translate(0, 1250)"/>
   <use xlink:href="#statistics" transform="translate(0, 1400)"/>
   <use xlink:href="#overview" transform="translate(0, 1450)"/>

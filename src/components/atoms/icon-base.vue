@@ -5,7 +5,7 @@
     :viewBox="viewBox"
     role="presentation"
   >
-    <g :fill="iconColor">
+    <g :fill="iconColor" :stroke="strokeColor">
       <slot/>
     </g>
   </svg>
@@ -25,6 +25,10 @@
       iconColor: {
         type: String,
         default: 'currentColor'
+      },
+      strokeColor: {
+        type: String,
+        default: 'none'
       },
       viewBox: {
         type: String,
