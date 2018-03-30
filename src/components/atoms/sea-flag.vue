@@ -8,7 +8,6 @@
         :strokeColor='strokeColor'
         viewBox="-6 22 60 60">
         <IconArrow></IconArrow>
-        <v-icon icon="arrow" size="small" color="black" id="arrow" :class="colorClass"></v-icon>
       </IconBase>
       <IconBase class="sea-flag__icon-wave"
         width=30
@@ -22,7 +21,6 @@
 </template>
 
 <script>
-  import VIcon from '../../components/atoms/icon.vue'
   import IconWave from '../../components/icons/icon-wave.vue'
   import IconArrow from '../../components/icons/icon-arrow.vue'
   import IconBase from '../../components/atoms/icon-base.vue'
@@ -80,7 +78,6 @@
     },
 
     components: {
-      VIcon,
       IconWave,
       IconBase,
       IconArrow

@@ -286,7 +286,7 @@
           background-color: $color-whitey-darker;
           border-radius: 4px;
           border: none;
-          opacity: 0.5;
+          opacity: 0.8;
 
           svg {
             transform: translate(15px, 12px);
