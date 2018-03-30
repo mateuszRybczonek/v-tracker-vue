@@ -17,7 +17,8 @@
       <div slot="body" class="navigation-info__content">
         <ul class="navigation-info__content__list">
           <li class="navigation-info__content__list__item"
-              v-for="navItem in navigationData">
+              v-for="navItem in navigationData"
+              :key="navItem.title">
             <span class="navigation-info__content__list__item__title">{{navItem.title}}</span>
             <span class="navigation-info__content__list__item__value">{{navItem.value}}</span>
           </li>

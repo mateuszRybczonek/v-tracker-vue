@@ -3,7 +3,7 @@
     <v-list-item
       class="vessels-list__item"
       v-for="vessel in vessels"
-      :key="vessel.index"
+      :key="vessel.imoNumber"
       :vessel="vessel"></v-list-item>
     <v-list-new class="vessels-list__item"></v-list-new>
   </div>

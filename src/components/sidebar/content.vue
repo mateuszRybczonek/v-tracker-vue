@@ -11,7 +11,7 @@
         <span class="sidebar__content__list__item__title">({{lastReportDaysAgo}})</span>
       </div>
 
-      <li class="sidebar__content__list__item" v-for="item in items" v-if="sidebarVisible">
+      <li class="sidebar__content__list__item" v-for="item in items" :key="item.name" v-if="sidebarVisible">
         <span class="sidebar__content__list__item__title">{{item.title}}</span>
         <span class="sidebar__content__list__item__value">{{item.value}}</span>
       </li>
