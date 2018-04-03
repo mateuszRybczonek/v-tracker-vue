@@ -4,7 +4,7 @@
       :selectedStep="selectedStep"
       :isSubmitted="isSubmitted"
       @selectStep="selectStep"></v-stepper>
-    <v-form-wrapper :title="stepTitle" size="wide" color="blue">
+    <FormWrapper :title="stepTitle" size="wide" color="blue">
       <form class="new-report__form-content" slot="content" @submit.prevent>
         <transition name="slide-fade" mode="out-in">
           <component
@@ -20,12 +20,12 @@
           </component>
         </transition>
       </form>
-    </v-form-wrapper>
+    </FormWrapper>
   </div>
 </template>
 
 <script>
-  import vFormWrapper from '../../../form-wrapper.vue'
+  import FormWrapper from '../../../FormWrapper/FormWrapper.vue'
   import vStepper from './form/Stepper.vue'
   import Step1 from './form/Step1.vue'
   import Step2 from './form/Step2.vue'
@@ -145,7 +145,7 @@
     },
 
     components: {
-      vFormWrapper,
+      FormWrapper,
       vStepper,
       Step1,
       Step2,

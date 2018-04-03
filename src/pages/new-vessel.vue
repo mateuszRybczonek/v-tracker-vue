@@ -1,5 +1,5 @@
 <template>
-  <v-form-wrapper class="new-vessel-form" title="Create new vessel" size="narrow">
+  <FormWrapper class="new-vessel-form" title="Create new vessel" size="narrow">
     <form slot="content" @submit.prevent>
       <input class="new-vessel-form__name-input input--with-error" :class="{ invalid: showErrors && $v.vessel.name.$invalid }"
         @blur="$v.vessel.name.$touch()"
@@ -65,11 +65,11 @@
         </ButtonPositive>
       </div>
     </form>
-  </v-form-wrapper>
+  </FormWrapper>
 </template>
 
 <script>
-  import vFormWrapper from '../components/form-wrapper.vue'
+  import FormWrapper from '../components/FormWrapper/FormWrapper.vue'
   import ButtonPositive from '../components/Atoms/Buttons/ButtonPositive.vue'
   import { required, numeric } from 'vuelidate/lib/validators'
 
@@ -125,7 +125,7 @@
     },
 
     components: {
-      vFormWrapper,
+      FormWrapper,
       ButtonPositive
     }
   }

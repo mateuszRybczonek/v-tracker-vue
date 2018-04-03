@@ -55,7 +55,7 @@
   import { required, email } from 'vuelidate/lib/validators'
   import { mapGetters, mapActions } from 'vuex'
 
-  import FormWrapper from '../../components/form-wrapper.vue'
+  import FormWrapper from '../../components/FormWrapper/FormWrapper.vue'
   import ButtonPositive from '../../components/Atoms/Buttons/ButtonPositive.vue'
   import BaseIcon from '../../components/Atoms/BaseIcon.vue'
   import IconEmail from '../../components/icons/icon-email.vue'

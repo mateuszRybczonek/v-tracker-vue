@@ -1,5 +1,5 @@
 <template>
-  <v-form-wrapper title="Edit vessel details" size="narrow">
+  <FormWrapper title="Edit vessel details" size="narrow">
     <form slot="content" @submit.prevent>
       <input class="input--with-error" :class="{ invalid: showErrors && $v.vessel.name.$invalid }"
         @blur="$v.vessel.name.$touch()"
@@ -63,11 +63,11 @@
         </ButtonPositive>
       </div>
     </form>
-  </v-form-wrapper>
+  </FormWrapper>
 </template>
 
 <script>
-  import vFormWrapper from '../components/form-wrapper.vue'
+  import FormWrapper from '../components/FormWrapper/FormWrapper.vue'
   import ButtonPositive from '../components/Atoms/Buttons/ButtonPositive.vue'
   import { required, numeric } from 'vuelidate/lib/validators'
   import { mapGetters } from 'vuex'
@@ -128,7 +128,7 @@
     },
 
     components: {
-      vFormWrapper,
+      FormWrapper,
       ButtonPositive
     }
   }
