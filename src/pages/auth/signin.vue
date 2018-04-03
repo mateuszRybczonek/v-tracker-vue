@@ -1,6 +1,6 @@
 <template>
   <div class="signin">
-    <form-wrapper title="Login" size="narrow">
+    <FormWrapper title="Login" size="narrow">
       <form slot="content" @submit.prevent="onSubmit">
         <div class="content__error">
           <span class="content__error__validation-error__auth-error" v-if="isAuthError">
@@ -47,7 +47,7 @@
           </ButtonPositive>
         </div>
       </form>
-    </form-wrapper>
+    </FormWrapper>
   </div>
 </template>
 

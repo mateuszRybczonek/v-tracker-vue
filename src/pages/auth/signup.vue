@@ -1,6 +1,6 @@
 <template>
   <div class="signup">
-    <form-wrapper title="Register new account" size="narrow">
+    <FormWrapper title="Register new account" size="narrow">
       <form slot="content" @submit.prevent="onSubmit">
         <div class="input__wrapper">
           <BaseIcon
@@ -60,7 +60,7 @@
           <ButtonPositive :on-click="onSubmit" :inProgress="isSubmitted">Register</ButtonPositive>
         </div>
       </form>
-    </form-wrapper>
+    </FormWrapper>
   </div>
 </template>
 
