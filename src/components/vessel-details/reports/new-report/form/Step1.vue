@@ -149,7 +149,17 @@ import IconNavigation from '../../../../icons/icon-navigation.vue'
 import IconSpeed from '../../../../icons/icon-speed.vue'
 
 export default {
-  props: ['reportData', 'showErrors'],
+  props: {
+		reportData: {
+			type: Object,
+			required: true
+		},
+
+		showErrors: {
+			type: Boolean,
+			required: true
+		}
+	},
 
   validations: {
     reportData: {

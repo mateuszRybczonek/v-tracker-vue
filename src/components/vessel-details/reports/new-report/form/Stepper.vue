@@ -42,7 +42,16 @@
 
 <script>
   export default {
-    props: ['selectedStep', 'isSubmitted'],
+    props: {
+      selectedStep: {
+        type: String,
+        required: true
+      },
+
+      isSubmitted: {
+        type: Boolean
+      }
+    },
 
     methods: {
       selectStep (step) {
