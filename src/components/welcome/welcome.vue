@@ -3,18 +3,18 @@
     <p class="small-text small-text-top">Free Vessel Tracking App</p>
     <h1 class="main-text">V-tracker</h1>
     <p class="small-text small-text-bottom">Track you vessels based on reports or AIS</p>
-    <positive-button>
+    <ButtonPositive>
       <router-link to="/signin" class="login-button">Log in</router-link>
-    </positive-button>
+    </ButtonPositive>
   </div>
 </template>
 
 <script>
-  import PositiveButton from '../atoms/buttons/positive.vue'
+  import ButtonPositive from '../Atoms/Buttons/ButtonPositive.vue'
 
   export default {
     components: {
-      'positive-button': PositiveButton
+      ButtonPositive
     }
   }
 </script>

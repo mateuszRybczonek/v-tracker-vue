@@ -57,7 +57,7 @@
           </span>
         </div>
         <div class="actions">
-          <positive-button :on-click="onSubmit" :inProgress="isSubmitted">Register</positive-button>
+          <ButtonPositive :on-click="onSubmit" :inProgress="isSubmitted">Register</ButtonPositive>
         </div>
       </form>
     </form-wrapper>
@@ -70,8 +70,8 @@
 //  import globalAxios from 'axios'
 
   import FormWrapper from '../../components/form-wrapper.vue'
-  import PositiveButton from '../../components/atoms/buttons/positive.vue'
-  import BaseIcon from '../../components/atoms/BaseIcon.vue'
+  import ButtonPositive from '../../components/Atoms/Buttons/ButtonPositive.vue'
+  import BaseIcon from '../../components/Atoms/BaseIcon.vue'
   import IconEmail from '../../components/icons/icon-email.vue'
   import IconLock from '../../components/icons/icon-lock.vue'
 
@@ -125,7 +125,7 @@
     },
 
     components: {
-      PositiveButton,
+      ButtonPositive,
       FormWrapper,
       BaseIcon,
       IconEmail,

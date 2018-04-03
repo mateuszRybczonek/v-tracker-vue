@@ -58,11 +58,11 @@
       </div>
 
       <div class="actions">
-        <positive-button :inProgress="isSubmitted" :on-click="onSubmit">
+        <ButtonPositive :inProgress="isSubmitted" :on-click="onSubmit">
           <span>
             Create vessel
           </span>
-        </positive-button>
+        </ButtonPositive>
       </div>
     </form>
   </v-form-wrapper>
@@ -70,7 +70,7 @@
 
 <script>
   import vFormWrapper from '../components/form-wrapper.vue'
-  import PositiveButton from '../components/atoms/buttons/positive.vue'
+  import ButtonPositive from '../components/Atoms/Buttons/ButtonPositive.vue'
   import { required, numeric } from 'vuelidate/lib/validators'
 
   export default {
@@ -126,7 +126,7 @@
 
     components: {
       vFormWrapper,
-      PositiveButton
+      ButtonPositive
     }
   }
 </script>

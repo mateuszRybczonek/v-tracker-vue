@@ -30,7 +30,7 @@
 
 <script>
   import { decimalToDMS } from '../../../utils/coordinates-utils'
-  import BaseIcon from '../../../components/atoms/BaseIcon.vue'
+  import BaseIcon from '../../../components/Atoms/BaseIcon.vue'
   import IconPosition from '../../../components/icons/icon-position.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
 

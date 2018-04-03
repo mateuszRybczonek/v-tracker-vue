@@ -34,7 +34,7 @@
 <script>
   import VAccordion from '../../../molecules/accordion.vue'
   import ReportItemDetailsSection from './report-item-details-section.vue'
-  import BaseIcon from '../../../atoms/BaseIcon.vue'
+  import BaseIcon from '../../../Atoms/BaseIcon.vue'
   import IconTrash from '../../../icons/icon-trash.vue'
   import { decimalToDMS } from '../../../../utils/coordinates-utils'
 

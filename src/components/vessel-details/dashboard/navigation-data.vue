@@ -31,7 +31,7 @@
 <script>
   import VAccordion from '../../../components/molecules/accordion.vue'
   import IconNavigation from '../../../components/icons/icon-navigation.vue'
-  import BaseIcon from '../../../components/atoms/BaseIcon.vue'
+  import BaseIcon from '../../../components/Atoms/BaseIcon.vue'
 
   import { TweenMax } from 'gsap'
 

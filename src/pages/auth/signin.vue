@@ -41,10 +41,10 @@
           <span class="validation-error" v-if="validationsEnabled && !$v.password.required">This field must not be empty.</span>
         </div>
         <div class="actions">
-          <positive-button :on-click="onSubmit" :inProgress="isSubmitted">Log in</positive-button>
-          <positive-button :on-click="falseSubmit" :inProgress=false>
+          <ButtonPositive :on-click="onSubmit" :inProgress="isSubmitted">Log in</ButtonPositive>
+          <ButtonPositive :on-click="falseSubmit" :inProgress=false>
             <router-link to="/signup" class="login-button">Sign Up</router-link>
-          </positive-button>
+          </ButtonPositive>
         </div>
       </form>
     </form-wrapper>
@@ -56,8 +56,8 @@
   import { mapGetters, mapActions } from 'vuex'
 
   import FormWrapper from '../../components/form-wrapper.vue'
-  import PositiveButton from '../../components/atoms/buttons/positive.vue'
-  import BaseIcon from '../../components/atoms/BaseIcon.vue'
+  import ButtonPositive from '../../components/Atoms/Buttons/ButtonPositive.vue'
+  import BaseIcon from '../../components/Atoms/BaseIcon.vue'
   import IconEmail from '../../components/icons/icon-email.vue'
   import IconLock from '../../components/icons/icon-lock.vue'
 
@@ -113,7 +113,7 @@
     },
 
     components: {
-      PositiveButton,
+      ButtonPositive,
       FormWrapper,
       BaseIcon,
       IconEmail,

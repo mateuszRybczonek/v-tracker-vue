@@ -148,21 +148,21 @@
     </div>
 
     <div class="actions">
-      <positive-button :on-click="previousStep" :inProgress='false'>
+      <ButtonPositive :on-click="previousStep" :inProgress='false'>
         <span>Back</span>
-      </positive-button>
-      <positive-button :on-click="submit" :inProgress='false'>
+      </ButtonPositive>
+      <ButtonPositive :on-click="submit" :inProgress='false'>
         <span>Continue</span>
-      </positive-button>
+      </ButtonPositive>
     </div>
   </div>
 </template>
 
 <script>
-  import PositiveButton from '../../../../atoms/buttons/positive.vue'
+  import ButtonPositive from '../../../../Atoms/Buttons/ButtonPositive.vue'
   import InputWithErrors from '../../../../molecules/input-with-errors.vue'
   import { required } from 'vuelidate/lib/validators'
-  import BaseIcon from '../../../../atoms/BaseIcon.vue'
+  import BaseIcon from '../../../../Atoms/BaseIcon.vue'
   import IconFuel from '../../../../icons/icon-fuel.vue'
   import IconWater from '../../../../icons/icon-water.vue'
   import IconPeople from '../../../../icons/icon-people.vue'
@@ -240,7 +240,7 @@
     },
 
     components: {
-      PositiveButton,
+      ButtonPositive,
       InputWithErrors,
       BaseIcon,
       IconFuel,

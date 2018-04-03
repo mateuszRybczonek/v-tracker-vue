@@ -37,7 +37,7 @@
 
 <script>
   import VHeaderBadge from '../../../molecules/header-badge.vue'
-  import BaseIcon from '../../../atoms/BaseIcon.vue'
+  import BaseIcon from '../../../Atoms/BaseIcon.vue'
   import IconSave from '../../../icons/icon-save.vue'
   import IconPencil from '../../../icons/icon-pencil.vue'
   import {

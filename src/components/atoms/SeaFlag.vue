@@ -23,7 +23,7 @@
 <script>
   import IconWave from '../../components/icons/icon-wave.vue'
   import IconArrow from '../../components/icons/icon-arrow.vue'
-  import BaseIcon from '../../components/atoms/BaseIcon.vue'
+  import BaseIcon from '../../components/Atoms/BaseIcon.vue'
 
   export default {
     props: {

@@ -33,7 +33,7 @@
 
 <script>
   import VCard from '../../molecules/card.vue'
-  import BaseIcon from '../../atoms/BaseIcon.vue'
+  import BaseIcon from '../../Atoms/BaseIcon.vue'
   import IconPencil from '../../icons/icon-pencil.vue'
   import IconTrash from '../../icons/icon-trash.vue'
 
