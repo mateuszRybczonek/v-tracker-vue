@@ -21,7 +21,7 @@
     components: {
       VCard,
       IconBase,
-      IconTilesPlus,
+      IconTilesPlus
     }
   }
 </script>

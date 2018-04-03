@@ -92,7 +92,7 @@
     components: {
       VAccordionHeader,
       IconBase,
-      IconArrowDown,
+      IconArrowDown
     }
   }
 </script>

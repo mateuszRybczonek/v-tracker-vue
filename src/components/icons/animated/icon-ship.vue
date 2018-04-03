@@ -34,7 +34,7 @@ import { TweenMax, TimelineMax, Sine } from 'gsap'
 
 export default {
   methods: {
-    makeSmoke() {
+    makeSmoke () {
       TweenMax.killAll()
       const tl = new TimelineMax()
       tl.add('start')
@@ -45,7 +45,7 @@ export default {
       this.addSmoke(tl, this.$refs.smoke4, 4.2)
     },
 
-     addSmoke(tl, el, delay) {
+    addSmoke (tl, el, delay) {
       tl.fromTo(
         el,
         1,
@@ -72,11 +72,11 @@ export default {
           transformOrigin: '50% 50%',
           ease: Sine.easeInOut
         },
-        `start+=${delay+0.3}`
+        `start+=${delay + 0.3}`
       )
     },
 
-    pitchVessel(tl) {
+    pitchVessel (tl) {
       tl.fromTo(
         this.$refs.originalship,
         1,

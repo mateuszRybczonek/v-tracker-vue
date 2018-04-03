@@ -124,10 +124,10 @@
     </div>
 
     <div class="actions">
-      <positive-button :on-click="previousStep" :inProgress=false>
+      <positive-button :on-click="previousStep" :inProgress='false'>
         <span>Back</span>
       </positive-button>
-      <positive-button :on-click="nextStep" :inProgress=false>
+      <positive-button :on-click="nextStep" :inProgress='false'>
         <span>Continue</span>
       </positive-button>
     </div>
@@ -144,7 +144,17 @@
   import IconWave from '../../../../icons/icon-wave.vue'
 
   export default {
-    props: ['reportData', 'showErrors'],
+    props: {
+      reportData: {
+        type: Object,
+        required: true
+      },
+
+      showErrors: {
+        type: Boolean,
+        required: true
+      }
+    },
 
     validations: {
       reportData: {

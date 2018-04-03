@@ -2,6 +2,7 @@
   <div class="quick-links" :class="{ 'quick-links--vertical': vertical }">
     <button
       v-for="button in buttons"
+      :key="button.component"
       class="quick-links__icon"
       :class="{ 'quick-links__icon--active': selectedVesselDetailsComponent === button.component }"
       @click="selectVesselDetailsComponent(button.component)">

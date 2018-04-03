@@ -125,7 +125,10 @@
 
     <div class="actions">
       <span></span>
-      <positive-button :on-click="nextStep" :inProgress=false>
+      <positive-button
+			  :on-click="nextStep"
+				:inProgress="false"
+			>
       <span>
           Continue
         </span>
@@ -135,100 +138,110 @@
 </template>
 
 <script>
-  import PositiveButton from '../../../../atoms/buttons/positive.vue'
-  import InputWithErrors from '../../../../molecules/input-with-errors.vue'
-  import { required } from 'vuelidate/lib/validators'
-	import IconBase from '../../../../atoms/icon-base.vue'
-	import IconCalendar from '../../../../icons/icon-calendar.vue'
-	import IconFi from '../../../../icons/icon-fi.vue'
-	import IconLambda from '../../../../icons/icon-lambda.vue'
-	import IconNavigation from '../../../../icons/icon-navigation.vue'
-	import IconSpeed from '../../../../icons/icon-speed.vue'
+import PositiveButton from '../../../../atoms/buttons/positive.vue'
+import InputWithErrors from '../../../../molecules/input-with-errors.vue'
+import { required } from 'vuelidate/lib/validators'
+import IconBase from '../../../../atoms/icon-base.vue'
+import IconCalendar from '../../../../icons/icon-calendar.vue'
+import IconFi from '../../../../icons/icon-fi.vue'
+import IconLambda from '../../../../icons/icon-lambda.vue'
+import IconNavigation from '../../../../icons/icon-navigation.vue'
+import IconSpeed from '../../../../icons/icon-speed.vue'
 
-  export default {
-    props: ['reportData', 'showErrors'],
+export default {
+  props: {
+		reportData: {
+			type: Object,
+			required: true
+		},
 
-    validations: {
-      reportData: {
-        reportTime: {
-          required,
-          date: value => {
-            if (value === 'undefined' || value === null || value === '') {
-              return true
-            }
-            return /((19[5-9]\d|20[0-9]\d|2090)-([0-1][0-9])-(0[1-9]|[12]\d|3[01]))/.test(value)
+		showErrors: {
+			type: Boolean,
+			required: true
+		}
+	},
+
+  validations: {
+    reportData: {
+      reportTime: {
+        required,
+        date: value => {
+          if (value === 'undefined' || value === null || value === '') {
+            return true
           }
-        },
-        lat: {
-          required,
-          format: value => {
-            if (value === 'undefined' || value === null || value === '') {
-              return true
-            }
-            return /([0-8][0-9]|90)\s([0-5][0-9].[0-9])\s([N, S])/.test(value)
-          }
-        },
-        lng: {
-          required,
-          format: value => {
-            if (value === 'undefined' || value === null || value === '') {
-              return true
-            }
-            return /([0-1][0-9][0-9]|180)\s([0-5][0-9].[0-9])\s([E, W])/.test(value)
-          }
-        },
-        course: {
-          required,
-          format: value => {
-            if (value === 'undefined' || value === null || value === '') {
-              return true
-            }
-            return /^\d{3}$/.test(value)
-          },
-          range: value => {
-            if (value === 'undefined' || value === null || value === '') {
-              return true
-            }
-            return /^(?:36[0]|3[0-5][0-9]|[012][0-9][0-9]|[1-9]?[0-9])?$/.test(value)
-          }
-        },
-        spd: {
-          required
+          return /((19[5-9]\d|20[0-9]\d|2090)-([0-1][0-9])-(0[1-9]|[12]\d|3[01]))/.test(value)
         }
-      }
-    },
-
-    components: {
-      PositiveButton,
-      InputWithErrors,
-			IconBase,
-			IconCalendar,
-			IconFi,
-			IconLambda,
-			IconNavigation,
-			IconSpeed
-    },
-
-    computed: {
-      invalidStep () {
-        return this.$v.reportData.lat.$invalid ||
-        this.$v.reportData.lng.$invalid ||
-        this.$v.reportData.reportTime.$invalid ||
-        this.$v.reportData.course.$invalid ||
-        this.$v.reportData.spd.$invalid
-      }
-    },
-
-    methods: {
-      previousStep () {
-        this.$emit('previousStep')
       },
-
-      nextStep () {
-        this.$emit('nextStep', this.invalidStep)
+      lat: {
+        required,
+        format: value => {
+          if (value === 'undefined' || value === null || value === '') {
+            return true
+          }
+          return /([0-8][0-9]|90)\s([0-5][0-9].[0-9])\s([N, S])/.test(value)
+        }
+      },
+      lng: {
+        required,
+        format: value => {
+          if (value === 'undefined' || value === null || value === '') {
+            return true
+          }
+          return /([0-1][0-9][0-9]|180)\s([0-5][0-9].[0-9])\s([E, W])/.test(value)
+        }
+      },
+      course: {
+        required,
+        format: value => {
+          if (value === 'undefined' || value === null || value === '') {
+            return true
+          }
+          return /^\d{3}$/.test(value)
+        },
+        range: value => {
+          if (value === 'undefined' || value === null || value === '') {
+            return true
+          }
+          return /^(?:36[0]|3[0-5][0-9]|[012][0-9][0-9]|[1-9]?[0-9])?$/.test(value)
+        }
+      },
+      spd: {
+        required
       }
     }
+  },
+
+  components: {
+    PositiveButton,
+    InputWithErrors,
+    IconBase,
+    IconCalendar,
+    IconFi,
+    IconLambda,
+    IconNavigation,
+    IconSpeed
+  },
+
+  computed: {
+    invalidStep () {
+      return this.$v.reportData.lat.$invalid ||
+      this.$v.reportData.lng.$invalid ||
+      this.$v.reportData.reportTime.$invalid ||
+      this.$v.reportData.course.$invalid ||
+      this.$v.reportData.spd.$invalid
+    }
+  },
+
+  methods: {
+    previousStep () {
+      this.$emit('previousStep')
+    },
+
+    nextStep () {
+      this.$emit('nextStep', this.invalidStep)
+    }
   }
+}
 </script>
 
 <style scoped lang="scss">

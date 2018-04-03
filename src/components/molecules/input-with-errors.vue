@@ -12,7 +12,11 @@
 
 <script>
   export default {
-    props: ['unit']
+    props: {
+      unit: {
+        type: String
+      }
+    }
   }
 </script>
 

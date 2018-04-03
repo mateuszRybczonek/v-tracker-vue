@@ -1,7 +1,7 @@
 <template>
   <div class="remaining-on-board">
     <mini-stats-item v-for="item in miniStatsItems"
-      :key="item.index"
+      :key="item.description"
       :item="item"
       :showPlaceholder="fetchingReports">
     </mini-stats-item>

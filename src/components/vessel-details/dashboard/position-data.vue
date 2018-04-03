@@ -17,7 +17,8 @@
       <div slot="body" class="position-info__content">
         <ul class="position-info__content__list">
           <li class="position-info__content__list__item"
-              v-for="coordinate in positionData">
+              v-for="coordinate in positionData"
+              :key="coordinate.title">
             <span class="position-info__content__list__item__title">{{coordinate.title}}</span>
             <span class="position-info__content__list__item__value">{{coordinate.value}}</span>
           </li>

@@ -24,7 +24,10 @@
               :withBorder=true>
             </v-wind-flag>
             <ul class="weather-info__content__list">
-              <li class="weather-info__content__list__item" v-for="windElement in windData">
+              <li class="weather-info__content__list__item"
+                v-for="windElement in windData"
+                :key="windElement.title"
+                >
                 <span class="weather-info__content__list__item__title">{{windElement.title}}</span>
                 <span class="weather-info__content__list__item__value">{{windElement.value}}</span>
               </li>
@@ -38,7 +41,10 @@
               :withBorder=true>
             </v-sea-flag>
             <ul class="weather-info__content__list">
-              <li class="weather-info__content__list__item" v-for="seaElement in seaData">
+              <li class="weather-info__content__list__item"
+                v-for="seaElement in seaData"
+                :key="seaElement.title"
+              >
                 <span class="weather-info__content__list__item__title">{{seaElement.title}}</span>
                 <span class="weather-info__content__list__item__value">{{seaElement.value}}</span>
               </li>

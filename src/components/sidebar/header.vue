@@ -88,8 +88,7 @@
 
     components: {
       IconPencil,
-      IconBase,
-
+      IconBase
     }
   }
 </script>
