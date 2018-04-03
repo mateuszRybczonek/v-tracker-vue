@@ -5,13 +5,13 @@
         <h4 class="form-section__heading">Wind</h4>
         <input-with-errors unit="°">
           <div slot="input" class="input__wrapper">
-            <IconBase
+            <BaseIcon
 							width=30
 							height=30
 							color="#999"
 							viewBox="2 -5 40 40">
 							<IconNavigation></IconNavigation>
-            </IconBase>
+            </BaseIcon>
             <input
               class="input input__wind-direction input__direction input--with-error"
               :class="{ invalid: showErrors && $v.reportData.windDir.$invalid }"
@@ -29,13 +29,13 @@
 
         <input-with-errors unit="kn">
           <div slot="input" class="input__wrapper">
-            <IconBase
+            <BaseIcon
               width=30
               height=30
               color="#999"
               viewBox="2 -5 40 40">
               <IconSpeed></IconSpeed>
-            </IconBase>
+            </BaseIcon>
             <input
               class="input input__wind-speed input__speed input--with-error"
               :class="{ invalid: showErrors && $v.reportData.windSpd.$invalid }"
@@ -54,13 +54,13 @@
         <h4 class="form-section__heading">Sea</h4>
         <input-with-errors unit="°">
           <div slot="input" class="input__wrapper">
-            <IconBase class="sea-flag__icon-wave"
+            <BaseIcon class="sea-flag__icon-wave"
               width=30
               height=30
               strokeColor='#999'
               viewBox="2 25 60 60">
               <IconWave></IconWave>
-            </IconBase>
+            </BaseIcon>
             <input
               class="input input__sea-state input__wave input--with-error"
               :class="{ invalid: showErrors && $v.reportData.seaState.$invalid }"
@@ -77,13 +77,13 @@
 
         <input-with-errors unit="°">
           <div slot="input" class="input__wrapper">
-            <IconBase
+            <BaseIcon
               width=30
               height=30
               color="#999"
               viewBox="2 -5 40 40">
               <IconNavigation></IconNavigation>
-            </IconBase>
+            </BaseIcon>
             <input
               class="input input__swell-direction input__direction input--with-error"
               :class="{ invalid: showErrors && $v.reportData.swellDir.$invalid }"
@@ -101,13 +101,13 @@
 
         <input-with-errors unit="m">
           <div slot="input" class="input__wrapper">
-            <IconBase class="sea-flag__icon-wave"
+            <BaseIcon class="sea-flag__icon-wave"
               width=30
               height=30
               strokeColor='#999'
               viewBox="2 25 60 60">
               <IconWave></IconWave>
-            </IconBase>
+            </BaseIcon>
             <input
               class="input input__swell-height input__wave input--with-error"
               :class="{ invalid: showErrors && $v.reportData.swellHeight.$invalid }"
@@ -138,7 +138,7 @@
   import PositiveButton from '../../../../atoms/buttons/positive.vue'
   import InputWithErrors from '../../../../molecules/input-with-errors.vue'
   import { required } from 'vuelidate/lib/validators'
-  import IconBase from '../../../../atoms/icon-base.vue'
+  import BaseIcon from '../../../../atoms/BaseIcon.vue'
   import IconNavigation from '../../../../icons/icon-navigation.vue'
   import IconSpeed from '../../../../icons/icon-speed.vue'
   import IconWave from '../../../../icons/icon-wave.vue'
@@ -209,7 +209,7 @@
     components: {
       PositiveButton,
       InputWithErrors,
-      IconBase,
+      BaseIcon,
       IconNavigation,
       IconSpeed,
       IconWave

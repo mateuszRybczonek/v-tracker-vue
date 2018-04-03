@@ -19,11 +19,11 @@
         </div>
         <div class="report-item__collapsed-content__actions">
           <span class="delete-icon" @click.prevent.stop="deleteReport(report.id, report.vessel)">
-            <IconBase
+            <BaseIcon
               width=40
               height=40>
               <IconTrash></IconTrash>
-            </IconBase>
+            </BaseIcon>
           </span>
         </div>
       </div>
@@ -34,7 +34,7 @@
 <script>
   import VAccordion from '../../../molecules/accordion.vue'
   import ReportItemDetailsSection from './report-item-details-section.vue'
-  import IconBase from '../../../atoms/icon-base.vue'
+  import BaseIcon from '../../../atoms/BaseIcon.vue'
   import IconTrash from '../../../icons/icon-trash.vue'
   import { decimalToDMS } from '../../../../utils/coordinates-utils'
 
@@ -181,7 +181,7 @@
 
     components: {
       VAccordion,
-      IconBase,
+      BaseIcon,
       IconTrash,
       ReportItemDetailsSection
     }

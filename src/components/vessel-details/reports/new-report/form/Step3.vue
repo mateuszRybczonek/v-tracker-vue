@@ -12,13 +12,13 @@
         <h4 class="form-section__heading">Remaining on board</h4>
         <input-with-errors unit="cbm">
           <div slot="input" class="input__wrapper">
-            <IconBase
+            <BaseIcon
               width=50
               height=50
               color="#999"
               viewBox="15 15 76 76">
               <IconFuel></IconFuel>
-            </IconBase>
+            </BaseIcon>
             <input class="input input--with-error"
               :class="{ invalid: showErrors && $v.reportData.foRob.$invalid }"
               type="number"
@@ -34,13 +34,13 @@
 
         <input-with-errors unit="cbm">
           <div slot="input" class="input__wrapper">
-            <IconBase
+            <BaseIcon
               width=50
               height=50
               color="#999"
               viewBox="15 15 76 76">
               <IconFuel></IconFuel>
-            </IconBase>
+            </BaseIcon>
             <input class="input input--with-error"
               :class="{ invalid: showErrors && $v.reportData.doRob.$invalid }"
               type="number"
@@ -56,13 +56,13 @@
 
         <input-with-errors unit="cbm">
           <div slot="input" class="input__wrapper">
-            <IconBase
+            <BaseIcon
               width=50
               height=50
               color="#999"
               viewBox="25 20 60 60">
               <IconWater></IconWater>
-            </IconBase>
+            </BaseIcon>
             <input class="input input--with-error"
               :class="{ invalid: showErrors && $v.reportData.fwRob.$invalid }"
               type="number"
@@ -81,13 +81,13 @@
         <h4 class="form-section__heading">Other</h4>
         <input-with-errors unit="">
           <div slot="input" class="input__wrapper">
-            <IconBase
+            <BaseIcon
               width=50
               height=50
               color="#999"
               viewBox="15 15 76 76">
               <IconPeople></IconPeople>
-            </IconBase>
+            </BaseIcon>
             <input slot="input" class="input input__pitch input__pob input--with-error"
               :class="{ invalid: showErrors && $v.reportData.pob.$invalid }"
               type="number"
@@ -103,13 +103,13 @@
 
         <input-with-errors>
           <div slot="input" class="input__wrapper">
-            <IconBase
+            <BaseIcon
               width=50
               height=50
               color="#999"
               viewBox="10 15 76 76">
               <IconAngle></IconAngle>
-            </IconBase>
+            </BaseIcon>
             <input class="input input--with-error"
               :class="{ invalid: showErrors && $v.reportData.pitch.$invalid }"
               type="number "
@@ -125,13 +125,13 @@
 
         <input-with-errors>
           <div slot="input" class="input__wrapper">
-            <IconBase
+            <BaseIcon
               width=50
               height=50
               color="#999"
               viewBox="10 15 76 76">
               <IconAngle></IconAngle>
-            </IconBase>
+            </BaseIcon>
             <input class="input input__pitch input__movements input--with-error"
               :class="{ invalid: showErrors && $v.reportData.roll.$invalid }"
               type="number"
@@ -162,7 +162,7 @@
   import PositiveButton from '../../../../atoms/buttons/positive.vue'
   import InputWithErrors from '../../../../molecules/input-with-errors.vue'
   import { required } from 'vuelidate/lib/validators'
-  import IconBase from '../../../../atoms/icon-base.vue'
+  import BaseIcon from '../../../../atoms/BaseIcon.vue'
   import IconFuel from '../../../../icons/icon-fuel.vue'
   import IconWater from '../../../../icons/icon-water.vue'
   import IconPeople from '../../../../icons/icon-people.vue'
@@ -242,7 +242,7 @@
     components: {
       PositiveButton,
       InputWithErrors,
-      IconBase,
+      BaseIcon,
       IconFuel,
       IconWater,
       IconPeople,

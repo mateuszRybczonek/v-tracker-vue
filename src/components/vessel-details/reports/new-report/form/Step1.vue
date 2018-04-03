@@ -5,13 +5,13 @@
         <h4 class="form-section__heading">Position</h4>
 				<input-with-errors unit="">
 					<div slot="input" class="input__wrapper">
-						<IconBase
+						<BaseIcon
               width=30
               height=30
               color="#999"
               viewBox="0 -5 40 40">
               <IconCalendar></IconCalendar>
-            </IconBase>
+            </BaseIcon>
 						<input
 							class="input input__report-time input--with-error"
 							:class="{ invalid: showErrors && $v.reportData.reportTime.$invalid }"
@@ -28,13 +28,13 @@
 
         <input-with-errors unit="°">
 					<div slot="input" class="input__wrapper">
-						<IconBase
+						<BaseIcon
 							width=30
 							height=30
 							color="#999"
 							viewBox="2 0 60 60">
 							<IconFi></IconFi>
-						</IconBase>
+						</BaseIcon>
 	          <input
 	            class="input input__latitude input--with-error"
 	            :class="{ invalid: showErrors && $v.reportData.lat.$invalid }"
@@ -51,13 +51,13 @@
 
         <input-with-errors unit="°">
 					<div slot="input" class="input__wrapper">
-						<IconBase
+						<BaseIcon
 							width=30
 							height=30
 							color="#999"
 							viewBox="2 0 30 30">
 							<IconLambda></IconLambda>
-						</IconBase>
+						</BaseIcon>
 	          <input
 	            class="input input__longitude input--with-error"
 	            :class="{ invalid: showErrors && $v.reportData.lng.$invalid }"
@@ -77,13 +77,13 @@
         <h4 class="form-section__heading">Navigation</h4>
         <input-with-errors unit="°">
 					<div slot="input" class="input__wrapper">
-						<IconBase
+						<BaseIcon
 							width=30
 							height=30
 							color="#999"
 							viewBox="2 -5 40 40">
 							<IconNavigation></IconNavigation>
-						</IconBase>
+						</BaseIcon>
 	          <input
 	            class="input input__course input--with-error"
 	            :class="{ invalid: showErrors && $v.reportData.course.$invalid }"
@@ -101,13 +101,13 @@
 
         <input-with-errors unit="kn">
 					<div slot="input" class="input__wrapper">
-						<IconBase
+						<BaseIcon
 							width=30
 							height=30
 							color="#999"
 							viewBox="2 -5 40 40">
 							<IconSpeed></IconSpeed>
-						</IconBase>
+						</BaseIcon>
 	          <input
 	            class="input input__speed input--with-error"
 	            :class="{ invalid: showErrors && $v.reportData.spd.$invalid }"
@@ -141,7 +141,7 @@
 import PositiveButton from '../../../../atoms/buttons/positive.vue'
 import InputWithErrors from '../../../../molecules/input-with-errors.vue'
 import { required } from 'vuelidate/lib/validators'
-import IconBase from '../../../../atoms/icon-base.vue'
+import BaseIcon from '../../../../atoms/BaseIcon.vue'
 import IconCalendar from '../../../../icons/icon-calendar.vue'
 import IconFi from '../../../../icons/icon-fi.vue'
 import IconLambda from '../../../../icons/icon-lambda.vue'
@@ -214,7 +214,7 @@ export default {
   components: {
     PositiveButton,
     InputWithErrors,
-    IconBase,
+    BaseIcon,
     IconCalendar,
     IconFi,
     IconLambda,

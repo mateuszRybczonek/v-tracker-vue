@@ -6,13 +6,13 @@
       class="quick-links__icon"
       :class="{ 'quick-links__icon--active': selectedVesselDetailsComponent === button.component }"
       @click="selectVesselDetailsComponent(button.component)">
-      <IconBase
+      <BaseIcon
         width="32"
         height="32"
         :viewBox="button.viewBox"
         >
         <component :is="button.icon"></component>
-      </IconBase>
+      </BaseIcon>
     </button>
   </div>
 </template>
@@ -20,7 +20,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import { COMPONENT_NAMES } from '../../constants/vessel-details'
-  import IconBase from '../../components/atoms/icon-base.vue'
+  import BaseIcon from '../../components/atoms/BaseIcon.vue'
   import IconFiles from '../../components/icons/icon-files.vue'
   import IconOverview from '../../components/icons/icon-overview.vue'
   import IconWeather from '../../components/icons/icon-weather.vue'
@@ -69,7 +69,7 @@
 
     components: {
       IconFiles,
-      IconBase,
+      BaseIcon,
       IconOverview,
       IconWeather,
       IconStatistics

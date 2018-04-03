@@ -5,13 +5,13 @@
     </content-placeholders>
     <v-accordion :showOnInit=true color="red" v-else>
       <div slot="header" class="header-badge__slot">
-        <IconBase
+        <BaseIcon
           width=30
           height=30
           color="#FFF"
           viewBox="-5 -7 40 40">
           <IconPosition></IconPosition>
-        </IconBase>
+        </BaseIcon>
         <p>Position</p>
       </div>
       <div slot="body" class="position-info__content">
@@ -30,7 +30,7 @@
 
 <script>
   import { decimalToDMS } from '../../../utils/coordinates-utils'
-  import IconBase from '../../../components/atoms/icon-base.vue'
+  import BaseIcon from '../../../components/atoms/BaseIcon.vue'
   import IconPosition from '../../../components/icons/icon-position.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
 
@@ -63,7 +63,7 @@
     },
 
     components: {
-      IconBase,
+      BaseIcon,
       IconPosition,
       VAccordion
     }

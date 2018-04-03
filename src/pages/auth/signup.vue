@@ -3,12 +3,12 @@
     <form-wrapper title="Register new account" size="narrow">
       <form slot="content" @submit.prevent="onSubmit">
         <div class="input__wrapper">
-          <IconBase
+          <BaseIcon
             width=50
             height=50
             viewBox='0 0 50 50'>
             <IconEmail></IconEmail>
-          </IconBase>
+          </BaseIcon>
           <input class="input--with-error" :class="{ invalid: validationsEnabled && $v.email.$invalid }"
             v-model="email"
             placeholder="Email"
@@ -21,12 +21,12 @@
         </div>
 
         <div class="input__wrapper">
-          <IconBase
+          <BaseIcon
             width=50
             height=50
             viewBox='0 0 50 50'>
             <IconLock></IconLock>
-          </IconBase>
+          </BaseIcon>
           <input class="input__password input--with-error" :class="{ invalid: validationsEnabled && $v.password.$invalid }"
             type="password"
             v-model="password"
@@ -39,12 +39,12 @@
         </div>
 
         <div class="input__wrapper">
-          <IconBase
+          <BaseIcon
             width=50
             height=50
             viewBox='0 0 50 50'>
             <IconLock></IconLock>
-          </IconBase>
+          </BaseIcon>
           <input class="input__password input--with-error" :class="{ invalid: validationsEnabled && $v.confirmPassword.$invalid }"
             type="password"
             v-model="confirmPassword"
@@ -71,7 +71,7 @@
 
   import FormWrapper from '../../components/form-wrapper.vue'
   import PositiveButton from '../../components/atoms/buttons/positive.vue'
-  import IconBase from '../../components/atoms/icon-base.vue'
+  import BaseIcon from '../../components/atoms/BaseIcon.vue'
   import IconEmail from '../../components/icons/icon-email.vue'
   import IconLock from '../../components/icons/icon-lock.vue'
 
@@ -127,7 +127,7 @@
     components: {
       PositiveButton,
       FormWrapper,
-      IconBase,
+      BaseIcon,
       IconEmail,
       IconLock
     }

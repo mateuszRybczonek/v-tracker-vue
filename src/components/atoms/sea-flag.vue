@@ -1,21 +1,21 @@
 <template>
   <div id="sea-flag" class="sea-flag" :class="classes">
     <div class="sea-flag__icons-wrapper">
-      <IconBase id="arrow"
+      <BaseIcon id="arrow"
         width=100
         height=100
         :color='strokeColor'
         :strokeColor='strokeColor'
         viewBox="-6 22 60 60">
         <IconArrow></IconArrow>
-      </IconBase>
-      <IconBase class="sea-flag__icon-wave"
+      </BaseIcon>
+      <BaseIcon class="sea-flag__icon-wave"
         width=30
         height=30
         :strokeColor='strokeColor'
         viewBox="0 35 40 40">
         <IconWave></IconWave>
-      </IconBase>
+      </BaseIcon>
     </div>
   </div>
 </template>
@@ -23,7 +23,7 @@
 <script>
   import IconWave from '../../components/icons/icon-wave.vue'
   import IconArrow from '../../components/icons/icon-arrow.vue'
-  import IconBase from '../../components/atoms/icon-base.vue'
+  import BaseIcon from '../../components/atoms/BaseIcon.vue'
 
   export default {
     props: {
@@ -79,7 +79,7 @@
 
     components: {
       IconWave,
-      IconBase,
+      BaseIcon,
       IconArrow
     },
 

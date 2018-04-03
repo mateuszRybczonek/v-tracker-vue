@@ -3,21 +3,21 @@
     <v-header-badge :color="color" class="report-item-details-section__header-badge">
       <p class="header-badge__slot">{{sectionData.sectionTitle}}</p>
       <span v-if="isEditing" @click.prevent.stop="updateReport(reportChangeset)">
-        <IconBase
+        <BaseIcon
           width=30
           height=30
           color='#FFF'
           viewBox='-10 -10 50 50'>
           <IconSave></IconSave>
-        </IconBase>
+        </BaseIcon>
       </span>
       <span v-else @click.prevent.stop="editReportSection">
-        <IconBase
+        <BaseIcon
           width=30
           height=30
           color='#FFF'>
           <IconPencil></IconPencil>
-        </IconBase>
+        </BaseIcon>
       </span>
     </v-header-badge>
     <ul class="report-item-details-section__list">
@@ -37,7 +37,7 @@
 
 <script>
   import VHeaderBadge from '../../../molecules/header-badge.vue'
-  import IconBase from '../../../atoms/icon-base.vue'
+  import BaseIcon from '../../../atoms/BaseIcon.vue'
   import IconSave from '../../../icons/icon-save.vue'
   import IconPencil from '../../../icons/icon-pencil.vue'
   import {
@@ -76,7 +76,7 @@
 
     components: {
       VHeaderBadge,
-      IconBase,
+      BaseIcon,
       IconSave,
       IconPencil
     },

@@ -14,18 +14,18 @@
       </p>
       <div class="vessels-list-item__buttons">
         <router-link :to="editLink" class="edit-icon">
-          <IconBase
+          <BaseIcon
             width=40
             height=40>
             <IconPencil></IconPencil>
-          </IconBase>
+          </BaseIcon>
         </router-link>
         <span class="delete-icon" @click.prevent.stop="deleteVessel(vessel.id)">
-          <IconBase
+          <BaseIcon
             width=40
             height=40>
             <IconTrash></IconTrash>
-          </IconBase>
+          </BaseIcon>
         </span>
       </div>
     </v-card>
@@ -33,7 +33,7 @@
 
 <script>
   import VCard from '../../molecules/card.vue'
-  import IconBase from '../../atoms/icon-base.vue'
+  import BaseIcon from '../../atoms/BaseIcon.vue'
   import IconPencil from '../../icons/icon-pencil.vue'
   import IconTrash from '../../icons/icon-trash.vue'
 
@@ -55,7 +55,7 @@
 
     components: {
       VCard,
-      IconBase,
+      BaseIcon,
       IconPencil,
       IconTrash
     },

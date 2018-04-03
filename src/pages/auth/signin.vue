@@ -8,12 +8,12 @@
           </span>
         </div>
         <div class="input__wrapper">
-          <IconBase
+          <BaseIcon
             width=50
             height=50
             viewBox='0 0 50 50'>
             <IconEmail></IconEmail>
-          </IconBase>
+          </BaseIcon>
           <input class="input--with-error" :class="{ invalid: validationsEnabled && $v.email.$invalid }"
             v-model="email"
             placeholder="Email"
@@ -25,12 +25,12 @@
           <span class="validation-error" v-else-if="validationsEnabled && !$v.email.email">Please provide a valid email address.</span>
         </div>
         <div class="input__wrapper">
-          <IconBase
+          <BaseIcon
             width=50
             height=50
             viewBox='0 0 50 50'>
             <IconLock></IconLock>
-          </IconBase>
+          </BaseIcon>
           <input class="input--with-error" :class="{ invalid: validationsEnabled && $v.password.$invalid }"
             type="password"
             placeholder="Password"
@@ -57,7 +57,7 @@
 
   import FormWrapper from '../../components/form-wrapper.vue'
   import PositiveButton from '../../components/atoms/buttons/positive.vue'
-  import IconBase from '../../components/atoms/icon-base.vue'
+  import BaseIcon from '../../components/atoms/BaseIcon.vue'
   import IconEmail from '../../components/icons/icon-email.vue'
   import IconLock from '../../components/icons/icon-lock.vue'
 
@@ -115,7 +115,7 @@
     components: {
       PositiveButton,
       FormWrapper,
-      IconBase,
+      BaseIcon,
       IconEmail,
       IconLock
     }

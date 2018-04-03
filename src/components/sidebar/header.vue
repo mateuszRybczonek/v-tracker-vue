@@ -4,12 +4,12 @@
     <router-link tag="i"
       :to="editLink"
       class="sidebar__header__edit-link">
-      <IconBase
+      <BaseIcon
         width=40
         height=40
         viewBox='20 -5 76 76'>
         <IconPencil></IconPencil>
-      </IconBase>
+      </BaseIcon>
     </router-link>
     <div class="sidebar__header__close" @click="toggle">
       <div class="sidebar__header__close__icon" :class="{ 'sidebar__header__close__icon--open': !sidebarVisible }">
@@ -22,7 +22,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import IconBase from '../../components/atoms/icon-base.vue'
+  import BaseIcon from '../../components/atoms/BaseIcon.vue'
   import IconPencil from '../../components/icons/icon-pencil.vue'
 
   export default {
@@ -88,7 +88,7 @@
 
     components: {
       IconPencil,
-      IconBase
+      BaseIcon
     }
   }
 </script>

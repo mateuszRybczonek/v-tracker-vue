@@ -5,13 +5,13 @@
     </content-placeholders>
     <v-accordion :showOnInit=true color="blue" v-else>
       <div slot="header" class="header-badge__slot">
-        <IconBase
+        <BaseIcon
           width=30
           height=30
           color="#FFF"
           viewBox="-5 -7 40 40">
           <IconNavigation></IconNavigation>
-        </IconBase>
+        </BaseIcon>
         <p>Navigation</p>
       </div>
       <div slot="body" class="navigation-info__content">
@@ -31,7 +31,7 @@
 <script>
   import VAccordion from '../../../components/molecules/accordion.vue'
   import IconNavigation from '../../../components/icons/icon-navigation.vue'
-  import IconBase from '../../../components/atoms/icon-base.vue'
+  import BaseIcon from '../../../components/atoms/BaseIcon.vue'
 
   import { TweenMax } from 'gsap'
 
@@ -96,7 +96,7 @@
 
     components: {
       IconNavigation,
-      IconBase,
+      BaseIcon,
       VAccordion
     }
   }
