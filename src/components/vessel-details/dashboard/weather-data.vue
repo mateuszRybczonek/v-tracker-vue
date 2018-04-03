@@ -34,12 +34,12 @@
             </ul>
           </div>
           <div class="weather-info__content__sea">
-            <v-sea-flag
+            <SeaFlag
               class="weather-info__content__sea__flag"
               :height="swellHeight"
               :direction="swellDir"
               :withBorder=true>
-            </v-sea-flag>
+            </SeaFlag>
             <ul class="weather-info__content__list">
               <li class="weather-info__content__list__item"
                 v-for="seaElement in seaData"
@@ -64,7 +64,7 @@
   import IconWeather from '../../../components/icons/icon-weather.vue'
   import BaseIcon from '../../../components/atoms/BaseIcon.vue'
   import VWindFlag from '../../../components/atoms/wind-flag.vue'
-  import VSeaFlag from '../../../components/atoms/sea-flag.vue'
+  import SeaFlag from '../../../components/atoms/SeaFlag.vue'
   import VWeatherSituation from '../weather/weather-situation.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
   import { TweenMax } from 'gsap'
@@ -191,7 +191,7 @@
       BaseIcon,
       VAccordion,
       VWindFlag,
-      VSeaFlag,
+      SeaFlag,
       VWeatherSituation
     }
   }

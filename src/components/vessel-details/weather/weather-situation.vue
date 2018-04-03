@@ -21,19 +21,19 @@
     </div>
 
     <div class="weather-situation__sea-flag-wrapper" id="weather-situation__sea-flag-wrapper">
-      <v-sea-flag
+      <SeaFlag
         class="weather-situation__sea-flag"
         :height="report.swellHeight"
         :direction="report.swellDir"
         :withBorder=false>
-      </v-sea-flag>
+      </SeaFlag>
     </div>
   </div>
 </template>
 
 <script>
   import VWindFlag from '../../atoms/wind-flag.vue'
-  import VSeaFlag from '../../atoms/sea-flag.vue'
+  import SeaFlag from '../../atoms/SeaFlag.vue'
   import IconVessel from '../../icons/icon-vessel.vue'
   import BaseIcon from '../../atoms/BaseIcon.vue'
 
@@ -47,7 +47,7 @@
 
     components: {
       VWindFlag,
-      VSeaFlag,
+      SeaFlag,
       BaseIcon,
       IconVessel
     },
