@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import ButtonPositive from '../Atoms/Buttons/ButtonPositive.vue'
+  import ButtonPositive from './Atoms/Buttons/ButtonPositive.vue'
 
   export default {
     components: {
@@ -21,9 +21,6 @@
 
 <style scoped lang="scss">
   .the-home-page {
-    @include main-page-background();
-    text-align: center;
-
     &__sub-text {
       text-transform: uppercase;
       font-weight: 500;

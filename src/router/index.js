@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store'
 
-import TheHomePage from '../components/TheHomePage/TheHomePage.vue'
+import HomePage from '../pages/HomePage.vue'
 import DashboardPage from '../pages/dashboard.vue'
 import DashboardIndex from '../components/TheDashboard/TheDashboard.vue'
 import SignupPage from '../pages/auth/signup.vue'
@@ -15,7 +15,7 @@ import VesselDetails from '../pages/vessel-details.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', component: TheHomePage },
+  { path: '/', component: HomePage },
   { path: '/signup', component: SignupPage },
   { path: '/signin', component: SigninPage },
   {

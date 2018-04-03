@@ -69,7 +69,7 @@
   import { mapActions } from 'vuex'
 //  import globalAxios from 'axios'
 
-  import FormWrapper from '../../components/FormWrapper/FormWrapper.vue'
+  import FormWrapper from '../../components/FormWrapper.vue'
   import ButtonPositive from '../../components/Atoms/Buttons/ButtonPositive.vue'
   import BaseIcon from '../../components/Atoms/BaseIcon.vue'
   import IconEmail from '../../components/icons/icon-email.vue'

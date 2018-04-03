@@ -19,12 +19,12 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import { COMPONENT_NAMES } from '../../constants/vessel-details'
-  import BaseIcon from '../../components/Atoms/BaseIcon.vue'
-  import IconFiles from '../../components/icons/icon-files.vue'
-  import IconOverview from '../../components/icons/icon-overview.vue'
-  import IconWeather from '../../components/icons/icon-weather.vue'
-  import IconStatistics from '../../components/icons/icon-statistics.vue'
+  import { COMPONENT_NAMES } from '../constants/vessel-details'
+  import BaseIcon from './Atoms/BaseIcon.vue'
+  import IconFiles from './icons/icon-files.vue'
+  import IconOverview from './icons/icon-overview.vue'
+  import IconWeather from './icons/icon-weather.vue'
+  import IconStatistics from './icons/icon-statistics.vue'
 
   const { VESSEL_DASHBOARD, REPORTS, WEATHER, STATISTICS } = COMPONENT_NAMES
 

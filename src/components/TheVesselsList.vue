@@ -1,18 +1,18 @@
 <template>
   <div class="vessels-list">
-    <v-list-item
+    <TheVesselsListItem
       class="vessels-list__item"
       v-for="vessel in vessels"
       :key="vessel.imoNumber"
-      :vessel="vessel"></v-list-item>
-    <v-list-new class="vessels-list__item"></v-list-new>
+      :vessel="vessel"></TheVesselsListItem>
+    <TheVesselsListItemNew class="vessels-list__item"></TheVesselsListItemNew>
   </div>
 </template>
 
 <script>
-  import VCard from '../../molecules/card.vue'
-  import VListItem from './list-item.vue'
-  import VListNew from './list-item-new.vue'
+  import VCard from './molecules/card.vue'
+  import TheVesselsListItem from './TheVesselsListItem.vue'
+  import TheVesselsListItemNew from './TheVesselsListItemNew.vue'
 
   export default {
     props: {
@@ -22,8 +22,8 @@
     },
 
     components: {
-      VListItem,
-      VListNew,
+      TheVesselsListItem,
+      TheVesselsListItemNew,
       VCard
     }
   }

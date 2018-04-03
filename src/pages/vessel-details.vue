@@ -1,10 +1,8 @@
 <template>
   <div class="vessel-details">
-    <v-sidebar
-      :vessel="vessel"
-      :report="selectedReport"
+    <TheSidebar
       :lastReport="lastReport">
-    </v-sidebar>
+    </TheSidebar>
     <div class="vessel-details__content" :class="{ 'vessel-details__content--expanded': !sidebarVisible }">
       <keep-alive>
         <transition name="slide" mode="out-in">
@@ -19,7 +17,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import VSidebar from '../components/sidebar/main.vue'
+  import TheSidebar from '../components/TheSidebar.vue'
   import VVesselDashboard from '../components/vessel-details/dashboard/main.vue'
   import VStatistics from '../components/vessel-details/statistics/main.vue'
   import VWeather from '../components/vessel-details/weather/main.vue'
@@ -41,10 +39,6 @@
         'selectedVesselDetailsComponent',
         'selectedReport'
       ]),
-
-      vessel () {
-        return this.vessels.find(vessel => vessel.id === this.$route.params.id)
-      },
 
       componentProps () {
         switch (this.selectedVesselDetailsComponent) {
@@ -84,7 +78,7 @@
     },
 
     components: {
-      VSidebar,
+      TheSidebar,
       VVesselDashboard,
       VStatistics,
       VWeather,

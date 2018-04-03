@@ -1,40 +1,30 @@
 <template>
   <div class="wrapper">
     <div class="sidebar" :class="{ 'sidebar--collapsed': !sidebarVisible }">
-      <sidebar-header
+      <TheSidebarHeader
         :vessel="vessel">
-      </sidebar-header>
+      </TheSidebarHeader>
 
-      <sidebar-quick-links class="sidebar__quick-links"
+      <TheSidebarQuickLinks class="sidebar__quick-links"
         :vertical="!sidebarVisible">
-      </sidebar-quick-links>
+      </TheSidebarQuickLinks>
 
-      <sidebar-content
+      <TheSidebarContent
         :vessel="vessel"
-        :lastReport="lastReport"
-        :report="report">
-      </sidebar-content>
+        :lastReport="lastReport">
+      </TheSidebarContent>
     </div>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
-  import SidebarHeader from './header.vue'
-  import SidebarQuickLinks from './quick-links.vue'
-  import SidebarContent from './content.vue'
+  import TheSidebarHeader from './TheSidebarHeader.vue'
+  import TheSidebarQuickLinks from './TheSidebarQuickLinks.vue'
+  import TheSidebarContent from './TheSidebarContent.vue'
 
   export default {
     props: {
-      vessel: {
-        type: Object,
-        required: true
-      },
-
-      report: {
-        type: Object
-      },
-
       lastReport: {
         type: Object
       }
@@ -42,14 +32,19 @@
 
     computed: {
       ...mapGetters([
-        'sidebarVisible'
-      ])
+        'sidebarVisible',
+        'vessels'
+      ]),
+
+      vessel () {
+        return this.vessels.find(vessel => vessel.id === this.$route.params.id)
+      },
     },
 
     components: {
-      SidebarHeader,
-      SidebarQuickLinks,
-      SidebarContent
+      TheSidebarHeader,
+      TheSidebarQuickLinks,
+      TheSidebarContent
     }
   }
 </script>

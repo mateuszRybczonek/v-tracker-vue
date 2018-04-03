@@ -1,12 +1,12 @@
 <template>
   <div id="vessels">
     <h1>Vessels</h1>
-    <vessels-list :vessels="vessels"></vessels-list>
+    <TheVesselsList :vessels="vessels"></TheVesselsList>
   </div>
 </template>
 
 <script>
-  import vesselsList from '../components/vessels/vessels-list/vessels-list.vue'
+  import TheVesselsList from '../components/TheVesselsList.vue'
   import { mapGetters } from 'vuex'
 
   export default {
@@ -21,7 +21,7 @@
     },
 
     components: {
-      vesselsList
+      TheVesselsList
     }
   }
 </script>

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  import FormWrapper from '../../../FormWrapper/FormWrapper.vue'
+  import FormWrapper from '../../../FormWrapper.vue'
   import vStepper from './form/Stepper.vue'
   import Step1 from './form/Step1.vue'
   import Step2 from './form/Step2.vue'

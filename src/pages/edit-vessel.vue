@@ -67,7 +67,7 @@
 </template>
 
 <script>
-  import FormWrapper from '../components/FormWrapper/FormWrapper.vue'
+  import FormWrapper from '../components/FormWrapper.vue'
   import ButtonPositive from '../components/Atoms/Buttons/ButtonPositive.vue'
   import { required, numeric } from 'vuelidate/lib/validators'
   import { mapGetters } from 'vuex'
