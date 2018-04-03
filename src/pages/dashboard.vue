@@ -1,12 +1,12 @@
 <template>
   <div id="dashboard">
-    <v-header></v-header>
+    <TheHeader></TheHeader>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-  import vHeader from '../components/header/header.vue'
+  import TheHeader from '../components/TheHeader/TheHeader.vue'
 
   export default {
     created () {
@@ -14,7 +14,7 @@
     },
 
     components: {
-      vHeader
+      TheHeader
     }
   }
 </script>

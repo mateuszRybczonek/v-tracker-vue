@@ -2,22 +2,22 @@
   <div id="dashboard-index">
     <h1>Dashboard</h1>
     <div class="cards">
-      <DashboardCard v-for="card in cards"
+      <TheDashboardCard v-for="card in cards"
         :key="card.label"
         :destination="card.destination"
         :icon="card.icon"
         :label="card.label">
-      </DashboardCard>
+      </TheDashboardCard>
     </div>
   </div>
 </template>
 
 <script>
-  import DashboardCard from './DashboardCard.vue'
+  import TheDashboardCard from './TheDashboardCard.vue'
 
   export default {
     components: {
-      DashboardCard
+      TheDashboardCard
     },
     computed: {
       cards () {
