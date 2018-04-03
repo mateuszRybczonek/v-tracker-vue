@@ -1,9 +1,9 @@
 <template>
-  <div class="vessel-details">
+  <div class="vessel">
     <TheSidebar
       :lastReport="lastReport">
     </TheSidebar>
-    <div class="vessel-details__content" :class="{ 'vessel-details__content--expanded': !sidebarVisible }">
+    <div class="vessel__content" :class="{ 'vessel__content--expanded': !sidebarVisible }">
       <keep-alive>
         <transition name="slide" mode="out-in">
           <component
@@ -88,7 +88,7 @@
 </script>
 
 <style scoped lang="scss">
-  .vessel-details {
+  .vessel {
     h1, p {
       text-align: center;
     }
