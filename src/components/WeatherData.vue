@@ -51,22 +51,22 @@
             </ul>
           </div>
         </div>
-        <v-weather-situation v-if="!fetchingReports"
+        <WeatherSituation v-if="!fetchingReports"
           class="weather-info__content__situation"
           :report="report">
-        </v-weather-situation>
+        </WeatherSituation>
       </div>
     </v-accordion>
   </div>
 </template>
 
 <script>
-  import IconWeather from '../../../components/icons/icon-weather.vue'
-  import BaseIcon from '../../../components/Atoms/BaseIcon.vue'
-  import WindFlag from '../../../components/Atoms/WindFlag.vue'
-  import SeaFlag from '../../../components/Atoms/SeaFlag.vue'
-  import VWeatherSituation from '../weather/weather-situation.vue'
-  import VAccordion from '../../../components/molecules/accordion.vue'
+  import IconWeather from './icons/icon-weather.vue'
+  import BaseIcon from './Atoms/BaseIcon.vue'
+  import WindFlag from './Atoms/WindFlag.vue'
+  import SeaFlag from './Atoms/SeaFlag.vue'
+  import WeatherSituation from './WeatherSituation.vue'
+  import VAccordion from './molecules/accordion.vue'
   import { TweenMax } from 'gsap'
 
   const NOT_PROVIDED = 'not provided'
@@ -192,7 +192,7 @@
       VAccordion,
       WindFlag,
       SeaFlag,
-      VWeatherSituation
+      WeatherSituation
     }
   }
 </script>

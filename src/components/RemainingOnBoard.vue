@@ -9,8 +9,8 @@
 </template>
 
 <script>
-  import MiniStatsItem from '../../../components/molecules/mini-stats-item.vue'
-  import VAccordion from '../../../components/molecules/accordion.vue'
+  import MiniStatsItem from './molecules/mini-stats-item.vue'
+  import VAccordion from './molecules/accordion.vue'
   import { TweenMax } from 'gsap'
 
   export default {

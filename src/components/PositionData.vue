@@ -29,10 +29,10 @@
 </template>
 
 <script>
-  import { decimalToDMS } from '../../../utils/coordinates-utils'
-  import BaseIcon from '../../../components/Atoms/BaseIcon.vue'
-  import IconPosition from '../../../components/icons/icon-position.vue'
-  import VAccordion from '../../../components/molecules/accordion.vue'
+  import { decimalToDMS } from '../utils/coordinates-utils'
+  import BaseIcon from './Atoms/BaseIcon.vue'
+  import IconPosition from './icons/icon-position.vue'
+  import VAccordion from './molecules/accordion.vue'
 
   const NOT_PROVIDED = 'not provided'
 

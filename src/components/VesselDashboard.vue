@@ -7,54 +7,54 @@
       @affix="shrinkReportSelect()"
       @affixtop="expandReportSelect()"
     >
-      <report-selector
+      <ReportSelector
         class="vessel-details__report-selector"
         :class="{ 'vessel-details__report-selector--shrunk': shrinkReportSelector }"
         :reports="reversedReports">
-      </report-selector>
+      </ReportSelector>
     </affix>
 
 
     <div class="vessel-details__row">
-      <google-map class="vessel-details__row__item"
+      <GoogleMap class="vessel-details__row__item"
         :report="report"
         :fetchingReports="fetchingReports">
-      </google-map>
+      </GoogleMap>
 
       <div class="vessel-details__row__item">
-        <position-data class="vessel-details__row__item"
+        <PositionData class="vessel-details__row__item"
           :report="report"
           :fetchingReports="fetchingReports">
-        </position-data>
+        </PositionData>
 
-        <navigation-data class="vessel-details__row__item"
+        <NavigationData class="vessel-details__row__item"
           :report="report"
           :fetchingReports="fetchingReports">
-        </navigation-data>
+        </NavigationData>
       </div>
     </div>
 
-    <weather-data class="vessel-details__row__item"
+    <WeatherData class="vessel-details__row__item"
       :report="report"
       :fetchingReports="fetchingReports">
-    </weather-data>
+    </WeatherData>
 
-    <remaining-on-board class="vessel-details__item" v-if="!fetchingReports"
+    <RemainingOnBoard class="vessel-details__item" v-if="!fetchingReports"
       :report="report"
       :previousReport="previousReport"
       :fetchingReports="fetchingReports">
-    </remaining-on-board>
+    </RemainingOnBoard>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
-  import GoogleMap from './google-map.vue'
-  import WeatherData from './weather-data.vue'
-  import PositionData from './position-data.vue'
-  import NavigationData from './navigation-data.vue'
-  import RemainingOnBoard from './remaining-on-board.vue'
-  import ReportSelector from './report-selector'
+  import GoogleMap from './GoogleMap.vue'
+  import WeatherData from './WeatherData.vue'
+  import PositionData from './PositionData.vue'
+  import NavigationData from './NavigationData.vue'
+  import RemainingOnBoard from './RemainingOnBoard.vue'
+  import ReportSelector from './ReportSelector'
 
   export default {
     data () {

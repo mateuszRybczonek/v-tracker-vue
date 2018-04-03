@@ -6,9 +6,9 @@
 </template>
 
 <script>
-  import VCard from '../../components/molecules/card.vue'
-  import IconFiles from '../../components/icons/animated/icon-files.vue'
-  import IconShip from '../../components/icons/animated/icon-ship.vue'
+  import VCard from './molecules/card.vue'
+  import IconFiles from './icons/animated/icon-files.vue'
+  import IconShip from './icons/animated/icon-ship.vue'
 
   export default {
     props: {

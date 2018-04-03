@@ -32,10 +32,10 @@
 </template>
 
 <script>
-  import WindFlag from '../../Atoms/WindFlag.vue'
-  import SeaFlag from '../../Atoms/SeaFlag.vue'
-  import IconVessel from '../../icons/icon-vessel.vue'
-  import BaseIcon from '../../Atoms/BaseIcon.vue'
+  import WindFlag from './Atoms/WindFlag.vue'
+  import SeaFlag from './Atoms/SeaFlag.vue'
+  import IconVessel from './icons/icon-vessel.vue'
+  import BaseIcon from './Atoms/BaseIcon.vue'
 
   export default {
     props: {
@@ -83,7 +83,7 @@
     position: relative;
     height: 500px;
     width: 500px;
-    background: url(../../../assets/compass-rose.svg);
+    background: url(../assets/compass-rose.svg);
     background-size: 500px;
 
     &__wind-flag, &__sea-flag {

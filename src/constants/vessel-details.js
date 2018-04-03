@@ -1,5 +1,5 @@
 const COMPONENT_NAMES = {
-  VESSEL_DASHBOARD: 'v-vessel-dashboard',
+  VESSEL_DASHBOARD: 'VesselDashboard',
   REPORTS: 'v-reports',
   WEATHER: 'v-weather',
   STATISTICS: 'v-statistics'

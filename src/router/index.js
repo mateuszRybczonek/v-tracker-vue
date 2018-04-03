@@ -4,7 +4,7 @@ import store from '../store'
 
 import HomePage from '../pages/HomePage.vue'
 import DashboardPage from '../pages/dashboard.vue'
-import DashboardIndex from '../components/TheDashboard/TheDashboard.vue'
+import DashboardIndex from '../components/TheDashboard.vue'
 import SignupPage from '../pages/auth/signup.vue'
 import SigninPage from '../pages/auth/signin.vue'
 import VesselsPage from '../pages/vessels.vue'

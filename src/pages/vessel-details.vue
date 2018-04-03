@@ -18,7 +18,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import TheSidebar from '../components/TheSidebar.vue'
-  import VVesselDashboard from '../components/vessel-details/dashboard/main.vue'
+  import VesselDashboard from '../components/VesselDashboard.vue'
   import VStatistics from '../components/vessel-details/statistics/main.vue'
   import VWeather from '../components/vessel-details/weather/main.vue'
   import VReports from '../components/vessel-details/reports/main.vue'
@@ -79,7 +79,7 @@
 
     components: {
       TheSidebar,
-      VVesselDashboard,
+      VesselDashboard,
       VStatistics,
       VWeather,
       VReports
