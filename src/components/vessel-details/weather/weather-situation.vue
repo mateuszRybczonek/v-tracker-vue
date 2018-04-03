@@ -12,12 +12,12 @@
     </div>
 
     <div class="weather-situation__wind-flag-wrapper" id="weather-situation__wind-flag-wrapper">
-      <v-wind-flag
+      <WindFlag
         class="weather-situation__wind-flag"
         :speed="report.windSpd"
         :direction="report.windDir"
-        :withBorder=false>
-      </v-wind-flag>
+        :withBorder='false'>
+      </WindFlag>
     </div>
 
     <div class="weather-situation__sea-flag-wrapper" id="weather-situation__sea-flag-wrapper">
@@ -25,14 +25,14 @@
         class="weather-situation__sea-flag"
         :height="report.swellHeight"
         :direction="report.swellDir"
-        :withBorder=false>
+        :withBorder='false'>
       </SeaFlag>
     </div>
   </div>
 </template>
 
 <script>
-  import VWindFlag from '../../atoms/wind-flag.vue'
+  import WindFlag from '../../atoms/WindFlag.vue'
   import SeaFlag from '../../atoms/SeaFlag.vue'
   import IconVessel from '../../icons/icon-vessel.vue'
   import BaseIcon from '../../atoms/BaseIcon.vue'
@@ -46,7 +46,7 @@
     },
 
     components: {
-      VWindFlag,
+      WindFlag,
       SeaFlag,
       BaseIcon,
       IconVessel

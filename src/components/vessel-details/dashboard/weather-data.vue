@@ -17,12 +17,12 @@
       <div slot="body" class="weather-info__content">
         <div class="weather-info__content__data">
           <div class="weather-info__content__wind">
-            <v-wind-flag
+            <WindFlag
               class="weather-info__content__wind__flag"
               :speed="windSpd"
               :direction="windDir"
               :withBorder=true>
-            </v-wind-flag>
+            </WindFlag>
             <ul class="weather-info__content__list">
               <li class="weather-info__content__list__item"
                 v-for="windElement in windData"
@@ -63,7 +63,7 @@
 <script>
   import IconWeather from '../../../components/icons/icon-weather.vue'
   import BaseIcon from '../../../components/atoms/BaseIcon.vue'
-  import VWindFlag from '../../../components/atoms/wind-flag.vue'
+  import WindFlag from '../../../components/atoms/WindFlag.vue'
   import SeaFlag from '../../../components/atoms/SeaFlag.vue'
   import VWeatherSituation from '../weather/weather-situation.vue'
   import VAccordion from '../../../components/molecules/accordion.vue'
@@ -190,7 +190,7 @@
       IconWeather,
       BaseIcon,
       VAccordion,
-      VWindFlag,
+      WindFlag,
       SeaFlag,
       VWeatherSituation
     }
