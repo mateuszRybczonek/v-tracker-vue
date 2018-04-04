@@ -2,31 +2,31 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store'
 
-import WelcomePage from '../components/welcome/welcome.vue'
-import DashboardPage from '../pages/dashboard.vue'
-import DashboardIndex from '../components/dashboard/index.vue'
-import SignupPage from '../pages/auth/signup.vue'
-import SigninPage from '../pages/auth/signin.vue'
-import VesselsPage from '../pages/vessels.vue'
-import NewVessel from '../pages/new-vessel.vue'
-import EditVessel from '../pages/edit-vessel.vue'
-import VesselDetails from '../pages/vessel-details.vue'
+import HomePage from '../pages/HomePage.vue'
+import MainMenuPage from '../pages/MainMenuPage.vue'
+import MainMenu from '../components/MainMenu.vue'
+import SignupPage from '../pages/auth/SignupPage.vue'
+import SigninPage from '../pages/auth/SigninPage.vue'
+import VesselsPage from '../pages/VesselsPage.vue'
+import NewVesselPage from '../pages/NewVesselPage.vue'
+import EditVesselPage from '../pages/EditVesselPage.vue'
+import VesselPage from '../pages/VesselPage.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', component: WelcomePage },
+  { path: '/', component: HomePage },
   { path: '/signup', component: SignupPage },
   { path: '/signin', component: SigninPage },
   {
     path: '/dashboard',
-    component: DashboardPage,
+    component: MainMenuPage,
     children: [
-      { path: '', component: DashboardIndex },
+      { path: '', component: MainMenu },
       { path: 'vessels', component: VesselsPage },
-      { path: 'vessels/new', component: NewVessel },
-      { path: 'vessels/:id/edit', component: EditVessel },
-      { path: 'vessels/:id', component: VesselDetails }
+      { path: 'vessels/new', component: NewVesselPage },
+      { path: 'vessels/:id/edit', component: EditVesselPage },
+      { path: 'vessels/:id', component: VesselPage }
     ],
     beforeEnter (to, from, next) { // authentication guard
       if (store.state.auth.idToken) {

@@ -1,0 +1,79 @@
+<template>
+  <div class="wrapper">
+    <div class="sidebar" :class="{ 'sidebar--collapsed': !sidebarVisible }">
+      <TheSidebarHeader
+        :vessel="vessel">
+      </TheSidebarHeader>
+
+      <TheSidebarQuickLinks class="sidebar__quick-links"
+        :vertical="!sidebarVisible">
+      </TheSidebarQuickLinks>
+
+      <TheSidebarContent
+        :vessel="vessel"
+        :lastReport="lastReport">
+      </TheSidebarContent>
+    </div>
+  </div>
+</template>
+
+<script>
+  import { mapGetters } from 'vuex'
+  import TheSidebarHeader from './TheSidebarHeader.vue'
+  import TheSidebarQuickLinks from './TheSidebarQuickLinks.vue'
+  import TheSidebarContent from './TheSidebarContent.vue'
+
+  export default {
+    props: {
+      lastReport: {
+        type: Object
+      }
+    },
+
+    computed: {
+      ...mapGetters([
+        'sidebarVisible',
+        'vessels'
+      ]),
+
+      vessel () {
+        return this.vessels.find(vessel => vessel.id === this.$route.params.id)
+      }
+    },
+
+    components: {
+      TheSidebarHeader,
+      TheSidebarQuickLinks,
+      TheSidebarContent
+    }
+  }
+</script>
+
+<style scoped lang="scss">
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin-top: 56px;
+    background-color: $color-blue;
+    color: $color-whitey;
+    transition: margin-left .5s;
+    z-index: 999;
+
+    &--collapsed {
+      margin-left: -250px;
+
+      .sidebar__quick-links {
+        order: 3;
+      }
+
+      .sidebar___content {
+        order: 2;
+      }
+    }
+  }
+</style>
