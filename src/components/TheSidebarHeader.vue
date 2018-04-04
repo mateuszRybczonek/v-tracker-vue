@@ -1,18 +1,27 @@
 <template>
   <div class="sidebar__header">
     <h5>{{vessel.name}}</h5>
-    <router-link tag="i"
+    <router-link
+      tag="i"
       :to="editLink"
-      class="sidebar__header__edit-link">
+      class="sidebar__header__edit-link"
+    >
       <BaseIcon
         width=40
         height=40
-        viewBox='20 -5 76 76'>
+        viewBox='20 -5 76 76'
+      >
         <IconPencil></IconPencil>
       </BaseIcon>
     </router-link>
-    <div class="sidebar__header__close" @click="toggle">
-      <div class="sidebar__header__close__icon" :class="{ 'sidebar__header__close__icon--open': !sidebarVisible }">
+    <div
+      class="sidebar__header__close"
+      @click="toggle"
+    >
+      <div
+        class="sidebar__header__close__icon"
+        :class="{ 'sidebar__header__close__icon--open': !sidebarVisible }"
+      >
         <span></span>
         <span></span>
       </div>

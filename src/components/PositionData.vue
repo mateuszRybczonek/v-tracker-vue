@@ -3,22 +3,34 @@
     <content-placeholders v-if="fetchingReports">
       <content-placeholders-img class="position-data__placeholder"></content-placeholders-img>
     </content-placeholders>
-    <AccordionWrapper :showOnInit=true color="red" v-else>
-      <div slot="header" class="badge__slot">
+    <AccordionWrapper
+      v-else
+      :showOnInit=true color="red"
+    >
+      <div
+        slot="header"
+        class="badge__slot"
+      >
         <BaseIcon
           width=30
           height=30
           color="#FFF"
-          viewBox="-5 -7 40 40">
+          viewBox="-5 -7 40 40"
+        >
           <IconPosition></IconPosition>
         </BaseIcon>
         <p>Position</p>
       </div>
-      <div slot="body" class="position-info__content">
+      <div
+        slot="body"
+        class="position-info__content"
+      >
         <ul class="position-info__content__list">
-          <li class="position-info__content__list__item"
-              v-for="coordinate in positionData"
-              :key="coordinate.title">
+          <li
+            class="position-info__content__list__item"
+            v-for="coordinate in positionData"
+            :key="coordinate.title"
+          >
             <span class="position-info__content__list__item__title">{{coordinate.title}}</span>
             <span class="position-info__content__list__item__value">{{coordinate.value}}</span>
           </li>

@@ -1,11 +1,16 @@
 <template>
-  <div class="mini-stats-item-change" :class=color>
-    <BaseIcon class="mini-stats-change__arrow"
-      :class=rotationClass
+  <div
+    class="mini-stats-item-change"
+    :class="color"
+  >
+    <BaseIcon
+      class="mini-stats-change__arrow"
+      :class="rotationClass"
       width=30
       height=30
       :color="color"
-      viewBox="-15 -15 50 50">
+      viewBox="-15 -15 50 50"
+    >
       <IconChange></IconChange>
     </BaseIcon>
     <span class="mini-stats-item-change__value">
@@ -74,12 +79,10 @@
 
     .less {
       transform: rotate(90deg);
-      mask-position: 35% -787px;
     }
 
     .more {
       transform: rotate(270deg);
-      mask-position: 35% -787px;
     }
 
     &.red {

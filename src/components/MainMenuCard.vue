@@ -1,5 +1,8 @@
 <template>
-  <BaseCard class="dashboard-card" :to="destination">
+  <BaseCard
+    class="dashboard-card"
+    :to="destination"
+  >
     <component :is="icon"></component>
     <p class="dashboard-card__label">{{label}}</p>
   </BaseCard>

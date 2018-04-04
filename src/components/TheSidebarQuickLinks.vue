@@ -1,5 +1,8 @@
 <template>
-  <div class="quick-links" :class="{ 'quick-links--vertical': vertical }">
+  <div
+    class="quick-links"
+    :class="{ 'quick-links--vertical': vertical }"
+  >
     <button
       v-for="button in buttons"
       :key="button.component"
@@ -10,7 +13,7 @@
         width="32"
         height="32"
         :viewBox="button.viewBox"
-        >
+      >
         <component :is="button.icon"></component>
       </BaseIcon>
     </button>

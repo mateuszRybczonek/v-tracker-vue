@@ -1,19 +1,19 @@
 <template>
-  <div class="wrapper">
-    <div class="sidebar" :class="{ 'sidebar--collapsed': !sidebarVisible }">
-      <TheSidebarHeader
-        :vessel="vessel">
-      </TheSidebarHeader>
+  <div
+    class="sidebar"
+    :class="{ 'sidebar--collapsed': !sidebarVisible }"
+  >
+    <TheSidebarHeader :vessel="vessel"></TheSidebarHeader>
 
-      <TheSidebarQuickLinks class="sidebar__quick-links"
-        :vertical="!sidebarVisible">
-      </TheSidebarQuickLinks>
+    <TheSidebarQuickLinks
+      class="sidebar__quick-links"
+      :vertical="!sidebarVisible"
+    ></TheSidebarQuickLinks>
 
-      <TheSidebarContent
-        :vessel="vessel"
-        :lastReport="lastReport">
-      </TheSidebarContent>
-    </div>
+    <TheSidebarContent
+      :vessel="vessel"
+      :lastReport="lastReport"
+    ></TheSidebarContent>
   </div>
 </template>
 

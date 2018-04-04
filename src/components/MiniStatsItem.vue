@@ -3,18 +3,29 @@
     <content-placeholders v-if="showPlaceholder">
       <content-placeholders-img></content-placeholders-img>
     </content-placeholders>
-    <AccordionWrapper :showOnInit=true :color="item.color" v-else>
-      <div slot="header" class="badge__slot">
+    <AccordionWrapper
+      v-else
+      :showOnInit=true :color="item.color"
+    >
+      <div
+        slot="header"
+        class="badge__slot"
+      >
         <BaseIcon
           width=30
           height=30
           color="#FFF"
-          viewBox="10 0 76 76">
+          viewBox="10 0 76 76"
+        >
           <component :is="item.icon"></component>
         </BaseIcon>
         <p>{{item.description}}</p>
       </div>
-      <div slot="body" class="mini-stats-item__content" :class="item.color">
+      <div
+        slot="body"
+        class="mini-stats-item__content"
+        :class="item.color"
+      >
         <div class="item__badge">
           <BaseIcon
             width=80
@@ -31,10 +42,14 @@
           </div>
         </div>
       </div>
-      <div slot="footer" class="mini-stats-item__change">
+      <div
+        slot="footer"
+        class="mini-stats-item__change"
+      >
         <MiniStatsItemChange
           :change="item.change"
-          :unit="item.unit"></MiniStatsItemChange>
+          :unit="item.unit"
+        ></MiniStatsItemChange>
       </div>
     </AccordionWrapper>
   </div>

@@ -1,11 +1,16 @@
 <template>
-  <button :class="{'in-progress': inProgress}" @click="onClick">
+  <button
+    :class="{'in-progress': inProgress}"
+    @click="onClick"
+    >
+
     <md-progress-spinner
       v-if="inProgress"
       :md-diameter="20"
       :md-stroke="3"
       md-mode="indeterminate">
     </md-progress-spinner>
+
     <slot v-else></slot>
   </button>
 </template>

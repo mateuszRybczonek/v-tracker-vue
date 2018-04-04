@@ -1,19 +1,27 @@
 <template>
-  <div id="sea-flag" class="sea-flag" :class="classes">
+  <div
+    id="sea-flag"
+    class="sea-flag"
+    :class="classes"
+  >
     <div class="sea-flag__icons-wrapper">
-      <BaseIcon id="arrow"
+      <BaseIcon
+        id="arrow"
         width=100
         height=100
         :color='strokeColor'
         :strokeColor='strokeColor'
-        viewBox="-6 22 60 60">
+        viewBox="-6 22 60 60"
+      >
         <IconArrow></IconArrow>
       </BaseIcon>
-      <BaseIcon class="sea-flag__icon-wave"
+      <BaseIcon
+        class="sea-flag__icon-wave"
         width=30
         height=30
         :strokeColor='strokeColor'
-        viewBox="0 35 40 40">
+        viewBox="0 35 40 40"
+      >
         <IconWave></IconWave>
       </BaseIcon>
     </div>

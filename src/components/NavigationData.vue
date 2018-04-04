@@ -3,22 +3,34 @@
     <content-placeholders v-if="fetchingReports">
       <content-placeholders-img class="navigation-data__placeholder"></content-placeholders-img>
     </content-placeholders>
-    <AccordionWrapper :showOnInit=true color="blue" v-else>
-      <div slot="header" class="badge__slot">
+    <AccordionWrapper
+      v-else
+      :showOnInit=true color="blue"
+    >
+      <div
+        slot="header"
+        class="badge__slot"
+      >
         <BaseIcon
           width=30
           height=30
           color="#FFF"
-          viewBox="-5 -7 40 40">
+          viewBox="-5 -7 40 40"
+        >
           <IconNavigation></IconNavigation>
         </BaseIcon>
         <p>Navigation</p>
       </div>
-      <div slot="body" class="navigation-info__content">
+      <div
+        slot="body"
+        class="navigation-info__content"
+      >
         <ul class="navigation-info__content__list">
-          <li class="navigation-info__content__list__item"
-              v-for="navItem in navigationData"
-              :key="navItem.title">
+          <li
+            class="navigation-info__content__list__item"
+            v-for="navItem in navigationData"
+            :key="navItem.title"
+          >
             <span class="navigation-info__content__list__item__title">{{navItem.title}}</span>
             <span class="navigation-info__content__list__item__value">{{navItem.value}}</span>
           </li>

@@ -1,10 +1,11 @@
 <template>
   <div class="remaining-on-board">
-    <MiniStatsItem v-for="item in miniStatsItems"
+    <MiniStatsItem
+      v-for="item in miniStatsItems"
       :key="item.description"
       :item="item"
-      :showPlaceholder="fetchingReports">
-    </MiniStatsItem>
+      :showPlaceholder="fetchingReports"
+    ></MiniStatsItem>
   </div>
 </template>
 

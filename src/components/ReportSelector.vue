@@ -1,13 +1,21 @@
 <template>
   <div class="report-selector">
-    <v-carousel ref="carousel"
+    <v-carousel
+      ref="carousel"
       :perPage="7"
       :navigationEnabled="true"
       :paginationEnabled="false"
       class="report-selector__carousel"
     >
-      <v-slide v-for="report in reports" :key="report.id" class="report-selector__selection">
-        <calendar-card :report="report" @click.native="selectReport(report)"></calendar-card>
+      <v-slide
+        v-for="report in reports"
+        :key="report.id"
+        class="report-selector__selection"
+      >
+        <calendar-card
+          :report="report"
+          @click.native="selectReport(report)"
+        ></calendar-card>
       </v-slide>
     </v-carousel>
   </div>

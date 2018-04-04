@@ -1,8 +1,12 @@
 <template>
-  <div class="vessel-dashboard" :class="{ 'vessel-dashboard--full-width': !sidebarVisible }">
+  <div
+    class="vessel-dashboard"
+    :class="{ 'vessel-dashboard--full-width': !sidebarVisible }"
+  >
     <h1 class="vessel-dashboard__header">Report details</h1>
 
-    <affix relative-element-selector=".vessel-dashboard"
+    <affix
+      relative-element-selector=".vessel-dashboard"
       :offset="{ top: -70, bottom: 0 }"
       @affix="shrinkReportSelect()"
       @affixtop="expandReportSelect()"
@@ -10,39 +14,47 @@
       <ReportSelector
         class="vessel-dashboard__report-selector"
         :class="{ 'vessel-dashboard__report-selector--shrunk': shrinkReportSelector }"
-        :reports="reversedReports">
-      </ReportSelector>
+        :reports="reversedReports"
+      ></ReportSelector>
     </affix>
 
-    <div class="vessel-dashboard__row">
-      <GoogleMap class="vessel-dashboard__row__item"
+    <div
+      class="vessel-dashboard__row"
+    >
+      <GoogleMap
+        class="vessel-dashboard__row__item"
         :report="report"
-        :fetchingReports="fetchingReports">
-      </GoogleMap>
+        :fetchingReports="fetchingReports"
+      ></GoogleMap>
 
       <div class="vessel-dashboard__row__item">
-        <PositionData class="vessel-dashboard__row__item"
+        <PositionData
+          class="vessel-dashboard__row__item"
           :report="report"
-          :fetchingReports="fetchingReports">
-        </PositionData>
+          :fetchingReports="fetchingReports"
+        ></PositionData>
 
-        <NavigationData class="vessel-dashboard__row__item"
+        <NavigationData
+          class="vessel-dashboard__row__item"
           :report="report"
-          :fetchingReports="fetchingReports">
-        </NavigationData>
+          :fetchingReports="fetchingReports"
+        ></NavigationData>
       </div>
     </div>
 
-    <WeatherData class="vessel-dashboard__row__item"
+    <WeatherData
+      class="vessel-dashboard__row__item"
       :report="report"
-      :fetchingReports="fetchingReports">
-    </WeatherData>
+      :fetchingReports="fetchingReports"
+    ></WeatherData>
 
-    <RemainingOnBoard class="vessel-dashboard__item" v-if="!fetchingReports"
+    <RemainingOnBoard
+      class="vessel-dashboard__item"
+      v-if="!fetchingReports"
       :report="report"
       :previousReport="previousReport"
-      :fetchingReports="fetchingReports">
-    </RemainingOnBoard>
+      :fetchingReports="fetchingReports"
+    ></RemainingOnBoard>
   </div>
 </template>
 

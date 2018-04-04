@@ -1,6 +1,6 @@
 <template>
   <router-link :to="to">
-    <div class="v-card">
+    <div class="base-card">
       <slot></slot>
     </div>
   </router-link>
@@ -18,13 +18,13 @@
 </script>
 
 <style scoped lang="scss">
-  .v-card {
+  .base-card {
     min-height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #FFF;
+    background-color: $color-white;
     width: 350px;
     padding: 20px;
     text-align: center;

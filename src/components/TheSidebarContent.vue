@@ -2,16 +2,32 @@
   <div class="sidebar__content">
     <ul class="sidebar__content__list">
       <li class="sidebar__content__list__item__status">
-        <span class="sidebar__content__list__item__title" v-if="sidebarVisible">Status</span>
-        <span class="sidebar__content__list__item__status__marker" :class="vesselStatusClass"></span>
+        <span
+          class="sidebar__content__list__item__title"
+          v-if="sidebarVisible"
+        >
+          Status
+        </span>
+        <span
+          class="sidebar__content__list__item__status__marker"
+          :class="vesselStatusClass"
+        ></span>
       </li>
 
-      <div class="sidebar__content__list__item sidebar__content__list__item__last-report" v-if="sidebarVisible">
+      <div
+        class="sidebar__content__list__item sidebar__content__list__item__last-report"
+        v-if="sidebarVisible"
+      >
         <span class="sidebar__content__list__item__title">Last reported data: {{lastReportDate}}</span>
         <span class="sidebar__content__list__item__title">({{lastReportDaysAgo}})</span>
       </div>
 
-      <li class="sidebar__content__list__item" v-for="item in items" :key="item.name" v-if="sidebarVisible">
+      <li
+        class="sidebar__content__list__item"
+        v-for="item in items"
+        :key="item.name"
+        v-if="sidebarVisible"
+      >
         <span class="sidebar__content__list__item__title">{{item.title}}</span>
         <span class="sidebar__content__list__item__value">{{item.value}}</span>
       </li>

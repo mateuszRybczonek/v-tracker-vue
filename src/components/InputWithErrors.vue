@@ -2,7 +2,12 @@
   <div class="input--with-errors">
     <div :class="{'input--with-unit': unit}">
       <slot name="input"></slot>
-      <span v-if="unit" class="input__unit">{{ unit }}</span>
+      <span
+        v-if="unit"
+        class="input__unit"
+      >
+        {{ unit }}
+      </span>
     </div>
     <div class="error">
       <slot name="errors"></slot>
