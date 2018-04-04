@@ -32,6 +32,14 @@
   const { VESSEL_DASHBOARD, REPORTS, WEATHER, STATISTICS } = COMPONENT_NAMES
 
   export default {
+    components: {
+      IconFiles,
+      BaseIcon,
+      IconOverview,
+      IconWeather,
+      IconStatistics
+    },
+
     props: {
       vertical: {
         type: Boolean,
@@ -68,14 +76,6 @@
       selectVesselDetailsComponent (componentName) {
         this.$store.dispatch('selectedVesselDetailsComponent', componentName)
       }
-    },
-
-    components: {
-      IconFiles,
-      BaseIcon,
-      IconOverview,
-      IconWeather,
-      IconStatistics
     }
   }
 </script>

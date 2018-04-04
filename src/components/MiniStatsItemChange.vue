@@ -27,6 +27,11 @@
   import IconChange from './Icons/IconChange.vue'
 
   export default {
+    components: {
+      BaseIcon,
+      IconChange
+    },
+
     props: {
       change: {
         type: Number,
@@ -48,11 +53,6 @@
         if (this.change === 0) return ''
         return this.change < 0 ? 'less' : 'more'
       }
-    },
-
-    components: {
-      BaseIcon,
-      IconChange
     }
   }
 </script>

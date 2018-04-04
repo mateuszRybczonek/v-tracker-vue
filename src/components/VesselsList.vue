@@ -15,15 +15,15 @@
   import VesselsListItemNew from './VesselsListItemNew.vue'
 
   export default {
+    components: {
+      VesselsListItem,
+      VesselsListItemNew
+    },
+
     props: {
       vessels: {
         type: Array
       }
-    },
-
-    components: {
-      VesselsListItem,
-      VesselsListItemNew
     }
   }
 </script>

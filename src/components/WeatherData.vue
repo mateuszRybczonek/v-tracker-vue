@@ -88,14 +88,13 @@
   const NOT_PROVIDED = 'not provided'
 
   export default {
-    data () {
-      return {
-        tweenedWindDir: this.report ? this.report.windDir : 0,
-        tweenedWindSpd: this.report ? this.report.windSpd : 0,
-        tweenedSeaState: this.report ? this.report.seaState : 0,
-        tweenedSwellDir: this.report ? this.report.swellDir : 0,
-        tweenedSwellHeight: this.report ? this.report.swellHeight : 0
-      }
+    components: {
+      IconWeather,
+      BaseIcon,
+      AccordionWrapper,
+      WindFlag,
+      SeaFlag,
+      WeatherSituation
     },
 
     props: {
@@ -104,6 +103,16 @@
       },
       fetchingReports: {
         type: Boolean
+      }
+    },
+
+    data () {
+      return {
+        tweenedWindDir: this.report ? this.report.windDir : 0,
+        tweenedWindSpd: this.report ? this.report.windSpd : 0,
+        tweenedSeaState: this.report ? this.report.seaState : 0,
+        tweenedSwellDir: this.report ? this.report.swellDir : 0,
+        tweenedSwellHeight: this.report ? this.report.swellHeight : 0
       }
     },
 
@@ -200,15 +209,6 @@
       swellHeight (newValue) {
         TweenMax.to(this.$data, 2, { tweenedSwellHeight: newValue })
       }
-    },
-
-    components: {
-      IconWeather,
-      BaseIcon,
-      AccordionWrapper,
-      WindFlag,
-      SeaFlag,
-      WeatherSituation
     }
   }
 </script>

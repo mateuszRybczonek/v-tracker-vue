@@ -49,18 +49,18 @@
   import BaseIcon from './BaseIcon.vue'
 
   export default {
-    props: {
-      report: {
-        type: Object,
-        required: true
-      }
-    },
-
     components: {
       WindFlag,
       SeaFlag,
       BaseIcon,
       IconVessel
+    },
+
+    props: {
+      report: {
+        type: Object,
+        required: true
+      }
     },
 
     watch: {

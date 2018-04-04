@@ -68,16 +68,25 @@
   import ReportSelector from './ReportSelector'
 
   export default {
-    data () {
-      return {
-        shrinkReportSelector: false
-      }
+    components: {
+      GoogleMap,
+      RemainingOnBoard,
+      WeatherData,
+      PositionData,
+      NavigationData,
+      ReportSelector
     },
 
     props: {
       componentProps: {
         type: Object,
         required: true
+      }
+    },
+
+    data () {
+      return {
+        shrinkReportSelector: false
       }
     },
 
@@ -114,15 +123,6 @@
       expandReportSelect () {
         this.shrinkReportSelector = false
       }
-    },
-
-    components: {
-      GoogleMap,
-      RemainingOnBoard,
-      WeatherData,
-      PositionData,
-      NavigationData,
-      ReportSelector
     }
   }
 </script>

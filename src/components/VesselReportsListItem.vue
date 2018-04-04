@@ -61,17 +61,17 @@
   const NOT_PROVIDED = 'not provided'
 
   export default {
+    components: {
+      AccordionWrapper,
+      BaseIcon,
+      IconTrash,
+      ReportItemDetailsSection
+    },
+
     props: {
       report: {
         type: Object,
         required: true
-      }
-    },
-
-    methods: {
-      deleteReport (reportId, vesselId) {
-        const payload = { reportId, vesselId }
-        this.$store.dispatch('deleteReport', payload)
       }
     },
 
@@ -199,11 +199,11 @@
       }
     },
 
-    components: {
-      AccordionWrapper,
-      BaseIcon,
-      IconTrash,
-      ReportItemDetailsSection
+    methods: {
+      deleteReport (reportId, vesselId) {
+        const payload = { reportId, vesselId }
+        this.$store.dispatch('deleteReport', payload)
+      }
     }
   }
 </script>

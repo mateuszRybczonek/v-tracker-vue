@@ -35,6 +35,11 @@
   import IconPencil from './Icons/IconPencil.vue'
 
   export default {
+    components: {
+      IconPencil,
+      BaseIcon
+    },
+
     props: {
       vessel: {
         type: Object,
@@ -93,11 +98,6 @@
       toggle () {
         this.$store.dispatch('toggleSidebar')
       }
-    },
-
-    components: {
-      IconPencil,
-      BaseIcon
     }
   }
 </script>

@@ -14,6 +14,12 @@
   import IconShip from './Icons/Animated/IconAnimatedShip.vue'
 
   export default {
+    components: {
+      BaseCard,
+      IconFiles,
+      IconShip
+    },
+
     props: {
       destination: {
         type: String,
@@ -27,12 +33,6 @@
         type: String,
         required: true
       }
-    },
-
-    components: {
-      BaseCard,
-      IconFiles,
-      IconShip
     }
   }
 </script>

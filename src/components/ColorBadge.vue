@@ -1,5 +1,8 @@
 <template>
-  <div class="badge" :class="color">
+  <div
+    class="badge"
+    :class="color"
+  >
     <slot></slot>
   </div>
 </template>

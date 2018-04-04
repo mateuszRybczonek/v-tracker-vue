@@ -63,15 +63,15 @@
       }
     },
 
+    mounted () {
+      this.setFlag()
+    },
+
     methods: {
       setFlag () {
         const weatherFlag = document.getElementById('weather-flag')
         weatherFlag.style.transform = `rotate(${this.windDirectionFrom}deg)`
       }
-    },
-
-    mounted () {
-      this.setFlag()
     }
   }
 </script>

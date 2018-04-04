@@ -50,11 +50,10 @@
   const NOT_PROVIDED = 'not provided'
 
   export default {
-    data () {
-      return {
-        tweenedCourse: this.report ? this.report.course : 0,
-        tweenedSpd: this.report ? this.report.spd : 0
-      }
+    components: {
+      IconNavigation,
+      BaseIcon,
+      AccordionWrapper
     },
 
     props: {
@@ -63,6 +62,13 @@
       },
       fetchingReports: {
         type: Boolean
+      }
+    },
+
+    data () {
+      return {
+        tweenedCourse: this.report ? this.report.course : 0,
+        tweenedSpd: this.report ? this.report.spd : 0
       }
     },
 
@@ -104,12 +110,6 @@
       spd (newValue) {
         TweenMax.to(this.$data, 2, { tweenedSpd: newValue })
       }
-    },
-
-    components: {
-      IconNavigation,
-      BaseIcon,
-      AccordionWrapper
     }
   }
 </script>

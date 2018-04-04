@@ -55,6 +55,12 @@
   import IconArrowDown from './Icons/IconArrowDown.vue'
 
   export default {
+    components: {
+      ColorBadge,
+      BaseIcon,
+      IconArrowDown
+    },
+
     props: {
       showOnInit: {
         type: Boolean,
@@ -107,12 +113,6 @@
       leave (el) {
         el.style.height = '0'
       }
-    },
-
-    components: {
-      ColorBadge,
-      BaseIcon,
-      IconArrowDown
     }
   }
 </script>

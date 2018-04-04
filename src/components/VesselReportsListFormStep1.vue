@@ -220,6 +220,17 @@ import IconNavigation from './Icons/IconNavigation.vue'
 import IconSpeed from './Icons/IconSpeed.vue'
 
 export default {
+  components: {
+    ButtonPositive,
+    InputWithErrors,
+    BaseIcon,
+    IconCalendar,
+    IconFi,
+    IconLambda,
+    IconNavigation,
+    IconSpeed
+  },
+
   props: {
     reportData: {
       type: Object,
@@ -229,6 +240,26 @@ export default {
     showErrors: {
       type: Boolean,
       required: true
+    }
+  },
+
+  computed: {
+    invalidStep () {
+      return this.$v.reportData.lat.$invalid ||
+      this.$v.reportData.lng.$invalid ||
+      this.$v.reportData.reportTime.$invalid ||
+      this.$v.reportData.course.$invalid ||
+      this.$v.reportData.spd.$invalid
+    }
+  },
+
+  methods: {
+    previousStep () {
+      this.$emit('previousStep')
+    },
+
+    nextStep () {
+      this.$emit('nextStep', this.invalidStep)
     }
   },
 
@@ -279,37 +310,6 @@ export default {
       spd: {
         required
       }
-    }
-  },
-
-  components: {
-    ButtonPositive,
-    InputWithErrors,
-    BaseIcon,
-    IconCalendar,
-    IconFi,
-    IconLambda,
-    IconNavigation,
-    IconSpeed
-  },
-
-  computed: {
-    invalidStep () {
-      return this.$v.reportData.lat.$invalid ||
-      this.$v.reportData.lng.$invalid ||
-      this.$v.reportData.reportTime.$invalid ||
-      this.$v.reportData.course.$invalid ||
-      this.$v.reportData.spd.$invalid
-    }
-  },
-
-  methods: {
-    previousStep () {
-      this.$emit('previousStep')
-    },
-
-    nextStep () {
-      this.$emit('nextStep', this.invalidStep)
     }
   }
 }

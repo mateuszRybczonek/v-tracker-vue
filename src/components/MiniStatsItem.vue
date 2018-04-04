@@ -64,6 +64,15 @@
   import IconPeople from './Icons/IconPeople.vue'
 
   export default {
+    components: {
+      AccordionWrapper,
+      MiniStatsItemChange,
+      BaseIcon,
+      IconFuel,
+      IconWater,
+      IconPeople
+    },
+
     props: {
       item: {
         type: Object,
@@ -72,15 +81,6 @@
       showPlaceholder: {
         type: Boolean
       }
-    },
-
-    components: {
-      AccordionWrapper,
-      MiniStatsItemChange,
-      BaseIcon,
-      IconFuel,
-      IconWater,
-      IconPeople
     }
   }
 </script>

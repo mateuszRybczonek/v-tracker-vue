@@ -1,5 +1,8 @@
 <template>
-  <div class="form" :class="classes">
+  <div
+    class="form"
+    :class="classes"
+  >
     <div class="form__header">
       <h4>{{ title }}</h4>
     </div>

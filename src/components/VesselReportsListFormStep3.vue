@@ -269,6 +269,16 @@
   import IconAngle from './Icons/IconAngle.vue'
 
   export default {
+    components: {
+      ButtonPositive,
+      InputWithErrors,
+      BaseIcon,
+      IconFuel,
+      IconWater,
+      IconPeople,
+      IconAngle
+    },
+
     props: {
       reportData: {
         type: Object,
@@ -286,6 +296,26 @@
 
       inProgress: {
         type: Boolean
+      }
+    },
+
+    computed: {
+      invalidStep () {
+        return this.$v.reportData.windDir.$invalid ||
+          this.$v.reportData.windSpd.$invalid ||
+          this.$v.reportData.seaState.$invalid ||
+          this.$v.reportData.swellDir.$invalid ||
+          this.$v.reportData.swellHeight.$invalid
+      }
+    },
+
+    methods: {
+      previousStep () {
+        this.$emit('previousStep')
+      },
+
+      submit () {
+        this.$emit('submit', this.invalidStep)
       }
     },
 
@@ -336,36 +366,6 @@
         swellHeight: {
           required
         }
-      }
-    },
-
-    components: {
-      ButtonPositive,
-      InputWithErrors,
-      BaseIcon,
-      IconFuel,
-      IconWater,
-      IconPeople,
-      IconAngle
-    },
-
-    computed: {
-      invalidStep () {
-        return this.$v.reportData.windDir.$invalid ||
-          this.$v.reportData.windSpd.$invalid ||
-          this.$v.reportData.seaState.$invalid ||
-          this.$v.reportData.swellDir.$invalid ||
-          this.$v.reportData.swellHeight.$invalid
-      }
-    },
-
-    methods: {
-      previousStep () {
-        this.$emit('previousStep')
-      },
-
-      submit () {
-        this.$emit('submit', this.invalidStep)
       }
     }
   }

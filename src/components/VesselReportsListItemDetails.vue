@@ -69,16 +69,11 @@
   } from '../utils/coordinates-utils'
 
   export default {
-    data () {
-      return {
-        isEditing: false,
-
-        reportChangeset: {
-          ...this.report,
-          lat: stripSymbols(decimalToDMS(this.report.lat)),
-          lng: stripSymbols(decimalToDMS(this.report.lng, true))
-        }
-      }
+    components: {
+      ColorBadge,
+      BaseIcon,
+      IconSave,
+      IconPencil
     },
 
     props: {
@@ -95,11 +90,16 @@
       }
     },
 
-    components: {
-      ColorBadge,
-      BaseIcon,
-      IconSave,
-      IconPencil
+    data () {
+      return {
+        isEditing: false,
+
+        reportChangeset: {
+          ...this.report,
+          lat: stripSymbols(decimalToDMS(this.report.lat)),
+          lng: stripSymbols(decimalToDMS(this.report.lng, true))
+        }
+      }
     },
 
     methods: {

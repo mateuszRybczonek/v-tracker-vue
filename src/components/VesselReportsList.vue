@@ -43,6 +43,12 @@
   import VesselReportsListItem from './VesselReportsListItem.vue'
 
   export default {
+    components: {
+      VesselReportsListItemNew,
+      VesselReportsListForm,
+      VesselReportsListItem
+    },
+
     props: {
       reports: {
         type: Array,
@@ -54,12 +60,6 @@
       return {
         showNewReportForm: false
       }
-    },
-
-    components: {
-      VesselReportsListItemNew,
-      VesselReportsListForm,
-      VesselReportsListItem
     },
 
     methods: {

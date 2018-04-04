@@ -45,6 +45,15 @@
   import { formatLatForPersistanceLayer, formatLngForPersistanceLayer } from '../utils/coordinates-utils'
 
   export default {
+    components: {
+      FormWrapper,
+      VesselReportsListNewStepper,
+      Step1,
+      Step2,
+      Step3,
+      Step4
+    },
+
     data () {
       return {
         newReportData: {
@@ -73,6 +82,29 @@
         isSubmitted: false,
         inProgress: false,
         showErrors: false
+      }
+    },
+
+    computed: {
+      selectedStep () {
+        return `step${this.step}`
+      },
+
+      lastStep () {
+        return this.step === this.numberOfSteps
+      },
+
+      stepTitle () {
+        switch (this.step) {
+          case 1:
+            return 'Navigation data'
+          case 2:
+            return 'Weather data'
+          case 3:
+            return 'Other data'
+          case 4:
+            return 'Success'
+        }
       }
     },
 
@@ -128,38 +160,6 @@
           }
         }
       }
-    },
-
-    computed: {
-      selectedStep () {
-        return `step${this.step}`
-      },
-
-      lastStep () {
-        return this.step === this.numberOfSteps
-      },
-
-      stepTitle () {
-        switch (this.step) {
-          case 1:
-            return 'Navigation data'
-          case 2:
-            return 'Weather data'
-          case 3:
-            return 'Other data'
-          case 4:
-            return 'Success'
-        }
-      }
-    },
-
-    components: {
-      FormWrapper,
-      VesselReportsListNewStepper,
-      Step1,
-      Step2,
-      Step3,
-      Step4
     }
   }
 </script>

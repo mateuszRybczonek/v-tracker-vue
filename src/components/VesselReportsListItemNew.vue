@@ -19,17 +19,17 @@
   import IconTilesPlus from './Icons/IconTilesPlus.vue'
 
   export default {
+    components: {
+      BaseListItem,
+      BaseIcon,
+      IconTilesPlus
+    },
+
     props: {
       showNewReportFormAction: {
         type: Function,
         required: true
       }
-    },
-
-    components: {
-      BaseListItem,
-      BaseIcon,
-      IconTilesPlus
     }
   }
 </script>

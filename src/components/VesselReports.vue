@@ -11,15 +11,15 @@
   import VesselReportsList from './VesselReportsList.vue'
 
   export default {
+    components: {
+      VesselReportsList
+    },
+
     props: {
       componentProps: {
         type: Object,
         required: true
       }
-    },
-
-    components: {
-      VesselReportsList
     }
   }
 </script>

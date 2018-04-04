@@ -49,10 +49,11 @@
   export default {
     name: 'ProgressSpinnerSizes',
 
-    data () {
-      return {
-        inProgress: false
-      }
+    components: {
+      BaseCard,
+      BaseIcon,
+      IconPencil,
+      IconTrash
     },
 
     props: {
@@ -62,11 +63,10 @@
       }
     },
 
-    components: {
-      BaseCard,
-      BaseIcon,
-      IconPencil,
-      IconTrash
+    data () {
+      return {
+        inProgress: false
+      }
     },
 
     computed: {
@@ -77,6 +77,7 @@
         return `/dashboard/vessels/${this.vessel.id}/edit`
       }
     },
+
     methods: {
       deleteVessel (vesselId) {
         this.$store.dispatch('deleteVessel', vesselId)

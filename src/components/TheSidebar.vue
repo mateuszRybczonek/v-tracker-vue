@@ -24,6 +24,12 @@
   import TheSidebarContent from './TheSidebarContent.vue'
 
   export default {
+    components: {
+      TheSidebarHeader,
+      TheSidebarQuickLinks,
+      TheSidebarContent
+    },
+
     props: {
       lastReport: {
         type: Object
@@ -39,12 +45,6 @@
       vessel () {
         return this.vessels.find(vessel => vessel.id === this.$route.params.id)
       }
-    },
-
-    components: {
-      TheSidebarHeader,
-      TheSidebarQuickLinks,
-      TheSidebarContent
     }
   }
 </script>

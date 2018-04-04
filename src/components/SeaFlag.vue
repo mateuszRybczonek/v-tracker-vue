@@ -34,6 +34,12 @@
   import BaseIcon from './BaseIcon.vue'
 
   export default {
+    components: {
+      IconWave,
+      BaseIcon,
+      IconArrow
+    },
+
     props: {
       height: {
         type: Number,
@@ -83,12 +89,6 @@
       height (newVal, oldVal) {
         this.setFlag()
       }
-    },
-
-    components: {
-      IconWave,
-      BaseIcon,
-      IconArrow
     },
 
     methods: {

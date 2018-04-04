@@ -26,6 +26,12 @@
   import { Carousel, Slide } from 'vue-carousel'
 
   export default {
+    components: {
+      CalendarCard,
+      VCarousel: Carousel,
+      VSlide: Slide
+    },
+
     props: {
       fetchingReports: {
         type: Boolean
@@ -34,12 +40,6 @@
         type: Array,
         required: true
       }
-    },
-
-    components: {
-      CalendarCard,
-      VCarousel: Carousel,
-      VSlide: Slide
     },
 
     methods: {

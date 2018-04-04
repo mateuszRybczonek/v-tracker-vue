@@ -224,6 +224,15 @@
   import IconWave from './Icons/IconWave.vue'
 
   export default {
+    components: {
+      ButtonPositive,
+      InputWithErrors,
+      BaseIcon,
+      IconNavigation,
+      IconSpeed,
+      IconWave
+    },
+
     props: {
       reportData: {
         type: Object,
@@ -233,6 +242,26 @@
       showErrors: {
         type: Boolean,
         required: true
+      }
+    },
+
+    computed: {
+      invalidStep () {
+        return this.$v.reportData.windDir.$invalid ||
+          this.$v.reportData.windSpd.$invalid ||
+          this.$v.reportData.seaState.$invalid ||
+          this.$v.reportData.swellDir.$invalid ||
+          this.$v.reportData.swellHeight.$invalid
+      }
+    },
+
+    methods: {
+      previousStep () {
+        this.$emit('previousStep')
+      },
+
+      nextStep () {
+        this.$emit('nextStep', this.invalidStep)
       }
     },
 
@@ -283,35 +312,6 @@
         swellHeight: {
           required
         }
-      }
-    },
-
-    components: {
-      ButtonPositive,
-      InputWithErrors,
-      BaseIcon,
-      IconNavigation,
-      IconSpeed,
-      IconWave
-    },
-
-    computed: {
-      invalidStep () {
-        return this.$v.reportData.windDir.$invalid ||
-          this.$v.reportData.windSpd.$invalid ||
-          this.$v.reportData.seaState.$invalid ||
-          this.$v.reportData.swellDir.$invalid ||
-          this.$v.reportData.swellHeight.$invalid
-      }
-    },
-
-    methods: {
-      previousStep () {
-        this.$emit('previousStep')
-      },
-
-      nextStep () {
-        this.$emit('nextStep', this.invalidStep)
       }
     }
   }

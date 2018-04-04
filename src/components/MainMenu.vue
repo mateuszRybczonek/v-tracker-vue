@@ -20,6 +20,7 @@
     components: {
       MainMenuCard
     },
+
     computed: {
       cards () {
         return [

@@ -49,6 +49,12 @@
   const NOT_PROVIDED = 'not provided'
 
   export default {
+    components: {
+      BaseIcon,
+      IconPosition,
+      AccordionWrapper
+    },
+
     props: {
       report: {
         type: Object
@@ -72,12 +78,6 @@
           }
         ]
       }
-    },
-
-    components: {
-      BaseIcon,
-      IconPosition,
-      AccordionWrapper
     }
   }
 </script>

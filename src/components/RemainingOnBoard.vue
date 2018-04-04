@@ -14,13 +14,8 @@
   import { TweenMax } from 'gsap'
 
   export default {
-    data () {
-      return {
-        tweenedFoRob: this.report ? this.report.foRob : 0,
-        tweenedDoRob: this.report ? this.report.doRob : 0,
-        tweenedFwRob: this.report ? this.report.fwRob : 0,
-        tweenedPob: this.report ? this.report.pob : 0
-      }
+    components: {
+      MiniStatsItem
     },
 
     props: {
@@ -32,6 +27,15 @@
       },
       fetchingReports: {
         type: Boolean
+      }
+    },
+
+    data () {
+      return {
+        tweenedFoRob: this.report ? this.report.foRob : 0,
+        tweenedDoRob: this.report ? this.report.doRob : 0,
+        tweenedFwRob: this.report ? this.report.fwRob : 0,
+        tweenedPob: this.report ? this.report.pob : 0
       }
     },
 
@@ -123,10 +127,6 @@
       pob (newValue) {
         TweenMax.to(this.$data, 2, { tweenedPob: newValue })
       }
-    },
-
-    components: {
-      MiniStatsItem
     }
   }
 </script>
