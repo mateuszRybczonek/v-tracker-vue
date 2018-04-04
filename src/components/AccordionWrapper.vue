@@ -1,9 +1,9 @@
 <template>
   <div class="accordion">
     <div class="accordion__header" @click="toggle">
-      <v-accordion-header :color="color">
+      <ColorBadge :color="color">
         <slot name="header"></slot>
-      </v-accordion-header>
+      </ColorBadge>
       <BaseIcon class="accordion__arrow" :class="{ rotate: show }"
         width=30
         height=30
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import VAccordionHeader from './molecules/header-badge.vue'
+  import ColorBadge from './ColorBadge.vue'
   import BaseIcon from './BaseIcon.vue'
   import IconArrowDown from './icons/icon-arrow-down.vue'
 
@@ -90,7 +90,7 @@
     },
 
     components: {
-      VAccordionHeader,
+      ColorBadge,
       BaseIcon,
       IconArrowDown
     }

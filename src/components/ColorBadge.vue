@@ -1,5 +1,5 @@
 <template>
-  <div class="header-badge" :class="color">
+  <div class="badge" :class="color">
     <slot></slot>
   </div>
 </template>
@@ -16,13 +16,13 @@
 </script>
 
 <style scoped lang="scss">
-  .header-badge {
+  .badge {
     display: flex;
     padding: 0 30px;
     height: 30px;
     @include border-radius(20px);
 
-    .header-badge__slot {
+    .badge__slot {
       display: flex;
       justify-content: center;
       align-items: center;

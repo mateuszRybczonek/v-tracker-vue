@@ -1,5 +1,5 @@
 <template>
-  <div class="mini-stats-change" :class=color>
+  <div class="mini-stats-item-change" :class=color>
     <BaseIcon class="mini-stats-change__arrow"
       :class=rotationClass
       width=30
@@ -8,18 +8,18 @@
       viewBox="-15 -15 50 50">
       <IconChange></IconChange>
     </BaseIcon>
-    <span class="mini-stats-change__value">
+    <span class="mini-stats-item-change__value">
       {{change}}
     </span>
-    <span class="mini-stats-change__unit">
+    <span class="mini-stats-item-change__unit">
       {{unit}}
     </span>
   </div>
 </template>
 
 <script>
-  import BaseIcon from '../BaseIcon.vue'
-  import IconChange from '../icons/icon-change.vue'
+  import BaseIcon from './BaseIcon.vue'
+  import IconChange from './icons/icon-change.vue'
 
   export default {
     props: {
@@ -53,7 +53,7 @@
 </script>
 
 <style scoped lang="scss">
-  .mini-stats-change {
+  .mini-stats-item-change {
     display: flex;
     justify-content: center;
     margin-bottom: 10px;

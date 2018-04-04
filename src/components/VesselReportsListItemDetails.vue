@@ -1,7 +1,7 @@
 <template>
   <div class="report-item-details-section">
-    <v-header-badge :color="color" class="report-item-details-section__header-badge">
-      <p class="header-badge__slot">{{sectionData.sectionTitle}}</p>
+    <ColorBadge :color="color" class="report-item-details-section__badge">
+      <p class="badge__slot">{{sectionData.sectionTitle}}</p>
       <span v-if="isEditing" @click.prevent.stop="updateReport(reportChangeset)">
         <BaseIcon
           width=30
@@ -19,7 +19,7 @@
           <IconPencil></IconPencil>
         </BaseIcon>
       </span>
-    </v-header-badge>
+    </ColorBadge>
     <ul class="report-item-details-section__list">
       <li class="report-item-details-section__list__item"
           v-for="sectionDataItem in sectionData.items"
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-  import VHeaderBadge from './molecules/header-badge.vue'
+  import ColorBadge from './ColorBadge.vue'
   import BaseIcon from './BaseIcon.vue'
   import IconSave from './icons/icon-save.vue'
   import IconPencil from './icons/icon-pencil.vue'
@@ -75,7 +75,7 @@
     },
 
     components: {
-      VHeaderBadge,
+      ColorBadge,
       BaseIcon,
       IconSave,
       IconPencil
@@ -112,7 +112,7 @@
     width: 45%;
     margin: 10px;
 
-    &__header-badge {
+    &__badge {
       display: flex;
       justify-content: space-between;
       padding-right: 0;

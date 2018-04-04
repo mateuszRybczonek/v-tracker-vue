@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import CalendarCard from './molecules/calendar-card.vue'
+  import CalendarCard from './CalendarCard.vue'
   import { Carousel, Slide } from 'vue-carousel'
 
   export default {

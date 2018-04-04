@@ -4,7 +4,7 @@
       <content-placeholders-img class="navigation-data__placeholder"></content-placeholders-img>
     </content-placeholders>
     <AccordionWrapper :showOnInit=true color="blue" v-else>
-      <div slot="header" class="header-badge__slot">
+      <div slot="header" class="badge__slot">
         <BaseIcon
           width=30
           height=30

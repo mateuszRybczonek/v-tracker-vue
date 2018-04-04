@@ -1,15 +1,15 @@
 <template>
   <div class="remaining-on-board">
-    <mini-stats-item v-for="item in miniStatsItems"
+    <MiniStatsItem v-for="item in miniStatsItems"
       :key="item.description"
       :item="item"
       :showPlaceholder="fetchingReports">
-    </mini-stats-item>
+    </MiniStatsItem>
   </div>
 </template>
 
 <script>
-  import MiniStatsItem from './molecules/mini-stats-item.vue'
+  import MiniStatsItem from './MiniStatsItem.vue'
   import { TweenMax } from 'gsap'
 
   export default {

@@ -1,7 +1,7 @@
 <template>
   <li>
     <AccordionWrapper :showOnInit=false :collapsedContent=true color="blue" class="report-item">
-      <div slot="header" class="header-badge__slot">
+      <div slot="header" class="badge__slot">
         <p>{{report.reportTime}}</p>
       </div>
       <div slot="body" class="report-item__content">

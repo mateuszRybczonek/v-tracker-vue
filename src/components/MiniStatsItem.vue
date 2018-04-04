@@ -4,7 +4,7 @@
       <content-placeholders-img></content-placeholders-img>
     </content-placeholders>
     <AccordionWrapper :showOnInit=true :color="item.color" v-else>
-      <div slot="header" class="header-badge__slot">
+      <div slot="header" class="badge__slot">
         <BaseIcon
           width=30
           height=30
@@ -32,21 +32,21 @@
         </div>
       </div>
       <div slot="footer" class="mini-stats-item__change">
-        <v-mini-stats-change
+        <MiniStatsItemChange
           :change="item.change"
-          :unit="item.unit"></v-mini-stats-change>
+          :unit="item.unit"></MiniStatsItemChange>
       </div>
     </AccordionWrapper>
   </div>
 </template>
 
 <script>
-  import AccordionWrapper from '../AccordionWrapper.vue'
-  import VMiniStatsChange from '../../components/molecules/mini-stats-change.vue'
-  import BaseIcon from '../BaseIcon.vue'
-  import IconFuel from '../../components/icons/icon-fuel.vue'
-  import IconWater from '../../components/icons/icon-water.vue'
-  import IconPeople from '../../components/icons/icon-people.vue'
+  import AccordionWrapper from './AccordionWrapper.vue'
+  import MiniStatsItemChange from './MiniStatsItemChange.vue'
+  import BaseIcon from './BaseIcon.vue'
+  import IconFuel from './icons/icon-fuel.vue'
+  import IconWater from './icons/icon-water.vue'
+  import IconPeople from './icons/icon-people.vue'
 
   export default {
     props: {
@@ -61,7 +61,7 @@
 
     components: {
       AccordionWrapper,
-      VMiniStatsChange,
+      MiniStatsItemChange,
       BaseIcon,
       IconFuel,
       IconWater,
