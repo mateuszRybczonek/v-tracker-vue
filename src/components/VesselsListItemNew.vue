@@ -14,7 +14,7 @@
 
 <script>
   import VCard from './molecules/card.vue'
-  import BaseIcon from './Atoms/BaseIcon.vue'
+  import BaseIcon from './BaseIcon.vue'
   import IconTilesPlus from './icons/icon-tiles-plus.vue'
 
   export default {

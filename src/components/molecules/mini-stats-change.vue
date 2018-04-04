@@ -18,7 +18,7 @@
 </template>
 
 <script>
-  import BaseIcon from '../Atoms/BaseIcon.vue'
+  import BaseIcon from '../BaseIcon.vue'
   import IconChange from '../icons/icon-change.vue'
 
   export default {

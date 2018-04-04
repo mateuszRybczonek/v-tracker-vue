@@ -36,16 +36,16 @@
 </template>
 
 <script>
-  import VHeaderBadge from '../../../molecules/header-badge.vue'
-  import BaseIcon from '../../../Atoms/BaseIcon.vue'
-  import IconSave from '../../../icons/icon-save.vue'
-  import IconPencil from '../../../icons/icon-pencil.vue'
+  import VHeaderBadge from './molecules/header-badge.vue'
+  import BaseIcon from './BaseIcon.vue'
+  import IconSave from './icons/icon-save.vue'
+  import IconPencil from './icons/icon-pencil.vue'
   import {
     formatLatForPersistanceLayer,
     formatLngForPersistanceLayer,
     decimalToDMS,
     stripSymbols
-  } from '../../../../utils/coordinates-utils'
+  } from '../utils/coordinates-utils'
 
   export default {
     data () {

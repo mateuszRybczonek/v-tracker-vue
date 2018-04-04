@@ -19,9 +19,9 @@
   import { mapGetters } from 'vuex'
   import TheSidebar from '../components/TheSidebar.vue'
   import VesselDashboard from '../components/VesselDashboard.vue'
-  import VStatistics from '../components/vessel-details/statistics/main.vue'
-  import VWeather from '../components/vessel-details/weather/main.vue'
-  import VReports from '../components/vessel-details/reports/main.vue'
+  import VesselStatistics from '../components/VesselStatistics.vue'
+  import VesselWeather from '../components/VesselWeather.vue'
+  import VesselReports from '../components/VesselReports.vue'
   import { COMPONENT_NAMES } from '../constants/vessel-details'
 
   const { VESSEL_DASHBOARD, REPORTS, WEATHER, STATISTICS } = COMPONENT_NAMES
@@ -80,9 +80,9 @@
     components: {
       TheSidebar,
       VesselDashboard,
-      VStatistics,
-      VWeather,
-      VReports
+      VesselStatistics,
+      VesselWeather,
+      VesselReports
     }
   }
 </script>

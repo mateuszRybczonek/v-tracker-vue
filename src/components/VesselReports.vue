@@ -1,14 +1,14 @@
 <template>
   <div class="vessel-details__reports">
-    <reports-list
+    <VesselReportsList
       :reports="componentProps.last14Reports"
       class="vessel-details__reports__list">
-    </reports-list>
+    </VesselReportsList>
   </div>
 </template>
 
 <script>
-  import reportsList from '../reports/reports-list/reports-list.vue'
+  import VesselReportsList from './VesselReportsList.vue'
 
   export default {
     props: {
@@ -19,7 +19,7 @@
     },
 
     components: {
-      reportsList
+      VesselReportsList
     }
   }
 </script>

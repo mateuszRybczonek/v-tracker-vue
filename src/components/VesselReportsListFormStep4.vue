@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import SuccessSign from '../../../../molecules/success-sign.vue'
+  import SuccessSign from './molecules/success-sign.vue'
 
   export default {
     components: {

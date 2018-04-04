@@ -8,9 +8,9 @@
 </template>
 
 <script>
-  import VListItem from '../../../molecules/list-item.vue'
-  import BaseIcon from '../../../Atoms/BaseIcon.vue'
-  import IconTilesPlus from '../../../icons/icon-tiles-plus.vue'
+  import VListItem from './molecules/list-item.vue'
+  import BaseIcon from './BaseIcon.vue'
+  import IconTilesPlus from './icons/icon-tiles-plus.vue'
 
   export default {
     props: {

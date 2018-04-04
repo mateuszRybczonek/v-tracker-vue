@@ -57,7 +57,7 @@
 
   import FormWrapper from '../../components/FormWrapper.vue'
   import ButtonPositive from '../../components/Atoms/Buttons/ButtonPositive.vue'
-  import BaseIcon from '../../components/Atoms/BaseIcon.vue'
+  import BaseIcon from '../../components/BaseIcon.vue'
   import IconEmail from '../../components/icons/icon-email.vue'
   import IconLock from '../../components/icons/icon-lock.vue'
 

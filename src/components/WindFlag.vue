@@ -109,66 +109,66 @@
     .icon {
       //icons
       &--5kn {
-        mask-image: url('../../assets/wind-flags.svg');
+        mask-image: url('../assets/wind-flags.svg');
         mask-position: 3px -58px;
         mask-size: 1800%;
       }
 
       &--10kn {
-        mask-image: url('../../assets/wind-flags.svg');
+        mask-image: url('../assets/wind-flags.svg');
         mask-position: 0 -144px;
         mask-size: 1800%;
       }
 
       &--15kn {
-        mask-image: url('../../assets/wind-flags.svg');
+        mask-image: url('../assets/wind-flags.svg');
         mask-position: 0 -232px;
         mask-size: 1800%;
       }
 
       &--20kn {
-        mask-image: url('../../assets/wind-flags.svg');
+        mask-image: url('../assets/wind-flags.svg');
         mask-position: 0 -314px;
         mask-size: 1800%;
       }
 
       &--25kn {
-        mask-image: url('../../assets/wind-flags.svg');
+        mask-image: url('../assets/wind-flags.svg');
         mask-position: 0 -402px;
         mask-size: 1800%;
         background-color: $color-amber;
       }
 
       &--30kn {
-        mask-image: url('../../assets/wind-flags.svg');
+        mask-image: url('../assets/wind-flags.svg');
         mask-position: 0 -485px;
         mask-size: 1800%;
         background-color: $color-amber;
       }
 
       &--35kn {
-        mask-image: url('../../assets/wind-flags.svg');
+        mask-image: url('../assets/wind-flags.svg');
         mask-position: 0 -565px;
         mask-size: 1800%;
         background-color: $color-amber;
       }
 
       &--40kn {
-        mask-image: url('../../assets/wind-flags.svg');
+        mask-image: url('../assets/wind-flags.svg');
         mask-position: 0 -647px;
         mask-size: 1800%;
         background-color: $color-tomato;
       }
 
       &--45kn {
-        mask-image: url('../../assets/wind-flags.svg');
+        mask-image: url('../assets/wind-flags.svg');
         mask-position: 0 -730px;
         mask-size: 1800%;
         background-color: $color-tomato;
       }
 
       &--50kn {
-        mask-image: url('../../assets/wind-flags.svg');
+        mask-image: url('../assets/wind-flags.svg');
         mask-position: 6px -808px;
         mask-size: 1800%;
         background-color: $color-tomato;

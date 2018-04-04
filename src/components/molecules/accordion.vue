@@ -31,7 +31,7 @@
 
 <script>
   import VAccordionHeader from './header-badge.vue'
-  import BaseIcon from '../Atoms/BaseIcon.vue'
+  import BaseIcon from '../BaseIcon.vue'
   import IconArrowDown from '../icons/icon-arrow-down.vue'
 
   export default {

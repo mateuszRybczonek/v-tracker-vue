@@ -1,8 +1,8 @@
 const COMPONENT_NAMES = {
   VESSEL_DASHBOARD: 'VesselDashboard',
-  REPORTS: 'v-reports',
-  WEATHER: 'v-weather',
-  STATISTICS: 'v-statistics'
+  REPORTS: 'VesselReports',
+  WEATHER: 'VesselWeather',
+  STATISTICS: 'VesselStatistics'
 }
 
 export { COMPONENT_NAMES }

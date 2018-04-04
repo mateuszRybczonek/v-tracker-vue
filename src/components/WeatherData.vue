@@ -62,9 +62,9 @@
 
 <script>
   import IconWeather from './icons/icon-weather.vue'
-  import BaseIcon from './Atoms/BaseIcon.vue'
-  import WindFlag from './Atoms/WindFlag.vue'
-  import SeaFlag from './Atoms/SeaFlag.vue'
+  import BaseIcon from './BaseIcon.vue'
+  import WindFlag from './WindFlag.vue'
+  import SeaFlag from './SeaFlag.vue'
   import WeatherSituation from './WeatherSituation.vue'
   import VAccordion from './molecules/accordion.vue'
   import { TweenMax } from 'gsap'

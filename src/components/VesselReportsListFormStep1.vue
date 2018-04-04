@@ -138,15 +138,15 @@
 </template>
 
 <script>
-import ButtonPositive from '../../../../Atoms/Buttons/ButtonPositive.vue'
-import InputWithErrors from '../../../../molecules/input-with-errors.vue'
+import ButtonPositive from './Atoms/Buttons/ButtonPositive.vue'
+import InputWithErrors from './molecules/input-with-errors.vue'
 import { required } from 'vuelidate/lib/validators'
-import BaseIcon from '../../../../Atoms/BaseIcon.vue'
-import IconCalendar from '../../../../icons/icon-calendar.vue'
-import IconFi from '../../../../icons/icon-fi.vue'
-import IconLambda from '../../../../icons/icon-lambda.vue'
-import IconNavigation from '../../../../icons/icon-navigation.vue'
-import IconSpeed from '../../../../icons/icon-speed.vue'
+import BaseIcon from './BaseIcon.vue'
+import IconCalendar from './icons/icon-calendar.vue'
+import IconFi from './icons/icon-fi.vue'
+import IconLambda from './icons/icon-lambda.vue'
+import IconNavigation from './icons/icon-navigation.vue'
+import IconSpeed from './icons/icon-speed.vue'
 
 export default {
   props: {

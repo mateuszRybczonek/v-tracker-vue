@@ -32,10 +32,10 @@
 </template>
 
 <script>
-  import WindFlag from './Atoms/WindFlag.vue'
-  import SeaFlag from './Atoms/SeaFlag.vue'
+  import WindFlag from './WindFlag.vue'
+  import SeaFlag from './SeaFlag.vue'
   import IconVessel from './icons/icon-vessel.vue'
-  import BaseIcon from './Atoms/BaseIcon.vue'
+  import BaseIcon from './BaseIcon.vue'
 
   export default {
     props: {

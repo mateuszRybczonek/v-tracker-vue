@@ -43,7 +43,7 @@
 <script>
   import VAccordion from '../../components/molecules/accordion.vue'
   import VMiniStatsChange from '../../components/molecules/mini-stats-change.vue'
-  import BaseIcon from '../../components/Atoms/BaseIcon.vue'
+  import BaseIcon from '../BaseIcon.vue'
   import IconFuel from '../../components/icons/icon-fuel.vue'
   import IconWater from '../../components/icons/icon-water.vue'
   import IconPeople from '../../components/icons/icon-people.vue'

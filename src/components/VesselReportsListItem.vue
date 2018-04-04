@@ -32,11 +32,11 @@
 </template>
 
 <script>
-  import VAccordion from '../../../molecules/accordion.vue'
-  import ReportItemDetailsSection from './report-item-details-section.vue'
-  import BaseIcon from '../../../Atoms/BaseIcon.vue'
-  import IconTrash from '../../../icons/icon-trash.vue'
-  import { decimalToDMS } from '../../../../utils/coordinates-utils'
+  import VAccordion from './molecules/accordion.vue'
+  import ReportItemDetailsSection from './VesselReportsListItemDetails.vue'
+  import BaseIcon from './BaseIcon.vue'
+  import IconTrash from './icons/icon-trash.vue'
+  import { decimalToDMS } from '../utils/coordinates-utils'
 
   const NOT_PROVIDED = 'not provided'
 

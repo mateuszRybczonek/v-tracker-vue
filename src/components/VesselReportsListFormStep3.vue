@@ -159,14 +159,14 @@
 </template>
 
 <script>
-  import ButtonPositive from '../../../../Atoms/Buttons/ButtonPositive.vue'
-  import InputWithErrors from '../../../../molecules/input-with-errors.vue'
+  import ButtonPositive from './Atoms/Buttons/ButtonPositive.vue'
+  import InputWithErrors from './molecules/input-with-errors.vue'
   import { required } from 'vuelidate/lib/validators'
-  import BaseIcon from '../../../../Atoms/BaseIcon.vue'
-  import IconFuel from '../../../../icons/icon-fuel.vue'
-  import IconWater from '../../../../icons/icon-water.vue'
-  import IconPeople from '../../../../icons/icon-people.vue'
-  import IconAngle from '../../../../icons/icon-angle.vue'
+  import BaseIcon from './BaseIcon.vue'
+  import IconFuel from './icons/icon-fuel.vue'
+  import IconWater from './icons/icon-water.vue'
+  import IconPeople from './icons/icon-people.vue'
+  import IconAngle from './icons/icon-angle.vue'
 
   export default {
     props: {

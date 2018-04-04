@@ -1,5 +1,5 @@
 <template>
-  <div class="vessel-details__statistics">
+  <div class="vessel-statistics">
     Statistics
   </div>
 </template>
@@ -9,5 +9,5 @@
 </script>
 
 <style scoped lang="scss">
-  .vessel-details__statistics {}
+  .vessel-statistics {}
 </style>
