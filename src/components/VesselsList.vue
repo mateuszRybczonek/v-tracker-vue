@@ -10,7 +10,6 @@
 </template>
 
 <script>
-  import VCard from './molecules/card.vue'
   import VesselsListItem from './VesselsListItem.vue'
   import VesselsListItemNew from './VesselsListItemNew.vue'
 
@@ -23,8 +22,7 @@
 
     components: {
       VesselsListItem,
-      VesselsListItemNew,
-      VCard
+      VesselsListItemNew
     }
   }
 </script>

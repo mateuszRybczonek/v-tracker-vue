@@ -1,5 +1,5 @@
 <template>
-  <v-card to='/dashboard/vessels/new' class="vessels-list-new">
+  <BaseCard to='/dashboard/vessels/new' class="vessels-list-new">
     <BaseIcon
       class="vessels-list-new__icon"
       iconColor='#999'
@@ -9,17 +9,17 @@
       <IconTilesPlus></IconTilesPlus>
     </BaseIcon>
     <p>Add new vessel</p>
-  </v-card>
+  </BaseCard>
 </template>
 
 <script>
-  import VCard from './molecules/card.vue'
+  import BaseCard from './BaseCard.vue'
   import BaseIcon from './BaseIcon.vue'
   import IconTilesPlus from './icons/icon-tiles-plus.vue'
 
   export default {
     components: {
-      VCard,
+      BaseCard,
       BaseIcon,
       IconTilesPlus
     }

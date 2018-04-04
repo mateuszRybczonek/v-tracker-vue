@@ -1,5 +1,5 @@
 <template>
-    <v-card :to="vesselDetailsLink" class="vessels-list-item" :class="{ 'vessels-list-item--faded': inProgress}">
+    <BaseCard :to="vesselDetailsLink" class="vessels-list-item" :class="{ 'vessels-list-item--faded': inProgress}">
       <md-progress-spinner
         v-if="inProgress"
         :md-diameter="130"
@@ -28,11 +28,11 @@
           </BaseIcon>
         </span>
       </div>
-    </v-card>
+    </BaseCard>
 </template>
 
 <script>
-  import VCard from './molecules/card.vue'
+  import BaseCard from './BaseCard.vue'
   import BaseIcon from './BaseIcon.vue'
   import IconPencil from './icons/icon-pencil.vue'
   import IconTrash from './icons/icon-trash.vue'
@@ -54,7 +54,7 @@
     },
 
     components: {
-      VCard,
+      BaseCard,
       BaseIcon,
       IconPencil,
       IconTrash

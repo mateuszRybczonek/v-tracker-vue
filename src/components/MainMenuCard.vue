@@ -1,12 +1,12 @@
 <template>
-  <v-card class="dashboard-card" :to="destination">
+  <BaseCard class="dashboard-card" :to="destination">
     <component :is="icon"></component>
     <p class="dashboard-card__label">{{label}}</p>
-  </v-card>
+  </BaseCard>
 </template>
 
 <script>
-  import VCard from './molecules/card.vue'
+  import BaseCard from './BaseCard.vue'
   import IconFiles from './icons/animated/icon-files.vue'
   import IconShip from './icons/animated/icon-ship.vue'
 
@@ -27,7 +27,7 @@
     },
 
     components: {
-      VCard,
+      BaseCard,
       IconFiles,
       IconShip
     }

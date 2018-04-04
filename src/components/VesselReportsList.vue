@@ -35,7 +35,6 @@
 </template>
 
 <script>
-  import VCard from './molecules/card.vue'
   import VesselReportsListItemNew from './VesselReportsListItemNew.vue'
   import VesselReportsListForm from './VesselReportsListForm.vue'
   import VesselReportsListItem from './VesselReportsListItem.vue'
@@ -56,7 +55,6 @@
 
     components: {
       VesselReportsListItemNew,
-      VCard,
       VesselReportsListForm,
       VesselReportsListItem
     },
