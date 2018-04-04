@@ -38,7 +38,7 @@
 
       vessel () {
         return this.vessels.find(vessel => vessel.id === this.$route.params.id)
-      },
+      }
     },
 
     components: {
