@@ -159,7 +159,7 @@
 </template>
 
 <script>
-  import ButtonPositive from './Atoms/Buttons/ButtonPositive.vue'
+  import ButtonPositive from './ButtonPositive.vue'
   import InputWithErrors from './molecules/input-with-errors.vue'
   import { required } from 'vuelidate/lib/validators'
   import BaseIcon from './BaseIcon.vue'

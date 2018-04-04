@@ -70,7 +70,7 @@
 
 <script>
   import FormWrapper from '../components/FormWrapper.vue'
-  import ButtonPositive from '../components/Atoms/Buttons/ButtonPositive.vue'
+  import ButtonPositive from '../components/ButtonPositive.vue'
   import { required, numeric } from 'vuelidate/lib/validators'
 
   export default {

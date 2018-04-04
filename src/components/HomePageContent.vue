@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import ButtonPositive from './Atoms/Buttons/ButtonPositive.vue'
+  import ButtonPositive from './ButtonPositive.vue'
 
   export default {
     components: {
