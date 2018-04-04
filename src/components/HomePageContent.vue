@@ -1,8 +1,8 @@
 <template>
-  <div class="the-home-page">
-    <p class="the-home-page__sub-text">Free Vessel Tracking App</p>
-    <h1 class="the-home-page__main-text">V-tracker</h1>
-    <p class="the-home-page__sub-text">Track you vessels based on reports or AIS</p>
+  <div class="thome-page">
+    <p class="thome-page__sub-text">Free Vessel Tracking App</p>
+    <h1 class="home-page__main-text">V-tracker</h1>
+    <p class="home-page__sub-text">Track you vessels based on reports or AIS</p>
     <ButtonPositive>
       <router-link to="/signin">Log in</router-link>
     </ButtonPositive>
@@ -20,7 +20,7 @@
 </script>
 
 <style scoped lang="scss">
-  .the-home-page {
+  .home-page {
     &__sub-text {
       text-transform: uppercase;
       font-weight: 500;

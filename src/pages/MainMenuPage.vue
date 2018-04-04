@@ -1,5 +1,5 @@
 <template>
-  <div id="dashboard">
+  <div class="main-menu">
     <TheHeader></TheHeader>
     <router-view></router-view>
   </div>
@@ -28,7 +28,7 @@
     padding: 50px 0;
   }
 
-  #dashboard {
+  .main-menu {
     height: 100vh;
     width: 100%;
     position: relative;

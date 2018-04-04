@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import store from '../store'
 
 import HomePage from '../pages/HomePage.vue'
-import DashboardPage from '../pages/DashboardPage.vue'
+import MainMenuPage from '../pages/MainMenuPage.vue'
+import MainMenu from '../components/MainMenu.vue'
 import SignupPage from '../pages/auth/SignupPage.vue'
 import SigninPage from '../pages/auth/SigninPage.vue'
 import VesselsPage from '../pages/VesselsPage.vue'
@@ -19,9 +20,9 @@ const routes = [
   { path: '/signin', component: SigninPage },
   {
     path: '/dashboard',
-    component: DashboardPage,
+    component: MainMenuPage,
     children: [
-      { path: '', component: VesselsPage },
+      { path: '', component: MainMenu },
       { path: 'vessels', component: VesselsPage },
       { path: 'vessels/new', component: NewVesselPage },
       { path: 'vessels/:id/edit', component: EditVesselPage },

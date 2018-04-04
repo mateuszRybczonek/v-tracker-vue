@@ -1,19 +1,19 @@
 <template>
-  <TheHomePageContent class="the-home-page"></TheHomePageContent>
+  <HomePageContent class="home-page"></HomePageContent>
 </template>
 
 <script>
-  import TheHomePageContent from '../components/TheHomePageContent.vue'
+  import HomePageContent from '../components/HomePageContent.vue'
 
   export default {
     components: {
-      TheHomePageContent
+      HomePageContent
     }
   }
 </script>
 
 <style scoped lang="scss">
-  .the-home-page {
+  .home-page {
     text-align: center;
 
     $section-height: 100vh;
