@@ -1,14 +1,14 @@
 <template>
   <div class="step-4">
-    <success-sign
+    <SuccessSign
       title="Success!"
       description="New report has been added!"
-    ></success-sign>
+    ></SuccessSign>
   </div>
 </template>
 
 <script>
-  import SuccessSign from './molecules/success-sign.vue'
+  import SuccessSign from './SuccessSign.vue'
 
   export default {
     components: {

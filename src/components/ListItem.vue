@@ -1,11 +1,11 @@
 <template>
-  <div class="v-list-item">
+  <div class="list-item">
     <slot></slot>
   </div>
 </template>
 
 <style scoped lang="scss">
-  .v-list-item {
+  .list-item {
     min-height: 60px;
     display: flex;
     flex-direction: column;

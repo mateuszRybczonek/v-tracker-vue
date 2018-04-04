@@ -3,7 +3,7 @@
     <div class="form-sections">
       <div class="form-section">
         <h4 class="form-section__heading">Position</h4>
-				<input-with-errors unit="">
+				<InputWithErrors unit="">
 					<div slot="input" class="input__wrapper">
 						<BaseIcon
               width=30
@@ -24,9 +24,9 @@
 						<span class="validation-error" v-if="showErrors && !$v.reportData.reportTime.required">This field must not be empty.</span>
 						<span class="validation-error" v-if="showErrors && !$v.reportData.reportTime.date">Please input date in format yyyy-mm-dd (years range 1950-2099).</span>
 					</div>
-				</input-with-errors>
+				</InputWithErrors>
 
-        <input-with-errors unit="°">
+        <InputWithErrors unit="°">
 					<div slot="input" class="input__wrapper">
 						<BaseIcon
 							width=30
@@ -47,9 +47,9 @@
             <span class="validation-error" v-if="showErrors && !$v.reportData.lat.required">This field must not be empty.</span>
             <span class="validation-error" v-if="showErrors && !$v.reportData.lat.format">Please provide latitude in a valid format (dd mm.m), + for N / - for S hemisphere</span>
           </div>
-        </input-with-errors>
+        </InputWithErrors>
 
-        <input-with-errors unit="°">
+        <InputWithErrors unit="°">
 					<div slot="input" class="input__wrapper">
 						<BaseIcon
 							width=30
@@ -70,12 +70,12 @@
             <span class="validation-error" v-if="showErrors && !$v.reportData.lng.required">This field must not be empty.</span>
             <span class="validation-error" v-if="showErrors && !$v.reportData.lng.format">Please provide longitude in a valid format (ddd mm.m), + for E / - for W hemisphere</span>
           </div>
-        </input-with-errors>
+        </InputWithErrors>
       </div>
 
       <div class="form-section">
         <h4 class="form-section__heading">Navigation</h4>
-        <input-with-errors unit="°">
+        <InputWithErrors unit="°">
 					<div slot="input" class="input__wrapper">
 						<BaseIcon
 							width=30
@@ -97,9 +97,9 @@
             <span class="validation-error" v-if="showErrors && !$v.reportData.course.format">Course must be in 'xxx' format.</span>
             <span class="validation-error" v-if="showErrors && !$v.reportData.course.range">Course must be between 000 - 360.</span>
           </div>
-        </input-with-errors>
+        </InputWithErrors>
 
-        <input-with-errors unit="kn">
+        <InputWithErrors unit="kn">
 					<div slot="input" class="input__wrapper">
 						<BaseIcon
 							width=30
@@ -119,7 +119,7 @@
           <div slot="errors">
             <span class="validation-error" v-if="showErrors && !$v.reportData.spd.required">This field must not be empty.</span>
           </div>
-        </input-with-errors>
+        </InputWithErrors>
       </div>
     </div>
 
@@ -139,7 +139,7 @@
 
 <script>
 import ButtonPositive from './ButtonPositive.vue'
-import InputWithErrors from './molecules/input-with-errors.vue'
+import InputWithErrors from './InputWithErrors.vue'
 import { required } from 'vuelidate/lib/validators'
 import BaseIcon from './BaseIcon.vue'
 import IconCalendar from './icons/icon-calendar.vue'

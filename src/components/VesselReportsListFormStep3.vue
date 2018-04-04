@@ -10,7 +10,7 @@
     <div class="form-sections">
       <div class="form-section">
         <h4 class="form-section__heading">Remaining on board</h4>
-        <input-with-errors unit="cbm">
+        <InputWithErrors unit="cbm">
           <div slot="input" class="input__wrapper">
             <BaseIcon
               width=50
@@ -30,9 +30,9 @@
             <span class="validation-error" v-if="showErrors && !$v.reportData.foRob.required">This field must not be empty.</span>
             <span class="validation-error" v-if="showErrors && !$v.reportData.foRob.range">Fuel oil cannot be less than 0.</span>
           </div>
-        </input-with-errors>
+        </InputWithErrors>
 
-        <input-with-errors unit="cbm">
+        <InputWithErrors unit="cbm">
           <div slot="input" class="input__wrapper">
             <BaseIcon
               width=50
@@ -52,9 +52,9 @@
             <span class="validation-error" v-if="showErrors && !$v.reportData.doRob.required">This field must not be empty.</span>
             <span class="validation-error" v-if="showErrors && !$v.reportData.doRob.range">Diesel oil cannot be less than 0.</span>
           </div>
-        </input-with-errors>
+        </InputWithErrors>
 
-        <input-with-errors unit="cbm">
+        <InputWithErrors unit="cbm">
           <div slot="input" class="input__wrapper">
             <BaseIcon
               width=50
@@ -74,12 +74,12 @@
             <span class="validation-error" v-if="showErrors && !$v.reportData.fwRob.required">This field must not be empty.</span>
             <span class="validation-error" v-if="showErrors && !$v.reportData.fwRob.range">Fresh water cannot be less than 0.</span>
           </div>
-        </input-with-errors>
+        </InputWithErrors>
       </div>
 
       <div class="form-section">
         <h4 class="form-section__heading">Other</h4>
-        <input-with-errors unit="">
+        <InputWithErrors unit="">
           <div slot="input" class="input__wrapper">
             <BaseIcon
               width=50
@@ -99,9 +99,9 @@
             <span class="validation-error" v-if="showErrors && !$v.reportData.pob.required">This field must not be empty.</span>
             <span class="validation-error" v-if="showErrors && !$v.reportData.pob.range">POB cannot be less than 0.</span>
           </div>
-        </input-with-errors>
+        </InputWithErrors>
 
-        <input-with-errors>
+        <InputWithErrors>
           <div slot="input" class="input__wrapper">
             <BaseIcon
               width=50
@@ -121,9 +121,9 @@
           <div class="error">
             <span class="validation-error" v-if="showErrors && !$v.reportData.pitch.required">This field must not be empty.</span>
           </div>
-        </input-with-errors>
+        </InputWithErrors>
 
-        <input-with-errors>
+        <InputWithErrors>
           <div slot="input" class="input__wrapper">
             <BaseIcon
               width=50
@@ -143,7 +143,7 @@
           <div slot="errors">
             <span class="validation-error" v-if="showErrors && !$v.reportData.roll.required">This field must not be empty.</span>
           </div>
-        </input-with-errors>
+        </InputWithErrors>
       </div>
     </div>
 
@@ -160,7 +160,7 @@
 
 <script>
   import ButtonPositive from './ButtonPositive.vue'
-  import InputWithErrors from './molecules/input-with-errors.vue'
+  import InputWithErrors from './InputWithErrors.vue'
   import { required } from 'vuelidate/lib/validators'
   import BaseIcon from './BaseIcon.vue'
   import IconFuel from './icons/icon-fuel.vue'

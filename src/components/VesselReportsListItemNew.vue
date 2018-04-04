@@ -1,14 +1,14 @@
 <template>
-  <v-list-item @click.native="showNewReportFormAction()" class="reports-list-new">
+  <ListItem @click.native="showNewReportFormAction()" class="reports-list-new">
     <BaseIcon class="vessels-list-new__icon" iconColor="#999">
       <IconTilesPlus></IconTilesPlus>
     </BaseIcon>
     <p>Add new report</p>
-  </v-list-item>
+  </ListItem>
 </template>
 
 <script>
-  import VListItem from './molecules/list-item.vue'
+  import ListItem from './ListItem.vue'
   import BaseIcon from './BaseIcon.vue'
   import IconTilesPlus from './icons/icon-tiles-plus.vue'
 
@@ -21,7 +21,7 @@
     },
 
     components: {
-      VListItem,
+      ListItem,
       BaseIcon,
       IconTilesPlus
     }

@@ -3,7 +3,7 @@
     <div class="form-sections">
       <div class="form-section">
         <h4 class="form-section__heading">Wind</h4>
-        <input-with-errors unit="°">
+        <InputWithErrors unit="°">
           <div slot="input" class="input__wrapper">
             <BaseIcon
 							width=30
@@ -25,9 +25,9 @@
             <span class="validation-error" v-if="showErrors && !$v.reportData.windDir.format">Wind direction direction must be in 'xxx' format.</span>
             <span class="validation-error" v-if="showErrors && !$v.reportData.windDir.range">Wind direction must be between 000 - 360.</span>
           </div>
-        </input-with-errors>
+        </InputWithErrors>
 
-        <input-with-errors unit="kn">
+        <InputWithErrors unit="kn">
           <div slot="input" class="input__wrapper">
             <BaseIcon
               width=30
@@ -47,12 +47,12 @@
           <div slot="errors">
             <span class="validation-error" v-if="showErrors && !$v.reportData.windSpd.required">This field must not be empty.</span>
           </div>
-        </input-with-errors>
+        </InputWithErrors>
       </div>
 
       <div class="form-section">
         <h4 class="form-section__heading">Sea</h4>
-        <input-with-errors unit="°">
+        <InputWithErrors unit="°">
           <div slot="input" class="input__wrapper">
             <BaseIcon class="sea-flag__icon-wave"
               width=30
@@ -73,9 +73,9 @@
             <span class="validation-error" v-if="showErrors && !$v.reportData.seaState.required">This field must not be empty.</span>
             <span class="validation-error" v-if="showErrors && !$v.reportData.seaState.range">Sea state must be between 0 - 9.</span>
           </div>
-        </input-with-errors>
+        </InputWithErrors>
 
-        <input-with-errors unit="°">
+        <InputWithErrors unit="°">
           <div slot="input" class="input__wrapper">
             <BaseIcon
               width=30
@@ -97,9 +97,9 @@
             <span class="validation-error" v-if="showErrors && !$v.reportData.swellDir.format">Swell direction must be in 'xxx' format.</span>
             <span class="validation-error" v-if="showErrors && !$v.reportData.swellDir.range">Swell direction must be between 000 - 360.</span>
           </div>
-        </input-with-errors>
+        </InputWithErrors>
 
-        <input-with-errors unit="m">
+        <InputWithErrors unit="m">
           <div slot="input" class="input__wrapper">
             <BaseIcon class="sea-flag__icon-wave"
               width=30
@@ -119,7 +119,7 @@
           <div slot="errors">
             <span class="validation-error" v-if="showErrors && !$v.reportData.swellHeight.required">This field must not be empty.</span>
           </div>
-        </input-with-errors>
+        </InputWithErrors>
       </div>
     </div>
 
@@ -136,7 +136,7 @@
 
 <script>
   import ButtonPositive from './ButtonPositive.vue'
-  import InputWithErrors from './molecules/input-with-errors.vue'
+  import InputWithErrors from './InputWithErrors.vue'
   import { required } from 'vuelidate/lib/validators'
   import BaseIcon from './BaseIcon.vue'
   import IconNavigation from './icons/icon-navigation.vue'
