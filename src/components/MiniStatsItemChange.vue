@@ -19,7 +19,7 @@
 
 <script>
   import BaseIcon from './BaseIcon.vue'
-  import IconChange from './icons/icon-change.vue'
+  import IconChange from './Icons/IconChange.vue'
 
   export default {
     props: {

@@ -72,8 +72,8 @@
   import FormWrapper from '../../components/FormWrapper.vue'
   import ButtonPositive from '../../components/ButtonPositive.vue'
   import BaseIcon from '../../components/BaseIcon.vue'
-  import IconEmail from '../../components/icons/icon-email.vue'
-  import IconLock from '../../components/icons/icon-lock.vue'
+  import IconEmail from '../../components/Icons/IconEmail.vue'
+  import IconLock from '../../components/Icons/IconLock.vue'
 
   export default {
     data () {

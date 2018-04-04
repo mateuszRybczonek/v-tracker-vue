@@ -163,10 +163,10 @@
   import InputWithErrors from './InputWithErrors.vue'
   import { required } from 'vuelidate/lib/validators'
   import BaseIcon from './BaseIcon.vue'
-  import IconFuel from './icons/icon-fuel.vue'
-  import IconWater from './icons/icon-water.vue'
-  import IconPeople from './icons/icon-people.vue'
-  import IconAngle from './icons/icon-angle.vue'
+  import IconFuel from './Icons/IconFuel.vue'
+  import IconWater from './Icons/IconWater.vue'
+  import IconPeople from './Icons/IconPeople.vue'
+  import IconAngle from './Icons/IconAngle.vue'
 
   export default {
     props: {

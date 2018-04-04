@@ -34,8 +34,8 @@
 <script>
   import BaseCard from './BaseCard.vue'
   import BaseIcon from './BaseIcon.vue'
-  import IconPencil from './icons/icon-pencil.vue'
-  import IconTrash from './icons/icon-trash.vue'
+  import IconPencil from './Icons/IconPencil.vue'
+  import IconTrash from './Icons/IconTrash.vue'
 
   export default {
     name: 'ProgressSpinnerSizes',

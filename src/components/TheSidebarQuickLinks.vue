@@ -21,10 +21,10 @@
   import { mapGetters } from 'vuex'
   import { COMPONENT_NAMES } from '../constants/vessel-details'
   import BaseIcon from './BaseIcon.vue'
-  import IconFiles from './icons/icon-files.vue'
-  import IconOverview from './icons/icon-overview.vue'
-  import IconWeather from './icons/icon-weather.vue'
-  import IconStatistics from './icons/icon-statistics.vue'
+  import IconFiles from './Icons/IconFiles.vue'
+  import IconOverview from './Icons/IconOverview.vue'
+  import IconWeather from './Icons/IconWeather.vue'
+  import IconStatistics from './Icons/IconStatistics.vue'
 
   const { VESSEL_DASHBOARD, REPORTS, WEATHER, STATISTICS } = COMPONENT_NAMES
 

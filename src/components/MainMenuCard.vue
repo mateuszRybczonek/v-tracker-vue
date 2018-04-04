@@ -7,8 +7,8 @@
 
 <script>
   import BaseCard from './BaseCard.vue'
-  import IconFiles from './icons/animated/icon-files.vue'
-  import IconShip from './icons/animated/icon-ship.vue'
+  import IconFiles from './Icons/Animated/IconAnimatedFiles.vue'
+  import IconShip from './Icons/Animated/IconAnimatedShip.vue'
 
   export default {
     props: {

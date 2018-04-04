@@ -32,7 +32,7 @@
 <script>
   import ColorBadge from './ColorBadge.vue'
   import BaseIcon from './BaseIcon.vue'
-  import IconArrowDown from './icons/icon-arrow-down.vue'
+  import IconArrowDown from './Icons/IconArrowDown.vue'
 
   export default {
     props: {

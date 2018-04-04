@@ -34,7 +34,7 @@
 <script>
   import WindFlag from './WindFlag.vue'
   import SeaFlag from './SeaFlag.vue'
-  import IconVessel from './icons/icon-vessel.vue'
+  import IconVessel from './Icons/IconVessel.vue'
   import BaseIcon from './BaseIcon.vue'
 
   export default {

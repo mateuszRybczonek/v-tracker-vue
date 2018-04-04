@@ -30,7 +30,7 @@
 
 <script>
   import AccordionWrapper from './AccordionWrapper.vue'
-  import IconNavigation from './icons/icon-navigation.vue'
+  import IconNavigation from './Icons/IconNavigation.vue'
   import BaseIcon from './BaseIcon.vue'
 
   import { TweenMax } from 'gsap'

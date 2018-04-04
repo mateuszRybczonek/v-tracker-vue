@@ -21,8 +21,8 @@
 </template>
 
 <script>
-  import IconWave from './icons/icon-wave.vue'
-  import IconArrow from './icons/icon-arrow.vue'
+  import IconWave from './Icons/IconWave.vue'
+  import IconArrow from './Icons/iconArrow.vue'
   import BaseIcon from './BaseIcon.vue'
 
   export default {

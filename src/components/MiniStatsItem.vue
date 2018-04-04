@@ -44,9 +44,9 @@
   import AccordionWrapper from './AccordionWrapper.vue'
   import MiniStatsItemChange from './MiniStatsItemChange.vue'
   import BaseIcon from './BaseIcon.vue'
-  import IconFuel from './icons/icon-fuel.vue'
-  import IconWater from './icons/icon-water.vue'
-  import IconPeople from './icons/icon-people.vue'
+  import IconFuel from './Icons/IconFuel.vue'
+  import IconWater from './Icons/IconWater.vue'
+  import IconPeople from './Icons/IconPeople.vue'
 
   export default {
     props: {

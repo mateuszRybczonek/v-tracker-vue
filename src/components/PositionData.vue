@@ -31,7 +31,7 @@
 <script>
   import { decimalToDMS } from '../utils/coordinates-utils'
   import BaseIcon from './BaseIcon.vue'
-  import IconPosition from './icons/icon-position.vue'
+  import IconPosition from './Icons/IconPosition.vue'
   import AccordionWrapper from './AccordionWrapper.vue'
 
   const NOT_PROVIDED = 'not provided'

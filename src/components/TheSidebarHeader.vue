@@ -23,7 +23,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import BaseIcon from './BaseIcon.vue'
-  import IconPencil from './icons/icon-pencil.vue'
+  import IconPencil from './Icons/IconPencil.vue'
 
   export default {
     props: {

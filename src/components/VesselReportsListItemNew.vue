@@ -10,7 +10,7 @@
 <script>
   import BaseListItem from './BaseListItem.vue'
   import BaseIcon from './BaseIcon.vue'
-  import IconTilesPlus from './icons/icon-tiles-plus.vue'
+  import IconTilesPlus from './Icons/IconTilesPlus.vue'
 
   export default {
     props: {

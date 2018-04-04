@@ -38,8 +38,8 @@
 <script>
   import ColorBadge from './ColorBadge.vue'
   import BaseIcon from './BaseIcon.vue'
-  import IconSave from './icons/icon-save.vue'
-  import IconPencil from './icons/icon-pencil.vue'
+  import IconSave from './Icons/IconSave.vue'
+  import IconPencil from './Icons/IconPencil.vue'
   import {
     formatLatForPersistanceLayer,
     formatLngForPersistanceLayer,

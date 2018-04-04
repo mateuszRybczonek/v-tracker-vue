@@ -142,11 +142,11 @@ import ButtonPositive from './ButtonPositive.vue'
 import InputWithErrors from './InputWithErrors.vue'
 import { required } from 'vuelidate/lib/validators'
 import BaseIcon from './BaseIcon.vue'
-import IconCalendar from './icons/icon-calendar.vue'
-import IconFi from './icons/icon-fi.vue'
-import IconLambda from './icons/icon-lambda.vue'
-import IconNavigation from './icons/icon-navigation.vue'
-import IconSpeed from './icons/icon-speed.vue'
+import IconCalendar from './Icons/IconCalendar.vue'
+import IconFi from './Icons/IconFi.vue'
+import IconLambda from './Icons/IconLambda.vue'
+import IconNavigation from './Icons/IconNavigation.vue'
+import IconSpeed from './Icons/IconSpeed.vue'
 
 export default {
   props: {

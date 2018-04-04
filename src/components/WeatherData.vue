@@ -61,7 +61,7 @@
 </template>
 
 <script>
-  import IconWeather from './icons/icon-weather.vue'
+  import IconWeather from './Icons/IconWeather.vue'
   import BaseIcon from './BaseIcon.vue'
   import WindFlag from './WindFlag.vue'
   import SeaFlag from './SeaFlag.vue'

@@ -139,9 +139,9 @@
   import InputWithErrors from './InputWithErrors.vue'
   import { required } from 'vuelidate/lib/validators'
   import BaseIcon from './BaseIcon.vue'
-  import IconNavigation from './icons/icon-navigation.vue'
-  import IconSpeed from './icons/icon-speed.vue'
-  import IconWave from './icons/icon-wave.vue'
+  import IconNavigation from './Icons/IconNavigation.vue'
+  import IconSpeed from './Icons/IconSpeed.vue'
+  import IconWave from './Icons/IconWave.vue'
 
   export default {
     props: {
