@@ -1,78 +1,132 @@
 <template>
-  <div class="step-3" :class="{ 'step-3--faded': inProgress}">
-    <div class="step-3__spinner" v-if="inProgress">
+  <div
+    class="step-3"
+    :class="{ 'step-3--faded': inProgress}"
+  >
+    <div
+      class="step-3__spinner"
+      v-if="inProgress"
+    >
       <md-progress-spinner
         :md-diameter="130"
         :md-stroke="10"
-        md-mode="indeterminate">
-      </md-progress-spinner>
+        md-mode="indeterminate"
+      ></md-progress-spinner>
     </div>
     <div class="form-sections">
       <div class="form-section">
         <h4 class="form-section__heading">Remaining on board</h4>
         <InputWithErrors unit="cbm">
-          <div slot="input" class="input__wrapper">
+          <div
+            slot="input"
+            class="input__wrapper"
+          >
             <BaseIcon
               width=50
               height=50
               color="#999"
-              viewBox="15 15 76 76">
+              viewBox="15 15 76 76"
+            >
               <IconFuel></IconFuel>
             </BaseIcon>
-            <input class="input input--with-error"
+            <input
+              class="input input--with-error"
               :class="{ invalid: showErrors && $v.reportData.foRob.$invalid }"
               type="number"
               placeholder="Fuel oil"
               v-model="reportData.foRob"
-              @input="$v.reportData.foRob.$touch()">
+              @input="$v.reportData.foRob.$touch()"
+            >
           </div>
           <div slot="errors">
-            <span class="validation-error" v-if="showErrors && !$v.reportData.foRob.required">This field must not be empty.</span>
-            <span class="validation-error" v-if="showErrors && !$v.reportData.foRob.range">Fuel oil cannot be less than 0.</span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.foRob.required"
+            >
+              This field must not be empty.
+            </span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.foRob.range"
+            >
+              Fuel oil cannot be less than 0.
+            </span>
           </div>
         </InputWithErrors>
 
         <InputWithErrors unit="cbm">
-          <div slot="input" class="input__wrapper">
+          <div
+            slot="input"
+            class="input__wrapper"
+          >
             <BaseIcon
               width=50
               height=50
               color="#999"
-              viewBox="15 15 76 76">
+              viewBox="15 15 76 76"
+            >
               <IconFuel></IconFuel>
             </BaseIcon>
-            <input class="input input--with-error"
+            <input
+              class="input input--with-error"
               :class="{ invalid: showErrors && $v.reportData.doRob.$invalid }"
               type="number"
               placeholder="Diesel oil"
               v-model="reportData.doRob"
-              @input="$v.reportData.doRob.$touch()">
+              @input="$v.reportData.doRob.$touch()"
+            >
           </div>
           <div slot="errors">
-            <span class="validation-error" v-if="showErrors && !$v.reportData.doRob.required">This field must not be empty.</span>
-            <span class="validation-error" v-if="showErrors && !$v.reportData.doRob.range">Diesel oil cannot be less than 0.</span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.doRob.required"
+            >
+              This field must not be empty.
+            </span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.doRob.range"
+            >
+              Diesel oil cannot be less than 0.
+            </span>
           </div>
         </InputWithErrors>
 
         <InputWithErrors unit="cbm">
-          <div slot="input" class="input__wrapper">
+          <div
+           slot="input"
+           class="input__wrapper"
+          >
             <BaseIcon
               width=50
               height=50
               color="#999"
-              viewBox="25 20 60 60">
+              viewBox="25 20 60 60"
+            >
               <IconWater></IconWater>
             </BaseIcon>
-            <input class="input input--with-error"
+            <input
+              class="input input--with-error"
               :class="{ invalid: showErrors && $v.reportData.fwRob.$invalid }"
               type="number"
               placeholder="Fresh water"
               v-model="reportData.fwRob"
-              @input="$v.reportData.fwRob.$touch()">
+              @input="$v.reportData.fwRob.$touch()"
+            >
           </div>
           <div slot="errors">
-            <span class="validation-error" v-if="showErrors && !$v.reportData.fwRob.required">This field must not be empty.</span>
-            <span class="validation-error" v-if="showErrors && !$v.reportData.fwRob.range">Fresh water cannot be less than 0.</span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.fwRob.required"
+          >
+            This field must not be empty.
+          </span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.fwRob.range"
+            >
+              Fresh water cannot be less than 0.
+            </span>
           </div>
         </InputWithErrors>
       </div>
@@ -80,78 +134,124 @@
       <div class="form-section">
         <h4 class="form-section__heading">Other</h4>
         <InputWithErrors unit="">
-          <div slot="input" class="input__wrapper">
+          <div
+            slot="input"
+            class="input__wrapper"
+          >
             <BaseIcon
               width=50
               height=50
               color="#999"
-              viewBox="15 15 76 76">
+              viewBox="15 15 76 76"
+            >
               <IconPeople></IconPeople>
             </BaseIcon>
-            <input slot="input" class="input input__pitch input__pob input--with-error"
+            <input
+              slot="input"
+              class="input input__pitch input__pob input--with-error"
               :class="{ invalid: showErrors && $v.reportData.pob.$invalid }"
               type="number"
               placeholder="People on board"
               v-model="reportData.pob"
-              @input="$v.reportData.pob.$touch()">
+              @input="$v.reportData.pob.$touch()"
+            >
           </div>
           <div slot="errors">
-            <span class="validation-error" v-if="showErrors && !$v.reportData.pob.required">This field must not be empty.</span>
-            <span class="validation-error" v-if="showErrors && !$v.reportData.pob.range">POB cannot be less than 0.</span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.pob.required"
+            >
+              This field must not be empty.
+            </span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.pob.range"
+            >
+              POB cannot be less than 0.
+            </span>
           </div>
         </InputWithErrors>
 
         <InputWithErrors>
-          <div slot="input" class="input__wrapper">
+          <div
+            slot="input"
+            class="input__wrapper"
+          >
             <BaseIcon
               width=50
               height=50
               color="#999"
-              viewBox="10 15 76 76">
+              viewBox="10 15 76 76"
+            >
               <IconAngle></IconAngle>
             </BaseIcon>
-            <input class="input input--with-error"
+            <input
+              class="input input--with-error"
               :class="{ invalid: showErrors && $v.reportData.pitch.$invalid }"
               type="number "
               step="0.1"
               placeholder="Pitch"
               v-model="reportData.pitch"
-              @input="$v.reportData.pitch.$touch()">
+              @input="$v.reportData.pitch.$touch()"
+            >
           </div>
           <div class="error">
-            <span class="validation-error" v-if="showErrors && !$v.reportData.pitch.required">This field must not be empty.</span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.pitch.required"
+            >
+              This field must not be empty.
+            </span>
           </div>
         </InputWithErrors>
 
         <InputWithErrors>
-          <div slot="input" class="input__wrapper">
+          <div
+            slot="input"
+            class="input__wrapper"
+          >
             <BaseIcon
               width=50
               height=50
               color="#999"
-              viewBox="10 15 76 76">
+              viewBox="10 15 76 76"
+            >
               <IconAngle></IconAngle>
             </BaseIcon>
-            <input class="input input__pitch input__movements input--with-error"
+            <input
+              class="input input__pitch input__movements input--with-error"
               :class="{ invalid: showErrors && $v.reportData.roll.$invalid }"
               type="number"
               step="0.1"
               placeholder="Roll"
               v-model="reportData.roll"
-              @input="$v.reportData.roll.$touch()">
+              @input="$v.reportData.roll.$touch()"
+            >
           </div>
           <div slot="errors">
-            <span class="validation-error" v-if="showErrors && !$v.reportData.roll.required">This field must not be empty.</span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.roll.required"
+            >
+              This field must not be empty.
+            </span>
           </div>
         </InputWithErrors>
       </div>
     </div>
 
     <div class="actions">
-      <ButtonPositive :on-click="previousStep" :inProgress='false'>
+      <ButtonPositive
+        :on-click="previousStep"
+        :inProgress='false'
+      >
         <span>Back</span>
       </ButtonPositive>
-      <ButtonPositive :on-click="submit" :inProgress='false'>
+
+      <ButtonPositive
+        :on-click="submit"
+        :inProgress='false'
+      >
         <span>Continue</span>
       </ButtonPositive>
     </div>

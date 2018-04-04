@@ -1,27 +1,47 @@
 <template>
   <li>
-    <AccordionWrapper :showOnInit=false :collapsedContent=true color="blue" class="report-item">
-      <div slot="header" class="badge__slot">
+    <AccordionWrapper
+      :showOnInit="false"
+      :collapsedContent="true"
+      color="blue"
+      class="report-item"
+    >
+      <div
+        slot="header"
+        class="badge__slot"
+      >
         <p>{{report.reportTime}}</p>
       </div>
-      <div slot="body" class="report-item__content">
-        <report-item-details-section v-for="sectionData in reportSections" class="report-item__content__item"
+      <div
+        slot="body"
+        class="report-item__content"
+      >
+        <ReportItemDetailsSection
+          class="report-item__content__item"
+          v-for="sectionData in reportSections"
           :key="sectionData.sectionTitle"
           :color="sectionData.color"
           :sectionData="sectionData"
-          :report="report">
-        </report-item-details-section>
+          :report="report"
+        ></ReportItemDetailsSection>
       </div>
-      <div slot="collapsed-content" class="report-item__collapsed-content">
+      <div
+        slot="collapsed-content"
+        class="report-item__collapsed-content"
+      >
         <div class="report-item__collapsed-content__basic-data">
           <p>Latitude: {{formattedLat}}</p>
           <p>Longitude: {{formattedLng}}</p>
         </div>
         <div class="report-item__collapsed-content__actions">
-          <span class="delete-icon" @click.prevent.stop="deleteReport(report.id, report.vessel)">
+          <span
+            class="delete-icon"
+            @click.prevent.stop="deleteReport(report.id, report.vessel)"
+          >
             <BaseIcon
               width=40
-              height=40>
+              height=40
+            >
               <IconTrash></IconTrash>
             </BaseIcon>
           </span>

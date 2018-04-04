@@ -1,11 +1,15 @@
 <template>
-    <BaseCard :to="vesselDetailsLink" class="vessels-list-item" :class="{ 'vessels-list-item--faded': inProgress}">
+    <BaseCard
+      :to="vesselDetailsLink"
+      class="vessels-list-item"
+      :class="{ 'vessels-list-item--faded': inProgress}"
+    >
       <md-progress-spinner
         v-if="inProgress"
         :md-diameter="130"
         :md-stroke="10"
-        md-mode="indeterminate">
-      </md-progress-spinner>
+        md-mode="indeterminate"
+      ></md-progress-spinner>
       <p class="vessels-list-item__subheader--small">
         {{vessel.name}}
       <p>
@@ -16,14 +20,19 @@
         <router-link :to="editLink" class="edit-icon">
           <BaseIcon
             width=40
-            height=40>
+            height=40
+          >
             <IconPencil></IconPencil>
           </BaseIcon>
         </router-link>
-        <span class="delete-icon" @click.prevent.stop="deleteVessel(vessel.id)">
+        <span
+          class="delete-icon"
+          @click.prevent.stop="deleteVessel(vessel.id)"
+        >
           <BaseIcon
             width=40
-            height=40>
+            height=40
+          >
             <IconTrash></IconTrash>
           </BaseIcon>
         </span>

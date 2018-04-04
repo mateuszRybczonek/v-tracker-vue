@@ -1,5 +1,8 @@
 <template>
-  <div id="weather-flag" :class="classes">
+  <div
+    id="weather-flag"
+    :class="classes"
+  >
     <i :class="iconClasses"></i>
   </div>
 </template>

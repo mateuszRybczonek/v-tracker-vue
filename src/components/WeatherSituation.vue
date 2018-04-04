@@ -1,32 +1,43 @@
 <template>
   <div class="weather-situation">
-    <div class="weather-situation__vessel-wrapper" id="weather-situation__vessel-wrapper">
-      <BaseIcon class="weather-situation__vessel"
+    <div
+      id="weather-situation__vessel-wrapper"
+      class="weather-situation__vessel-wrapper"
+    >
+      <BaseIcon
+        class="weather-situation__vessel"
         width=60
         height=265
         color="#7c9cc9"
         strokeColor="#7c9cc9"
-        viewBox="0 0 76 76">
+        viewBox="0 0 76 76"
+      >
         <IconVessel></IconVessel>
       </BaseIcon>
     </div>
 
-    <div class="weather-situation__wind-flag-wrapper" id="weather-situation__wind-flag-wrapper">
+    <div
+      id="weather-situation__wind-flag-wrapper"
+      class="weather-situation__wind-flag-wrapper"
+    >
       <WindFlag
         class="weather-situation__wind-flag"
         :speed="report.windSpd"
         :direction="report.windDir"
-        :withBorder='false'>
-      </WindFlag>
+        :withBorder='false'
+      ></WindFlag>
     </div>
 
-    <div class="weather-situation__sea-flag-wrapper" id="weather-situation__sea-flag-wrapper">
+    <div
+      id="weather-situation__sea-flag-wrapper"
+      class="weather-situation__sea-flag-wrapper"
+    >
       <SeaFlag
         class="weather-situation__sea-flag"
         :height="report.swellHeight"
         :direction="report.swellDir"
-        :withBorder='false'>
-      </SeaFlag>
+        :withBorder='false'
+      ></SeaFlag>
     </div>
   </div>
 </template>

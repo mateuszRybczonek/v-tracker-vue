@@ -1,6 +1,12 @@
 <template>
-  <BaseListItem @click.native="showNewReportFormAction()" class="reports-list-new">
-    <BaseIcon class="vessels-list-new__icon" iconColor="#999">
+  <BaseListItem
+    @click.native="showNewReportFormAction()"
+    class="reports-list-new"
+  >
+    <BaseIcon
+      class="vessels-list-new__icon"
+      iconColor="#999"
+    >
       <IconTilesPlus></IconTilesPlus>
     </BaseIcon>
     <p>Add new report</p>

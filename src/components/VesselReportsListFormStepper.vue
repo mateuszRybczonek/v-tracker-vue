@@ -1,18 +1,21 @@
 <template>
   <div class="stepper">
-    <div class="step"
+    <div class="stepper__step"
       @click="selectStep(1)"
       :class="{
         active: selectedStep === 'step1',
         completed: selectedStep !== 'step1',
         successful: selectedStep === 'step4',
         submitted: isSubmitted}">
-      <span class="badge">
-        <span class="badge-content">Navigation</span>
+      <span class="step-badge">
+        <span class="step-badge__content">Navigation</span>
       </span>
-      <span class="progress-bar" :class="{ 'progress-bar--visible': selectedStep !== 'step1' }"></span>
+      <span
+        class="step__progress-bar"
+        :class="{ 'step__progress-bar--visible': selectedStep !== 'step1' }"
+      ></span>
     </div>
-    <div class="step"
+    <div class="stepper__step"
       @click="selectStep(2)"
       :class="{
         active: selectedStep === 'step2',
@@ -20,12 +23,15 @@
         completed: selectedStep === 'step3' || selectedStep === 'step4',
         successful: selectedStep === 'step4',
         submitted: isSubmitted}">
-      <span class="badge">
-        <span class="badge-content">Weather</span>
+      <span class="step-badge">
+        <span class="step-badge__content">Weather</span>
       </span>
-      <span class="progress-bar" :class="{ 'progress-bar--visible': selectedStep === 'step3' || selectedStep === 'step4'}"></span>
+      <span
+        class="step__progress-bar"
+        :class="{ 'step__progress-bar--visible': selectedStep === 'step3' || selectedStep === 'step4'}"
+      ></span>
     </div>
-    <div class="step"
+    <div class="stepper__step"
       @click="selectStep(3)"
       :class="{
         active: selectedStep === 'step3',
@@ -33,8 +39,8 @@
         completed: selectedStep === 'step4',
         successful: selectedStep === 'step4',
         submitted: isSubmitted}">
-      <span class="badge">
-        <span class="badge-content">Other</span>
+      <span class="step-badge">
+        <span class="step-badge__content">Other</span>
       </span>
     </div>
   </div>
@@ -66,7 +72,7 @@
     display: flex;
     margin-left: 15%;
 
-    .step {
+    &__step {
       min-height: 50px;
       width: 34%;
       display: flex;
@@ -75,7 +81,7 @@
         color: $color-blue;
         font-weight: 700;
 
-        .badge {
+        .step-badge {
           border: solid 2px;
           height: 50px;
           transition: height 1s;
@@ -85,7 +91,7 @@
       &.completed {
         color: $color-whitey;
 
-        .badge {
+        .step-badge {
           border-color: $color-light-blue;
           background-color: $color-light-blue;
           transition: all 600ms;
@@ -94,7 +100,7 @@
             content: "\2713";
           }
 
-          .badge-content {
+          .step-badge__content {
             margin-left: 5px;
           }
         }
@@ -103,7 +109,7 @@
       &.disabled {
         pointer-events: none;
 
-        .badge {
+        .step-badge {
           border-color: $color-light-grey;
           color: $color-light-grey;
         }
@@ -112,13 +118,13 @@
       &.submitted {
         pointer-events: none;
 
-        .badge {
+        .step-badge {
           border: 1px solid $color-light-grey;
           color: $color-light-grey;
           background-color: transparent;
         }
 
-        .progress-bar {
+        .step__progress-bar {
           &--visible {
             width: 100%;
             background-color: $color-light-grey;
@@ -127,13 +133,13 @@
       }
 
       &.successful {
-        .badge {
+        .step-badge {
           border: 1px solid $color-light-blue;
           color: $color-light-blue;
           background-color: transparent;
         }
 
-        .progress-bar {
+        .step__progress-bar {
           &--visible {
             width: 100%;
             background-color: $color-light-blue;
@@ -141,7 +147,7 @@
         }
       }
 
-      .badge {
+      .step-badge {
         min-width: 120px;
         height: 30px;
         display: flex;
@@ -152,7 +158,7 @@
         border-radius: 3px;
       }
 
-      .progress-bar {
+      .step__progress-bar {
         position: relative;
         top: 23px;
         width: 0;

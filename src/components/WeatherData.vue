@@ -3,31 +3,44 @@
     <content-placeholders v-if="fetchingReports">
       <content-placeholders-img class="weather-data__placeholder"></content-placeholders-img>
     </content-placeholders>
-    <AccordionWrapper :showOnInit=true color="blue" else>
-      <div slot="header" class="badge__slot">
+    <AccordionWrapper
+      v-else
+      :showOnInit="true"
+      color="blue"
+    >
+      <div
+        slot="header"
+        class="badge__slot"
+      >
         <BaseIcon
           width=30
           height=30
           color="#FFF"
-          viewBox="-5 -7 40 40">
+          viewBox="-5 -7 40 40"
+        >
           <IconWeather></IconWeather>
         </BaseIcon>
         <p>Weather info</p>
       </div>
-      <div slot="body" class="weather-info__content">
+      <div
+        slot="body"
+        class="weather-info__content"
+      >
         <div class="weather-info__content__data">
           <div class="weather-info__content__wind">
             <WindFlag
               class="weather-info__content__wind__flag"
               :speed="windSpd"
               :direction="windDir"
-              :withBorder=true>
+              :withBorder="true"
+            >
             </WindFlag>
             <ul class="weather-info__content__list">
-              <li class="weather-info__content__list__item"
+              <li
+                class="weather-info__content__list__item"
                 v-for="windElement in windData"
                 :key="windElement.title"
-                >
+              >
                 <span class="weather-info__content__list__item__title">{{windElement.title}}</span>
                 <span class="weather-info__content__list__item__value">{{windElement.value}}</span>
               </li>
@@ -38,10 +51,12 @@
               class="weather-info__content__sea__flag"
               :height="swellHeight"
               :direction="swellDir"
-              :withBorder=true>
+              :withBorder="true"
+            >
             </SeaFlag>
             <ul class="weather-info__content__list">
-              <li class="weather-info__content__list__item"
+              <li
+                class="weather-info__content__list__item"
                 v-for="seaElement in seaData"
                 :key="seaElement.title"
               >
@@ -51,10 +66,11 @@
             </ul>
           </div>
         </div>
-        <WeatherSituation v-if="!fetchingReports"
+        <WeatherSituation
+          v-if="!fetchingReports"
           class="weather-info__content__situation"
-          :report="report">
-        </WeatherSituation>
+          :report="report"
+        ></WeatherSituation>
       </div>
     </AccordionWrapper>
   </div>

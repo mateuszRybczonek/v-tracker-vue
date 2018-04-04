@@ -3,10 +3,22 @@
     <VesselReportsListNewStepper
       :selectedStep="selectedStep"
       :isSubmitted="isSubmitted"
-      @selectStep="selectStep"></VesselReportsListNewStepper>
-    <FormWrapper :title="stepTitle" size="wide" color="blue">
-      <form class="new-report__form-content" slot="content" @submit.prevent>
-        <transition name="slide-fade" mode="out-in">
+      @selectStep="selectStep"
+    ></VesselReportsListNewStepper>
+    <FormWrapper
+      :title="stepTitle"
+      size="wide"
+      color="blue"
+    >
+      <form
+        class="new-report__form-content"
+        slot="content"
+        @submit.prevent
+      >
+        <transition
+          name="slide-fade"
+          mode="out-in"
+        >
           <component
             :is="selectedStep"
             :reportData="newReportData"
@@ -16,8 +28,7 @@
             @nextStep="nextStep"
             @previousStep="previousStep"
             @submit="submit"
-          >
-          </component>
+          ></component>
         </transition>
       </form>
     </FormWrapper>
@@ -81,9 +92,7 @@
       previousStep () {
         this.showErrors = false
 
-        if (this.step > 1) {
-          this.step--
-        }
+        if (this.step > 1) this.step--
       },
 
       selectStep (step) {

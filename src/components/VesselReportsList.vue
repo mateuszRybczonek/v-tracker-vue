@@ -24,7 +24,10 @@
       class="reports-list__item">
     </VesselReportsListItemNew>
 
-    <transition-group name="slide" class="reports-list__transition-group">
+    <transition-group
+      name="slide"
+      class="reports-list__transition-group"
+    >
       <VesselReportsListItem
         v-for="report in reports"
         :key="report.id"

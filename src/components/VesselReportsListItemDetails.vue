@@ -1,35 +1,56 @@
 <template>
   <div class="report-item-details-section">
-    <ColorBadge :color="color" class="report-item-details-section__badge">
+    <ColorBadge
+      :color="color"
+      class="report-item-details-section__badge"
+    >
       <p class="badge__slot">{{sectionData.sectionTitle}}</p>
-      <span v-if="isEditing" @click.prevent.stop="updateReport(reportChangeset)">
+      <span
+        v-if="isEditing"
+        @click.prevent.stop="updateReport(reportChangeset)"
+      >
         <BaseIcon
           width=30
           height=30
           color='#FFF'
-          viewBox='-10 -10 50 50'>
+          viewBox='-10 -10 50 50'
+        >
           <IconSave></IconSave>
         </BaseIcon>
       </span>
-      <span v-else @click.prevent.stop="editReportSection">
+      <span
+        v-else
+        @click.prevent.stop="editReportSection"
+      >
         <BaseIcon
           width=30
           height=30
-          color='#FFF'>
+          color='#FFF'
+        >
           <IconPencil></IconPencil>
         </BaseIcon>
       </span>
     </ColorBadge>
     <ul class="report-item-details-section__list">
-      <li class="report-item-details-section__list__item"
-          v-for="sectionDataItem in sectionData.items"
-          :key="sectionDataItem.title">
+      <li
+        class="report-item-details-section__list__item"
+        v-for="sectionDataItem in sectionData.items"
+        :key="sectionDataItem.title"
+      >
         <span class="report-item-details-section__list__item__title">{{sectionDataItem.title}}</span>
-        <input v-if="isEditing" class="report-item-details-section__list__item__title__input"
+        <input
+          v-if="isEditing"
+          class="report-item-details-section__list__item__title__input"
           type="text"
           placeholder=""
-          v-model="reportChangeset[sectionDataItem.key]">
-        <span v-else class="report-item-details-section__list__item__value">{{sectionDataItem.value}}</span>
+          v-model="reportChangeset[sectionDataItem.key]"
+        >
+        <span
+          v-else
+          class="report-item-details-section__list__item__value"
+        >
+          {{sectionDataItem.value}}
+        </span>
       </li>
     </ul>
   </div>
