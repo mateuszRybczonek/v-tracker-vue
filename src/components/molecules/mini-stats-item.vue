@@ -3,7 +3,7 @@
     <content-placeholders v-if="showPlaceholder">
       <content-placeholders-img></content-placeholders-img>
     </content-placeholders>
-    <v-accordion :showOnInit=true :color=item.color v-else>
+    <AccordionWrapper :showOnInit=true :color="item.color" v-else>
       <div slot="header" class="header-badge__slot">
         <BaseIcon
           width=30
@@ -14,7 +14,7 @@
         </BaseIcon>
         <p>{{item.description}}</p>
       </div>
-      <div slot="body" class="mini-stats-item__content" :class=item.color>
+      <div slot="body" class="mini-stats-item__content" :class="item.color">
         <div class="item__badge">
           <BaseIcon
             width=80
@@ -33,15 +33,15 @@
       </div>
       <div slot="footer" class="mini-stats-item__change">
         <v-mini-stats-change
-          :change=item.change
-          :unit=item.unit></v-mini-stats-change>
+          :change="item.change"
+          :unit="item.unit"></v-mini-stats-change>
       </div>
-    </v-accordion>
+    </AccordionWrapper>
   </div>
 </template>
 
 <script>
-  import VAccordion from '../../components/molecules/accordion.vue'
+  import AccordionWrapper from '../AccordionWrapper.vue'
   import VMiniStatsChange from '../../components/molecules/mini-stats-change.vue'
   import BaseIcon from '../BaseIcon.vue'
   import IconFuel from '../../components/icons/icon-fuel.vue'
@@ -60,7 +60,7 @@
     },
 
     components: {
-      VAccordion,
+      AccordionWrapper,
       VMiniStatsChange,
       BaseIcon,
       IconFuel,

@@ -3,7 +3,7 @@
     <content-placeholders v-if="fetchingReports">
       <content-placeholders-img class="navigation-data__placeholder"></content-placeholders-img>
     </content-placeholders>
-    <v-accordion :showOnInit=true color="blue" v-else>
+    <AccordionWrapper :showOnInit=true color="blue" v-else>
       <div slot="header" class="header-badge__slot">
         <BaseIcon
           width=30
@@ -24,12 +24,12 @@
           </li>
         </ul>
       </div>
-    </v-accordion>
+    </AccordionWrapper>
   </div>
 </template>
 
 <script>
-  import VAccordion from './molecules/accordion.vue'
+  import AccordionWrapper from './AccordionWrapper.vue'
   import IconNavigation from './icons/icon-navigation.vue'
   import BaseIcon from './BaseIcon.vue'
 
@@ -97,7 +97,7 @@
     components: {
       IconNavigation,
       BaseIcon,
-      VAccordion
+      AccordionWrapper
     }
   }
 </script>

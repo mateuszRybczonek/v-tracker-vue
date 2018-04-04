@@ -3,7 +3,7 @@
     <content-placeholders v-if="fetchingReports">
       <content-placeholders-img class="position-data__placeholder"></content-placeholders-img>
     </content-placeholders>
-    <v-accordion :showOnInit=true color="red" v-else>
+    <AccordionWrapper :showOnInit=true color="red" v-else>
       <div slot="header" class="header-badge__slot">
         <BaseIcon
           width=30
@@ -24,7 +24,7 @@
           </li>
         </ul>
       </div>
-    </v-accordion>
+    </AccordionWrapper>
   </div>
 </template>
 
@@ -32,7 +32,7 @@
   import { decimalToDMS } from '../utils/coordinates-utils'
   import BaseIcon from './BaseIcon.vue'
   import IconPosition from './icons/icon-position.vue'
-  import VAccordion from './molecules/accordion.vue'
+  import AccordionWrapper from './AccordionWrapper.vue'
 
   const NOT_PROVIDED = 'not provided'
 
@@ -65,7 +65,7 @@
     components: {
       BaseIcon,
       IconPosition,
-      VAccordion
+      AccordionWrapper
     }
   }
 </script>

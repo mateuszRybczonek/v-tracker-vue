@@ -3,7 +3,7 @@
     <content-placeholders v-if="fetchingReports">
       <content-placeholders-img class="weather-data__placeholder"></content-placeholders-img>
     </content-placeholders>
-    <v-accordion :showOnInit=true color="blue" else>
+    <AccordionWrapper :showOnInit=true color="blue" else>
       <div slot="header" class="header-badge__slot">
         <BaseIcon
           width=30
@@ -56,7 +56,7 @@
           :report="report">
         </WeatherSituation>
       </div>
-    </v-accordion>
+    </AccordionWrapper>
   </div>
 </template>
 
@@ -66,7 +66,7 @@
   import WindFlag from './WindFlag.vue'
   import SeaFlag from './SeaFlag.vue'
   import WeatherSituation from './WeatherSituation.vue'
-  import VAccordion from './molecules/accordion.vue'
+  import AccordionWrapper from './AccordionWrapper.vue'
   import { TweenMax } from 'gsap'
 
   const NOT_PROVIDED = 'not provided'
@@ -189,7 +189,7 @@
     components: {
       IconWeather,
       BaseIcon,
-      VAccordion,
+      AccordionWrapper,
       WindFlag,
       SeaFlag,
       WeatherSituation

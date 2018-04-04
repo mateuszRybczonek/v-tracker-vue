@@ -1,6 +1,6 @@
 <template>
   <li>
-    <v-accordion :showOnInit=false :collapsedContent=true color="blue" class="report-item">
+    <AccordionWrapper :showOnInit=false :collapsedContent=true color="blue" class="report-item">
       <div slot="header" class="header-badge__slot">
         <p>{{report.reportTime}}</p>
       </div>
@@ -27,12 +27,12 @@
           </span>
         </div>
       </div>
-    </v-accordion>
+    </AccordionWrapper>
   </li>
 </template>
 
 <script>
-  import VAccordion from './molecules/accordion.vue'
+  import AccordionWrapper from './AccordionWrapper.vue'
   import ReportItemDetailsSection from './VesselReportsListItemDetails.vue'
   import BaseIcon from './BaseIcon.vue'
   import IconTrash from './icons/icon-trash.vue'
@@ -180,7 +180,7 @@
     },
 
     components: {
-      VAccordion,
+      AccordionWrapper,
       BaseIcon,
       IconTrash,
       ReportItemDetailsSection

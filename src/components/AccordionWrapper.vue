@@ -30,9 +30,9 @@
 </template>
 
 <script>
-  import VAccordionHeader from './header-badge.vue'
-  import BaseIcon from '../BaseIcon.vue'
-  import IconArrowDown from '../icons/icon-arrow-down.vue'
+  import VAccordionHeader from './molecules/header-badge.vue'
+  import BaseIcon from './BaseIcon.vue'
+  import IconArrowDown from './icons/icon-arrow-down.vue'
 
   export default {
     props: {
