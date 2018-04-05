@@ -12,10 +12,6 @@
 </template>
 
 <script>
-  import { TweenMax } from 'gsap'
-
-  const NOT_PROVIDED = 'not provided'
-
   export default {
     props: {
       items: {

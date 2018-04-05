@@ -1,18 +1,18 @@
 <template>
   <div class="report-item-details-section">
-    <ColorBadge
-      :color="color"
-      class="report-item-details-section__badge"
+    <div
+      class="report-item-details-section__header"
+      :class="color"
     >
-      <p class="badge__slot">{{sectionData.sectionTitle}}</p>
+      <span class="report-item-details-section__title">{{sectionData.sectionTitle}}</span>
       <span
         v-if="isEditing"
         @click.prevent.stop="updateReport(reportChangeset)"
       >
         <BaseIcon
-          width=30
-          height=30
-          color='#FFF'
+          width="30"
+          height="30"
+          color="#FFF"
           viewBox='-10 -10 50 50'
         >
           <IconSave></IconSave>
@@ -23,14 +23,14 @@
         @click.prevent.stop="editReportSection"
       >
         <BaseIcon
-          width=30
-          height=30
+          width="30"
+          height="30"
           color='#FFF'
         >
           <IconPencil></IconPencil>
         </BaseIcon>
       </span>
-    </ColorBadge>
+    </div>
     <ul class="report-item-details-section__list">
       <li
         class="report-item-details-section__list__item"
@@ -57,7 +57,6 @@
 </template>
 
 <script>
-  import ColorBadge from './ColorBadge.vue'
   import BaseIcon from './BaseIcon.vue'
   import IconSave from './Icons/IconSave.vue'
   import IconPencil from './Icons/IconPencil.vue'
@@ -70,7 +69,6 @@
 
   export default {
     components: {
-      ColorBadge,
       BaseIcon,
       IconSave,
       IconPencil
@@ -81,9 +79,11 @@
         type: Object,
         required: true
       },
+
       color: {
         type: String
       },
+
       report: {
         type: Object,
         required: true
@@ -133,11 +133,34 @@
     width: 45%;
     margin: 10px;
 
-    &__badge {
+    &__header {
       display: flex;
       justify-content: space-between;
       padding-right: 0;
       border-radius: 0;
+
+      &.black {
+        background-color: $color-black;
+      }
+
+      &.red {
+        background-color: $color-tomato;
+      }
+
+      &.blue {
+        background-color: $color-blue;
+      }
+
+      &.green {
+        background-color: $color-green
+      }
+    }
+
+    &__title {
+      color: $color-white;
+      font-weight: 700;
+      align-self: center;
+      margin-left: 20px;
     }
 
     &__list {

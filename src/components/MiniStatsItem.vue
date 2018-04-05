@@ -37,10 +37,6 @@
   import BaseBadge from './BaseBadge.vue'
   import MiniStatsItemBody from './MiniStatsItemBody.vue'
   import MiniStatsItemFooter from './MiniStatsItemFooter.vue'
-  import BaseIcon from './BaseIcon.vue'
-  import IconFuel from './Icons/IconFuel.vue'
-  import IconWater from './Icons/IconWater.vue'
-  import IconPeople from './Icons/IconPeople.vue'
 
   export default {
     components: {

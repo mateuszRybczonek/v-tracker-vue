@@ -1,8 +1,8 @@
 <template>
   <div class="mini-stats-item-header">
     <BaseIcon
-      width=30
-      height=30
+      width="30"
+      height="30"
       color="#FFF"
       viewBox="10 0 76 76"
     >

@@ -37,12 +37,12 @@ export default {
 
   computed: {
     windDir () {
-      return this.windDirProp || windData.windDir
+      return this.windDirProp || this.windData.windDir
     },
 
     windSpd () {
-      return this.windSpdProp || windData.windSpd
-    },
+      return this.windSpdProp || this.windData.windSpd
+    }
   }
 }
 </script>

@@ -238,6 +238,7 @@
 
       &__basic-data {
         display: flex;
+        align-self: center;
       }
 
       p {

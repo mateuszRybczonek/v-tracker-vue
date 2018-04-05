@@ -37,12 +37,12 @@ export default {
 
   computed: {
     swellHeight () {
-      return this.swellHeightProp || seaData.swellHeight
+      return this.swellHeightProp || this.seaData.swellHeight
     },
 
     swellDir () {
-      return this.swellDirProp || seaData.swellDir
-    },
+      return this.swellDirProp || this.seaData.swellDir
+    }
   }
 }
 </script>
