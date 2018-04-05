@@ -5,14 +5,16 @@
     </content-placeholders>
     <AccordionWrapper
       v-else
-      :showOnInit=true
-      :color="item.color"
+      :showOnInit="true"
     >
-      <MiniStatsItemHeader
+
+      <BaseBadge
         slot="header"
         :icon="item.icon"
-        :description="item.description"
-      ></MiniStatsItemHeader>
+        :title="item.description"
+        :color="item.color"
+        viewBox="10 0 76 76"
+      ></BaseBadge>
 
       <MiniStatsItemBody
         slot="body"
@@ -32,7 +34,7 @@
 
 <script>
   import AccordionWrapper from './AccordionWrapper.vue'
-  import MiniStatsItemHeader from './MiniStatsItemHeader.vue'
+  import BaseBadge from './BaseBadge.vue'
   import MiniStatsItemBody from './MiniStatsItemBody.vue'
   import MiniStatsItemFooter from './MiniStatsItemFooter.vue'
   import BaseIcon from './BaseIcon.vue'
@@ -43,7 +45,7 @@
   export default {
     components: {
       AccordionWrapper,
-      MiniStatsItemHeader,
+      BaseBadge,
       MiniStatsItemBody,
       MiniStatsItemFooter
     },
@@ -64,7 +66,7 @@
   .mini-stats-item {
     min-width: 320px;
     margin-top: 20px;
-    
+
     &__body {
       display: flex;
       justify-content: space-evenly;

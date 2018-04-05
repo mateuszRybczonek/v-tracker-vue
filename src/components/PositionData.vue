@@ -5,22 +5,15 @@
     </content-placeholders>
     <AccordionWrapper
       v-else
-      :showOnInit=true color="red"
+      :showOnInit="true"
     >
-      <div
+      <BaseBadge
         slot="header"
-        class="badge__slot"
-      >
-        <BaseIcon
-          width=30
-          height=30
-          color="#FFF"
-          viewBox="-5 -7 40 40"
-        >
-          <IconPosition></IconPosition>
-        </BaseIcon>
-        <p>Position</p>
-      </div>
+        title="Position"
+        icon="IconPosition"
+        color="red"
+      ></BaseBadge>
+
       <div
         slot="body"
         class="position-info__body"
@@ -28,7 +21,7 @@
         <BaseList
           class="position-info__list"
           :items="positionData"
-          :size="big"
+          size="big"
         ></BaseList>
       </div>
     </AccordionWrapper>
@@ -37,18 +30,16 @@
 
 <script>
   import { decimalToDMS } from '../utils/coordinates-utils'
-  import BaseIcon from './BaseIcon.vue'
-  import IconPosition from './Icons/IconPosition.vue'
   import AccordionWrapper from './AccordionWrapper.vue'
+  import BaseBadge from './BaseBadge.vue'
   import BaseList from './BaseList.vue'
 
   const NOT_PROVIDED = 'not provided'
 
   export default {
     components: {
-      BaseIcon,
-      IconPosition,
       AccordionWrapper,
+      BaseBadge,
       BaseList
     },
 

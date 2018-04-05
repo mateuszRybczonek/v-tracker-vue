@@ -5,22 +5,15 @@
     </content-placeholders>
     <AccordionWrapper
       v-else
-      :showOnInit=true color="blue"
+      :showOnInit="true"
     >
-      <div
+      <BaseBadge
         slot="header"
-        class="badge__slot"
-      >
-        <BaseIcon
-          width=30
-          height=30
-          color="#FFF"
-          viewBox="-5 -7 40 40"
-        >
-          <IconNavigation></IconNavigation>
-        </BaseIcon>
-        <p>Navigation</p>
-      </div>
+        title="Navigation"
+        icon="IconNavigation"
+        color="blue"
+      ></BaseBadge>
+
       <div
         slot="body"
         class="navigation-info__body"
@@ -28,7 +21,7 @@
         <BaseList
           class="navigation-info__list"
           :items="navigationData"
-          :size="big"
+          size="big"
         ></BaseList>
       </div>
     </AccordionWrapper>
@@ -37,8 +30,7 @@
 
 <script>
   import AccordionWrapper from './AccordionWrapper.vue'
-  import IconNavigation from './Icons/IconNavigation.vue'
-  import BaseIcon from './BaseIcon.vue'
+  import BaseBadge from './BaseBadge.vue'
   import BaseList from './BaseList.vue'
   import { TweenMax } from 'gsap'
 
@@ -46,9 +38,8 @@
 
   export default {
     components: {
-      IconNavigation,
-      BaseIcon,
       AccordionWrapper,
+      BaseBadge,
       BaseList
     },
 
@@ -123,7 +114,7 @@
       text-align: left;
       min-height: 150px;
     }
-    
+
     &__list {
       padding: 0 20px;
     }

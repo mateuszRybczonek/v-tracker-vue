@@ -4,15 +4,13 @@
       class="accordion__header"
       @click="toggle"
     >
-      <ColorBadge :color="color">
-        <slot name="header"></slot>
-      </ColorBadge>
+      <slot name="header"></slot>
 
       <BaseIcon
         class="accordion__arrow"
         :class="{ rotate: show }"
-        width=30
-        height=30
+        width="30"
+        height="30"
         viewBox="-5 -7 40 40"
       >
         <IconArrowDown></IconArrowDown>
@@ -50,13 +48,11 @@
 </template>
 
 <script>
-  import ColorBadge from './ColorBadge.vue'
   import BaseIcon from './BaseIcon.vue'
   import IconArrowDown from './Icons/IconArrowDown.vue'
 
   export default {
     components: {
-      ColorBadge,
       BaseIcon,
       IconArrowDown
     },
@@ -66,10 +62,7 @@
         type: Boolean,
         default: true
       },
-      color: {
-        type: String,
-        default: 'black'
-      },
+
       collapsedContent: {
         type: Boolean,
         default: false

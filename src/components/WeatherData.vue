@@ -6,59 +6,35 @@
     <AccordionWrapper
       v-else
       :showOnInit="true"
-      color="blue"
     >
-      <div
+      <BaseBadge
         slot="header"
-        class="badge__slot"
-      >
-        <BaseIcon
-          width=30
-          height=30
-          color="#FFF"
-          viewBox="-5 -7 40 40"
-        >
-          <IconWeather></IconWeather>
-        </BaseIcon>
-        <p>Weather info</p>
-      </div>
+        title="Weather info"
+        icon="IconWeather"
+        color="blue"
+      ></BaseBadge>
+
       <div
         slot="body"
-        class="weather-info__content"
+        class="weather-data__body"
       >
-        <div class="weather-info__content__data">
-          <div class="weather-info__content__wind">
-            <WindFlag
-              class="weather-info__content__wind__flag"
-              :speed="windSpd"
-              :direction="windDir"
-              :withBorder="true"
-            >
-            </WindFlag>
-            <BaseList
-              class="weather-info__content__list"
-              :items="windData"
-              :size="big"
-            ></BaseList>
-          </div>
-          <div class="weather-info__content__sea">
-            <SeaFlag
-              class="weather-info__content__sea__flag"
-              :height="swellHeight"
-              :direction="swellDir"
-              :withBorder="true"
-            >
-            </SeaFlag>
-            <BaseList
-              class="weather-info__content__list"
-              :items="seaData"
-              :size="big"
-            ></BaseList>
-          </div>
+        <div class="weather-data__body-left">
+          <WindData
+            :windData="windData"
+            :windDirProp="windDir"
+            :windSpdProp="windSpd"
+          ></WindData>
+
+          <SeaData
+            :seaData="seaData"
+            :swellHeightProp="swellHeight"
+            :swellDirProp="swellDir"
+          ></SeaData>
         </div>
+
         <WeatherSituation
           v-if="!fetchingReports"
-          class="weather-info__content__situation"
+          class="weather-data__body-right"
           :report="report"
         ></WeatherSituation>
       </div>
@@ -67,26 +43,22 @@
 </template>
 
 <script>
-  import IconWeather from './Icons/IconWeather.vue'
-  import BaseIcon from './BaseIcon.vue'
-  import BaseList from './BaseList.vue'
-  import WindFlag from './WindFlag.vue'
-  import SeaFlag from './SeaFlag.vue'
-  import WeatherSituation from './WeatherSituation.vue'
   import AccordionWrapper from './AccordionWrapper.vue'
+  import BaseBadge from './BaseBadge.vue'
+  import SeaData from './SeaData.vue'
+  import WeatherSituation from './WeatherSituation.vue'
+  import WindData from './WindData.vue'
   import { TweenMax } from 'gsap'
 
   const NOT_PROVIDED = 'not provided'
 
   export default {
     components: {
-      IconWeather,
-      BaseIcon,
-      BaseList,
       AccordionWrapper,
-      WindFlag,
-      SeaFlag,
-      WeatherSituation
+      BaseBadge,
+      SeaData,
+      WeatherSituation,
+      WindData
     },
 
     props: {
@@ -211,25 +183,16 @@
       margin-top: 35px;
       height: 460px;
     }
-  }
-  .weather-info__content {
-    display: flex;
-    justify-content: space-between;
-    text-align: left;
-    min-height: 200px;
-    padding: 30px;
 
-    &__wind, &__sea {
+    &__body {
       display: flex;
-      justify-content: baseline;
-      margin-left: 15px;
+      justify-content: space-between;
+      text-align: left;
+      min-height: 200px;
+      padding: 30px;
     }
 
-    &__sea {
-      margin-top: 100px;
-    }
-
-    &__data {
+    &__body-left {
       width: 50%;
       display: flex;
       flex-direction: column;
@@ -238,13 +201,8 @@
       align-self: center;
     }
 
-    &__situation {
+    &__body-right {
       width: 50%;
-    }
-
-    &__list {
-      padding: 0 0 0 40px;
-      min-width: 250px;
     }
   }
 </style>
