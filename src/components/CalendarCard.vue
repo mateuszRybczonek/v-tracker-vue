@@ -1,5 +1,8 @@
 <template>
-  <div class="calendar-card" :class="{'calendar-card--selected': presentReportSelected}">
+  <div
+    class="calendar-card"
+    :class="{'calendar-card--selected': presentReportSelected}"
+  >
     <div class="calendar-card__month">{{reportMonth}}</div>
     <span class="calendar-card__day">{{reportDay}}</span>
     <span class="calendar-card__day-of-week">{{reportDayOfWeek}}</span>

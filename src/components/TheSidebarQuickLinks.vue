@@ -1,5 +1,8 @@
 <template>
-  <div class="quick-links" :class="{ 'quick-links--vertical': vertical }">
+  <div
+    class="quick-links"
+    :class="{ 'quick-links--vertical': vertical }"
+  >
     <button
       v-for="button in buttons"
       :key="button.component"
@@ -10,7 +13,7 @@
         width="32"
         height="32"
         :viewBox="button.viewBox"
-        >
+      >
         <component :is="button.icon"></component>
       </BaseIcon>
     </button>
@@ -29,6 +32,14 @@
   const { VESSEL_DASHBOARD, REPORTS, WEATHER, STATISTICS } = COMPONENT_NAMES
 
   export default {
+    components: {
+      IconFiles,
+      BaseIcon,
+      IconOverview,
+      IconWeather,
+      IconStatistics
+    },
+
     props: {
       vertical: {
         type: Boolean,
@@ -65,14 +76,6 @@
       selectVesselDetailsComponent (componentName) {
         this.$store.dispatch('selectedVesselDetailsComponent', componentName)
       }
-    },
-
-    components: {
-      IconFiles,
-      BaseIcon,
-      IconOverview,
-      IconWeather,
-      IconStatistics
     }
   }
 </script>

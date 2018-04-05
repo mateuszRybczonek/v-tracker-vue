@@ -1,19 +1,19 @@
 <template>
-  <div class="wrapper">
-    <div class="sidebar" :class="{ 'sidebar--collapsed': !sidebarVisible }">
-      <TheSidebarHeader
-        :vessel="vessel">
-      </TheSidebarHeader>
+  <div
+    class="sidebar"
+    :class="{ 'sidebar--collapsed': !sidebarVisible }"
+  >
+    <TheSidebarHeader :vessel="vessel"></TheSidebarHeader>
 
-      <TheSidebarQuickLinks class="sidebar__quick-links"
-        :vertical="!sidebarVisible">
-      </TheSidebarQuickLinks>
+    <TheSidebarQuickLinks
+      class="sidebar__quick-links"
+      :vertical="!sidebarVisible"
+    ></TheSidebarQuickLinks>
 
-      <TheSidebarContent
-        :vessel="vessel"
-        :lastReport="lastReport">
-      </TheSidebarContent>
-    </div>
+    <TheSidebarContent
+      :vessel="vessel"
+      :lastReport="lastReport"
+    ></TheSidebarContent>
   </div>
 </template>
 
@@ -24,6 +24,12 @@
   import TheSidebarContent from './TheSidebarContent.vue'
 
   export default {
+    components: {
+      TheSidebarHeader,
+      TheSidebarQuickLinks,
+      TheSidebarContent
+    },
+
     props: {
       lastReport: {
         type: Object
@@ -39,12 +45,6 @@
       vessel () {
         return this.vessels.find(vessel => vessel.id === this.$route.params.id)
       }
-    },
-
-    components: {
-      TheSidebarHeader,
-      TheSidebarQuickLinks,
-      TheSidebarContent
     }
   }
 </script>

@@ -1,5 +1,8 @@
 <template>
-  <BaseCard class="dashboard-card" :to="destination">
+  <BaseCard
+    class="dashboard-card"
+    :to="destination"
+  >
     <component :is="icon"></component>
     <p class="dashboard-card__label">{{label}}</p>
   </BaseCard>
@@ -11,6 +14,12 @@
   import IconShip from './Icons/Animated/IconAnimatedShip.vue'
 
   export default {
+    components: {
+      BaseCard,
+      IconFiles,
+      IconShip
+    },
+
     props: {
       destination: {
         type: String,
@@ -24,12 +33,6 @@
         type: String,
         required: true
       }
-    },
-
-    components: {
-      BaseCard,
-      IconFiles,
-      IconShip
     }
   }
 </script>

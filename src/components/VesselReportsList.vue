@@ -1,15 +1,7 @@
 <template>
   <div class="reports-list">
-    <h1
-      v-if="!showNewReportForm"
-      class="reports-list__header">
-      Reports
-    </h1>
-
-    <h1
-      v-if="showNewReportForm"
-      class="reports-list__header">
-      New report
+    <h1 class="reports-list__header">
+      {{title}}
     </h1>
 
     <transition name="slide">
@@ -24,7 +16,10 @@
       class="reports-list__item">
     </VesselReportsListItemNew>
 
-    <transition-group name="slide" class="reports-list__transition-group">
+    <transition-group
+      name="slide"
+      class="reports-list__transition-group"
+    >
       <VesselReportsListItem
         v-for="report in reports"
         :key="report.id"
@@ -40,6 +35,12 @@
   import VesselReportsListItem from './VesselReportsListItem.vue'
 
   export default {
+    components: {
+      VesselReportsListItemNew,
+      VesselReportsListForm,
+      VesselReportsListItem
+    },
+
     props: {
       reports: {
         type: Array,
@@ -53,10 +54,10 @@
       }
     },
 
-    components: {
-      VesselReportsListItemNew,
-      VesselReportsListForm,
-      VesselReportsListItem
+    computed: {
+      title () {
+        return this.showNewReportForm ? 'New Report' : 'Reports'
+      }
     },
 
     methods: {

@@ -1,17 +1,17 @@
 <template>
-  <div class="list-item">
+  <div class="base-list-item">
     <slot></slot>
   </div>
 </template>
 
 <style scoped lang="scss">
-  .list-item {
+  .base-list-item {
     min-height: 60px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    background-color: #FFF;
+    background-color: $color-white;
     width: 100%;
     padding: 20px;
     text-align: center;
@@ -28,11 +28,11 @@
       width: 100%;
       padding: 0;
       @include border-radius(0);
-      @include box-shadow(0 0 0 0 #fff);
+      @include box-shadow(0 0 0 0 $color-white);
       border: solid 1px $color-whitey;
 
       &:hover {
-        @include box-shadow(0 0 0 0 #FFF);
+        @include box-shadow(0 0 0 0 $color-white);
         transform: scale(1);
       }
     }

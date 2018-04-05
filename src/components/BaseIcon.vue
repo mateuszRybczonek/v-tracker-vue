@@ -5,7 +5,10 @@
     :viewBox="viewBox"
     role="presentation"
   >
-    <g :fill="iconColor" :stroke="strokeColor">
+    <g
+      :fill="iconColor"
+      :stroke="strokeColor"
+    >
       <slot/>
     </g>
   </svg>

@@ -1,5 +1,8 @@
 <template>
-  <BaseCard to='/dashboard/vessels/new' class="vessels-list-new">
+  <BaseCard
+    to='/dashboard/vessels/new'
+    class="vessels-list-new"
+  >
     <BaseIcon
       class="vessels-list-new__icon"
       iconColor='#999'

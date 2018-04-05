@@ -1,6 +1,11 @@
 <template>
-  <BaseListItem @click.native="showNewReportFormAction()" class="reports-list-new">
-    <BaseIcon class="vessels-list-new__icon" iconColor="#999">
+  <BaseListItem
+    @click.native="showNewReportFormAction()"
+    class="reports-list-new"
+  >
+    <BaseIcon
+      iconColor="#999"
+    >
       <IconTilesPlus></IconTilesPlus>
     </BaseIcon>
     <p>Add new report</p>
@@ -13,17 +18,17 @@
   import IconTilesPlus from './Icons/IconTilesPlus.vue'
 
   export default {
+    components: {
+      BaseListItem,
+      BaseIcon,
+      IconTilesPlus
+    },
+
     props: {
       showNewReportFormAction: {
         type: Function,
         required: true
       }
-    },
-
-    components: {
-      BaseListItem,
-      BaseIcon,
-      IconTilesPlus
     }
   }
 </script>

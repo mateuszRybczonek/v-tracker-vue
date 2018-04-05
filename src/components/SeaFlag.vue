@@ -1,19 +1,28 @@
 <template>
-  <div id="sea-flag" class="sea-flag" :class="classes">
+  <div
+    id="sea-flag"
+    class="sea-flag"
+    :class="classes"
+  >
     <div class="sea-flag__icons-wrapper">
-      <BaseIcon id="arrow"
-        width=100
-        height=100
+      <BaseIcon
+        id="arrow"
+        class="sea-flag__icon-arrow"
+        width="100"
+        height="100"
         :color='strokeColor'
         :strokeColor='strokeColor'
-        viewBox="-6 22 60 60">
+        viewBox="-6 22 60 60"
+      >
         <IconArrow></IconArrow>
       </BaseIcon>
-      <BaseIcon class="sea-flag__icon-wave"
-        width=30
-        height=30
+      <BaseIcon
+        class="sea-flag__icon-wave"
+        width="30"
+        height="30"
         :strokeColor='strokeColor'
-        viewBox="0 35 40 40">
+        viewBox="0 35 40 40"
+      >
         <IconWave></IconWave>
       </BaseIcon>
     </div>
@@ -26,6 +35,12 @@
   import BaseIcon from './BaseIcon.vue'
 
   export default {
+    components: {
+      IconWave,
+      BaseIcon,
+      IconArrow
+    },
+
     props: {
       height: {
         type: Number,
@@ -77,12 +92,6 @@
       }
     },
 
-    components: {
-      IconWave,
-      BaseIcon,
-      IconArrow
-    },
-
     methods: {
       setFlag () {
         const arrow = document.getElementById('arrow')
@@ -119,10 +128,6 @@
       height: $wrapper-size;
       width: $wrapper-size;
 
-      #arrow {
-        transition: all 2s ease-in-out;
-      }
-
       > i {
         display: block;
         width: $icon-size;
@@ -138,6 +143,10 @@
       position: relative;
       top: -70px;
       left: 33px;
+    }
+
+    &__icon-arrow {
+      transition: all 2s ease-in-out;
     }
 
     .amber {

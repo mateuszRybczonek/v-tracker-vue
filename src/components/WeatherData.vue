@@ -3,83 +3,62 @@
     <content-placeholders v-if="fetchingReports">
       <content-placeholders-img class="weather-data__placeholder"></content-placeholders-img>
     </content-placeholders>
-    <AccordionWrapper :showOnInit=true color="blue" else>
-      <div slot="header" class="badge__slot">
-        <BaseIcon
-          width=30
-          height=30
-          color="#FFF"
-          viewBox="-5 -7 40 40">
-          <IconWeather></IconWeather>
-        </BaseIcon>
-        <p>Weather info</p>
-      </div>
-      <div slot="body" class="weather-info__content">
-        <div class="weather-info__content__data">
-          <div class="weather-info__content__wind">
-            <WindFlag
-              class="weather-info__content__wind__flag"
-              :speed="windSpd"
-              :direction="windDir"
-              :withBorder=true>
-            </WindFlag>
-            <ul class="weather-info__content__list">
-              <li class="weather-info__content__list__item"
-                v-for="windElement in windData"
-                :key="windElement.title"
-                >
-                <span class="weather-info__content__list__item__title">{{windElement.title}}</span>
-                <span class="weather-info__content__list__item__value">{{windElement.value}}</span>
-              </li>
-            </ul>
-          </div>
-          <div class="weather-info__content__sea">
-            <SeaFlag
-              class="weather-info__content__sea__flag"
-              :height="swellHeight"
-              :direction="swellDir"
-              :withBorder=true>
-            </SeaFlag>
-            <ul class="weather-info__content__list">
-              <li class="weather-info__content__list__item"
-                v-for="seaElement in seaData"
-                :key="seaElement.title"
-              >
-                <span class="weather-info__content__list__item__title">{{seaElement.title}}</span>
-                <span class="weather-info__content__list__item__value">{{seaElement.value}}</span>
-              </li>
-            </ul>
-          </div>
+    <AccordionWrapper
+      v-else
+      :showOnInit="true"
+    >
+      <BaseBadge
+        slot="header"
+        title="Weather info"
+        icon="IconWeather"
+        color="blue"
+      ></BaseBadge>
+
+      <div
+        slot="body"
+        class="weather-data__body"
+      >
+        <div class="weather-data__body-left">
+          <WindData
+            :windData="windData"
+            :windDirProp="windDir"
+            :windSpdProp="windSpd"
+          ></WindData>
+
+          <SeaData
+            :seaData="seaData"
+            :swellHeightProp="swellHeight"
+            :swellDirProp="swellDir"
+          ></SeaData>
         </div>
-        <WeatherSituation v-if="!fetchingReports"
-          class="weather-info__content__situation"
-          :report="report">
-        </WeatherSituation>
+
+        <WeatherSituation
+          v-if="!fetchingReports"
+          class="weather-data__body-right"
+          :report="report"
+        ></WeatherSituation>
       </div>
     </AccordionWrapper>
   </div>
 </template>
 
 <script>
-  import IconWeather from './Icons/IconWeather.vue'
-  import BaseIcon from './BaseIcon.vue'
-  import WindFlag from './WindFlag.vue'
-  import SeaFlag from './SeaFlag.vue'
-  import WeatherSituation from './WeatherSituation.vue'
   import AccordionWrapper from './AccordionWrapper.vue'
+  import BaseBadge from './BaseBadge.vue'
+  import SeaData from './SeaData.vue'
+  import WeatherSituation from './WeatherSituation.vue'
+  import WindData from './WindData.vue'
   import { TweenMax } from 'gsap'
 
   const NOT_PROVIDED = 'not provided'
 
   export default {
-    data () {
-      return {
-        tweenedWindDir: this.report ? this.report.windDir : 0,
-        tweenedWindSpd: this.report ? this.report.windSpd : 0,
-        tweenedSeaState: this.report ? this.report.seaState : 0,
-        tweenedSwellDir: this.report ? this.report.swellDir : 0,
-        tweenedSwellHeight: this.report ? this.report.swellHeight : 0
-      }
+    components: {
+      AccordionWrapper,
+      BaseBadge,
+      SeaData,
+      WeatherSituation,
+      WindData
     },
 
     props: {
@@ -88,6 +67,16 @@
       },
       fetchingReports: {
         type: Boolean
+      }
+    },
+
+    data () {
+      return {
+        tweenedWindDir: this.report ? this.report.windDir : 0,
+        tweenedWindSpd: this.report ? this.report.windSpd : 0,
+        tweenedSeaState: this.report ? this.report.seaState : 0,
+        tweenedSwellDir: this.report ? this.report.swellDir : 0,
+        tweenedSwellHeight: this.report ? this.report.swellHeight : 0
       }
     },
 
@@ -184,15 +173,6 @@
       swellHeight (newValue) {
         TweenMax.to(this.$data, 2, { tweenedSwellHeight: newValue })
       }
-    },
-
-    components: {
-      IconWeather,
-      BaseIcon,
-      AccordionWrapper,
-      WindFlag,
-      SeaFlag,
-      WeatherSituation
     }
   }
 </script>
@@ -203,25 +183,16 @@
       margin-top: 35px;
       height: 460px;
     }
-  }
-  .weather-info__content {
-    display: flex;
-    justify-content: space-between;
-    text-align: left;
-    min-height: 200px;
-    padding: 30px;
 
-    &__wind, &__sea {
+    &__body {
       display: flex;
-      justify-content: baseline;
-      margin-left: 15px;
+      justify-content: space-between;
+      text-align: left;
+      min-height: 200px;
+      padding: 30px;
     }
 
-    &__sea {
-      margin-top: 100px;
-    }
-
-    &__data {
+    &__body-left {
       width: 50%;
       display: flex;
       flex-direction: column;
@@ -230,29 +201,8 @@
       align-self: center;
     }
 
-    &__situation {
+    &__body-right {
       width: 50%;
-    }
-
-    &__list {
-      padding: 0 0 0 40px;
-      align-self: center;
-      &__item {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        list-style-type: none;
-        font-weight: 300;
-        cursor: default;
-        margin-top: 15px;
-        &__title {
-          @include font(18px, 300);
-          margin-right: 25px;
-        }
-        &__value {
-          @include font(26px, 400);
-        }
-      }
     }
   }
 </style>

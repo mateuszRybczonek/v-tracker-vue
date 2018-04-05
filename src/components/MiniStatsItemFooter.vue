@@ -1,19 +1,21 @@
 <template>
-  <div class="mini-stats-item-change" :class=color>
-    <BaseIcon class="mini-stats-change__arrow"
-      :class=rotationClass
-      width=30
-      height=30
+  <div
+    class="mini-stats-item-footer"
+    :class="color"
+  >
+    <BaseIcon
+      class="mini-stats-item-footer__arrow"
+      :class="rotationClass"
+      width="30"
+      height="30"
       :color="color"
-      viewBox="-15 -15 50 50">
+      viewBox="-15 -15 50 50"
+    >
       <IconChange></IconChange>
     </BaseIcon>
-    <span class="mini-stats-item-change__value">
-      {{change}}
-    </span>
-    <span class="mini-stats-item-change__unit">
-      {{unit}}
-    </span>
+
+    <span class="mini-stats-item-footer__value">{{change}}</span>
+    <span class="mini-stats-item-footer__unit">{{unit}}</span>
   </div>
 </template>
 
@@ -22,6 +24,11 @@
   import IconChange from './Icons/IconChange.vue'
 
   export default {
+    components: {
+      BaseIcon,
+      IconChange
+    },
+
     props: {
       change: {
         type: Number,
@@ -43,17 +50,12 @@
         if (this.change === 0) return ''
         return this.change < 0 ? 'less' : 'more'
       }
-    },
-
-    components: {
-      BaseIcon,
-      IconChange
     }
   }
 </script>
 
 <style scoped lang="scss">
-  .mini-stats-item-change {
+  .mini-stats-item-footer {
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
@@ -74,12 +76,10 @@
 
     .less {
       transform: rotate(90deg);
-      mask-position: 35% -787px;
     }
 
     .more {
       transform: rotate(270deg);
-      mask-position: 35% -787px;
     }
 
     &.red {

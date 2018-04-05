@@ -1,6 +1,6 @@
 <template>
-  <div class="thome-page">
-    <p class="thome-page__sub-text">Free Vessel Tracking App</p>
+  <div class="home-page">
+    <p class="home-page__sub-text">Free Vessel Tracking App</p>
     <h1 class="home-page__main-text">V-tracker</h1>
     <p class="home-page__sub-text">Track you vessels based on reports or AIS</p>
     <ButtonPositive>

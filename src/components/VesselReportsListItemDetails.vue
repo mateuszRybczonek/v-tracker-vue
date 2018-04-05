@@ -1,42 +1,62 @@
 <template>
   <div class="report-item-details-section">
-    <ColorBadge :color="color" class="report-item-details-section__badge">
-      <p class="badge__slot">{{sectionData.sectionTitle}}</p>
-      <span v-if="isEditing" @click.prevent.stop="updateReport(reportChangeset)">
+    <div
+      class="report-item-details-section__header"
+      :class="color"
+    >
+      <span class="report-item-details-section__title">{{sectionData.sectionTitle}}</span>
+      <span
+        v-if="isEditing"
+        @click.prevent.stop="updateReport(reportChangeset)"
+      >
         <BaseIcon
-          width=30
-          height=30
-          color='#FFF'
-          viewBox='-10 -10 50 50'>
+          width="30"
+          height="30"
+          color="#FFF"
+          viewBox='-10 -10 50 50'
+        >
           <IconSave></IconSave>
         </BaseIcon>
       </span>
-      <span v-else @click.prevent.stop="editReportSection">
+      <span
+        v-else
+        @click.prevent.stop="editReportSection"
+      >
         <BaseIcon
-          width=30
-          height=30
-          color='#FFF'>
+          width="30"
+          height="30"
+          color='#FFF'
+        >
           <IconPencil></IconPencil>
         </BaseIcon>
       </span>
-    </ColorBadge>
+    </div>
     <ul class="report-item-details-section__list">
-      <li class="report-item-details-section__list__item"
-          v-for="sectionDataItem in sectionData.items"
-          :key="sectionDataItem.title">
-        <span class="report-item-details-section__list__item__title">{{sectionDataItem.title}}</span>
-        <input v-if="isEditing" class="report-item-details-section__list__item__title__input"
+      <li
+        class="list-item"
+        v-for="sectionDataItem in sectionData.items"
+        :key="sectionDataItem.title"
+      >
+        <span class="list-item__title">{{sectionDataItem.title}}</span>
+        <input
+          v-if="isEditing"
+          class="list-item__title-input"
           type="text"
           placeholder=""
-          v-model="reportChangeset[sectionDataItem.key]">
-        <span v-else class="report-item-details-section__list__item__value">{{sectionDataItem.value}}</span>
+          v-model="reportChangeset[sectionDataItem.key]"
+        >
+        <span
+          v-else
+          class="list-item__value"
+        >
+          {{sectionDataItem.value}}
+        </span>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-  import ColorBadge from './ColorBadge.vue'
   import BaseIcon from './BaseIcon.vue'
   import IconSave from './Icons/IconSave.vue'
   import IconPencil from './Icons/IconPencil.vue'
@@ -48,6 +68,28 @@
   } from '../utils/coordinates-utils'
 
   export default {
+    components: {
+      BaseIcon,
+      IconSave,
+      IconPencil
+    },
+
+    props: {
+      sectionData: {
+        type: Object,
+        required: true
+      },
+
+      color: {
+        type: String
+      },
+
+      report: {
+        type: Object,
+        required: true
+      }
+    },
+
     data () {
       return {
         isEditing: false,
@@ -58,27 +100,6 @@
           lng: stripSymbols(decimalToDMS(this.report.lng, true))
         }
       }
-    },
-
-    props: {
-      sectionData: {
-        type: Object,
-        required: true
-      },
-      color: {
-        type: String
-      },
-      report: {
-        type: Object,
-        required: true
-      }
-    },
-
-    components: {
-      ColorBadge,
-      BaseIcon,
-      IconSave,
-      IconPencil
     },
 
     methods: {
@@ -109,14 +130,38 @@
 
 <style scoped lang="scss">
   .report-item-details-section {
+    min-width: 300px;
     width: 45%;
     margin: 10px;
 
-    &__badge {
+    &__header {
       display: flex;
       justify-content: space-between;
       padding-right: 0;
       border-radius: 0;
+
+      &.black {
+        background-color: $color-black;
+      }
+
+      &.red {
+        background-color: $color-tomato;
+      }
+
+      &.blue {
+        background-color: $color-blue;
+      }
+
+      &.green {
+        background-color: $color-green
+      }
+    }
+
+    &__title {
+      color: $color-white;
+      font-weight: 700;
+      align-self: center;
+      margin-left: 20px;
     }
 
     &__list {
@@ -128,7 +173,7 @@
       justify-content: flex-start;
       border: 1px solid $color-whitey-darker;
 
-      &__item {
+      .list-item {
         display: flex;
         justify-content: space-between;
         list-style-type: none;
@@ -141,12 +186,12 @@
 
         &__title {
           @include font(16px, 300);
+        }
 
-          &__input {
-            text-align: right;
-            @include font(16px, 300);
-            border: none;
-          }
+        &__title-input {
+          text-align: right;
+          @include font(16px, 300);
+          border: none;
         }
 
         &__value {

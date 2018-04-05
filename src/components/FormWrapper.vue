@@ -1,5 +1,8 @@
 <template>
-  <div class="form" :class="classes">
+  <div
+    class="form"
+    :class="classes"
+  >
     <div class="form__header">
       <h4>{{ title }}</h4>
     </div>
@@ -33,7 +36,7 @@
 
 <style scoped lang="scss">
   .form {
-    background-color: #FFF;
+    background-color: $color-white;
     margin: 30px auto;
     border: 1px solid $color-whitey;
     box-shadow: 0 2px 3px $color-whitey;

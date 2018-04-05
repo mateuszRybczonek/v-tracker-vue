@@ -1,12 +1,13 @@
 <template>
-  <div id="dashboard-index">
+  <div class="main-menu">
     <h1>Main menu</h1>
-    <div class="cards">
+    <div class="main-menu__cards">
       <MainMenuCard v-for="card in cards"
         :key="card.label"
         :destination="card.destination"
         :icon="card.icon"
-        :label="card.label">
+        :label="card.label"
+      >
       </MainMenuCard>
     </div>
   </div>
@@ -19,6 +20,7 @@
     components: {
       MainMenuCard
     },
+
     computed: {
       cards () {
         return [
@@ -38,17 +40,19 @@
 </script>
 
 <style scoped lang="scss">
-  h1, p {
-    text-align: center;
-  }
+  .main-menu {
+    h1, p {
+      text-align: center;
+    }
 
-  h1 {
-    padding: 50px 0;
-  }
+    h1 {
+      padding: 50px 0;
+    }
 
-  .cards {
-    display: flex;
-    justify-content: space-around;
-    margin: 0 40px;
+    &__cards {
+      display: flex;
+      justify-content: space-around;
+      margin: 0 40px;
+    }
   }
 </style>

@@ -3,7 +3,11 @@
     <content-placeholders v-if="fetchingReports">
       <content-placeholders-img class="google-map__placeholder"></content-placeholders-img>
     </content-placeholders>
-    <div class="google-map__map" v-else>
+
+    <div
+      v-else
+      class="google-map__map"
+    >
       Mini-Google map will go here
     </div>
   </div>

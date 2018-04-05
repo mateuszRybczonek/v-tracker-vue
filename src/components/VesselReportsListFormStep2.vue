@@ -4,10 +4,13 @@
       <div class="form-section">
         <h4 class="form-section__heading">Wind</h4>
         <InputWithErrors unit="°">
-          <div slot="input" class="input__wrapper">
+          <div
+            slot="input"
+            class="input__wrapper"
+          >
             <BaseIcon
-							width=30
-							height=30
+							width="30"
+							height="30"
 							color="#999"
 							viewBox="2 -5 40 40">
 							<IconNavigation></IconNavigation>
@@ -18,20 +21,39 @@
               type="number"
               placeholder="Direction"
               v-model="reportData.windDir"
-              @input="$v.reportData.windDir.$touch()">
+              @input="$v.reportData.windDir.$touch()"
+            >
           </div>
           <div slot="errors">
-            <span class="validation-error" v-if="showErrors && !$v.reportData.windDir.required">This field must not be empty.</span>
-            <span class="validation-error" v-if="showErrors && !$v.reportData.windDir.format">Wind direction direction must be in 'xxx' format.</span>
-            <span class="validation-error" v-if="showErrors && !$v.reportData.windDir.range">Wind direction must be between 000 - 360.</span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.windDir.required"
+            >
+              This field must not be empty.
+            </span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.windDir.format"
+            >
+              Wind direction direction must be in 'xxx' format.
+            </span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.windDir.range"
+            >
+              Wind direction must be between 000 - 360.
+            </span>
           </div>
         </InputWithErrors>
 
         <InputWithErrors unit="kn">
-          <div slot="input" class="input__wrapper">
+          <div
+            slot="input"
+            class="input__wrapper"
+          >
             <BaseIcon
-              width=30
-              height=30
+              width="30"
+              height="30"
               color="#999"
               viewBox="2 -5 40 40">
               <IconSpeed></IconSpeed>
@@ -42,10 +64,16 @@
               type="number"
               placeholder="Speed"
               v-model="reportData.windSpd"
-              @input="$v.reportData.windSpd.$touch()">
-            </div>
+              @input="$v.reportData.windSpd.$touch()"
+            >
+          </div>
           <div slot="errors">
-            <span class="validation-error" v-if="showErrors && !$v.reportData.windSpd.required">This field must not be empty.</span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.windSpd.required"
+            >
+              This field must not be empty.
+            </span>
           </div>
         </InputWithErrors>
       </div>
@@ -53,12 +81,16 @@
       <div class="form-section">
         <h4 class="form-section__heading">Sea</h4>
         <InputWithErrors unit="°">
-          <div slot="input" class="input__wrapper">
+          <div
+            slot="input"
+            class="input__wrapper"
+          >
             <BaseIcon class="sea-flag__icon-wave"
-              width=30
-              height=30
+              width="30"
+              height="30"
               strokeColor='#999'
-              viewBox="2 25 60 60">
+              viewBox="2 25 60 60"
+            >
               <IconWave></IconWave>
             </BaseIcon>
             <input
@@ -67,21 +99,36 @@
               type="number"
               placeholder="State"
               v-model="reportData.seaState"
-              @input="$v.reportData.seaState.$touch()">
-            </div>
+              @input="$v.reportData.seaState.$touch()"
+            >
+          </div>
           <div slot="errors">
-            <span class="validation-error" v-if="showErrors && !$v.reportData.seaState.required">This field must not be empty.</span>
-            <span class="validation-error" v-if="showErrors && !$v.reportData.seaState.range">Sea state must be between 0 - 9.</span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.seaState.required"
+            >
+              This field must not be empty.
+            </span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.seaState.range"
+            >
+              Sea state must be between 0 - 9.
+            </span>
           </div>
         </InputWithErrors>
 
         <InputWithErrors unit="°">
-          <div slot="input" class="input__wrapper">
+          <div
+            slot="input"
+            class="input__wrapper"
+          >
             <BaseIcon
-              width=30
-              height=30
+              width="30"
+              height="30"
               color="#999"
-              viewBox="2 -5 40 40">
+              viewBox="2 -5 40 40"
+            >
               <IconNavigation></IconNavigation>
             </BaseIcon>
             <input
@@ -90,22 +137,42 @@
               type="number"
               placeholder="Swell direction"
               v-model="reportData.swellDir"
-              @input="$v.reportData.swellDir.$touch()">
-            </div>
+              @input="$v.reportData.swellDir.$touch()"
+            >
+          </div>
           <div slot="errors">
-            <span class="validation-error" v-if="showErrors && !$v.reportData.swellDir.required">This field must not be empty.</span>
-            <span class="validation-error" v-if="showErrors && !$v.reportData.swellDir.format">Swell direction must be in 'xxx' format.</span>
-            <span class="validation-error" v-if="showErrors && !$v.reportData.swellDir.range">Swell direction must be between 000 - 360.</span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.swellDir.required"
+            >
+              This field must not be empty.
+            </span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.swellDir.format"
+            >
+              Swell direction must be in 'xxx' format.
+            </span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.swellDir.range"
+            >
+              Swell direction must be between 000 - 360.
+            </span>
           </div>
         </InputWithErrors>
 
         <InputWithErrors unit="m">
-          <div slot="input" class="input__wrapper">
+          <div
+            slot="input"
+            class="input__wrapper"
+          >
             <BaseIcon class="sea-flag__icon-wave"
-              width=30
-              height=30
+              width="30"
+              height="30"
               strokeColor='#999'
-              viewBox="2 25 60 60">
+              viewBox="2 25 60 60"
+            >
               <IconWave></IconWave>
             </BaseIcon>
             <input
@@ -114,20 +181,33 @@
               type="number"
               placeholder="Swell height"
               v-model="reportData.swellHeight"
-              @input="$v.reportData.swellHeight.$touch()">
-            </div>
+              @input="$v.reportData.swellHeight.$touch()"
+            >
+          </div>
           <div slot="errors">
-            <span class="validation-error" v-if="showErrors && !$v.reportData.swellHeight.required">This field must not be empty.</span>
+            <span
+              class="validation-error"
+              v-if="showErrors && !$v.reportData.swellHeight.required"
+            >
+              This field must not be empty.
+            </span>
           </div>
         </InputWithErrors>
       </div>
     </div>
 
     <div class="actions">
-      <ButtonPositive :on-click="previousStep" :inProgress='false'>
+      <ButtonPositive
+        :on-click="previousStep"
+        :inProgress='false'
+      >
         <span>Back</span>
       </ButtonPositive>
-      <ButtonPositive :on-click="nextStep" :inProgress='false'>
+
+      <ButtonPositive
+        :on-click="nextStep"
+        :inProgress='false'
+      >
         <span>Continue</span>
       </ButtonPositive>
     </div>
@@ -144,6 +224,15 @@
   import IconWave from './Icons/IconWave.vue'
 
   export default {
+    components: {
+      ButtonPositive,
+      InputWithErrors,
+      BaseIcon,
+      IconNavigation,
+      IconSpeed,
+      IconWave
+    },
+
     props: {
       reportData: {
         type: Object,
@@ -153,6 +242,26 @@
       showErrors: {
         type: Boolean,
         required: true
+      }
+    },
+
+    computed: {
+      invalidStep () {
+        return this.$v.reportData.windDir.$invalid ||
+          this.$v.reportData.windSpd.$invalid ||
+          this.$v.reportData.seaState.$invalid ||
+          this.$v.reportData.swellDir.$invalid ||
+          this.$v.reportData.swellHeight.$invalid
+      }
+    },
+
+    methods: {
+      previousStep () {
+        this.$emit('previousStep')
+      },
+
+      nextStep () {
+        this.$emit('nextStep', this.invalidStep)
       }
     },
 
@@ -203,35 +312,6 @@
         swellHeight: {
           required
         }
-      }
-    },
-
-    components: {
-      ButtonPositive,
-      InputWithErrors,
-      BaseIcon,
-      IconNavigation,
-      IconSpeed,
-      IconWave
-    },
-
-    computed: {
-      invalidStep () {
-        return this.$v.reportData.windDir.$invalid ||
-          this.$v.reportData.windSpd.$invalid ||
-          this.$v.reportData.seaState.$invalid ||
-          this.$v.reportData.swellDir.$invalid ||
-          this.$v.reportData.swellHeight.$invalid
-      }
-    },
-
-    methods: {
-      previousStep () {
-        this.$emit('previousStep')
-      },
-
-      nextStep () {
-        this.$emit('nextStep', this.invalidStep)
       }
     }
   }

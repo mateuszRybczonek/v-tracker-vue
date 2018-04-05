@@ -3,26 +3,26 @@
     <content-placeholders v-if="fetchingReports">
       <content-placeholders-img class="navigation-data__placeholder"></content-placeholders-img>
     </content-placeholders>
-    <AccordionWrapper :showOnInit=true color="blue" v-else>
-      <div slot="header" class="badge__slot">
-        <BaseIcon
-          width=30
-          height=30
-          color="#FFF"
-          viewBox="-5 -7 40 40">
-          <IconNavigation></IconNavigation>
-        </BaseIcon>
-        <p>Navigation</p>
-      </div>
-      <div slot="body" class="navigation-info__content">
-        <ul class="navigation-info__content__list">
-          <li class="navigation-info__content__list__item"
-              v-for="navItem in navigationData"
-              :key="navItem.title">
-            <span class="navigation-info__content__list__item__title">{{navItem.title}}</span>
-            <span class="navigation-info__content__list__item__value">{{navItem.value}}</span>
-          </li>
-        </ul>
+    <AccordionWrapper
+      v-else
+      :showOnInit="true"
+    >
+      <BaseBadge
+        slot="header"
+        title="Navigation"
+        icon="IconNavigation"
+        color="blue"
+      ></BaseBadge>
+
+      <div
+        slot="body"
+        class="navigation-info__body"
+      >
+        <BaseList
+          class="navigation-info__list"
+          :items="navigationData"
+          size="big"
+        ></BaseList>
       </div>
     </AccordionWrapper>
   </div>
@@ -30,19 +30,17 @@
 
 <script>
   import AccordionWrapper from './AccordionWrapper.vue'
-  import IconNavigation from './Icons/IconNavigation.vue'
-  import BaseIcon from './BaseIcon.vue'
-
+  import BaseBadge from './BaseBadge.vue'
+  import BaseList from './BaseList.vue'
   import { TweenMax } from 'gsap'
 
   const NOT_PROVIDED = 'not provided'
 
   export default {
-    data () {
-      return {
-        tweenedCourse: this.report ? this.report.course : 0,
-        tweenedSpd: this.report ? this.report.spd : 0
-      }
+    components: {
+      AccordionWrapper,
+      BaseBadge,
+      BaseList
     },
 
     props: {
@@ -51,6 +49,13 @@
       },
       fetchingReports: {
         type: Boolean
+      }
+    },
+
+    data () {
+      return {
+        tweenedCourse: this.report ? this.report.course : 0,
+        tweenedSpd: this.report ? this.report.spd : 0
       }
     },
 
@@ -92,12 +97,6 @@
       spd (newValue) {
         TweenMax.to(this.$data, 2, { tweenedSpd: newValue })
       }
-    },
-
-    components: {
-      IconNavigation,
-      BaseIcon,
-      AccordionWrapper
     }
   }
 </script>
@@ -109,34 +108,15 @@
     }
   }
   .navigation-info {
-    &__content {
+    &__body {
       display: flex;
       justify-content: space-around;
       text-align: left;
       min-height: 150px;
+    }
 
-      &__list {
-        width: 100%;
-        padding: 0 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        &__item {
-          display: flex;
-          justify-content: space-between;
-          list-style-type: none;
-          cursor: default;
-          &:nth-child(2) {
-            margin-top: 15px;
-          }
-          &__title {
-            @include font(18px, 300);
-          }
-          &__value {
-            @include font(26px, 400);
-          }
-        }
-      }
+    &__list {
+      padding: 0 20px;
     }
   }
 </style>

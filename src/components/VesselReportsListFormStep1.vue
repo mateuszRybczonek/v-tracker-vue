@@ -4,35 +4,55 @@
       <div class="form-section">
         <h4 class="form-section__heading">Position</h4>
 				<InputWithErrors unit="">
-					<div slot="input" class="input__wrapper">
+					<div
+					  slot="input"
+						class="input__wrapper"
+					>
 						<BaseIcon
-              width=30
-              height=30
+              width="30"
+              height="30"
               color="#999"
-              viewBox="0 -5 40 40">
+              viewBox="0 -5 40 40"
+						>
               <IconCalendar></IconCalendar>
             </BaseIcon>
+
 						<input
 							class="input input__report-time input--with-error"
 							:class="{ invalid: showErrors && $v.reportData.reportTime.$invalid }"
 							type="text"
 							placeholder="Report date"
 							v-model="reportData.reportTime"
-							@input="$v.reportData.reportTime.$touch()">
+							@input="$v.reportData.reportTime.$touch()"
+						>
 					</div>
 					<div slot="errors">
-						<span class="validation-error" v-if="showErrors && !$v.reportData.reportTime.required">This field must not be empty.</span>
-						<span class="validation-error" v-if="showErrors && !$v.reportData.reportTime.date">Please input date in format yyyy-mm-dd (years range 1950-2099).</span>
+						<span
+						  class="validation-error"
+							v-if="showErrors && !$v.reportData.reportTime.required"
+						>
+						  This field must not be empty.
+						</span>
+						<span
+						  class="validation-error"
+							v-if="showErrors && !$v.reportData.reportTime.date"
+						>
+						  Please input date in format yyyy-mm-dd (years range 1950-2099).
+						</span>
 					</div>
 				</InputWithErrors>
 
         <InputWithErrors unit="°">
-					<div slot="input" class="input__wrapper">
+					<div
+					  slot="input"
+						class="input__wrapper"
+					>
 						<BaseIcon
-							width=30
-							height=30
+							width="30"
+							height="30"
 							color="#999"
-							viewBox="2 0 60 60">
+							viewBox="2 0 60 60"
+						>
 							<IconFi></IconFi>
 						</BaseIcon>
 	          <input
@@ -44,16 +64,29 @@
 	            @input="$v.reportData.lat.$touch()">
 					</div>
           <div slot="errors">
-            <span class="validation-error" v-if="showErrors && !$v.reportData.lat.required">This field must not be empty.</span>
-            <span class="validation-error" v-if="showErrors && !$v.reportData.lat.format">Please provide latitude in a valid format (dd mm.m), + for N / - for S hemisphere</span>
+            <span
+						 class="validation-error"
+						 v-if="showErrors && !$v.reportData.lat.required"
+						>
+						  This field must not be empty.
+						</span>
+            <span
+						  class="validation-error"
+							v-if="showErrors && !$v.reportData.lat.format"
+						>
+						  Please provide latitude in a valid format (dd mm.m), + for N / - for S hemisphere
+						</span>
           </div>
         </InputWithErrors>
 
         <InputWithErrors unit="°">
-					<div slot="input" class="input__wrapper">
+					<div
+					  slot="input"
+						class="input__wrapper"
+					>
 						<BaseIcon
-							width=30
-							height=30
+							width="30"
+							height="30"
 							color="#999"
 							viewBox="2 0 30 30">
 							<IconLambda></IconLambda>
@@ -64,11 +97,22 @@
 	            type="text"
 	            placeholder="Longitude"
 	            v-model="reportData.lng"
-	            @input="$v.reportData.lng.$touch()">
+	            @input="$v.reportData.lng.$touch()"
+						>
 					</div>
           <div slot="errors">
-            <span class="validation-error" v-if="showErrors && !$v.reportData.lng.required">This field must not be empty.</span>
-            <span class="validation-error" v-if="showErrors && !$v.reportData.lng.format">Please provide longitude in a valid format (ddd mm.m), + for E / - for W hemisphere</span>
+            <span
+						  class="validation-error"
+							v-if="showErrors && !$v.reportData.lng.required"
+						>
+						  This field must not be empty.
+						</span>
+            <span
+						  class="validation-error"
+							v-if="showErrors && !$v.reportData.lng.format"
+						>
+						  Please provide longitude in a valid format (ddd mm.m), + for E / - for W hemisphere
+						</span>
           </div>
         </InputWithErrors>
       </div>
@@ -76,10 +120,13 @@
       <div class="form-section">
         <h4 class="form-section__heading">Navigation</h4>
         <InputWithErrors unit="°">
-					<div slot="input" class="input__wrapper">
+					<div
+					  slot="input"
+						class="input__wrapper"
+					>
 						<BaseIcon
-							width=30
-							height=30
+							width="30"
+							height="30"
 							color="#999"
 							viewBox="2 -5 40 40">
 							<IconNavigation></IconNavigation>
@@ -90,22 +137,42 @@
 	            type="number"
 	            placeholder="Course"
 	            v-model="reportData.course"
-	            @input="$v.reportData.course.$touch()">
+	            @input="$v.reportData.course.$touch()"
+						>
 					</div>
           <div slot="errors">
-            <span class="validation-error" v-if="showErrors && !$v.reportData.course.required">This field must not be empty.</span>
-            <span class="validation-error" v-if="showErrors && !$v.reportData.course.format">Course must be in 'xxx' format.</span>
-            <span class="validation-error" v-if="showErrors && !$v.reportData.course.range">Course must be between 000 - 360.</span>
+            <span
+						  class="validation-error"
+							v-if="showErrors && !$v.reportData.course.required"
+						>
+						  This field must not be empty.
+						</span>
+            <span
+						  class="validation-error"
+							v-if="showErrors && !$v.reportData.course.format"
+						>
+						  Course must be in 'xxx' format.
+						</span>
+            <span
+						  class="validation-error"
+							v-if="showErrors && !$v.reportData.course.range"
+						>
+						  Course must be between 000 - 360.
+						</span>
           </div>
         </InputWithErrors>
 
         <InputWithErrors unit="kn">
-					<div slot="input" class="input__wrapper">
+					<div
+					  slot="input"
+						class="input__wrapper"
+					>
 						<BaseIcon
-							width=30
-							height=30
+							width="30"
+							height="30"
 							color="#999"
-							viewBox="2 -5 40 40">
+							viewBox="2 -5 40 40"
+						>
 							<IconSpeed></IconSpeed>
 						</BaseIcon>
 	          <input
@@ -114,10 +181,16 @@
 	            type="number"
 	            placeholder="Speed"
 	            v-model="reportData.spd"
-	            @input="$v.reportData.spd.$touch()">
-						</div>
+	            @input="$v.reportData.spd.$touch()"
+						>
+					</div>
           <div slot="errors">
-            <span class="validation-error" v-if="showErrors && !$v.reportData.spd.required">This field must not be empty.</span>
+            <span
+						  class="validation-error"
+							v-if="showErrors && !$v.reportData.spd.required"
+						>
+						  This field must not be empty.
+						</span>
           </div>
         </InputWithErrors>
       </div>
@@ -129,9 +202,7 @@
 			  :on-click="nextStep"
 				:inProgress="false"
 			>
-      <span>
-          Continue
-        </span>
+        <span>Continue</span>
       </ButtonPositive>
     </div>
 	</div>
@@ -149,6 +220,17 @@ import IconNavigation from './Icons/IconNavigation.vue'
 import IconSpeed from './Icons/IconSpeed.vue'
 
 export default {
+  components: {
+    ButtonPositive,
+    InputWithErrors,
+    BaseIcon,
+    IconCalendar,
+    IconFi,
+    IconLambda,
+    IconNavigation,
+    IconSpeed
+  },
+
   props: {
     reportData: {
       type: Object,
@@ -158,6 +240,26 @@ export default {
     showErrors: {
       type: Boolean,
       required: true
+    }
+  },
+
+  computed: {
+    invalidStep () {
+      return this.$v.reportData.lat.$invalid ||
+      this.$v.reportData.lng.$invalid ||
+      this.$v.reportData.reportTime.$invalid ||
+      this.$v.reportData.course.$invalid ||
+      this.$v.reportData.spd.$invalid
+    }
+  },
+
+  methods: {
+    previousStep () {
+      this.$emit('previousStep')
+    },
+
+    nextStep () {
+      this.$emit('nextStep', this.invalidStep)
     }
   },
 
@@ -209,37 +311,6 @@ export default {
         required
       }
     }
-  },
-
-  components: {
-    ButtonPositive,
-    InputWithErrors,
-    BaseIcon,
-    IconCalendar,
-    IconFi,
-    IconLambda,
-    IconNavigation,
-    IconSpeed
-  },
-
-  computed: {
-    invalidStep () {
-      return this.$v.reportData.lat.$invalid ||
-      this.$v.reportData.lng.$invalid ||
-      this.$v.reportData.reportTime.$invalid ||
-      this.$v.reportData.course.$invalid ||
-      this.$v.reportData.spd.$invalid
-    }
-  },
-
-  methods: {
-    previousStep () {
-      this.$emit('previousStep')
-    },
-
-    nextStep () {
-      this.$emit('nextStep', this.invalidStep)
-    }
   }
 }
 </script>
@@ -253,7 +324,6 @@ export default {
       justify-content: space-evenly;
 
       .form-section {
-        border-radius: 3px;
         padding: 10px;
 
         &__heading {

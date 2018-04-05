@@ -3,10 +3,23 @@
     <VesselReportsListNewStepper
       :selectedStep="selectedStep"
       :isSubmitted="isSubmitted"
-      @selectStep="selectStep"></VesselReportsListNewStepper>
-    <FormWrapper :title="stepTitle" size="wide" color="blue">
-      <form class="new-report__form-content" slot="content" @submit.prevent>
-        <transition name="slide-fade" mode="out-in">
+      @selectStep="selectStep"
+    ></VesselReportsListNewStepper>
+
+    <FormWrapper
+      :title="stepTitle"
+      size="wide"
+      color="blue"
+    >
+      <form
+        class="new-report__form-content"
+        slot="content"
+        @submit.prevent
+      >
+        <transition
+          name="slide-fade"
+          mode="out-in"
+        >
           <component
             :is="selectedStep"
             :reportData="newReportData"
@@ -16,8 +29,7 @@
             @nextStep="nextStep"
             @previousStep="previousStep"
             @submit="submit"
-          >
-          </component>
+          ></component>
         </transition>
       </form>
     </FormWrapper>
@@ -31,9 +43,22 @@
   import Step2 from './VesselReportsListFormStep2.vue'
   import Step3 from './VesselReportsListFormStep3.vue'
   import Step4 from './VesselReportsListFormStep4.vue'
-  import { formatLatForPersistanceLayer, formatLngForPersistanceLayer } from '../utils/coordinates-utils'
+
+  import {
+    formatLatForPersistanceLayer,
+    formatLngForPersistanceLayer
+  } from '../utils/coordinates-utils'
 
   export default {
+    components: {
+      FormWrapper,
+      VesselReportsListNewStepper,
+      Step1,
+      Step2,
+      Step3,
+      Step4
+    },
+
     data () {
       return {
         newReportData: {
@@ -65,6 +90,29 @@
       }
     },
 
+    computed: {
+      selectedStep () {
+        return `step${this.step}`
+      },
+
+      lastStep () {
+        return this.step === this.numberOfSteps
+      },
+
+      stepTitle () {
+        switch (this.step) {
+          case 1:
+            return 'Navigation data'
+          case 2:
+            return 'Weather data'
+          case 3:
+            return 'Other data'
+          case 4:
+            return 'Success'
+        }
+      }
+    },
+
     methods: {
       nextStep (invalidStep) {
         if (invalidStep) {
@@ -81,9 +129,7 @@
       previousStep () {
         this.showErrors = false
 
-        if (this.step > 1) {
-          this.step--
-        }
+        if (this.step > 1) this.step--
       },
 
       selectStep (step) {
@@ -119,38 +165,6 @@
           }
         }
       }
-    },
-
-    computed: {
-      selectedStep () {
-        return `step${this.step}`
-      },
-
-      lastStep () {
-        return this.step === this.numberOfSteps
-      },
-
-      stepTitle () {
-        switch (this.step) {
-          case 1:
-            return 'Navigation data'
-          case 2:
-            return 'Weather data'
-          case 3:
-            return 'Other data'
-          case 4:
-            return 'Success'
-        }
-      }
-    },
-
-    components: {
-      FormWrapper,
-      VesselReportsListNewStepper,
-      Step1,
-      Step2,
-      Step3,
-      Step4
     }
   }
 </script>

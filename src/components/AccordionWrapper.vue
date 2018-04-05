@@ -1,49 +1,68 @@
 <template>
   <div class="accordion">
-    <div class="accordion__header" @click="toggle">
-      <ColorBadge :color="color">
-        <slot name="header"></slot>
-      </ColorBadge>
-      <BaseIcon class="accordion__arrow" :class="{ rotate: show }"
-        width=30
-        height=30
-        viewBox="-5 -7 40 40">
+    <div
+      class="accordion__header"
+      @click="toggle"
+    >
+      <slot name="header"></slot>
+
+      <BaseIcon
+        class="accordion__arrow"
+        :class="{ rotate: show }"
+        width="30"
+        height="30"
+        viewBox="-5 -7 40 40"
+      >
         <IconArrowDown></IconArrowDown>
       </BaseIcon>
     </div>
+
     <transition name="accordion"
       @before-enter="beforeEnter"
       @enter="enter"
       @before-leave="beforeLeave"
       @leave="leave">
-      <div class="accordion__body" v-show="show">
+
+      <div
+        class="accordion__body"
+        v-show="show"
+      >
         <slot name="body"></slot>
       </div>
     </transition>
-    <div class="accordion__footer" v-show="show">
+
+    <div
+      class="accordion__footer"
+      v-show="show"
+    >
       <slot name="footer"></slot>
     </div>
-    <div class="accordion__footer" v-show="showCollapsedContent">
+
+    <div
+      class="accordion__footer"
+      v-show="showCollapsedContent"
+    >
       <slot name="collapsed-content"></slot>
     </div>
   </div>
 </template>
 
 <script>
-  import ColorBadge from './ColorBadge.vue'
   import BaseIcon from './BaseIcon.vue'
   import IconArrowDown from './Icons/IconArrowDown.vue'
 
   export default {
+    components: {
+      BaseIcon,
+      IconArrowDown
+    },
+
     props: {
       showOnInit: {
         type: Boolean,
         default: true
       },
-      color: {
-        type: String,
-        default: 'black'
-      },
+
       collapsedContent: {
         type: Boolean,
         default: false
@@ -87,12 +106,6 @@
       leave (el) {
         el.style.height = '0'
       }
-    },
-
-    components: {
-      ColorBadge,
-      BaseIcon,
-      IconArrowDown
     }
   }
 </script>

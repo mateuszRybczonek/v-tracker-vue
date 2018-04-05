@@ -1,21 +1,26 @@
 <template>
-  <header id="header">
-    <div class="logo">
+  <header class="header">
+    <div class="header__logo">
       <router-link to="/">V-Tracker</router-link>
     </div>
-    <nav>
-      <ul v-if="isAuthenticated">
-        <li>
-          <router-link to="/dashboard">Dashboard</router-link>
-        </li>
-        <li>
+    <nav class="header__navigation">
+      <ul
+        v-if="isAuthenticated"
+        class="header__navigation-items"
+      >
+        <li class="header__navigation-item">
           <router-link to="/dashboard/vessels">Vessels</router-link>
         </li>
-        <li>
+        <li class="header__navigation-item">
           <router-link to="/dashboard/reports">Reports</router-link>
         </li>
-        <li>
-          <button @click="onLogout" class="logout">Logout</button>
+        <li class="header__navigation-item">
+          <button
+            @click="onLogout"
+            class="header__logout"
+          >
+            Logout
+          </button>
         </li>
       </ul>
     </nav>
@@ -41,7 +46,7 @@
 </script>
 
 <style scoped lang="scss">
-  #header {
+  .header {
     height: 56px;
     width: 100%;
     position: fixed;
@@ -53,52 +58,58 @@
     background-color: $color-dark-grey;
     padding: 0 20px;
     z-index: 999;
-  }
 
-  .logo {
-    font-weight: bold;
-    color: white;
-  }
+    &__logo {
+      font-weight: bold;
+      color: white;
 
-  .logo a {
-    text-decoration: none;
-    color: white;
-  }
+      a {
+        text-decoration: none;
+        color: white;
+      }
+    }
 
-  nav {
-    height: 100%;
-  }
+    &__navigation {
+      height: 100%;
 
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    display: flex;
-    flex-flow: row;
-    align-items: center;
-  }
+    }
 
-  li {
-    margin: 0 16px;
-  }
+    &__navigation-items {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      display: flex;
+      flex-flow: row;
+      align-items: center;
+    }
 
-  li a {
-    text-decoration: none;
-    color: white;
-  }
+    &__navigation-item {
+      margin: 0 16px;
 
-  li a:hover,
-  li a:active,
-  li a.router-link-active {
-    font-weight: 800;
-  }
+      a {
+        text-decoration: none;
+        color: white;
+      }
 
-  .logout {
-    background-color: transparent;
-    border: none;
-    font: inherit;
-    color: white;
-    cursor: pointer;
+      a:hover,
+      a:active,
+      a.router-link-active {
+        font-weight: 800;
+      }
+    }
+
+    &__logout {
+      background-color: transparent;
+      border: none;
+      font: inherit;
+      color: white;
+      cursor: pointer;
+
+      &:hover,
+      &:active  {
+        font-weight: 800;
+      }
+    }
   }
 </style>

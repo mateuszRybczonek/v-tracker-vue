@@ -1,36 +1,30 @@
 <template>
-  <div class="vessel-details__reports">
-    <VesselReportsList
-      :reports="componentProps.last14Reports"
-      class="vessel-details__reports__list">
-    </VesselReportsList>
-  </div>
+  <VesselReportsList
+    :reports="componentProps.last14Reports"
+    class="vessel-details-reports-list">
+  </VesselReportsList>
 </template>
 
 <script>
   import VesselReportsList from './VesselReportsList.vue'
 
   export default {
+    components: {
+      VesselReportsList
+    },
+
     props: {
       componentProps: {
         type: Object,
         required: true
       }
-    },
-
-    components: {
-      VesselReportsList
     }
   }
 </script>
 
 <style scoped lang="scss">
-  .vessel-details__reports{
+  .vessel-details-reports-list {
     max-width: 1440px;
     margin: 0 auto;
-
-    &__list {
-      width: 100%;
-    }
   }
 </style>
