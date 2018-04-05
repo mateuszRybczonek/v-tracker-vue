@@ -1,14 +1,14 @@
 <template>
   <div class="sea-data">
     <SeaFlag
-      class="weather-info__content__sea__flag"
+      class="sea-data__flag"
       :height="swellHeight"
       :direction="swellDir"
       :withBorder="true"
     >
     </SeaFlag>
     <BaseList
-      class="weather-info__content__list"
+      class="sea-data__list"
       :items="seaData"
       size="big"
     ></BaseList>
