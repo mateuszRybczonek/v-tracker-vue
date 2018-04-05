@@ -1,10 +1,10 @@
 <template>
   <div
-    class="mini-stats-item-change"
+    class="mini-stats-item-footer"
     :class="color"
   >
     <BaseIcon
-      class="mini-stats-change__arrow"
+      class="mini-stats-item-footer__arrow"
       :class="rotationClass"
       width=30
       height=30
@@ -13,10 +13,10 @@
     >
       <IconChange></IconChange>
     </BaseIcon>
-    <span class="mini-stats-item-change__value">
+    <span class="mini-stats-item-footer__value">
       {{change}}
     </span>
-    <span class="mini-stats-item-change__unit">
+    <span class="mini-stats-item-footer__unit">
       {{unit}}
     </span>
   </div>
@@ -58,7 +58,7 @@
 </script>
 
 <style scoped lang="scss">
-  .mini-stats-item-change {
+  .mini-stats-item-footer {
     display: flex;
     justify-content: center;
     margin-bottom: 10px;

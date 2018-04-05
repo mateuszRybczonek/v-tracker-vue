@@ -5,59 +5,36 @@
     </content-placeholders>
     <AccordionWrapper
       v-else
-      :showOnInit=true :color="item.color"
+      :showOnInit=true
+      :color="item.color"
     >
-      <div
+      <MiniStatsItemHeader
         slot="header"
-        class="badge__slot"
-      >
-        <BaseIcon
-          width=30
-          height=30
-          color="#FFF"
-          viewBox="10 0 76 76"
-        >
-          <component :is="item.icon"></component>
-        </BaseIcon>
-        <p>{{item.description}}</p>
-      </div>
-      <div
+        :icon="item.icon"
+        :description="item.description"
+      ></MiniStatsItemHeader>
+
+      <MiniStatsItemBody
         slot="body"
-        class="mini-stats-item__content"
-        :class="item.color"
-      >
-        <div class="item__badge">
-          <BaseIcon
-            width=80
-            height=80>
-            <component :is="item.icon"></component>
-          </BaseIcon>
-        </div>
-        <div class="item__description">
-          <div class="description__header">
-            {{item.header}}
-          </div>
-          <div class="description__text">
-            {{item.unit}}
-          </div>
-        </div>
-      </div>
-      <div
+        class="mini-stats-item__body"
+        :item="item"
+      ></MiniStatsItemBody>
+
+      <MiniStatsItemFooter
         slot="footer"
-        class="mini-stats-item__change"
-      >
-        <MiniStatsItemChange
-          :change="item.change"
-          :unit="item.unit"
-        ></MiniStatsItemChange>
-      </div>
+        class="mini-stats-item__footer"
+        :change="item.change"
+        :unit="item.unit"
+      ></MiniStatsItemFooter>
     </AccordionWrapper>
   </div>
 </template>
 
 <script>
   import AccordionWrapper from './AccordionWrapper.vue'
-  import MiniStatsItemChange from './MiniStatsItemChange.vue'
+  import MiniStatsItemHeader from './MiniStatsItemHeader.vue'
+  import MiniStatsItemBody from './MiniStatsItemBody.vue'
+  import MiniStatsItemFooter from './MiniStatsItemFooter.vue'
   import BaseIcon from './BaseIcon.vue'
   import IconFuel from './Icons/IconFuel.vue'
   import IconWater from './Icons/IconWater.vue'
@@ -66,11 +43,9 @@
   export default {
     components: {
       AccordionWrapper,
-      MiniStatsItemChange,
-      BaseIcon,
-      IconFuel,
-      IconWater,
-      IconPeople
+      MiniStatsItemHeader,
+      MiniStatsItemBody,
+      MiniStatsItemFooter
     },
 
     props: {
@@ -86,61 +61,25 @@
 </script>
 
 <style scoped lang="scss">
-
   .mini-stats-item {
     min-width: 320px;
     margin-top: 20px;
-    &__content {
+    
+    &__body {
       display: flex;
       justify-content: space-evenly;
       text-align: left;
       min-height: 130px;
 
-      .item__badge {
+      .item__icon {
         display: flex;
         justify-content: center;
         align-items: center;
       }
-
-      &.black {
-        color: $color-black;
-      }
-
-      &.brown {
-        color: $color-brown;
-      }
-
-      &.light-blue {
-        color: $color-light-blue;
-      }
-
-      &.green {
-        color: $color-green
-      }
     }
 
-    &__change {
+    &__footer {
       width: 100%;
-    }
-
-    .item__description {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      align-self: center;
-      max-height: 60px;
-
-      .description__header {
-        @include font(60px, 400, 60px);
-      }
-
-      .description__text {
-        margin-left: 10px;
-        @include font(12px, 300);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        align-self: flex-end;
-      }
     }
   }
 </style>
