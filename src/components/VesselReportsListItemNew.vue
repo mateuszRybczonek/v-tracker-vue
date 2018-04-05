@@ -4,7 +4,6 @@
     class="reports-list-new"
   >
     <BaseIcon
-      class="vessels-list-new__icon"
       iconColor="#999"
     >
       <IconTilesPlus></IconTilesPlus>

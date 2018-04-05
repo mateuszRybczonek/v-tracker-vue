@@ -33,21 +33,21 @@
     </div>
     <ul class="report-item-details-section__list">
       <li
-        class="report-item-details-section__list__item"
+        class="list-item"
         v-for="sectionDataItem in sectionData.items"
         :key="sectionDataItem.title"
       >
-        <span class="report-item-details-section__list__item__title">{{sectionDataItem.title}}</span>
+        <span class="list-item__title">{{sectionDataItem.title}}</span>
         <input
           v-if="isEditing"
-          class="report-item-details-section__list__item__title__input"
+          class="list-item__title-input"
           type="text"
           placeholder=""
           v-model="reportChangeset[sectionDataItem.key]"
         >
         <span
           v-else
-          class="report-item-details-section__list__item__value"
+          class="list-item__value"
         >
           {{sectionDataItem.value}}
         </span>
@@ -173,7 +173,7 @@
       justify-content: flex-start;
       border: 1px solid $color-whitey-darker;
 
-      &__item {
+      .list-item {
         display: flex;
         justify-content: space-between;
         list-style-type: none;
@@ -186,12 +186,12 @@
 
         &__title {
           @include font(16px, 300);
+        }
 
-          &__input {
-            text-align: right;
-            @include font(16px, 300);
-            border: none;
-          }
+        &__title-input {
+          text-align: right;
+          @include font(16px, 300);
+          border: none;
         }
 
         &__value {
