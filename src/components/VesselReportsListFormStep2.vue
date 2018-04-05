@@ -9,8 +9,8 @@
             class="input__wrapper"
           >
             <BaseIcon
-							width=30
-							height=30
+							width="30"
+							height="30"
 							color="#999"
 							viewBox="2 -5 40 40">
 							<IconNavigation></IconNavigation>
@@ -52,8 +52,8 @@
             class="input__wrapper"
           >
             <BaseIcon
-              width=30
-              height=30
+              width="30"
+              height="30"
               color="#999"
               viewBox="2 -5 40 40">
               <IconSpeed></IconSpeed>
@@ -86,8 +86,8 @@
             class="input__wrapper"
           >
             <BaseIcon class="sea-flag__icon-wave"
-              width=30
-              height=30
+              width="30"
+              height="30"
               strokeColor='#999'
               viewBox="2 25 60 60"
             >
@@ -124,8 +124,8 @@
             class="input__wrapper"
           >
             <BaseIcon
-              width=30
-              height=30
+              width="30"
+              height="30"
               color="#999"
               viewBox="2 -5 40 40"
             >
@@ -168,8 +168,8 @@
             class="input__wrapper"
           >
             <BaseIcon class="sea-flag__icon-wave"
-              width=30
-              height=30
+              width="30"
+              height="30"
               strokeColor='#999'
               viewBox="2 25 60 60"
             >

@@ -10,7 +10,7 @@
     <BaseList
       class="wind-data__list"
       :items="windData"
-      :size="big"
+      size="big"
     ></BaseList>
   </div>
 </template>

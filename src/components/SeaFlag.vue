@@ -6,9 +6,10 @@
   >
     <div class="sea-flag__icons-wrapper">
       <BaseIcon
+        id="arrow"
         class="sea-flag__icon-arrow"
-        width=100
-        height=100
+        width="100"
+        height="100"
         :color='strokeColor'
         :strokeColor='strokeColor'
         viewBox="-6 22 60 60"
@@ -17,8 +18,8 @@
       </BaseIcon>
       <BaseIcon
         class="sea-flag__icon-wave"
-        width=30
-        height=30
+        width="30"
+        height="30"
         :strokeColor='strokeColor'
         viewBox="0 35 40 40"
       >

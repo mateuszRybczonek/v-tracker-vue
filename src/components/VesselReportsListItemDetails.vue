@@ -130,6 +130,7 @@
 
 <style scoped lang="scss">
   .report-item-details-section {
+    min-width: 300px;
     width: 45%;
     margin: 10px;
 

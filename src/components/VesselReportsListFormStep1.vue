@@ -9,8 +9,8 @@
 						class="input__wrapper"
 					>
 						<BaseIcon
-              width=30
-              height=30
+              width="30"
+              height="30"
               color="#999"
               viewBox="0 -5 40 40"
 						>
@@ -48,8 +48,8 @@
 						class="input__wrapper"
 					>
 						<BaseIcon
-							width=30
-							height=30
+							width="30"
+							height="30"
 							color="#999"
 							viewBox="2 0 60 60"
 						>
@@ -85,8 +85,8 @@
 						class="input__wrapper"
 					>
 						<BaseIcon
-							width=30
-							height=30
+							width="30"
+							height="30"
 							color="#999"
 							viewBox="2 0 30 30">
 							<IconLambda></IconLambda>
@@ -125,8 +125,8 @@
 						class="input__wrapper"
 					>
 						<BaseIcon
-							width=30
-							height=30
+							width="30"
+							height="30"
 							color="#999"
 							viewBox="2 -5 40 40">
 							<IconNavigation></IconNavigation>
@@ -168,8 +168,8 @@
 						class="input__wrapper"
 					>
 						<BaseIcon
-							width=30
-							height=30
+							width="30"
+							height="30"
 							color="#999"
 							viewBox="2 -5 40 40"
 						>
@@ -324,7 +324,6 @@ export default {
       justify-content: space-evenly;
 
       .form-section {
-        border-radius: 3px;
         padding: 10px;
 
         &__heading {

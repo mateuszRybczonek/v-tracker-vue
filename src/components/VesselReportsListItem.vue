@@ -5,59 +5,41 @@
       :collapsedContent="true"
       class="report-item"
     >
-
       <BaseBadge
         slot="header"
         :title="report.reportTime"
         icon="IconCalendar"
         color="blue"
       ></BaseBadge>
-
       <div
         slot="body"
-        class="report-item__content"
+        class="report-item__body"
       >
-        <ReportItemDetailsSection
-          class="report-item__content__item"
+        <VesselReportsListItemDetails
           v-for="sectionData in reportSections"
           :key="sectionData.sectionTitle"
           :color="sectionData.color"
           :sectionData="sectionData"
           :report="report"
-        ></ReportItemDetailsSection>
+        ></VesselReportsListItemDetails>
       </div>
-      <div
+
+      <VesselReportsListItemCollapsedBody
         slot="collapsed-content"
-        class="report-item__collapsed-content"
-      >
-        <div class="report-item__collapsed-content__basic-data">
-          <p>Latitude: {{formattedLat}}</p>
-          <p>Longitude: {{formattedLng}}</p>
-        </div>
-        <div class="report-item__collapsed-content__actions">
-          <span
-            class="delete-icon"
-            @click.prevent.stop="deleteReport(report.id, report.vessel)"
-          >
-            <BaseIcon
-              width=40
-              height=40
-            >
-              <IconTrash></IconTrash>
-            </BaseIcon>
-          </span>
-        </div>
-      </div>
+        :lat="formattedLat"
+        :lng="formattedLng"
+        :reportId="report.id"
+        :vessel="report.vessel"
+      ></VesselReportsListItemCollapsedBody>
     </AccordionWrapper>
   </li>
 </template>
 
 <script>
   import AccordionWrapper from './AccordionWrapper.vue'
-  import ReportItemDetailsSection from './VesselReportsListItemDetails.vue'
-  import BaseIcon from './BaseIcon.vue'
   import BaseBadge from './BaseBadge.vue'
-  import IconTrash from './Icons/IconTrash.vue'
+  import VesselReportsListItemDetails from './VesselReportsListItemDetails.vue'
+  import VesselReportsListItemCollapsedBody from './VesselReportsListItemCollapsedBody.vue'
   import { decimalToDMS } from '../utils/coordinates-utils'
 
   const NOT_PROVIDED = 'not provided'
@@ -65,10 +47,9 @@
   export default {
     components: {
       AccordionWrapper,
-      BaseIcon,
       BaseBadge,
-      IconTrash,
-      ReportItemDetailsSection
+      VesselReportsListItemDetails,
+      VesselReportsListItemCollapsedBody
     },
 
     props: {
@@ -200,13 +181,6 @@
           }
         ]
       }
-    },
-
-    methods: {
-      deleteReport (reportId, vesselId) {
-        const payload = { reportId, vesselId }
-        this.$store.dispatch('deleteReport', payload)
-      }
     }
   }
 </script>
@@ -219,40 +193,12 @@
     width: 100%;
     margin-bottom: 10px;
 
-     &__content {
+     &__body {
       display: flex;
       flex-wrap: wrap;
       margin: 20px;
       text-align: left;
       min-height: 150px;
-
-      &__item {
-        min-width: 300px;
-      }
-    }
-    &__collapsed-content {
-      display: flex;
-      justify-content: space-between;
-      padding: 5px 5px 0;
-      width: 100%;
-
-      &__basic-data {
-        display: flex;
-        align-self: center;
-      }
-
-      p {
-        margin: 0 10px 5px;
-      }
-
-      .delete-icon {
-        color: $color-light-grey;
-        transition: color 600ms;
-
-        &:hover {
-          color: $color-tomato;
-        }
-      }
     }
   }
 </style>

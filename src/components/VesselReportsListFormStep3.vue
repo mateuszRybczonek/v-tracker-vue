@@ -22,8 +22,8 @@
             class="input__wrapper"
           >
             <BaseIcon
-              width=50
-              height=50
+              width="50"
+              height="50"
               color="#999"
               viewBox="15 15 76 76"
             >
@@ -60,8 +60,8 @@
             class="input__wrapper"
           >
             <BaseIcon
-              width=50
-              height=50
+              width="50"
+              height="50"
               color="#999"
               viewBox="15 15 76 76"
             >
@@ -98,8 +98,8 @@
            class="input__wrapper"
           >
             <BaseIcon
-              width=50
-              height=50
+              width="50"
+              height="50"
               color="#999"
               viewBox="25 20 60 60"
             >
@@ -139,8 +139,8 @@
             class="input__wrapper"
           >
             <BaseIcon
-              width=50
-              height=50
+              width="50"
+              height="50"
               color="#999"
               viewBox="15 15 76 76"
             >
@@ -178,8 +178,8 @@
             class="input__wrapper"
           >
             <BaseIcon
-              width=50
-              height=50
+              width="50"
+              height="50"
               color="#999"
               viewBox="10 15 76 76"
             >
@@ -211,8 +211,8 @@
             class="input__wrapper"
           >
             <BaseIcon
-              width=50
-              height=50
+              width="50"
+              height="50"
               color="#999"
               viewBox="10 15 76 76"
             >
