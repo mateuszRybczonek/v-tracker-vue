@@ -1,15 +1,7 @@
 <template>
   <div class="reports-list">
-    <h1
-      v-if="!showNewReportForm"
-      class="reports-list__header">
-      Reports
-    </h1>
-
-    <h1
-      v-if="showNewReportForm"
-      class="reports-list__header">
-      New report
+    <h1 class="reports-list__header">
+      {{title}}
     </h1>
 
     <transition name="slide">
@@ -59,6 +51,12 @@
     data () {
       return {
         showNewReportForm: false
+      }
+    },
+
+    computed: {
+      title () {
+        return this.showNewReportForm ? 'New Report' : 'Reports'
       }
     },
 

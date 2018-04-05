@@ -5,8 +5,8 @@
   >
     <div class="mini-stats-item-body__icon">
       <BaseIcon
-        width=80
-        height=80
+        width="80"
+        height="80"
       >
         <component :is="item.icon"></component>
       </BaseIcon>

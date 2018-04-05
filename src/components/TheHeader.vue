@@ -9,9 +9,6 @@
         class="header__navigation-items"
       >
         <li class="header__navigation-item">
-          <router-link to="/dashboard">Dashboard</router-link>
-        </li>
-        <li class="header__navigation-item">
           <router-link to="/dashboard/vessels">Vessels</router-link>
         </li>
         <li class="header__navigation-item">
@@ -101,13 +98,18 @@
         font-weight: 800;
       }
     }
-    
+
     &__logout {
       background-color: transparent;
       border: none;
       font: inherit;
       color: white;
       cursor: pointer;
+
+      &:hover,
+      &:active  {
+        font-weight: 800;
+      }
     }
   }
 </style>

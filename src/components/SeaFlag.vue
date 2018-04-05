@@ -6,7 +6,7 @@
   >
     <div class="sea-flag__icons-wrapper">
       <BaseIcon
-        id="arrow"
+        class="sea-flag__icon-arrow"
         width=100
         height=100
         :color='strokeColor'
@@ -127,10 +127,6 @@
       height: $wrapper-size;
       width: $wrapper-size;
 
-      #arrow {
-        transition: all 2s ease-in-out;
-      }
-
       > i {
         display: block;
         width: $icon-size;
@@ -146,6 +142,10 @@
       position: relative;
       top: -70px;
       left: 33px;
+    }
+
+    &__icon-arrow {
+      transition: all 2s ease-in-out;
     }
 
     .amber {

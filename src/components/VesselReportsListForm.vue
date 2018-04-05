@@ -5,6 +5,7 @@
       :isSubmitted="isSubmitted"
       @selectStep="selectStep"
     ></VesselReportsListNewStepper>
+
     <FormWrapper
       :title="stepTitle"
       size="wide"
@@ -42,7 +43,11 @@
   import Step2 from './VesselReportsListFormStep2.vue'
   import Step3 from './VesselReportsListFormStep3.vue'
   import Step4 from './VesselReportsListFormStep4.vue'
-  import { formatLatForPersistanceLayer, formatLngForPersistanceLayer } from '../utils/coordinates-utils'
+
+  import {
+    formatLatForPersistanceLayer,
+    formatLngForPersistanceLayer
+  } from '../utils/coordinates-utils'
 
   export default {
     components: {

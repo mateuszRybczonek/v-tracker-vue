@@ -6,19 +6,16 @@
     <BaseIcon
       class="mini-stats-item-footer__arrow"
       :class="rotationClass"
-      width=30
-      height=30
+      width="30"
+      height="30"
       :color="color"
       viewBox="-15 -15 50 50"
     >
       <IconChange></IconChange>
     </BaseIcon>
-    <span class="mini-stats-item-footer__value">
-      {{change}}
-    </span>
-    <span class="mini-stats-item-footer__unit">
-      {{unit}}
-    </span>
+
+    <span class="mini-stats-item-footer__value">{{change}}</span>
+    <span class="mini-stats-item-footer__unit">{{unit}}</span>
   </div>
 </template>
 
