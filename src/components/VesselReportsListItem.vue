@@ -3,15 +3,16 @@
     <AccordionWrapper
       :showOnInit="false"
       :collapsedContent="true"
-      color="blue"
       class="report-item"
     >
-      <div
+
+      <BaseBadge
         slot="header"
-        class="badge__slot"
-      >
-        <p>{{report.reportTime}}</p>
-      </div>
+        :title="report.reportTime"
+        icon="IconCalendar"
+        color="blue"
+      ></BaseBadge>
+
       <div
         slot="body"
         class="report-item__content"
@@ -55,6 +56,7 @@
   import AccordionWrapper from './AccordionWrapper.vue'
   import ReportItemDetailsSection from './VesselReportsListItemDetails.vue'
   import BaseIcon from './BaseIcon.vue'
+  import BaseBadge from './BaseBadge.vue'
   import IconTrash from './Icons/IconTrash.vue'
   import { decimalToDMS } from '../utils/coordinates-utils'
 
@@ -64,6 +66,7 @@
     components: {
       AccordionWrapper,
       BaseIcon,
+      BaseBadge,
       IconTrash,
       ReportItemDetailsSection
     },

@@ -25,6 +25,7 @@
   import IconFuel from './Icons/IconFuel.vue'
   import IconWater from './Icons/IconWater.vue'
   import IconPeople from './Icons/IconPeople.vue'
+  import IconCalendar from './Icons/IconCalendar.vue'
 
   export default {
     components: {
@@ -34,7 +35,8 @@
       IconPosition,
       IconFuel,
       IconWater,
-      IconPeople
+      IconPeople,
+      IconCalendar
     },
 
     props: {
