@@ -6,8 +6,8 @@
     >
       <BaseIcon
         class="weather-situation__vessel"
-        width=60
-        height=265
+        width="60"
+        height="265"
         color="#7c9cc9"
         strokeColor="#7c9cc9"
         viewBox="0 0 76 76"
@@ -24,7 +24,7 @@
         class="weather-situation__wind-flag"
         :speed="report.windSpd"
         :direction="report.windDir"
-        :withBorder='false'
+        :withBorder="false"
       ></WindFlag>
     </div>
 
@@ -36,7 +36,7 @@
         class="weather-situation__sea-flag"
         :height="report.swellHeight"
         :direction="report.swellDir"
-        :withBorder='false'
+        :withBorder="false"
       ></SeaFlag>
     </div>
   </div>
