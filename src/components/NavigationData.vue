@@ -23,18 +23,13 @@
       </div>
       <div
         slot="body"
-        class="navigation-info__content"
+        class="navigation-info__body"
       >
-        <ul class="navigation-info__content__list">
-          <li
-            class="navigation-info__content__list__item"
-            v-for="navItem in navigationData"
-            :key="navItem.title"
-          >
-            <span class="navigation-info__content__list__item__title">{{navItem.title}}</span>
-            <span class="navigation-info__content__list__item__value">{{navItem.value}}</span>
-          </li>
-        </ul>
+        <BaseList
+          class="navigation-info__list"
+          :items="navigationData"
+          :size="big"
+        ></BaseList>
       </div>
     </AccordionWrapper>
   </div>
@@ -44,7 +39,7 @@
   import AccordionWrapper from './AccordionWrapper.vue'
   import IconNavigation from './Icons/IconNavigation.vue'
   import BaseIcon from './BaseIcon.vue'
-
+  import BaseList from './BaseList.vue'
   import { TweenMax } from 'gsap'
 
   const NOT_PROVIDED = 'not provided'
@@ -53,7 +48,8 @@
     components: {
       IconNavigation,
       BaseIcon,
-      AccordionWrapper
+      AccordionWrapper,
+      BaseList
     },
 
     props: {
@@ -121,34 +117,15 @@
     }
   }
   .navigation-info {
-    &__content {
+    &__body {
       display: flex;
       justify-content: space-around;
       text-align: left;
       min-height: 150px;
-
-      &__list {
-        width: 100%;
-        padding: 0 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        &__item {
-          display: flex;
-          justify-content: space-between;
-          list-style-type: none;
-          cursor: default;
-          &:nth-child(2) {
-            margin-top: 15px;
-          }
-          &__title {
-            @include font(18px, 300);
-          }
-          &__value {
-            @include font(26px, 400);
-          }
-        }
-      }
+    }
+    
+    &__list {
+      padding: 0 20px;
     }
   }
 </style>

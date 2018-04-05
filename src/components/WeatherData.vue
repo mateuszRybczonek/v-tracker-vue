@@ -35,16 +35,11 @@
               :withBorder="true"
             >
             </WindFlag>
-            <ul class="weather-info__content__list">
-              <li
-                class="weather-info__content__list__item"
-                v-for="windElement in windData"
-                :key="windElement.title"
-              >
-                <span class="weather-info__content__list__item__title">{{windElement.title}}</span>
-                <span class="weather-info__content__list__item__value">{{windElement.value}}</span>
-              </li>
-            </ul>
+            <BaseList
+              class="weather-info__content__list"
+              :items="windData"
+              :size="big"
+            ></BaseList>
           </div>
           <div class="weather-info__content__sea">
             <SeaFlag
@@ -54,16 +49,11 @@
               :withBorder="true"
             >
             </SeaFlag>
-            <ul class="weather-info__content__list">
-              <li
-                class="weather-info__content__list__item"
-                v-for="seaElement in seaData"
-                :key="seaElement.title"
-              >
-                <span class="weather-info__content__list__item__title">{{seaElement.title}}</span>
-                <span class="weather-info__content__list__item__value">{{seaElement.value}}</span>
-              </li>
-            </ul>
+            <BaseList
+              class="weather-info__content__list"
+              :items="seaData"
+              :size="big"
+            ></BaseList>
           </div>
         </div>
         <WeatherSituation
@@ -79,6 +69,7 @@
 <script>
   import IconWeather from './Icons/IconWeather.vue'
   import BaseIcon from './BaseIcon.vue'
+  import BaseList from './BaseList.vue'
   import WindFlag from './WindFlag.vue'
   import SeaFlag from './SeaFlag.vue'
   import WeatherSituation from './WeatherSituation.vue'
@@ -91,6 +82,7 @@
     components: {
       IconWeather,
       BaseIcon,
+      BaseList,
       AccordionWrapper,
       WindFlag,
       SeaFlag,
@@ -252,23 +244,7 @@
 
     &__list {
       padding: 0 0 0 40px;
-      align-self: center;
-      &__item {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        list-style-type: none;
-        font-weight: 300;
-        cursor: default;
-        margin-top: 15px;
-        &__title {
-          @include font(18px, 300);
-          margin-right: 25px;
-        }
-        &__value {
-          @include font(26px, 400);
-        }
-      }
+      min-width: 250px;
     }
   }
 </style>
