@@ -32,7 +32,7 @@ export default {
       const userId = this.state.auth.userId
       const { data } = await globalAxios.get(`/vessels.json?orderBy="owner"&equalTo="${userId}"`)
       const userVessels = []
-      for (let key in data) {     // add id to the vessel
+      for (let key in data) { // add id to the vessel
         const vessel = data[key]
         vessel.id = key
         userVessels.push(vessel)

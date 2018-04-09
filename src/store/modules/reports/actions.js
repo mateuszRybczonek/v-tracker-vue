@@ -36,7 +36,7 @@ export default {
     try {
       const { data } = await globalAxios.get(`/reports.json?orderBy="vessel"&equalTo="${vesselId}"`)
       const reports = []
-      for (let key in data) {     // add id to the report
+      for (let key in data) { // add id to the report
         const report = data[key]
         report.id = key
         mapReportForStore(report)

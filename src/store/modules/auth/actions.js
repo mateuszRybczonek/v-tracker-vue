@@ -27,7 +27,7 @@ export default {
 
       const now = new Date()
       const expirationDate = new Date(now.getTime() + data.expiresIn * 1000)
-      localStorage.setItem('token', data.idToken)  // store token in local storage for auto login
+      localStorage.setItem('token', data.idToken) // store token in local storage for auto login
       localStorage.setItem('userId', data.localId)
       localStorage.setItem('expirationDate', expirationDate)
       localStorage.setItem('userEmail', authData.email)
@@ -87,7 +87,7 @@ export default {
       const now = new Date()
       const expirationDate = new Date(now.getTime() + data.expiresIn * 1000)
       authData.userId = data.localId
-      localStorage.setItem('token', data.idToken)  // store token in local storage for auto login
+      localStorage.setItem('token', data.idToken) // store token in local storage for auto login
       localStorage.setItem('userId', authData.userId)
       localStorage.setItem('expirationDate', expirationDate)
       localStorage.setItem('userEmail', authData.email)

@@ -90,13 +90,13 @@
       email: {
         required,
         email
-//        unique: value => {
-//          if (value === '') return true
-//          return globalAxios.get(`/users.json?orderBy="email"&equalTo="${value}"`)
-//            .then(result => {
-//              return Object.keys(result.data).length === 0
-//            })
-//        }
+        //        unique: value => {
+        //          if (value === '') return true
+        //          return globalAxios.get(`/users.json?orderBy="email"&equalTo="${value}"`)
+        //            .then(result => {
+        //              return Object.keys(result.data).length === 0
+        //            })
+        //        }
       },
       password: {
         required,
