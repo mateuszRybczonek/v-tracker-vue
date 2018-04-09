@@ -1,0 +1,8 @@
+$mobile-width: 468px;
+$tablet-width: 768px;
+$desktop-width: 1180px;
+
+$mobile: '(max-width: #{$mobile-width})';
+$tablet: '(min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px})';
+$tablet-up: '(min-width: #{$tablet-width})';
+$desktop: '(min-width: #{$desktop-width})';
