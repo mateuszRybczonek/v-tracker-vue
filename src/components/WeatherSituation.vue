@@ -64,7 +64,7 @@
     },
 
     watch: {
-      report (newVal, oldVal) {
+      report () {
         this.setSituation()
       }
     },
@@ -74,7 +74,7 @@
     },
 
     methods: {
-      setSituation (report) {
+      setSituation () {
         const windFlagWrapper = document.getElementById('weather-situation__wind-flag-wrapper')
         windFlagWrapper.style.transform = `rotate(${this.report.windDir}deg)`
 

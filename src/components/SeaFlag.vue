@@ -83,11 +83,11 @@
     },
 
     watch: {
-      direction (newVal, oldVal) {
+      direction () {
         this.setFlag()
       },
 
-      height (newVal, oldVal) {
+      height () {
         this.setFlag()
       }
     },
