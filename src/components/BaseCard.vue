@@ -1,6 +1,9 @@
 <template>
   <router-link :to="to">
-    <div class="base-card">
+    <div
+      data-test-base-card
+      class="base-card"
+    >
       <slot></slot>
     </div>
   </router-link>

@@ -1,5 +1,6 @@
 <template>
   <div
+    data-test-base-badge
     class="badge"
     :class="color"
   >
@@ -13,7 +14,12 @@
       <component :is="icon"></component>
     </BaseIcon>
   </div>
-    <p class="badge__title">{{ title }}</p>
+    <p
+      data-test-base-badge-title
+      class="badge__title"
+    >
+      {{ title }}
+    </p>
   </div>
 </template>
 

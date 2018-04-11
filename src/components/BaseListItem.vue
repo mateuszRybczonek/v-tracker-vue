@@ -1,5 +1,5 @@
 <template>
-  <div class="base-list-item">
+  <div data-test-base-list-item class="base-list-item">
     <slot></slot>
   </div>
 </template>

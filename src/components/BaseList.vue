@@ -1,12 +1,25 @@
 <template>
   <ul class="list">
     <li
+      data-test-base-list-item
       class="list__item"
       v-for="item in items"
       :key="item.title"
     >
-      <span class="item__title" :class="size">{{item.title}}</span>
-      <span class="item__value" :class="size">{{item.value}}</span>
+      <span
+        data-test-base-list-item-title
+        class="item__title"
+        :class="size"
+      >
+        {{item.title}}
+      </span>
+      <span
+        data-test-base-list-item-value
+        class="item__value"
+        :class="size"
+      >
+        {{item.value}}
+      </span>
     </li>
   </ul>
 </template>

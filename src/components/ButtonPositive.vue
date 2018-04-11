@@ -1,10 +1,12 @@
 <template>
   <button
+    data-test-button-positive
     :class="{'in-progress': inProgress}"
     @click="onClick"
     >
 
     <md-progress-spinner
+      data-test-progress-spinner
       v-if="inProgress"
       :md-diameter="20"
       :md-stroke="3"
