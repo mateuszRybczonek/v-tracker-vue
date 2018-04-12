@@ -39,8 +39,7 @@ export default {
 <style scoped lang="scss">
   .vessels-list-item-body {
     &__header {
-      font-size: 24px;
-      font-weight: 700;
+      @include font(1.5rem, $fw-normal);
       padding: 0 0 15px;
 
       @media all and (max-width: $phone) {

@@ -79,7 +79,7 @@
 
       &.active {
         color: $color-blue;
-        font-weight: 700;
+        font-weight: $fw-bold;
 
         .step-badge {
           border: solid 2px;

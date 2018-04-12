@@ -159,7 +159,7 @@
 
     &__title {
       color: $color-white;
-      font-weight: 700;
+      font-weight: $fw-bold;
       align-self: center;
       margin-left: 20px;
     }

@@ -113,7 +113,7 @@
     > h5 {
       color: $color-whitey;
       margin: 0;
-      font-weight: 400;
+      font-weight: $fw-normal;
     }
 
     &__edit-link {

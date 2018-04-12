@@ -1,72 +1,67 @@
-$font-1x: 14px;
-$font-2x: 28px;
+$font-1x: 0.9rem;
+$font-2x: 1.8rem;
 
 $phone: 468px;
 $tablet: 768px;
 $desktop: 1180px;
+
+$fw-bold: 600;
+$fw-normal: 400;
 
 $snap: cubic-bezier(1.000, 0.005, 0.240, 1.000);
 $bounce: cubic-bezier(0.175, 0.885, 0.320, 1.275);
 
 h1 {
   @include base-typo-header();
-  @include font(36px, 600, normal);
+  @include font(2.6rem, $fw-bold, normal);
 
   @media all and (max-width: $phone) {
-    @include font(40px, 700, normal);
+    @include font(2.6rem, $fw-bold, normal);
   }
 }
 
 h2 {
   @include base-typo-header();
-  @include font(30px, 600, normal);
+  @include font(2rem, $fw-bold, normal);
 
   @media all and (max-width: $phone) {
-    @include font(36px, 700, normal);
+    @include font(2.4rem, $fw-bold, normal);
   }
 }
 
 h3 {
   @include base-typo-header();
-  @include font(24px, 600, 32px);
+  @include font(1.5rem, $fw-bold, 1.9rem);
 
   @media all and (max-width: $phone) {
-    @include font(30px, 700, 35px);
+    @include font(1.9rem, $fw-bold, 2.3rem);
   }
 }
 
 h4 {
   @include base-typo-header();
-  @include font(20px, 600, 28px);
+  @include font(1.2rem, $fw-bold, 1.6rem);
 
   @media all and (max-width: $phone) {
-    @include font(24px, 700, 30px);
+    @include font(1.5rem, $fw-bold, 1.9rem);
   }
 }
 
 h5 {
   @include base-typo-header();
-  @include font(18px, 600, 26px);
+  @include font(1.1rem, $fw-bold, 1.5rem);
 
   @media all and (max-width: $phone) {
-    @include font(20px, 700, 28px);
+    @include font(1.2rem, $fw-bold, 1.6rem);
   }
 }
 
-h6 {
-  @include base-typo-subheader();
-  @include font(18px, 400, 26px);
-
-  @media all and (max-width: $phone) {
-    @include font(20px, 400, 28px);
-  }
-}
 
 p {
   @include base-typo-subheader();
-  @include font(15px, 400, 23px);
+  @include font(1rem, $fw-normal, 1.4rem);
 
   @media all and (max-width: $phone) {
-    @include font(18px, 400, 26px);
+    @include font(1.1rem, $fw-normal, 1.5rem);
   }
 }

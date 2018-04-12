@@ -79,7 +79,7 @@
     align-items: center;
     margin: 0;
     color: $color-whitey;
-    font-weight: 700;
+    font-weight: $fw-bold;
 
     &__icon {
       width: 30px;
@@ -89,7 +89,7 @@
     &__title {
       margin: 0;
       color: $color-whitey;
-      font-weight: 700;
+      font-weight: $fw-bold;
     }
   }
 

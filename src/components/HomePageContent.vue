@@ -23,7 +23,7 @@
   .home-page {
     &__sub-text {
       text-transform: uppercase;
-      font-weight: 500;
+      font-weight: $fw-normal;
       letter-spacing: 1px;
     }
 

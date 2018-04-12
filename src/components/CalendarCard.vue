@@ -54,7 +54,7 @@
     flex-direction: column;
     min-width: 90px;
     height: 100px;
-    font-size: 14px;
+    font-size: 0.9rem;
     background-color: $color-white;
     border-radius: 8px;
     box-shadow: 0 1px 0 $color-whitey-darker, 0 2px 0 $color-white, 0 3px 0 $color-whitey-darker, 0 4px 0 $color-white, 0 5px 0 $color-whitey-darker, 0 0 0 1px $color-whitey-darker;
@@ -70,7 +70,7 @@
 
     * {
       width: 100%;
-      font-weight: 700;
+      font-weight: $fw-bold;
       font-style: normal;
       text-align: center;
     }
@@ -85,14 +85,14 @@
 
     &__day {
       padding-top: 20px;
-      font-size: 40px;
+      font-size: 2.5rem;
       letter-spacing: -0.05em;
       color: $color-black;
     }
 
     &__day-of-week {
       padding-top: 10px;
-      font-size: 12px;
+      font-size: 0.75rem;
       color: $color-blue;
     }
 

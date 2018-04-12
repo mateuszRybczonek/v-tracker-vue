@@ -59,7 +59,7 @@
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
-    font-weight: 500;
+    font-weight: $fw-normal;
 
     &__arrow {
       margin-right: 10px;
