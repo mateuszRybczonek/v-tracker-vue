@@ -141,7 +141,7 @@
           height: 2px;
           width: 100%;
           background: $color-whitey;
-          border-radius: 1px;
+          @include border-radius(1px);
           opacity: 1;
           left: 0;
           transform: rotate(0deg);

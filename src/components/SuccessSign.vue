@@ -45,7 +45,7 @@
 
     .circle,
     .circle:after {
-      border-radius: 50%;
+      @include border-radius(50%);
       width: $loader-size;
       height: $loader-size;
       border-color: $check-color;

@@ -56,7 +56,7 @@
     height: 100px;
     font-size: 0.9rem;
     background-color: $color-white;
-    border-radius: 8px;
+    @include border-radius(8);
     box-shadow: 0 1px 0 $color-whitey-darker, 0 2px 0 $color-white, 0 3px 0 $color-whitey-darker, 0 4px 0 $color-white, 0 5px 0 $color-whitey-darker, 0 0 0 1px $color-whitey-darker;
     overflow: hidden;
     cursor: pointer;

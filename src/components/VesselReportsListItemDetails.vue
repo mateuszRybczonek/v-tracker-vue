@@ -138,7 +138,7 @@
       display: flex;
       justify-content: space-between;
       padding-right: 0;
-      border-radius: 0;
+      @include border-radius(0);
 
       &.black {
         background-color: $color-black;

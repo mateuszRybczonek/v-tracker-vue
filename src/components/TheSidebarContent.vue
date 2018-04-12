@@ -130,7 +130,7 @@
         &__marker {
           height: 15px;
           width: 15px;
-          border-radius: 50%;
+          @include border-radius(50%);
           border: 2px solid $color-whitey-lighter;
           position: relative;
           top: 3px;

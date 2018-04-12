@@ -155,7 +155,7 @@
         align-items: center;
         align-self: center;
         border: 1px solid $color-blue;
-        border-radius: 3px;
+        @include border-radius(3px);
       }
 
       .step__progress-bar {

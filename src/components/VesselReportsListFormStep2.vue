@@ -326,7 +326,7 @@
       justify-content: space-evenly;
 
       .form-section {
-        border-radius: 3px;
+        @include border-radius(3px);
         padding: 10px;
 
         &__heading {
@@ -336,7 +336,7 @@
         .input__wrapper {
           display: flex;
           background-color: $color-whitey-darker;
-          border-radius: 4px;
+          @include border-radius(4px);
           border: none;
           opacity: 0.8;
 
