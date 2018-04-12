@@ -121,9 +121,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
+      @include sizing(100% 60px);
       padding: 0 20px;
-      height: 60px;
       background-color: $color-white;
       cursor: pointer;
       border-bottom: 1px solid $color-whitey;

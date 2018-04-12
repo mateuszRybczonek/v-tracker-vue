@@ -161,8 +161,7 @@
       .step__progress-bar {
         position: relative;
         top: 23px;
-        width: 0;
-        height: 2px;
+        @include sizing(0 2px);
         transition: width 1s;
         background-color: $color-light-blue;
 

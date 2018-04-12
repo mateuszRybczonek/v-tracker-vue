@@ -47,8 +47,7 @@
 
 <style scoped lang="scss">
   .header {
-    height: 56px;
-    width: 100%;
+    @include sizing(100% 56px);
     position: fixed;
     top: 0;
     display: flex;

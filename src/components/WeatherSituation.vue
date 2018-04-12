@@ -92,8 +92,7 @@
   .weather-situation {
     display: flex;
     position: relative;
-    height: 500px;
-    width: 500px;
+    @include sizing(500px);
     background: url(../assets/compass-rose.svg);
     background-size: 500px;
 
@@ -103,8 +102,7 @@
 
     &__wind-flag-wrapper, &__sea-flag-wrapper, &__vessel-wrapper {
       position: absolute;
-      width: 500px;
-      height: 500px;
+      @include sizing(500px);
       transition: all 2s ease-in-out;
     }
 

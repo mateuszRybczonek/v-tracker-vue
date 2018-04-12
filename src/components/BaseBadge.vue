@@ -82,8 +82,7 @@
     font-weight: $fw-bold;
 
     &__icon {
-      width: 30px;
-      height: 30px;
+      @include sizing(30px);
     }
 
     &__title {
