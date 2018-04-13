@@ -1,6 +1,9 @@
 <template>
   <router-link :to="to">
-    <div class="base-card">
+    <div
+      data-test-base-card
+      class="base-card"
+    >
       <slot></slot>
     </div>
   </router-link>
@@ -29,7 +32,7 @@
     padding: 20px;
     text-align: center;
     @include transitions-all();
-    @include border-radius(5);
+    @include border-radius(5px);
     @include box-shadow(0 0 100px 1px rgba(0,0,0,0.1));
 
     &:hover {

@@ -125,12 +125,12 @@
         display: flex;
         align-self: flex-end;
         margin: 0 27px 15px;
-        font-weight: 700;
+        font-weight: $fw-bold;
 
         &__marker {
           height: 15px;
           width: 15px;
-          border-radius: 50%;
+          @include border-radius(50%);
           border: 2px solid $color-whitey-lighter;
           position: relative;
           top: 3px;
@@ -160,7 +160,7 @@
         flex-direction: column;
         margin: 0 0 15px;
         list-style-type: none;
-        font-weight: 700;
+        font-weight: $fw-bold;
 
         &__title {
           text-transform: uppercase;

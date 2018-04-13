@@ -113,7 +113,7 @@
     > h5 {
       color: $color-whitey;
       margin: 0;
-      font-weight: 400;
+      font-weight: $fw-normal;
     }
 
     &__edit-link {
@@ -141,7 +141,7 @@
           height: 2px;
           width: 100%;
           background: $color-whitey;
-          border-radius: 1px;
+          @include border-radius(1px);
           opacity: 1;
           left: 0;
           transform: rotate(0deg);

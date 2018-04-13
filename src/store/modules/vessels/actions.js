@@ -13,8 +13,8 @@ export default {
       try {
         await globalAxios.patch(`users/${getters.user.userId}/vessels.json?auth=${getters.idToken}`, { [vesselId]: true })
         router.push('/dashboard/vessels')
-      } catch (error) { console.log(error) }
-    } catch (error) { console.log(error) }
+      } catch (error) { throw(error) }
+    } catch (error) { throw(error) }
   },
 
   async editVessel ({ getters }, vesselData) {
@@ -24,21 +24,21 @@ export default {
     try {
       await globalAxios.patch(`/vessels/${vesselData.id}.json?auth=${getters.idToken}`, vesselData)
       router.push('/dashboard/vessels')
-    } catch (error) { console.log(error) }
+    } catch (error) { throw(error) }
   },
 
-  async fetchVessels ({ getters, commit }) {
+  async fetchVessels ({ commit }) {
     try {
       const userId = this.state.auth.userId
       const { data } = await globalAxios.get(`/vessels.json?orderBy="owner"&equalTo="${userId}"`)
       const userVessels = []
-      for (let key in data) {     // add id to the vessel
+      for (let key in data) { // add id to the vessel
         const vessel = data[key]
         vessel.id = key
         userVessels.push(vessel)
       }
       commit(types.STORE_VESSEL, userVessels)
-    } catch (error) { console.log(error) }
+    } catch (error) { throw(error) }
   },
 
   async deleteVessel ({ getters, commit }, vesselId) {
@@ -47,7 +47,7 @@ export default {
       try {
         await globalAxios.patch(`users/${getters.user.userId}/vessels.json?auth=${getters.idToken}`, { [vesselId]: null })
         commit(types.DELETE_VESSEL, vesselId)
-      } catch (error) { console.log(error) }
-    } catch (error) { console.log(error) }
+      } catch (error) { throw(error) }
+    } catch (error) { throw(error) }
   }
 }

@@ -333,7 +333,7 @@ export default {
 				.input__wrapper {
           display: flex;
           background-color: $color-whitey-darker;
-          border-radius: 4px;
+          @include border-radius(4px);
           border: none;
           opacity: 0.8;
 

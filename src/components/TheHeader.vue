@@ -47,8 +47,7 @@
 
 <style scoped lang="scss">
   .header {
-    height: 56px;
-    width: 100%;
+    @include sizing(100% 56px);
     position: fixed;
     top: 0;
     display: flex;
@@ -60,7 +59,7 @@
     z-index: 999;
 
     &__logo {
-      font-weight: bold;
+      font-weight: $fw-bold;
       color: white;
 
       a {
@@ -95,7 +94,7 @@
       a:hover,
       a:active,
       a.router-link-active {
-        font-weight: 800;
+        font-weight: $fw-bold;
       }
     }
 
@@ -108,7 +107,7 @@
 
       &:hover,
       &:active  {
-        font-weight: 800;
+        font-weight: $fw-bold;
       }
     }
   }

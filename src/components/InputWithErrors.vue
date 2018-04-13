@@ -52,9 +52,9 @@
       height: 50px;
       background-color: $color-whitey-darker;
       color: $color-black;
-      border-radius: 4px;
+      @include border-radius(4px)
       border: none;
-      font-size: 17px;
+      font-size: 1rem;
       padding: 10px;
 
       &::placeholder {

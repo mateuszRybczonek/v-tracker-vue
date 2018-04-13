@@ -1,5 +1,6 @@
 <template>
   <div
+    data-test-base-badge
     class="badge"
     :class="color"
   >
@@ -13,7 +14,12 @@
       <component :is="icon"></component>
     </BaseIcon>
   </div>
-    <p class="badge__title">{{ title }}</p>
+    <p
+      data-test-base-badge-title
+      class="badge__title"
+    >
+      {{ title }}
+    </p>
   </div>
 </template>
 
@@ -73,17 +79,16 @@
     align-items: center;
     margin: 0;
     color: $color-whitey;
-    font-weight: 700;
+    font-weight: $fw-bold;
 
     &__icon {
-      width: 30px;
-      height: 30px;
+      @include sizing(30px);
     }
 
     &__title {
       margin: 0;
       color: $color-whitey;
-      font-weight: 700;
+      font-weight: $fw-bold;
     }
   }
 

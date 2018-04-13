@@ -64,7 +64,7 @@
     background-color: $color-white;
     width: 350px;
     text-align: center;
-    @include border-radius(5);
+    @include border-radius(5px);
     @include box-shadow(0 0 100px 1px rgba(0,0,0,0.1));
 
     @media all and (max-width: $phone) {

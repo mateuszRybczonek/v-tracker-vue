@@ -75,3 +75,11 @@
     overflow: hidden;
   }
 }
+
+@mixin sizing($args, $prefix: "") {
+  $width: if(length($args) == 2, nth($args, 1), $args);
+  $height: if(length($args) == 2, nth($args, 2), $args);
+
+  #{$prefix}width: $width;
+  #{$prefix}height: $height;
+}

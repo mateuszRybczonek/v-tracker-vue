@@ -1,11 +1,14 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg"
+  <svg
+    data-test-svg
+    xmlns="http://www.w3.org/2000/svg"
     :width="width"
     :height="height"
     :viewBox="viewBox"
     role="presentation"
   >
     <g
+      data-test-graphics
       :fill="iconColor"
       :stroke="strokeColor"
     >

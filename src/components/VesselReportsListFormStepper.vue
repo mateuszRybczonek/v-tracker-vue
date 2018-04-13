@@ -79,7 +79,7 @@
 
       &.active {
         color: $color-blue;
-        font-weight: 700;
+        font-weight: $fw-bold;
 
         .step-badge {
           border: solid 2px;
@@ -155,14 +155,13 @@
         align-items: center;
         align-self: center;
         border: 1px solid $color-blue;
-        border-radius: 3px;
+        @include border-radius(3px);
       }
 
       .step__progress-bar {
         position: relative;
         top: 23px;
-        width: 0;
-        height: 2px;
+        @include sizing(0 2px);
         transition: width 1s;
         background-color: $color-light-blue;
 

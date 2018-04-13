@@ -27,7 +27,7 @@ export default {
 
       const now = new Date()
       const expirationDate = new Date(now.getTime() + data.expiresIn * 1000)
-      localStorage.setItem('token', data.idToken)  // store token in local storage for auto login
+      localStorage.setItem('token', data.idToken) // store token in local storage for auto login
       localStorage.setItem('userId', data.localId)
       localStorage.setItem('expirationDate', expirationDate)
       localStorage.setItem('userEmail', authData.email)
@@ -35,7 +35,7 @@ export default {
       router.push('/dashboard/vessels')
     } catch (error) {
       commit(types.AUTH_ERROR, true)
-      console.log(error)
+      throw(error)
     }
   },
 
@@ -87,7 +87,7 @@ export default {
       const now = new Date()
       const expirationDate = new Date(now.getTime() + data.expiresIn * 1000)
       authData.userId = data.localId
-      localStorage.setItem('token', data.idToken)  // store token in local storage for auto login
+      localStorage.setItem('token', data.idToken) // store token in local storage for auto login
       localStorage.setItem('userId', authData.userId)
       localStorage.setItem('expirationDate', expirationDate)
       localStorage.setItem('userEmail', authData.email)
@@ -96,7 +96,7 @@ export default {
       await dispatch('setLogoutTimer', data.expiresIn)
       router.push('/dashboard')
     } catch (error) {
-      console.log(error)
+      throw(error)
     }
   },
 
@@ -108,7 +108,7 @@ export default {
       await globalAxios.put(`/users/${userData.userId}.json?auth=${state.idToken}`, userData) //  path from main.js axios defaults
       commit(types.STORE_USER, userData) // store user in store
     } catch (error) {
-      console.log(error)
+      throw(error)
     }
   },
 
@@ -123,7 +123,7 @@ export default {
       localStorage.setItem('user', user)
       commit(types.STORE_USER, user)
     } catch (error) {
-      console.log(error)
+      throw(error)
     }
   }
 }

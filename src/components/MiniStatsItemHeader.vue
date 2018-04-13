@@ -47,12 +47,12 @@
     align-items: center;
     margin: 0;
     color: $color-whitey;
-    font-weight: 700;
+    font-weight: $fw-bold;
 
     &__description {
       margin: 0;
       color: $color-whitey;
-      font-weight: 700;
+      font-weight: $fw-bold;
     }
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="base-list-item">
+  <div data-test-base-list-item class="base-list-item">
     <slot></slot>
   </div>
 </template>
@@ -16,7 +16,7 @@
     padding: 20px;
     text-align: center;
     @include transitions-all();
-    @include border-radius(5);
+    @include border-radius(5px);
     @include box-shadow(0 0 100px 1px rgba(0,0,0,0.1));
 
     &:hover {

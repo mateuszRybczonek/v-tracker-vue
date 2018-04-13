@@ -1,10 +1,12 @@
 <template>
   <button
+    data-test-button-positive
     :class="{'in-progress': inProgress}"
     @click="onClick"
     >
 
     <md-progress-spinner
+      data-test-progress-spinner
       v-if="inProgress"
       :md-diameter="20"
       :md-stroke="3"
@@ -45,12 +47,12 @@
     @include common-button();
     @include green-button();
     @include box-shadow(0 8px 16px 0 rgba(83, 99, 115, 0.32));
-    @include font(16px, 700);
+    @include font(1rem, 700);
     min-height: $button-height;
 
     @media all and (max-width: $phone) {
       width: 100%;
-      font-size: 20px;
+      font-size: 1.2rem;
     }
 
     &.in-progress {
@@ -69,7 +71,7 @@
       margin-left: 8px;
       line-height: 21px;
       vertical-align: middle;
-      font-size: 22px;
+      font-size: 1.4rem;
     }
 
     .md-progress-spinner {

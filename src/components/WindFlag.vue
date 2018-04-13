@@ -54,11 +54,11 @@
     },
 
     watch: {
-      direction (newVal, oldVal) {
+      direction () {
         this.setFlag()
       },
 
-      speed (newVal, oldVal) {
+      speed () {
         this.setFlag()
       }
     },
