@@ -1,5 +1,6 @@
 <template>
   <div
+    data-test-calendar-card
     class="calendar-card"
     :class="{'calendar-card--selected': presentReportSelected}"
   >
