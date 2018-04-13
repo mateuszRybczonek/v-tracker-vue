@@ -12,8 +12,7 @@ describe('BaseCard.vue', () => {
     }
   })
 
-  it('should render correct content', () => {
-    expect(wrapper.findAll('[data-test-base-card]')).toHaveLength(1)
+  it('renders passed slot content', () => {
     expect(wrapper.findAll('[data-test-fake-slot]')).toHaveLength(1)
   })
 })

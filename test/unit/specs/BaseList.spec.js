@@ -3,14 +3,8 @@ import BaseList from '@/components/BaseList'
 
 describe('BaseList.vue', () => {
   const items = [
-    {
-      value: '1',
-      title: 'first'
-    },
-    {
-      value: '2',
-      title: 'second'
-    }
+    { value: '1', title: 'first' },
+    { value: '2', title: 'second' }
   ]
 
   const wrapper = shallow(BaseList, {
@@ -19,11 +13,11 @@ describe('BaseList.vue', () => {
     },
   })
 
-  it('should render correct number of items', () => {
+  it('renders correct number of items', () => {
     expect(wrapper.findAll('[data-test-base-list-item]')).toHaveLength(2)
   })
 
-  it('should render correct content in items', () => {
+  it('renders correct content in items', () => {
     const listItems = wrapper.findAll('li')
 
     listItems.wrappers.forEach((wrapper, i) => {

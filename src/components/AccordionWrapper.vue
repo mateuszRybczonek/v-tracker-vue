@@ -48,8 +48,8 @@
 </template>
 
 <script>
-  import BaseIcon from './BaseIcon.vue'
-  import IconArrowDown from './Icons/IconArrowDown.vue'
+  import BaseIcon from '@/components/BaseIcon.vue'
+  import IconArrowDown from '@/components/Icons/IconArrowDown.vue'
 
   export default {
     components: {

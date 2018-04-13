@@ -34,9 +34,7 @@ describe('CalendarCard.vue', () => {
     expect(wrapper.find('[data-test-calendar-card]').text()).toContain('Saturday')
   })
 
-  it('renders correct content when selected', () => {
-    wrapper.setComputed({ presentReportSelected: true })
-
+  it('appends correct class when presentReportSelected is true', () => {
     expect(wrapper.find('[data-test-calendar-card]').classes()).toContain('calendar-card--selected')
   })
 })

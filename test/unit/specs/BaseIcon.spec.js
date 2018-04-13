@@ -4,16 +4,17 @@ import BaseIcon from '@/components/BaseIcon'
 describe('BaseIcon.vue', () => {
   const wrapper = shallow(BaseIcon, {
     slots: {
-      default: '<div class="fake-slot"></div>'
+      default: '<div data-test-fake-slot></div>'
     }
   })
 
-  const vm = wrapper.vm
-
-  it('should render correct content', () => {
+  it('renders svg and g elements', () => {
     expect(wrapper.findAll('[data-test-svg]')).toHaveLength(1)
     expect(wrapper.findAll('[data-test-graphics]')).toHaveLength(1)
-    expect(wrapper.findAll('.fake-slot')).toHaveLength(1)
+  })
+
+  it('renders passed slot content', () => {
+    expect(wrapper.findAll('[data-test-fake-slot]')).toHaveLength(1)
   })
 
   it('sets default props correctly', () => {

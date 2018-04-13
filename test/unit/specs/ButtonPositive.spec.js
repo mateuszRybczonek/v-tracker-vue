@@ -15,13 +15,13 @@ describe('ButtonPositive.vue', () => {
     },
   })
 
-  it('should render correct content when not inProgress', () => {
+  it('renders correct content when not inProgress', () => {
     expect(wrapper.findAll('[data-test-button-positive]')).toHaveLength(1)
     expect(wrapper.findAll('[data-test-fake-slot]')).toHaveLength(1)
     expect(wrapper.findAll('[data-test-progress-spinner]')).toHaveLength(0)
   })
 
-  it('should render correct content when inProgress', () => {
+  it('renders correct content when inProgress', () => {
     wrapper.setData({ inProgress: true })
 
     expect(wrapper.findAll('[data-test-button-positive]')).toHaveLength(1)
