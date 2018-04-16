@@ -1,11 +1,15 @@
 <template>
   <div class="google-map">
-    <content-placeholders v-if="fetchingReports">
+    <content-placeholders
+      data-test-google-map-placeholder
+      v-if="fetchingReports"
+    >
       <content-placeholders-img class="google-map__placeholder"></content-placeholders-img>
     </content-placeholders>
 
     <div
       v-else
+      data-test-google-map
       class="google-map__map"
     >
       Mini-Google map will go here
