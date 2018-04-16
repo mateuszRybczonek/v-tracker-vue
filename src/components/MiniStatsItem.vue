@@ -1,9 +1,13 @@
 <template>
   <div class="mini-stats-item">
-    <content-placeholders v-if="showPlaceholder">
+    <content-placeholders
+      data-test-mini-stats-item-placeholder
+      v-if="showPlaceholder"
+    >
       <content-placeholders-img></content-placeholders-img>
     </content-placeholders>
     <AccordionWrapper
+      data-test-mini-stats-item-accordion
       v-else
       :showOnInit="true"
     >
