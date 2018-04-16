@@ -1,10 +1,19 @@
 <template>
   <BaseCard
+    data-test-main-menu-card
     class="dashboard-card"
     :to="destination"
   >
-    <component :is="icon"></component>
-    <p class="dashboard-card__label">{{label}}</p>
+    <component
+      data-test-main-menu-card-icon
+      :is="icon"
+    ></component>
+    <p
+      data-test-main-menu-card-label
+      class="dashboard-card__label"
+    >
+      {{label}}
+    </p>
   </BaseCard>
 </template>
 
