@@ -1,5 +1,6 @@
 <template>
   <div
+    data-test-mini-stats-item-body
     class="mini-stats-item-body"
     :class="item.color"
   >
@@ -8,10 +9,16 @@
         width="80"
         height="80"
       >
-        <component :is="item.icon"></component>
+        <component
+          data-test-mini-stats-item-body-icon
+          :is="item.icon"
+        ></component>
       </BaseIcon>
     </div>
-    <div class="mini-stats-item-body__description">
+    <div
+      data-test-mini-stats-item-body-description
+      class="mini-stats-item-body__description"
+    >
       <div class="description__header">
         {{item.header}}
       </div>
