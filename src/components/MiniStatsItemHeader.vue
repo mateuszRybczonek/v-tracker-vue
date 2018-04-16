@@ -1,5 +1,8 @@
 <template>
-  <div class="mini-stats-item-header">
+  <div
+    data-test-mini-stats-item-header
+    class="mini-stats-item-header"
+  >
     <BaseIcon
       width="30"
       height="30"
