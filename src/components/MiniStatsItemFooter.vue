@@ -1,5 +1,6 @@
 <template>
   <div
+    data-test-mini-stats-item-footer
     class="mini-stats-item-footer"
     :class="color"
   >
