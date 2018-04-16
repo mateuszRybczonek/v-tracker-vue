@@ -1,10 +1,15 @@
 <template>
-  <div class="home-page">
-    <p class="home-page__sub-text">Free Vessel Tracking App</p>
-    <h1 class="home-page__main-text">V-tracker</h1>
-    <p class="home-page__sub-text">Track you vessels based on reports or AIS</p>
+  <div class="home-page" data-test-home-page>
+    <p class="home-page__sub-text" data-test-home-page-sub-text-upper>Free Vessel Tracking App</p>
+    <h1 class="home-page__main-text" data-test-home-page-main-text>V-tracker</h1>
+    <p class="home-page__sub-text" data-test-home-page-sub-text-lower>Track you vessels based on reports or AIS</p>
     <ButtonPositive>
-      <router-link to="/signin">Log in</router-link>
+      <router-link
+        data-test-home-page-button-link
+        to="/signin"
+      >
+        Log in
+      </router-link>
     </ButtonPositive>
   </div>
 </template>
