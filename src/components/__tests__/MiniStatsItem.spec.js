@@ -3,7 +3,7 @@ import MiniStatsItem from '@/components/MiniStatsItem'
 import BaseBadge from '@/components/BaseBadge.vue'
 import MiniStatsItemBody from '@/components/MiniStatsItemBody.vue'
 import MiniStatsItemFooter from '@/components/MiniStatsItemFooter.vue'
-import { miniStatsItem } from '../../stubs/miniStatsItem'
+import { miniStatsItem } from '@/../test/stubs/miniStatsItem'
 
 describe('MiniStatsItem.vue', () => {
   const wrapper = mount(MiniStatsItem, {

@@ -2,7 +2,7 @@ import { mount } from 'vue-test-utils'
 import MiniStatsItemBody from '@/components/MiniStatsItemBody'
 import IconFuel from '@/components/Icons/IconFuel'
 import BaseIcon from '@/components/BaseIcon'
-import { miniStatsItem } from '../../stubs/miniStatsItem'
+import { miniStatsItem } from '@/../test/stubs/miniStatsItem'
 
 describe('MiniStatsItemBody.vue', () => {
   const wrapper = mount(MiniStatsItemBody, {

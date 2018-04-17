@@ -2,7 +2,7 @@ import { mount } from 'vue-test-utils'
 import NavigationData from '@/components/NavigationData'
 import BaseBadge from '@/components/BaseBadge'
 import BaseList from '@/components/BaseList'
-import { report } from '../../stubs/report'
+import { report } from '@/../test/stubs/report'
 
 describe('NavigationData.vue', () => {
   const wrapper = mount(NavigationData, {
