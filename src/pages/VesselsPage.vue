@@ -11,12 +11,13 @@
 
   export default {
     created () {
-      this.$store.dispatch('fetchVessels')
+      this.$store.dispatch('fetchVessels', this.userId)
     },
 
     computed: {
       ...mapGetters([
-        'vessels'
+        'vessels',
+        'userId'
       ])
     },
 

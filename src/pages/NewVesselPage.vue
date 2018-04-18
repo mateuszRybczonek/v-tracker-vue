@@ -72,6 +72,7 @@
   import FormWrapper from '../components/FormWrapper.vue'
   import ButtonPositive from '../components/ButtonPositive.vue'
   import { required, numeric } from 'vuelidate/lib/validators'
+  import router from '@/router/index'
 
   export default {
     data () {
@@ -102,7 +103,7 @@
     },
 
     methods: {
-      onSubmit () {
+      async onSubmit () {
         const formData = {
           name: this.vessel.name,
           imoNumber: this.vessel.imoNumber,
@@ -118,7 +119,8 @@
         if (this.$v.$invalid) {
           return false
         } else {
-          this.$store.dispatch('createNewVessel', formData)
+          await this.$store.dispatch('createNewVessel', formData)
+          router.push('/dashboard/vessels')
           this.isSubmitted = true
         }
       }
