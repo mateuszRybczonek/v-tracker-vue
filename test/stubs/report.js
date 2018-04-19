@@ -22,4 +22,52 @@ const report = {
   windSpd: 40
 }
 
-export { report }
+const secondReport = {
+  course: 123,
+  createdAt: "2018-03-19T15:38:34.255Z",
+  createdBy: "PUBx21545ZOytG9KcWyaPZjSQyK2",
+  doRob: 100,
+  foRob: 90,
+  fwRob: 80,
+  id: "-LAUKugHH0_YhkHdzcS-",
+  lat: 12.338,
+  lng: -12.34,
+  pitch: 1,
+  pob: 67,
+  reportTime: "2018-04-16",
+  roll: 0.3,
+  seaState: 2,
+  spd: 12,
+  swellDir: 300,
+  swellHeight: 2,
+  updatedAt: "",
+  vessel: "-L2sqMuqy29K5adoAZdT",
+  windDir: 200,
+  windSpd: 14
+}
+
+const rawSecondReport = {
+  course: "123",
+  createdAt: "2018-03-19T15:38:34.255Z",
+  createdBy: "PUBx21545ZOytG9KcWyaPZjSQyK2",
+  doRob: "100",
+  foRob: "90",
+  fwRob: "80",
+  id: "-LAUKugHH0_YhkHdzcS-",
+  lat: "12.338",
+  lng: "-12.340",
+  pitch: "1",
+  pob: "67",
+  reportTime: "2018-04-16",
+  roll: "0.3",
+  seaState: "2",
+  spd: "12",
+  swellDir: "300",
+  swellHeight: "2",
+  updatedAt: "",
+  vessel: "-L2sqMuqy29K5adoAZdT",
+  windDir: "200",
+  windSpd: "14"
+}
+
+export { report, secondReport, rawSecondReport }

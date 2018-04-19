@@ -24,8 +24,8 @@ export default {
 
   [types.UPDATE_REPORT] (state, reportData) {
     mapReportForStore(reportData)
-    const report = state.reports.filter(report => report.id === reportData.id)
-    const reportIndex = state.reports.indexOf(report[0])
+    const report = state.reports.find(report => report.id === reportData.id)
+    const reportIndex = state.reports.indexOf(report)
     Vue.set(state.reports, reportIndex, reportData)
   },
 
