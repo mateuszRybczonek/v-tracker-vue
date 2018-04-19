@@ -30,155 +30,98 @@ describe('vessels actions', () => {
     expect(context.commit).toHaveBeenCalledWith('STORE_VESSEL', [ firstVessel ])
   })
 
-  test('editVessel doesn\'t make a call when no idToken', async() => {
-    const onFulfilled = sinon.spy()
-    axios.get('/vessels/1.json?auth=undefined').then(onFulfilled)
+  describe('editVessel', () => {
+    let vesselData
+    let onFulfilled
+    let context
 
-    const vesselData = {
-      id: 1
-    }
-
-    const context = {
-      getters: {
-        idToken: undefined
-      }    }
-
-    await actions.editVessel(context, vesselData)
-    ok(onFulfilled.notCalled)
-  })
-
-  test('editVessel calls API and gets a proper response when idToken is valid', async() => {
-    const onFulfilled = sinon.spy()
-    axios.get('/vessels/1.json?auth=999').then(onFulfilled)
-
-    const vesselData = {
-      id: 1
-    }
-
-    moxios.stubRequest('/vessels/1.json?auth=999', {
-      status: 200,
-      response: vesselData
+    beforeEach(() => {
+      vesselData = { id: 1 }
     })
 
-    const context = {
-      getters: {
-        idToken: 999
+    it('doesn\'t make a call when no idToken', async() => {
+      onFulfilled = sinon.spy()
+      axios.patch('/vessels/1.json?auth=undefined').then(onFulfilled)
+
+      context = {
+        getters: {
+          idToken: undefined
+        }
       }
-    }
 
-    router: {
-      push: jest.fn()
-    }
+      await actions.editVessel(context, vesselData)
+      ok(onFulfilled.notCalled)
+    })
 
-    await actions.editVessel(context, vesselData)
-    equal(onFulfilled.getCall(0).args[0].data, vesselData)
+    it('calls API and gets a proper response when idToken is valid', async() => {
+      onFulfilled = sinon.spy()
+      axios.patch('/vessels/1.json?auth=999').then(onFulfilled)
+
+      moxios.stubRequest('/vessels/1.json?auth=999', {
+        status: 200,
+        response: vesselData
+      })
+
+      context = {
+        getters: {
+          idToken: 999
+        }
+      }
+
+      await actions.editVessel(context, vesselData)
+      equal(onFulfilled.getCall(0).args[0].data, vesselData)
+    })
   })
 
-  test('deleteVessel calls API and deletes the specified vessel', async() => {
-    const onFulfilledDelete = sinon.spy()
-    const onFulfilledPatch = sinon.spy()
+  describe('deleteVessel', () => {
+    let context
+    let vesselData
+    let onFulfilledDelete = sinon.spy()
+    let onFulfilledPatch = sinon.spy()
 
-    axios.delete('/vessels/1.json?auth=999').then(onFulfilledDelete)
-    axios.delete('users/333/vessels.json?auth=999').then(onFulfilledPatch)
+    beforeEach(() => {
+      vesselData = { id: 1 }
 
+      context = {
+        getters: {
+          idToken: 999,
+          user: {
+            userId: 333
+          }
+        },
+        commit: jest.fn()
+      }
 
-    const vesselData = {
-      id: 1
-    }
+      onFulfilledDelete = sinon.spy()
+      onFulfilledPatch = sinon.spy()
 
-    moxios.stubRequest('/vessels/1.json?auth=999', {
-      status: 200,
-      response: 'vessel deleted'
+      axios.delete('/vessels/1.json?auth=999').then(onFulfilledDelete)
+      axios.delete('users/333/vessels.json?auth=999').then(onFulfilledPatch)
+
+      moxios.stubRequest('/vessels/1.json?auth=999', {
+        status: 200,
+        response: 'vessel deleted'
+      })
+
+      moxios.stubRequest('users/333/vessels.json?auth=999', {
+        status: 200,
+        response: 'vessel ref in user patched'
+      })
     })
 
-    moxios.stubRequest('users/333/vessels.json?auth=999', {
-      status: 200,
-      response: 'vessel ref in user patched'
+    it('calls API and deletes the specified vessel', async() => {
+      await actions.deleteVessel(context, vesselData.id)
+      equal(onFulfilledDelete.getCall(0).args[0].data, 'vessel deleted')
     })
 
-    const context = {
-      getters: {
-        idToken: 999,
-        user: {
-          userId: 333
-        }
-      },
-      commit: jest.fn()
-    }
-
-    await actions.deleteVessel(context, vesselData.id)
-    equal(onFulfilledDelete.getCall(0).args[0].data, 'vessel deleted')
-  })
-
-  test('deleteVessel calls API and patches the user removing the reference to specified vessel', async() => {
-    const onFulfilledDelete = sinon.spy()
-    const onFulfilledPatch = sinon.spy()
-
-    axios.delete('/vessels/1.json?auth=999').then(onFulfilledDelete)
-    axios.delete('users/333/vessels.json?auth=999').then(onFulfilledPatch)
-
-
-    const vesselData = {
-      id: 1
-    }
-
-    moxios.stubRequest('/vessels/1.json?auth=999', {
-      status: 200,
-      response: 'vessel deleted'
+    it('calls API and patches the user removing the reference to specified vessel', async() => {
+      await actions.deleteVessel(context, vesselData.id)
+      equal(onFulfilledPatch.getCall(0).args[0].data, 'vessel ref in user patched')
     })
 
-    moxios.stubRequest('users/333/vessels.json?auth=999', {
-      status: 200,
-      response: 'vessel ref in user patched'
+    it('calls commit with DELETE_VESSEL and the vesselId', async() => {
+      await actions.deleteVessel(context, vesselData.id)
+      expect(context.commit).toHaveBeenCalledWith('DELETE_VESSEL', vesselData.id)
     })
-
-    const context = {
-      getters: {
-        idToken: 999,
-        user: {
-          userId: 333
-        }
-      },
-      commit: jest.fn()
-    }
-
-    await actions.deleteVessel(context, vesselData.id)
-    equal(onFulfilledPatch.getCall(0).args[0].data, 'vessel ref in user patched')
-  })
-
-  test('deleteVessel calls commit with DELETE_VESSEL and the vesselId', async() => {
-    const onFulfilledDelete = sinon.spy()
-    const onFulfilledPatch = sinon.spy()
-
-    axios.delete('/vessels/1.json?auth=999').then(onFulfilledDelete)
-    axios.delete('users/333/vessels.json?auth=999').then(onFulfilledPatch)
-
-
-    const vesselData = {
-      id: 1
-    }
-
-    moxios.stubRequest('/vessels/1.json?auth=999', {
-      status: 200,
-      response: 'vessel deleted'
-    })
-
-    moxios.stubRequest('users/333/vessels.json?auth=999', {
-      status: 200,
-      response: 'vessel ref in user patched'
-    })
-
-    const context = {
-      getters: {
-        idToken: 999,
-        user: {
-          userId: 333
-        }
-      },
-      commit: jest.fn()
-    }
-
-    await actions.deleteVessel(context, vesselData.id)
-    expect(context.commit).toHaveBeenCalledWith('DELETE_VESSEL', vesselData.id)
   })
 })
