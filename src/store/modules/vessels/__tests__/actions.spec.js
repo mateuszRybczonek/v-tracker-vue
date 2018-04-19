@@ -14,20 +14,36 @@ describe('vessels actions', () => {
     moxios.uninstall()
   })
 
-  test('fetchVessels calls commit with STORE_VESSEL and the fetched userVessels', async() => {
-    moxios.stubRequest('/vessels.json?orderBy="owner"&equalTo="1"', {
-      status: 200,
-      response: {
-        "-L2sqMuqy29K5adoAZdT": firstVessel
+  describe('fetchVessels', () => {
+    let context
+
+    const responseJSON = {
+      "-L2sqMuqy29K5adoAZdT": firstVessel
+    }
+
+    beforeEach(() => {
+      moxios.stubRequest('/vessels.json?orderBy="owner"&equalTo="1"', {
+        status: 200,
+        response: responseJSON
+      })
+
+      context = {
+        commit: jest.fn(),
       }
     })
 
-    const context = {
-      commit: jest.fn(),
-    }
+    it('calls API and gets a proper response', async() => {
+      const onFulfilled = sinon.spy()
+      axios.get('/vessels.json?orderBy="owner"&equalTo="1"').then(onFulfilled)
 
-    await actions.fetchVessels(context, 1)
-    expect(context.commit).toHaveBeenCalledWith('STORE_VESSEL', [ firstVessel ])
+      await actions.fetchVessels(context, 1)
+      equal(onFulfilled.getCall(0).args[0].data, responseJSON)
+    })
+
+    it('calls commit with STORE_VESSEL and the fetched userVessels', async() => {
+      await actions.fetchVessels(context, 1)
+      expect(context.commit).toHaveBeenCalledWith('STORE_VESSEL', [ firstVessel ])
+    })
   })
 
   describe('editVessel', () => {
