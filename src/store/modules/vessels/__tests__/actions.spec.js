@@ -14,35 +14,64 @@ describe('vessels actions', () => {
     moxios.uninstall()
   })
 
-  describe('fetchVessels', () => {
+  describe('createNewVessel', () => {
     let context
-
-    const responseJSON = {
-      "-L2sqMuqy29K5adoAZdT": firstVessel
-    }
+    let vesselData
+    let onFulfilledPost
+    let onFulfilledPatch
 
     beforeEach(() => {
-      moxios.stubRequest('/vessels.json?orderBy="owner"&equalTo="1"', {
-        status: 200,
-        response: responseJSON
-      })
+      vesselData = { id: 1 }
 
       context = {
-        commit: jest.fn(),
+        getters: {
+          idToken: 999,
+          user: {
+            userId: 333
+          }
+        },
+        commit: jest.fn()
       }
+
+      onFulfilledPost = sinon.spy()
+      onFulfilledPatch = sinon.spy()
+
+      axios.post('/vessels.json?auth=999').then(onFulfilledPost)
+      axios.patch('users/333/vessels.json?auth=999').then(onFulfilledPatch)
+
+      moxios.stubRequest('/vessels.json?auth=999', {
+        status: 200,
+        response: 'vessel added'
+      })
+
+      moxios.stubRequest('users/333/vessels.json?auth=999', {
+        status: 200,
+        response: 'vessel ref in user added'
+      })
     })
 
-    it('calls API and gets a proper response', async() => {
-      const onFulfilled = sinon.spy()
-      axios.get('/vessels.json?orderBy="owner"&equalTo="1"').then(onFulfilled)
+    it('doesn\'t make a call when no idToken', async() => {
+      let onFulfilledNoToken = sinon.spy()
+      axios.post('/vessels.json?auth=undefined').then(onFulfilledNoToken)
 
-      await actions.fetchVessels(context, 1)
-      equal(onFulfilled.getCall(0).args[0].data, responseJSON)
+      context = {
+        getters: {
+          idToken: undefined
+        }
+      }
+
+      await actions.createNewVessel(context, vesselData)
+      ok(onFulfilledNoToken.notCalled)
     })
 
-    it('calls commit with STORE_VESSEL and the fetched userVessels', async() => {
-      await actions.fetchVessels(context, 1)
-      expect(context.commit).toHaveBeenCalledWith('STORE_VESSEL', [ firstVessel ])
+    it('calls API and creates the vessel', async() => {
+      await actions.createNewVessel(context, vesselData)
+      equal(onFulfilledPost.getCall(0).args[0].data, 'vessel added')
+    })
+
+    it('calls API and patches the user adding a reference to the vessel', async() => {
+      await actions.createNewVessel(context, vesselData)
+      equal(onFulfilledPatch.getCall(0).args[0].data, 'vessel ref in user added')
     })
   })
 
@@ -89,11 +118,43 @@ describe('vessels actions', () => {
     })
   })
 
+  describe('fetchVessels', () => {
+    let context
+
+    const responseJSON = {
+      "-L2sqMuqy29K5adoAZdT": firstVessel
+    }
+
+    beforeEach(() => {
+      moxios.stubRequest('/vessels.json?orderBy="owner"&equalTo="1"', {
+        status: 200,
+        response: responseJSON
+      })
+
+      context = {
+        commit: jest.fn(),
+      }
+    })
+
+    it('calls API and gets a proper response', async() => {
+      const onFulfilled = sinon.spy()
+      axios.get('/vessels.json?orderBy="owner"&equalTo="1"').then(onFulfilled)
+
+      await actions.fetchVessels(context, 1)
+      equal(onFulfilled.getCall(0).args[0].data, responseJSON)
+    })
+
+    it('calls commit with STORE_VESSEL and the fetched userVessels', async() => {
+      await actions.fetchVessels(context, 1)
+      expect(context.commit).toHaveBeenCalledWith('STORE_VESSEL', [ firstVessel ])
+    })
+  })
+
   describe('deleteVessel', () => {
     let context
     let vesselData
-    let onFulfilledDelete = sinon.spy()
-    let onFulfilledPatch = sinon.spy()
+    let onFulfilledDelete
+    let onFulfilledPatch
 
     beforeEach(() => {
       vesselData = { id: 1 }
