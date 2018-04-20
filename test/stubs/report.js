@@ -17,7 +17,7 @@ const report = {
   swellDir: 100,
   swellHeight: 4,
   updatedAt: '',
-  vessel: '-L2sqMuqy29K5adoAZdT',
+  vessel: 'vessel-1',
   windDir: 100,
   windSpd: 40
 }
@@ -41,7 +41,7 @@ const secondReport = {
   swellDir: 300,
   swellHeight: 2,
   updatedAt: "",
-  vessel: "-L2sqMuqy29K5adoAZdT",
+  vessel: "vessel-1",
   windDir: 200,
   windSpd: 14
 }
@@ -65,7 +65,7 @@ const rawSecondReport = {
   swellDir: "300",
   swellHeight: "2",
   updatedAt: "",
-  vessel: "-L2sqMuqy29K5adoAZdT",
+  vessel: "vessel-1",
   windDir: "200",
   windSpd: "14"
 }

@@ -2,10 +2,11 @@ import axios from 'axios'
 import moxios from 'moxios'
 import sinon from 'sinon'
 import { equal, ok } from 'assert'
-import actions from '@/store/modules/vessels/actions'
-import { firstVessel, secondVessel } from '@/../test/stubs/vessel'
+import actions from '@/store/modules/reports/actions'
+import { report, secondReport, rawSecondReport } from '@/../test/stubs/report'
+import { mapReportForStore, getLastReport } from '@/store/modules/reports/helpers'
 
-describe('vessels actions', () => {
+describe('reports actions', () => {
   beforeEach(() => {
     moxios.install()
   })
@@ -14,21 +15,20 @@ describe('vessels actions', () => {
     moxios.uninstall()
   })
 
-  describe('createNewVessel', () => {
+  describe('createNewReport', () => {
     let context
-    let vesselData
+    let reportData
     let onFulfilledPost
     let onFulfilledPatch
+    let postResponse
 
     beforeEach(() => {
-      vesselData = { id: 1 }
+      reportData = { ...report, id: 888 }
+      postResponse = { "name": "888" }
 
       context = {
         getters: {
           idToken: 999,
-          user: {
-            userId: 333
-          }
         },
         commit: jest.fn()
       }
@@ -36,23 +36,23 @@ describe('vessels actions', () => {
       onFulfilledPost = sinon.spy()
       onFulfilledPatch = sinon.spy()
 
-      axios.post('/vessels.json?auth=999').then(onFulfilledPost)
-      axios.patch('users/333/vessels.json?auth=999').then(onFulfilledPatch)
+      axios.post('/reports.json?auth=999').then(onFulfilledPost)
+      axios.patch('vessels/vessel-1/reports.json?auth=999').then(onFulfilledPatch)
 
-      moxios.stubRequest('/vessels.json?auth=999', {
+      moxios.stubRequest('/reports.json?auth=999', {
         status: 200,
-        response: 'vessel added'
+        response: postResponse
       })
 
-      moxios.stubRequest('users/333/vessels.json?auth=999', {
+      moxios.stubRequest('vessels/vessel-1/reports.json?auth=999', {
         status: 200,
-        response: 'vessel ref in user added'
+        response: 'report ref in vessel added'
       })
     })
 
     it('doesn\'t make a call when no idToken', async() => {
       let onFulfilledNoToken = sinon.spy()
-      axios.post('/vessels.json?auth=undefined').then(onFulfilledNoToken)
+      axios.post('/reports.json?auth=undefined').then(onFulfilledNoToken)
 
       context = {
         getters: {
@@ -60,111 +60,171 @@ describe('vessels actions', () => {
         }
       }
 
-      await actions.createNewVessel(context, vesselData)
+      await actions.createNewReport(context, reportData)
       ok(onFulfilledNoToken.notCalled)
     })
 
-    it('calls API and creates the vessel', async() => {
-      await actions.createNewVessel(context, vesselData)
-      equal(onFulfilledPost.getCall(0).args[0].data, 'vessel added')
+    it('calls API and creates the report', async() => {
+      await actions.createNewReport(context, reportData)
+      equal(onFulfilledPost.getCall(0).args[0].data, postResponse)
     })
 
-    it('calls API and patches the user adding a reference to the vessel', async() => {
-      await actions.createNewVessel(context, vesselData)
-      equal(onFulfilledPatch.getCall(0).args[0].data, 'vessel ref in user added')
+    it('calls API and patches the vessel adding a reference to the report', async() => {
+      await actions.createNewReport(context, reportData)
+      equal(onFulfilledPatch.getCall(0).args[0].data, 'report ref in vessel added')
     })
   })
 
-  describe('editVessel', () => {
-    let vesselData
-    let onFulfilled
+  describe('updateReport', () => {
     let context
+    let reportData
+    let onFulfilled
 
     beforeEach(() => {
-      vesselData = { id: 1 }
+      reportData = { ...report, id: 888 }
     })
 
     it('doesn\'t make a call when no idToken', async() => {
       onFulfilled = sinon.spy()
-      axios.patch('/vessels/1.json?auth=undefined').then(onFulfilled)
+      axios.patch('/reports/888.json?auth=undefined').then(onFulfilled)
 
       context = {
         getters: {
           idToken: undefined
-        }
+        },
+        commit: jest.fn(),
       }
 
-      await actions.editVessel(context, vesselData)
+      await actions.updateReport(context, reportData)
       ok(onFulfilled.notCalled)
     })
 
     it('calls API and gets a proper response when idToken is valid', async() => {
       onFulfilled = sinon.spy()
-      axios.patch('/vessels/1.json?auth=999').then(onFulfilled)
+      axios.patch('/reports/888.json?auth=999').then(onFulfilled)
 
-      moxios.stubRequest('/vessels/1.json?auth=999', {
+      moxios.stubRequest('/reports/888.json?auth=999', {
         status: 200,
-        response: vesselData
+        response: reportData
       })
 
       context = {
         getters: {
           idToken: 999
-        }
+        },
+        commit: jest.fn()
       }
 
-      await actions.editVessel(context, vesselData)
-      equal(onFulfilled.getCall(0).args[0].data, vesselData)
+      await actions.updateReport(context, reportData)
+      equal(onFulfilled.getCall(0).args[0].data, reportData)
+    })
+
+    it('calls commit with UPDATE_REPORT and the updated reportData', async() => {
+      moxios.stubRequest('/reports/888.json?auth=999', {
+        status: 200,
+        response: reportData
+      })
+
+      context = {
+        getters: {
+          idToken: 999
+        },
+        commit: jest.fn()
+      }
+
+      await actions.updateReport(context, reportData)
+      expect(context.commit).toHaveBeenCalledWith('UPDATE_REPORT', reportData)
     })
   })
 
-  describe('fetchVessels', () => {
+  describe('fetchReports', () => {
     let context
+    let vesselId = 'vessel-1'
 
     const responseJSON = {
-      "-L2sqMuqy29K5adoAZdT": firstVessel
+      "report-1": rawSecondReport,
+      "report-2": rawSecondReport
     }
 
     beforeEach(() => {
-      moxios.stubRequest('/vessels.json?orderBy="owner"&equalTo="1"', {
+      moxios.stubRequest('/reports.json?orderBy="vessel"&equalTo="vessel-1"', {
         status: 200,
         response: responseJSON
       })
 
       context = {
         commit: jest.fn(),
+        dispatch: jest.fn(),
       }
     })
 
     it('calls API and gets a proper response', async() => {
       const onFulfilled = sinon.spy()
-      axios.get('/vessels.json?orderBy="owner"&equalTo="1"').then(onFulfilled)
+      axios.get('/reports.json?orderBy="vessel"&equalTo="vessel-1"').then(onFulfilled)
 
-      await actions.fetchVessels(context, 1)
+      await actions.fetchReports(context, 'vessel-1')
       equal(onFulfilled.getCall(0).args[0].data, responseJSON)
     })
 
-    it('calls commit with STORE_VESSEL and the fetched userVessels', async() => {
-      await actions.fetchVessels(context, 1)
-      expect(context.commit).toHaveBeenCalledWith('STORE_VESSEL', [ firstVessel ])
+    it('dispatches storeReports action', async() => {
+      await actions.fetchReports(context, 'vessel-1')
+      expect(context.dispatch).toHaveBeenCalledWith('storeReports', expect.anything())
+    })
+
+    it('dispatches setFetchingReports action with false', async() => {
+      await actions.fetchReports(context, 'vessel-1')
+      expect(context.dispatch).toHaveBeenCalledWith('setFetchingReports', false)
+    })
+
+    it('dispatches selectReport action', async() => {
+      await actions.fetchReports(context, 'vessel-1')
+      expect(context.dispatch).toHaveBeenCalledWith('selectReport', expect.anything())
     })
   })
 
-  describe('deleteVessel', () => {
+  describe('storeReports', () => {
+    const context = { commit: jest.fn() }
+    const reports = [ report, secondReport ]
+
+    it('calls commit with STORE_REPORTS and reports array', async() => {
+      await actions.storeReports(context, reports)
+      expect(context.commit).toHaveBeenCalledWith('STORE_REPORTS', reports)
+    })
+  })
+
+  describe('setFetchingReports', () => {
+    const context = { commit: jest.fn() }
+
+    it('calls commit with FETCHING_REPORTS and given value', async() => {
+      await actions.setFetchingReports(context, true)
+      expect(context.commit).toHaveBeenCalledWith('FETCHING_REPORTS', true)
+    })
+  })
+
+  describe('selectReport', () => {
+    const context = { commit: jest.fn() }
+
+    it('calls commit with SELECT_REPORT and a report object', async() => {
+      await actions.selectReport(context, report)
+      expect(context.commit).toHaveBeenCalledWith('SELECT_REPORT', report)
+    })
+  })
+
+  describe('deleteReport', () => {
     let context
-    let vesselData
+    let payload
     let onFulfilledDelete
     let onFulfilledPatch
 
     beforeEach(() => {
-      vesselData = { id: 1 }
+      payload = {
+        vesselId: 111,
+        reportId: 999
+      }
 
       context = {
         getters: {
-          idToken: 999,
-          user: {
-            userId: 333
-          }
+          idToken: 888,
         },
         commit: jest.fn()
       }
@@ -172,33 +232,33 @@ describe('vessels actions', () => {
       onFulfilledDelete = sinon.spy()
       onFulfilledPatch = sinon.spy()
 
-      axios.delete('/vessels/1.json?auth=999').then(onFulfilledDelete)
-      axios.delete('users/333/vessels.json?auth=999').then(onFulfilledPatch)
+      axios.delete('/reports/999.json?auth=888').then(onFulfilledDelete)
+      axios.patch('vessels/111/reports.json?auth=888').then(onFulfilledPatch)
 
-      moxios.stubRequest('/vessels/1.json?auth=999', {
+      moxios.stubRequest('/reports/999.json?auth=888', {
         status: 200,
-        response: 'vessel deleted'
+        response: 'report deleted'
       })
 
-      moxios.stubRequest('users/333/vessels.json?auth=999', {
+      moxios.stubRequest('vessels/111/reports.json?auth=888', {
         status: 200,
-        response: 'vessel ref in user patched'
+        response: 'report ref in vessel patched'
       })
     })
 
-    it('calls API and deletes the specified vessel', async() => {
-      await actions.deleteVessel(context, vesselData.id)
-      equal(onFulfilledDelete.getCall(0).args[0].data, 'vessel deleted')
+    it('calls API and deletes the specified report', async() => {
+      await actions.deleteReport(context, payload)
+      equal(onFulfilledDelete.getCall(0).args[0].data, 'report deleted')
     })
 
-    it('calls API and patches the user removing the reference to specified vessel', async() => {
-      await actions.deleteVessel(context, vesselData.id)
-      equal(onFulfilledPatch.getCall(0).args[0].data, 'vessel ref in user patched')
+    it('calls API and patches the vessel removing the reference to specified report', async() => {
+      await actions.deleteReport(context, payload)
+      equal(onFulfilledPatch.getCall(0).args[0].data, 'report ref in vessel patched')
     })
 
-    it('calls commit with DELETE_VESSEL and the vesselId', async() => {
-      await actions.deleteVessel(context, vesselData.id)
-      expect(context.commit).toHaveBeenCalledWith('DELETE_VESSEL', vesselData.id)
+    it('calls commit with DELETE_REPORT and the reportId', async() => {
+      await actions.deleteReport(context, payload)
+      expect(context.commit).toHaveBeenCalledWith('DELETE_REPORT', payload.reportId)
     })
   })
 })
