@@ -1,7 +1,7 @@
 import * as types from '../../mutation-types'
 
 export default {
-  [types.AUTH_USER] (state, userData) { // storing the token in the vuex store
+  [types.AUTH_USER] (state, userData) {
     state.idToken = userData.token
     state.userId = userData.userId
     state.userEmail = userData.userEmail
