@@ -1,4 +1,3 @@
-import { equal, ok } from 'assert'
 import actions from '@/store/modules/vessel-details/actions'
 
 describe('vessel-details actions', () => {

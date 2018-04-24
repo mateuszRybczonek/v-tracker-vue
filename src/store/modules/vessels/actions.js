@@ -3,9 +3,7 @@ import globalAxios from 'axios'
 
 export default {
   async createNewVessel ({ getters }, vesselData) {
-    if (!getters.idToken) {
-      return
-    }
+    if (!getters.idToken) return
 
     try {
       const { data } = await globalAxios.post(`/vessels.json?auth=${getters.idToken}`, vesselData)
