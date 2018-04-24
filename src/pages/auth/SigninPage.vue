@@ -54,6 +54,7 @@
 <script>
   import { required, email } from 'vuelidate/lib/validators'
   import { mapGetters, mapActions } from 'vuex'
+  import router from '@/router/index'
 
   import FormWrapper from '../../components/FormWrapper.vue'
   import ButtonPositive from '../../components/ButtonPositive.vue'
@@ -93,15 +94,20 @@
         'clearAuthError'
       ]),
 
-      onSubmit () {
+      async onSubmit () {
         const formData = {
           email: this.email,
           password: this.password
         }
+
         this.validationsEnabled = true
+
         if (!this.$v.$invalid) {
-          this.login({ email: formData.email, password: formData.password })
-          this.isSubmitted = true
+          try {
+            await this.login({ email: formData.email, password: formData.password })
+            router.push('/dashboard/vessels')
+            this.isSubmitted = true
+          } catch (error) { throw(error) }
         } else {
           return false
         }

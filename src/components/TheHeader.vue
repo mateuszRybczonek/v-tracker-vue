@@ -29,6 +29,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  import router from '@/router/index'
 
   export default {
     computed: {
@@ -38,8 +39,9 @@
     },
 
     methods: {
-      onLogout () {
-        this.$store.dispatch('logout')
+      async onLogout () {
+        await this.$store.dispatch('logout')
+        router.replace('/signin')
       }
     }
   }
