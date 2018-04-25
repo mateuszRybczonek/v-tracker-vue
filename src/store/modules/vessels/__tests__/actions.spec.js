@@ -3,7 +3,7 @@ import moxios from 'moxios'
 import sinon from 'sinon'
 import { equal, ok } from 'assert'
 import actions from '@/store/modules/vessels/actions'
-import { firstVessel, secondVessel } from '@/../test/stubs/vessel'
+import { firstVessel } from '@/../test/stubs/vessel'
 
 describe('vessels actions', () => {
   beforeEach(() => {

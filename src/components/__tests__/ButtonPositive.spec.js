@@ -30,7 +30,7 @@ describe('ButtonPositive.vue', () => {
   })
 
   it('should call onClick method when button is clicked', () => {
-    const button = wrapper.find('[data-test-button-positive]').trigger('click')
+    wrapper.find('[data-test-button-positive]').trigger('click')
     expect(wrapper.vm.onClick).toBeCalled()
   })
 })

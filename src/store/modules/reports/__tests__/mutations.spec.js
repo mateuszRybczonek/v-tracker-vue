@@ -1,7 +1,5 @@
 import mutations from '@/store/modules/reports/mutations'
 import { report, secondReport, rawSecondReport } from '@/../test/stubs/report'
-import { mapReportForStore } from '@/store/modules/reports/helpers'
-import Vue from 'vue'
 
 describe('reports mutations', () => {
   test('STORE_REPORTS sets state.reports to reports', () => {

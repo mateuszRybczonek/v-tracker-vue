@@ -15,8 +15,6 @@ describe('vessel-details mutations', () => {
     const state = { selectedVesselDetailsComponent: 'Dashboard' }
     const componentName = 'Reports'
 
-    const expectedResult = componentName
-
     mutations.SELECTED_VESSEL_DETAILS_COMPONENT(state, componentName)
     expect(state.selectedVesselDetailsComponent).toEqual(componentName)
   })

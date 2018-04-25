@@ -1,5 +1,4 @@
 import getters from '@/store/modules/vessel-details/getters'
-import { firstVessel, secondVessel } from '@/../test/stubs/vessel'
 
 describe('vessel-details getters', () => {
   test('sidebarVisible returns state.sidebarVisible', () => {

@@ -4,7 +4,6 @@ import sinon from 'sinon'
 import { equal, ok } from 'assert'
 import actions from '@/store/modules/reports/actions'
 import { report, secondReport, rawSecondReport } from '@/../test/stubs/report'
-import { mapReportForStore, getLastReport } from '@/store/modules/reports/helpers'
 
 describe('reports actions', () => {
   beforeEach(() => {
@@ -139,7 +138,6 @@ describe('reports actions', () => {
 
   describe('fetchReports', () => {
     let context
-    let vesselId = 'vessel-1'
 
     const responseJSON = {
       "report-1": rawSecondReport,
