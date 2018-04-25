@@ -4,9 +4,8 @@ import { mapReportForStore, getLastReport } from './helpers'
 
 export default {
   async createNewReport ({ getters, commit }, reportData) {
-    if (!getters.idToken) {
-      return
-    }
+    if (!getters.idToken) return
+
     try {
       const { data } = await globalAxios.post(`/reports.json?auth=${getters.idToken}`, reportData)
       const vesselId = reportData.vessel
@@ -18,9 +17,8 @@ export default {
   },
 
   async updateReport ({ getters, commit }, reportData) {
-    if (!getters.idToken) {
-      return
-    }
+    if (!getters.idToken) return
+
     try {
       Object.keys(reportData).map(objectKey => {
         return reportData[objectKey].toString()
@@ -31,7 +29,7 @@ export default {
     } catch (error) { throw error }
   },
 
-  async fetchReports ({ commit, dispatch }, vesselId) {
+  async fetchReports ({ dispatch }, vesselId) {
     dispatch('setFetchingReports', true)
     try {
       const { data } = await globalAxios.get(`/reports.json?orderBy="vessel"&equalTo="${vesselId}"`)
