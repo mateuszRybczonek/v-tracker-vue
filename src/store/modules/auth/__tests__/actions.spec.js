@@ -438,7 +438,6 @@ describe('auth actions', () => {
   })
 
   describe('setAuthDataInLocalStorage', () => {
-    let context
     let originalDateNow
 
     const authUserData = {
@@ -451,10 +450,6 @@ describe('auth actions', () => {
     const expirationDate = new Date(1524475888010 + 3600 * 1000)
 
     beforeEach(() => {
-      context = {
-        commit: jest.fn(),
-      }
-
       originalDateNow = Date.now
       Date.now = mockDateNow
     })
@@ -467,28 +462,28 @@ describe('auth actions', () => {
     it('calls localStorage.setItem with token and proper value', async() => {
       const payload = { ...authUserData, expirationDate }
 
-      await actions.clearAuthDataInLocalStorage(context, payload)
+      await actions.clearAuthDataInLocalStorage(payload)
       expect(localStorage.setItem).toHaveBeenCalledWith('token', '123456789')
     })
 
     it('calls localStorage.setItem with userId and proper value', async() => {
       const payload = { ...authUserData, expirationDate }
 
-      await actions.clearAuthDataInLocalStorage(context, payload)
+      await actions.clearAuthDataInLocalStorage(payload)
       expect(localStorage.setItem).toHaveBeenCalledWith('userId', '1')
     })
 
     it('calls localStorage.setItem with expirationDate and proper value', async() => {
       const payload = { ...authUserData, expirationDate }
 
-      await actions.clearAuthDataInLocalStorage(context, payload)
+      await actions.clearAuthDataInLocalStorage(payload)
       expect(localStorage.setItem).toHaveBeenCalledWith('expirationDate', '1524475888011')
     })
 
     it('calls localStorage.setItem with userEmail and proper value', async() => {
       const payload = { ...authUserData, expirationDate }
 
-      await actions.clearAuthDataInLocalStorage(context, payload)
+      await actions.clearAuthDataInLocalStorage(payload)
       expect(localStorage.setItem).toHaveBeenCalledWith('userEmail', 'example@vtracker.com')
     })
   })

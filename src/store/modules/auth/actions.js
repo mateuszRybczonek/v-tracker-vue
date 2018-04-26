@@ -128,7 +128,7 @@ export default {
     localStorage.removeItem('userId')
   },
 
-  setAuthDataInLocalStorage({ commit }, payload) {
+  setAuthDataInLocalStorage(payload) {
     const { token, userId, expirationDate, userEmail } = payload
     localStorage.setItem('token', token)
     localStorage.setItem('userId', userId)
