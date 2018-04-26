@@ -30,7 +30,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import router from '@/router/index'
-  import { mapActions } from 'Vuex'
+  import { mapActions } from 'vuex'
 
   export default {
     computed: {

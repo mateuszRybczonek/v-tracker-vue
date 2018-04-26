@@ -37,7 +37,7 @@
 </template>
 
 <script>
-  import { mapActions } from 'Vuex'
+  import { mapActions } from 'vuex'
   import FormWrapper from './FormWrapper.vue'
   import VesselReportsListNewStepper from './VesselReportsListFormStepper.vue'
   import Step1 from './VesselReportsListFormStep1.vue'

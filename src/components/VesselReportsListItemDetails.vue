@@ -57,7 +57,7 @@
 </template>
 
 <script>
-  import { mapActions } from 'Vuex'
+  import { mapActions } from 'vuex'
   import BaseIcon from './BaseIcon.vue'
   import IconSave from './Icons/IconSave.vue'
   import IconPencil from './Icons/IconPencil.vue'

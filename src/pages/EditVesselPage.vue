@@ -67,11 +67,10 @@
 </template>
 
 <script>
-  import { mapActions } from 'Vuex'
   import FormWrapper from '../components/FormWrapper.vue'
   import ButtonPositive from '../components/ButtonPositive.vue'
   import { required, numeric } from 'vuelidate/lib/validators'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import router from '@/router/index'
 
   export default {

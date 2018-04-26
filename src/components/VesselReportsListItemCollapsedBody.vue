@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import { mapActions } from 'Vuex'
+  import { mapActions } from 'vuex'
   import BaseIcon from './BaseIcon.vue'
   import IconTrash from './Icons/IconTrash.vue'
 

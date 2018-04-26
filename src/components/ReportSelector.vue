@@ -24,7 +24,7 @@
 <script>
   import CalendarCard from './CalendarCard.vue'
   import { Carousel, Slide } from 'vue-carousel'
-  import { mapActions } from 'Vuex'
+  import { mapActions } from 'vuex'
 
   export default {
     components: {

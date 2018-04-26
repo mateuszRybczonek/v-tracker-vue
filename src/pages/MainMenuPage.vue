@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import { mapActions } from 'Vuex'
+  import { mapActions } from 'vuex'
   import TheHeader from '../components/TheHeader.vue'
 
   export default {
