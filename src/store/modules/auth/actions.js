@@ -128,8 +128,10 @@ export default {
     localStorage.removeItem('userId')
   },
 
-  setAuthDataInLocalStorage(payload) {
+  /* eslint-disable no-unused-vars */
+  setAuthDataInLocalStorage({ commit }, payload) {
     const { token, userId, expirationDate, userEmail } = payload
+
     localStorage.setItem('token', token)
     localStorage.setItem('userId', userId)
     localStorage.setItem('expirationDate', expirationDate)

@@ -5,7 +5,7 @@ export default {
     commit(types.SIDEBAR_VISIBLE)
   },
 
-  selectedVesselDetailsComponent ({ commit }, componentName) {
+  selectVesselDetailsComponent ({ commit }, componentName) {
     commit(types.SELECTED_VESSEL_DETAILS_COMPONENT, componentName)
   }
 }

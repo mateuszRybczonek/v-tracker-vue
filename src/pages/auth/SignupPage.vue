@@ -109,7 +109,7 @@
 
     methods: {
       ...mapActions([
-        'signup' // map `this.signup(formData)` to `this.$store.dispatch('signup', formData)`
+        'signup'
       ]),
 
       async onSubmit () {

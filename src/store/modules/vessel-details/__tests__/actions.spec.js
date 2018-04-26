@@ -10,14 +10,14 @@ describe('vessel-details actions', () => {
     expect(context.commit).toHaveBeenCalledWith('SIDEBAR_VISIBLE')
   })
 
-  test('selectedVesselDetailsComponent calls commit with SELECTED_VESSEL_DETAILS_COMPONENT and componentName', async() => {
+  test('selectVesselDetailsComponent calls commit with SELECTED_VESSEL_DETAILS_COMPONENT and componentName', async() => {
     const context = {
       commit: jest.fn()
     }
 
     const componentName = 'Reports'
 
-    await actions.selectedVesselDetailsComponent(context, componentName)
+    await actions.selectVesselDetailsComponent(context, componentName)
     expect(context.commit).toHaveBeenCalledWith('SELECTED_VESSEL_DETAILS_COMPONENT', componentName)
   })
 })

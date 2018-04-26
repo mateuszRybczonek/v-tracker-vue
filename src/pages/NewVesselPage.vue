@@ -69,6 +69,7 @@
 </template>
 
 <script>
+  import { mapActions } from 'Vuex'
   import FormWrapper from '../components/FormWrapper.vue'
   import ButtonPositive from '../components/ButtonPositive.vue'
   import { required, numeric } from 'vuelidate/lib/validators'
@@ -103,6 +104,10 @@
     },
 
     methods: {
+      ...mapActions([
+        'createNewVessel'
+      ]),
+
       async onSubmit () {
         const formData = {
           name: this.vessel.name,
@@ -119,7 +124,7 @@
         if (this.$v.$invalid) {
           return false
         } else {
-          await this.$store.dispatch('createNewVessel', formData)
+          await this.createNewVessel(formData)
           router.push('/dashboard/vessels')
           this.isSubmitted = true
         }

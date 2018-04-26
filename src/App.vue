@@ -5,11 +5,18 @@
 </template>
 
 <script>
+  import { mapActions } from 'Vuex'
   export default {
     name: 'app',
 
     created () {
-      this.$store.dispatch('tryAutoLogin')
+      this.tryAutoLogin()
+    },
+
+    methods: {
+      ...mapActions([
+        'tryAutoLogin'
+      ])
     }
   }
 </script>

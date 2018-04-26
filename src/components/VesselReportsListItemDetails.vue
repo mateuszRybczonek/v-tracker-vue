@@ -7,7 +7,7 @@
       <span class="report-item-details-section__title">{{sectionData.sectionTitle}}</span>
       <span
         v-if="isEditing"
-        @click.prevent.stop="updateReport(reportChangeset)"
+        @click.prevent.stop="updateReportAction(reportChangeset)"
       >
         <BaseIcon
           width="30"
@@ -57,6 +57,7 @@
 </template>
 
 <script>
+  import { mapActions } from 'Vuex'
   import BaseIcon from './BaseIcon.vue'
   import IconSave from './Icons/IconSave.vue'
   import IconPencil from './Icons/IconPencil.vue'
@@ -103,6 +104,10 @@
     },
 
     methods: {
+      ...mapActions([
+        'updateReport'
+      ]),
+
       editReportSection () {
         this.isEditing = true
         this.reportChangeset = {
@@ -112,11 +117,11 @@
         }
       },
 
-      async updateReport (report) {
+      async updateReportAction (report) {
         report.lat = formatLatForPersistanceLayer(report.lat)
         report.lng = formatLngForPersistanceLayer(report.lng)
         try {
-          await this.$store.dispatch('updateReport', report)
+          await this.updateReport(report)
           this.isEditing = false
         } catch (error) {
           this.inProgress = false

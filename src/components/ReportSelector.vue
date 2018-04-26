@@ -24,6 +24,7 @@
 <script>
   import CalendarCard from './CalendarCard.vue'
   import { Carousel, Slide } from 'vue-carousel'
+  import { mapActions } from 'Vuex'
 
   export default {
     components: {
@@ -43,9 +44,9 @@
     },
 
     methods: {
-      selectReport (report) {
-        this.$store.dispatch('selectReport', report)
-      }
+      ...mapActions([
+        'selectReport'
+      ])
     }
   }
 </script>
