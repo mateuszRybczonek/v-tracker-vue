@@ -23,6 +23,6 @@ describe('BaseList.vue', () => {
     listItems.wrappers.forEach((wrapper, i) => {
       expect(wrapper.find('[data-test-base-list-item-title]').text()).toEqual(items[i].title)
       expect(wrapper.find('[data-test-base-list-item-value]').text()).toEqual(items[i].value)
-    })
+    })
   })
 })

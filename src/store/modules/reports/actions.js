@@ -4,9 +4,8 @@ import { mapReportForStore, getLastReport } from './helpers'
 
 export default {
   async createNewReport ({ getters, commit }, reportData) {
-    if (!getters.idToken) {
-      return
-    }
+    if (!getters.idToken) return
+
     try {
       const { data } = await globalAxios.post(`/reports.json?auth=${getters.idToken}`, reportData)
       const vesselId = reportData.vessel
@@ -18,9 +17,8 @@ export default {
   },
 
   async updateReport ({ getters, commit }, reportData) {
-    if (!getters.idToken) {
-      return
-    }
+    if (!getters.idToken) return
+
     try {
       Object.keys(reportData).map(objectKey => {
         return reportData[objectKey].toString()
@@ -31,8 +29,8 @@ export default {
     } catch (error) { throw error }
   },
 
-  async fetchReports ({ commit }, vesselId) {
-    commit(types.FETCHING_REPORTS, true)
+  async fetchReports ({ dispatch }, vesselId) {
+    dispatch('setFetchingReports', true)
     try {
       const { data } = await globalAxios.get(`/reports.json?orderBy="vessel"&equalTo="${vesselId}"`)
       const reports = []
@@ -42,10 +40,22 @@ export default {
         mapReportForStore(report)
         reports.push(report)
       }
-      commit(types.STORE_REPORTS, reports)
-      commit(types.FETCHING_REPORTS, false)
-      commit(types.SELECT_REPORT, getLastReport(reports))
+      dispatch('storeReports', reports)
+      dispatch('setFetchingReports', false)
+      dispatch('selectReport', getLastReport(reports))
     } catch (error) { throw(error) }
+  },
+
+  storeReports ({ commit }, reports) {
+    commit(types.STORE_REPORTS, reports)
+  },
+
+  setFetchingReports ({ commit }, value) {
+    commit(types.FETCHING_REPORTS, value)
+  },
+
+  selectReport ({ commit }, report) {
+    commit(types.SELECT_REPORT, report)
   },
 
   async deleteReport ({ getters, commit }, payload) {
@@ -58,9 +68,5 @@ export default {
         commit(types.DELETE_REPORT, reportId)
       } catch (error) { throw(error) }
     } catch (error) { throw(error) }
-  },
-
-  selectReport ({ commit }, report) {
-    commit(types.SELECT_REPORT, report)
   }
 }

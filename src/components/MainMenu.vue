@@ -1,8 +1,10 @@
 <template>
   <div class="main-menu">
-    <h1>Main menu</h1>
+    <h1 data-test-main-menu-header>Main menu</h1>
     <div class="main-menu__cards">
-      <MainMenuCard v-for="card in cards"
+      <MainMenuCard
+        data-test-main-menu-cards
+        v-for="card in cards"
         :key="card.label"
         :destination="card.destination"
         :icon="card.icon"
@@ -21,9 +23,9 @@
       MainMenuCard
     },
 
-    computed: {
-      cards () {
-        return [
+    data () {
+      return {
+        cards: [
           {
             destination: 'dashboard/vessels',
             icon: 'IconShip',

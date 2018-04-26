@@ -1,9 +1,13 @@
 <template>
   <div
+    data-test-form-wrapper
     class="form"
     :class="classes"
   >
-    <div class="form__header">
+    <div
+      class="form__header"
+      data-test-form-wrapper-header
+    >
       <h4>{{ title }}</h4>
     </div>
     <slot name="content"></slot>

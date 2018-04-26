@@ -6,7 +6,7 @@ export default {
   },
 
   [types.DELETE_VESSEL] (state, vesselId) {
-    const vessel = state.vessels.filter(vessel => vessel.id === vesselId)
+    const vessel = state.vessels.find(vessel => vessel.id === vesselId)
     const vesselIndex = state.vessels.indexOf(vessel)
     state.vessels.splice(vesselIndex, 1)
   }

@@ -67,7 +67,7 @@
 <script>
   import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
   import { mapActions } from 'vuex'
-//  import globalAxios from 'axios'
+  import router from '@/router/index'
 
   import FormWrapper from '../../components/FormWrapper.vue'
   import ButtonPositive from '../../components/ButtonPositive.vue'
@@ -112,15 +112,24 @@
         'signup' // map `this.signup(formData)` to `this.$store.dispatch('signup', formData)`
       ]),
 
-      onSubmit () {
+      async onSubmit () {
         const formData = {
           email: this.email,
           password: this.password,
           confirmPassword: this.confirmPassword
         }
+
         this.validationsEnabled = true
         this.isSubmitted = false
-        return !this.$v.$invalid ? this.signup(formData) : false
+
+        if(!this.$v.$invalid) {
+          try {
+            await this.signup(formData)
+            router.push('/dashboard')
+          } catch(error) {
+            throw(error)
+          }
+        } else return false
       }
     },
 

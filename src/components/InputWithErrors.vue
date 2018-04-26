@@ -1,6 +1,12 @@
 <template>
-  <div class="input--with-errors">
-    <div :class="{'input--with-unit': unit}">
+  <div
+    data-test-input-with-errors
+    class="input--with-errors"
+  >
+    <div
+      data-test-input-with-errors-input
+      :class="{'input--with-unit': unit}"
+    >
       <slot name="input"></slot>
       <span
         v-if="unit"

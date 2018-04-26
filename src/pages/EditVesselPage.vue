@@ -71,6 +71,7 @@
   import ButtonPositive from '../components/ButtonPositive.vue'
   import { required, numeric } from 'vuelidate/lib/validators'
   import { mapGetters } from 'vuex'
+  import router from '@/router/index'
 
   export default {
     data () {
@@ -103,7 +104,7 @@
     },
 
     methods: {
-      onSubmit () {
+      async onSubmit () {
         const formData = {
           name: this.vessel.name,
           imoNumber: this.vessel.imoNumber,
@@ -121,7 +122,8 @@
         if (this.$v.$invalid) {
           return false
         } else {
-          this.$store.dispatch('editVessel', formData)
+          await this.$store.dispatch('editVessel', formData)
+          router.push('/dashboard/vessels')
           this.isSubmitted = true
         }
       }
