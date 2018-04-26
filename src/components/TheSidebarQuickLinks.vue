@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import { COMPONENT_NAMES } from '../constants/vessel-details'
   import BaseIcon from './BaseIcon.vue'
   import IconFiles from './Icons/IconFiles.vue'
@@ -73,9 +73,9 @@
     },
 
     methods: {
-      selectVesselDetailsComponent (componentName) {
-        this.$store.dispatch('selectedVesselDetailsComponent', componentName)
-      }
+      ...mapActions([
+        'selectVesselDetailsComponent'
+      ])
     }
   }
 </script>

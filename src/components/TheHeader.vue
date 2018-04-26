@@ -30,6 +30,7 @@
 <script>
   import { mapGetters } from 'vuex'
   import router from '@/router/index'
+  import { mapActions } from 'Vuex'
 
   export default {
     computed: {
@@ -39,8 +40,12 @@
     },
 
     methods: {
+      ...mapActions([
+        'logout'
+      ]),
+
       async onLogout () {
-        await this.$store.dispatch('logout')
+        await this.logout()
         router.replace('/signin')
       }
     }

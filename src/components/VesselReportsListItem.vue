@@ -29,7 +29,7 @@
         :lat="formattedLat"
         :lng="formattedLng"
         :reportId="report.id"
-        :vessel="report.vessel"
+        :vesselId="report.vessel"
       ></VesselReportsListItemCollapsedBody>
     </AccordionWrapper>
   </li>

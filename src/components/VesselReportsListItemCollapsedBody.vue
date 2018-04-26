@@ -7,7 +7,7 @@
     <div class="report-item__collapsed-body__actions">
       <span
         class="delete-icon"
-        @click.prevent.stop="deleteReport(reportId, vessel)"
+        @click.prevent.stop="deleteReport({ reportId, vesselId })"
       >
         <BaseIcon
           width="40"
@@ -21,6 +21,7 @@
 </template>
 
 <script>
+  import { mapActions } from 'Vuex'
   import BaseIcon from './BaseIcon.vue'
   import IconTrash from './Icons/IconTrash.vue'
 
@@ -43,17 +44,16 @@
         type: String,
         required: true
       },
-      vessel: {
+      vesselId: {
         type: String,
         required: true
       }
     },
 
     methods: {
-      deleteReport (reportId, vesselId) {
-        const payload = { reportId, vesselId }
-        this.$store.dispatch('deleteReport', payload)
-      }
+      ...mapActions([
+        'deleteReport'
+      ])
     }
   }
 </script>

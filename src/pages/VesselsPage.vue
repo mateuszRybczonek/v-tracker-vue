@@ -7,11 +7,15 @@
 
 <script>
   import VesselsList from '../components/VesselsList.vue'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
+    components: {
+      VesselsList
+    },
+
     created () {
-      this.$store.dispatch('fetchVessels', this.userId)
+      this.fetchVessels(this.userId)
     },
 
     computed: {
@@ -21,8 +25,10 @@
       ])
     },
 
-    components: {
-      VesselsList
+    methods: {
+      ...mapActions([
+        'fetchVessels'
+      ])
     }
   }
 </script>

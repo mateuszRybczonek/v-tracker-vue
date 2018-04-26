@@ -16,7 +16,7 @@
     </router-link>
     <div
       class="sidebar__header__close"
-      @click="toggle"
+      @click="toggleSidebar"
     >
       <div
         class="sidebar__header__close__icon"
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import BaseIcon from './BaseIcon.vue'
   import IconPencil from './Icons/IconPencil.vue'
 
@@ -95,9 +95,9 @@
     },
 
     methods: {
-      toggle () {
-        this.$store.dispatch('toggleSidebar')
-      }
+      ...mapActions([
+        'toggleSidebar'
+      ])
     }
   }
 </script>

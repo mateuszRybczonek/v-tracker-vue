@@ -37,6 +37,7 @@
 </template>
 
 <script>
+  import { mapActions } from 'Vuex'
   import FormWrapper from './FormWrapper.vue'
   import VesselReportsListNewStepper from './VesselReportsListFormStepper.vue'
   import Step1 from './VesselReportsListFormStep1.vue'
@@ -114,6 +115,10 @@
     },
 
     methods: {
+      ...mapActions([
+        'createNewReport'
+      ]),
+
       nextStep (invalidStep) {
         if (invalidStep) {
           this.showErrors = true
@@ -151,7 +156,7 @@
         } else {
           this.inProgress = true
           try {
-            await this.$store.dispatch('createNewReport', newReportData)
+            await this.createNewReport(newReportData)
             this.inProgress = false
             this.isSubmitted = true
             this.step++

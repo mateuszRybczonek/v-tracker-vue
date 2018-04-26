@@ -13,7 +13,7 @@
     </router-link>
     <span
       class="delete-icon"
-      @click.prevent.stop="deleteVessel(vesselId)"
+      @click.prevent.stop="deleteVesselAction(vesselId)"
     >
       <BaseIcon
         width="40"
@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import { mapActions } from 'Vuex'
 import BaseIcon from './BaseIcon.vue'
 import IconPencil from './Icons/IconPencil.vue'
 import IconTrash from './Icons/IconTrash.vue'
@@ -51,8 +52,12 @@ export default {
   },
 
   methods: {
-    deleteVessel (vesselId) {
-      this.$store.dispatch('deleteVessel', vesselId)
+    ...mapActions([
+      'deleteVessel'
+    ]),
+
+    deleteVesselAction (vesselId) {
+      this.deleteVessel(vesselId)
       this.$emit('enableInProgress')
     }
   }

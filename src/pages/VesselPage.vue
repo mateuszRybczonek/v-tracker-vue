@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import TheSidebar from '../components/TheSidebar.vue'
   import VesselDashboard from '../components/VesselDashboard.vue'
   import VesselStatistics from '../components/VesselStatistics.vue'
@@ -27,8 +27,16 @@
   const { VESSEL_DASHBOARD, REPORTS, WEATHER, STATISTICS } = COMPONENT_NAMES
 
   export default {
+    components: {
+      TheSidebar,
+      VesselDashboard,
+      VesselStatistics,
+      VesselWeather,
+      VesselReports
+    },
+    
     created () {
-      this.$store.dispatch('fetchReports', this.$route.params.id)
+      this.fetchReports(this.$route.params.id)
     },
 
     computed: {
@@ -77,12 +85,10 @@
       }
     },
 
-    components: {
-      TheSidebar,
-      VesselDashboard,
-      VesselStatistics,
-      VesselWeather,
-      VesselReports
+    methods: {
+      ...mapActions([
+        'fetchReports'
+      ])
     }
   }
 </script>

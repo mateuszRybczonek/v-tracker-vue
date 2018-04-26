@@ -6,15 +6,22 @@
 </template>
 
 <script>
+  import { mapActions } from 'Vuex'
   import TheHeader from '../components/TheHeader.vue'
 
   export default {
     created () {
-      this.$store.dispatch('fetchUser')
+      this.fetchUser()
     },
 
     components: {
       TheHeader
+    },
+
+    methods: {
+      ...mapActions([
+        'fetchUser'
+      ])
     }
   }
 </script>
