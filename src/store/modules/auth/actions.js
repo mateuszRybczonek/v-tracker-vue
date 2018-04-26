@@ -18,20 +18,22 @@ export default {
         { email: authData.email,
           password: authData.password,
           returnSecureToken: true
-        })
+        }
+      )
 
-      commit(types.AUTH_USER, {
+      const authUserData = {
         token: data.idToken,
         userId: data.localId,
         userEmail: data.email
-      })
+      }
 
-      const now = new Date()
-      const expirationDate = new Date(now.getTime() + data.expiresIn * 1000)
-      localStorage.setItem('token', data.idToken)
-      localStorage.setItem('userId', data.localId)
-      localStorage.setItem('expirationDate', expirationDate)
-      localStorage.setItem('userEmail', authData.email)
+      commit(types.AUTH_USER, authUserData)
+
+      const now = Date.now()
+      const expirationDate = new Date(now + data.expiresIn * 1000)
+      const localStoragePayload = { ...authUserData, expirationDate }
+
+      await dispatch('setAuthDataInLocalStorage', localStoragePayload)
       await dispatch('setLogoutTimer', data.expiresIn)
     } catch (error) {
       commit(types.AUTH_ERROR, true)
@@ -71,22 +73,22 @@ export default {
         { email: authData.email,
           password: authData.password,
           returnSecureToken: true
-        })
+        }
+      )
 
-      commit(types.AUTH_USER, {
+      const authUserData = {
         token: data.idToken,
         userId: data.localId,
         userEmail: data.email
-      })
+      }
 
-      const now = new Date()
-      const expirationDate = new Date(now.getTime() + data.expiresIn * 1000)
-      authData.userId = data.localId
-      localStorage.setItem('token', data.idToken)
-      localStorage.setItem('userId', authData.userId)
-      localStorage.setItem('expirationDate', expirationDate)
-      localStorage.setItem('userEmail', authData.email)
+      commit(types.AUTH_USER, authUserData)
 
+      const now = Date.now()
+      const expirationDate = new Date(now + data.expiresIn * 1000)
+      const localStoragePayload = { ...authUserData, expirationDate }
+
+      await dispatch('setAuthDataInLocalStorage', localStoragePayload)
       await dispatch('storeUser', authData)
       await dispatch('setLogoutTimer', data.expiresIn)
     } catch (error) {
@@ -124,5 +126,13 @@ export default {
     localStorage.removeItem('expirationDate')
     localStorage.removeItem('token')
     localStorage.removeItem('userId')
+  },
+
+  setAuthDataInLocalStorage({ commit }, payload) {
+    const { token, userId, expirationDate, userEmail } = payload
+    localStorage.setItem('token', token)
+    localStorage.setItem('userId', userId)
+    localStorage.setItem('expirationDate', expirationDate)
+    localStorage.setItem('userEmail', userEmail)
   }
 }

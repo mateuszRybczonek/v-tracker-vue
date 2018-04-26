@@ -3,8 +3,10 @@ import axios from 'axios'
 import moxios from 'moxios'
 import sinon from 'sinon'
 import actions from '@/store/modules/auth/actions'
-import { user, userData } from '@/../test/stubs/user'
 import { equal } from 'assert'
+
+const authUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyAFJIoUJ2ZzcnfA0O-ODvWRHsOvCMjg6ow'
+const signUpUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyAFJIoUJ2ZzcnfA0O-ODvWRHsOvCMjg6ow'
 
 describe('auth actions', () => {
   beforeEach(() => {
@@ -41,47 +43,168 @@ describe('auth actions', () => {
     })
   })
 
-  // describe('login', () => {
-  //   let context
-  //   let authData
-  //   let onFulfilledPost
-  //   let postResponse
-  //
-  //   beforeEach(() => {
-  //     authData = { email: 'example@vtracker.com', password: 'qwerty' }
-  //
-  //     postResponse = {
-  //       displayName: "",
-  //       email: "example@vtracker.com",
-  //       expiresIn: "3600",
-  //       idToken: "987654321",
-  //       kind: "identitytoolkit#VerifyPasswordResponse",
-  //       localId: "K2",
-  //       refreshToken: "555",
-  //       registered: true
-  //     }
-  //
-  //     context = {
-  //       commit: jest.fn(),
-  //       dispatch: jest.fn()
-  //     }
-  //
-  //     onFulfilledPost = sinon.spy()
-  //
-  //     authAxios.post('/verifyPassword?key=123').then(onFulfilledPost)
-  //
-  //     moxios.stubRequest('/verifyPassword?key=123', {
-  //       status: 200,
-  //       response: postResponse
-  //     })
-  //   })
-  //
-  //   it('calls API and gets a response', async() => {
-  //     await actions.login(context, authData)
-  //     equal(onFulfilledPost.getCall(0).args[0].data, postResponse)
-  //   })
-  // })
-  //
+  describe('login', () => {
+    let context
+    let authData
+    let onFulfilledPost
+    let postResponse
+    let originalDateNow
+
+    const mockDateNow = () => 1524475888010
+
+    beforeEach(() => {
+      authData = { email: 'example@vtracker.com', password: 'qwerty' }
+
+      postResponse = {
+        displayName: "",
+        email: "example@vtracker.com",
+        expiresIn: "3600",
+        idToken: "987654321",
+        kind: "identitytoolkit#VerifyPasswordResponse",
+        localId: "K2",
+        refreshToken: "555",
+        registered: true
+      }
+
+      context = {
+        commit: jest.fn(),
+        dispatch: jest.fn()
+      }
+
+      originalDateNow = Date.now
+      Date.now = mockDateNow
+
+      onFulfilledPost = sinon.spy()
+
+      authAxios.post(authUrl).then(onFulfilledPost)
+
+      moxios.stubRequest(authUrl, {
+        status: 200,
+        response: postResponse
+      })
+    })
+
+    afterEach(() => {
+      Date.now = originalDateNow
+    })
+
+    it('calls API and gets a response', async() => {
+      await actions.login(context, authData)
+      equal(onFulfilledPost.getCall(0).args[0].data, postResponse)
+    })
+
+    it('calls commit with AUTH_USER and token, userId and userEmail', async() => {
+      const payload = {
+        token: postResponse.idToken,
+        userId: postResponse.localId,
+        userEmail: postResponse.email
+      }
+
+      await actions.login(context, authData)
+      expect(context.commit).toHaveBeenCalledWith('AUTH_USER', payload)
+    })
+
+    it('calls dispatch with setAuthDataInLocalStorage and localStoragePayload', async() => {
+      const expectedLocalStoragePayload = {
+        expirationDate: new Date(1524475888010 + 3600 * 1000),
+        token: "987654321",
+        userEmail: "example@vtracker.com",
+        userId: "K2"
+      }
+
+      await actions.login(context, authData)
+      expect(context.dispatch).toHaveBeenCalledWith('setAuthDataInLocalStorage', expectedLocalStoragePayload)
+    })
+
+    it('calls dispatch with setLogoutTimer and data.expiresIn', async() => {
+      await actions.login(context, authData)
+      expect(context.dispatch).toHaveBeenCalledWith('setLogoutTimer', postResponse.expiresIn)
+    })
+  })
+
+  describe('signup', () => {
+    let context
+    let authData
+    let onFulfilledPost
+    let postResponse
+    let originalDateNow
+
+    const mockDateNow = () => 1524475888010
+
+    beforeEach(() => {
+      authData = { email: 'example@vtracker.com', password: 'qwerty' }
+
+      postResponse = {
+        displayName: "",
+        email: "example@vtracker.com",
+        expiresIn: "3600",
+        idToken: "987654321",
+        kind: "identitytoolkit#VerifyPasswordResponse",
+        localId: "K2",
+        refreshToken: "555",
+        registered: true
+      }
+
+      context = {
+        commit: jest.fn(),
+        dispatch: jest.fn()
+      }
+
+      originalDateNow = Date.now
+      Date.now = mockDateNow
+
+      onFulfilledPost = sinon.spy()
+
+      authAxios.post(signUpUrl).then(onFulfilledPost)
+
+      moxios.stubRequest(signUpUrl, {
+        status: 200,
+        response: postResponse
+      })
+    })
+
+    afterEach(() => {
+      Date.now = originalDateNow
+    })
+
+    it('calls API and gets a response', async() => {
+      await actions.signup(context, authData)
+      equal(onFulfilledPost.getCall(0).args[0].data, postResponse)
+    })
+
+    it('calls commit with AUTH_USER and token, userId and userEmail', async() => {
+      const payload = {
+        token: postResponse.idToken,
+        userId: postResponse.localId,
+        userEmail: postResponse.email
+      }
+
+      await actions.signup(context, authData)
+      expect(context.commit).toHaveBeenCalledWith('AUTH_USER', payload)
+    })
+
+    it('calls dispatch with setAuthDataInLocalStorage and localStoragePayload', async() => {
+      const expectedLocalStoragePayload = {
+        expirationDate: new Date(1524475888010 + 3600 * 1000),
+        token: "987654321",
+        userEmail: "example@vtracker.com",
+        userId: "K2"
+      }
+
+      await actions.signup(context, authData)
+      expect(context.dispatch).toHaveBeenCalledWith('setAuthDataInLocalStorage', expectedLocalStoragePayload)
+    })
+
+    it('calls dispatch with storeUser and authData', async() => {
+      await actions.signup(context, authData)
+      expect(context.dispatch).toHaveBeenCalledWith('storeUser', authData)
+    })
+
+    it('calls dispatch with setLogoutTimer and data.expiresIn', async() => {
+      await actions.signup(context, authData)
+      expect(context.dispatch).toHaveBeenCalledWith('setLogoutTimer', postResponse.expiresIn)
+    })
+  })
 
   describe('logout', () => {
     let context
@@ -294,6 +417,79 @@ describe('auth actions', () => {
     it('calls commit with AUTH_USER and authorization data', async() => {
       await actions.tryAutoLogin(context)
       expect(context.commit).toHaveBeenCalledWith('AUTH_USER', { ...authData })
+    })
+  })
+
+  describe('clearAuthDataInLocalStorage', () => {
+    it('calls localStorage.removeItem with expirationDate', async() => {
+      await actions.clearAuthDataInLocalStorage()
+      expect(localStorage.removeItem).toHaveBeenCalledWith('expirationDate')
+    })
+
+    it('calls localStorage.removeItem with token', async() => {
+      await actions.clearAuthDataInLocalStorage()
+      expect(localStorage.removeItem).toHaveBeenCalledWith('token')
+    })
+
+    it('calls localStorage.removeItem with userId', async() => {
+      await actions.clearAuthDataInLocalStorage()
+      expect(localStorage.removeItem).toHaveBeenCalledWith('userId')
+    })
+  })
+
+  describe('setAuthDataInLocalStorage', () => {
+    let context
+    let originalDateNow
+
+    const authUserData = {
+      token: '123456789',
+      userId: '1',
+      userEmail: 'example@vtracker.com'
+    }
+
+    const mockDateNow = () => 1524475888010
+    const expirationDate = new Date(1524475888010 + 3600 * 1000)
+
+    beforeEach(() => {
+      context = {
+        commit: jest.fn(),
+      }
+
+      originalDateNow = Date.now
+      Date.now = mockDateNow
+    })
+
+    afterEach(() => {
+      Date.now = originalDateNow
+    })
+
+
+    it('calls localStorage.setItem with token and proper value', async() => {
+      const payload = { ...authUserData, expirationDate }
+
+      await actions.clearAuthDataInLocalStorage(context, payload)
+      expect(localStorage.setItem).toHaveBeenCalledWith('token', '123456789')
+    })
+
+    it('calls localStorage.setItem with userId and proper value', async() => {
+      const payload = { ...authUserData, expirationDate }
+
+      await actions.clearAuthDataInLocalStorage(context, payload)
+      expect(localStorage.setItem).toHaveBeenCalledWith('userId', '1')
+    })
+
+    it('calls localStorage.setItem with expirationDate and proper value', async() => {
+      const payload = { ...authUserData, expirationDate }
+
+      await actions.clearAuthDataInLocalStorage(context, payload)
+      expect(localStorage.setItem).toHaveBeenCalledWith('expirationDate', '1524475888011')
+    })
+
+    it('calls localStorage.setItem with userEmail and proper value', async() => {
+      const payload = { ...authUserData, expirationDate }
+
+      await actions.clearAuthDataInLocalStorage(context, payload)
+      expect(localStorage.setItem).toHaveBeenCalledWith('userEmail', 'example@vtracker.com')
     })
   })
 })
