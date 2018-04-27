@@ -1,7 +1,5 @@
 import axios from 'axios'
 import moxios from 'moxios'
-import sinon from 'sinon'
-import { equal, ok } from 'assert'
 import actions from '@/store/modules/vessels/actions'
 import { firstVessel } from '@/../test/stubs/vessel'
 

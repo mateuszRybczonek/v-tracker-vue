@@ -2,7 +2,6 @@ import authAxios from '@/axios-auth'
 import axios from 'axios'
 import moxios from 'moxios'
 import actions from '@/store/modules/auth/actions'
-import { equal } from 'assert'
 
 const authUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyAFJIoUJ2ZzcnfA0O-ODvWRHsOvCMjg6ow'
 const signUpUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyAFJIoUJ2ZzcnfA0O-ODvWRHsOvCMjg6ow'
