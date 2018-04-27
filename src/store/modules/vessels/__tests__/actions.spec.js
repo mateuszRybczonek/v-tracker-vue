@@ -33,8 +33,8 @@ describe('vessels actions', () => {
         commit: jest.fn()
       }
 
-      onFulfilledPost = sinon.spy()
-      onFulfilledPatch = sinon.spy()
+      onFulfilledPost = jest.fn()
+      onFulfilledPatch = jest.fn()
 
       axios.post('/vessels.json?auth=999').then(onFulfilledPost)
       axios.patch('users/333/vessels.json?auth=999').then(onFulfilledPatch)
@@ -51,7 +51,7 @@ describe('vessels actions', () => {
     })
 
     it('doesn\'t make a call when no idToken', async() => {
-      let onFulfilledNoToken = sinon.spy()
+      let onFulfilledNoToken = jest.fn()
       axios.post('/vessels.json?auth=undefined').then(onFulfilledNoToken)
 
       context = {
@@ -61,17 +61,17 @@ describe('vessels actions', () => {
       }
 
       await actions.createNewVessel(context, vesselData)
-      ok(onFulfilledNoToken.notCalled)
+      expect(onFulfilledNoToken).notCalled
     })
 
     it('calls API and creates the vessel', async() => {
       await actions.createNewVessel(context, vesselData)
-      equal(onFulfilledPost.getCall(0).args[0].data, 'vessel added')
+      expect(onFulfilledPost.mock.calls[0][0].data).toBe('vessel added')
     })
 
     it('calls API and patches the user adding a reference to the vessel', async() => {
       await actions.createNewVessel(context, vesselData)
-      equal(onFulfilledPatch.getCall(0).args[0].data, 'vessel ref in user added')
+      expect(onFulfilledPatch.mock.calls[0][0].data).toBe('vessel ref in user added')
     })
   })
 
@@ -85,7 +85,7 @@ describe('vessels actions', () => {
     })
 
     it('doesn\'t make a call when no idToken', async() => {
-      onFulfilled = sinon.spy()
+      onFulfilled = jest.fn()
       axios.patch('/vessels/1.json?auth=undefined').then(onFulfilled)
 
       context = {
@@ -95,11 +95,11 @@ describe('vessels actions', () => {
       }
 
       await actions.editVessel(context, vesselData)
-      ok(onFulfilled.notCalled)
+      expect(onFulfilled).notCalled
     })
 
     it('calls API and gets a proper response when idToken is valid', async() => {
-      onFulfilled = sinon.spy()
+      onFulfilled = jest.fn()
       axios.patch('/vessels/1.json?auth=999').then(onFulfilled)
 
       moxios.stubRequest('/vessels/1.json?auth=999', {
@@ -114,7 +114,7 @@ describe('vessels actions', () => {
       }
 
       await actions.editVessel(context, vesselData)
-      equal(onFulfilled.getCall(0).args[0].data, vesselData)
+      expect(onFulfilled.mock.calls[0][0].data).toBe(vesselData)
     })
   })
 
@@ -137,11 +137,11 @@ describe('vessels actions', () => {
     })
 
     it('calls API and gets a proper response', async() => {
-      const onFulfilled = sinon.spy()
+      const onFulfilled = jest.fn()
       axios.get('/vessels.json?orderBy="owner"&equalTo="1"').then(onFulfilled)
 
       await actions.fetchVessels(context, 1)
-      equal(onFulfilled.getCall(0).args[0].data, responseJSON)
+      expect(onFulfilled.mock.calls[0][0].data).toBe(responseJSON)
     })
 
     it('calls commit with STORE_VESSEL and the fetched userVessels', async() => {
@@ -169,8 +169,8 @@ describe('vessels actions', () => {
         commit: jest.fn()
       }
 
-      onFulfilledDelete = sinon.spy()
-      onFulfilledPatch = sinon.spy()
+      onFulfilledDelete = jest.fn()
+      onFulfilledPatch = jest.fn()
 
       axios.delete('/vessels/1.json?auth=999').then(onFulfilledDelete)
       axios.delete('users/333/vessels.json?auth=999').then(onFulfilledPatch)
@@ -188,12 +188,12 @@ describe('vessels actions', () => {
 
     it('calls API and deletes the specified vessel', async() => {
       await actions.deleteVessel(context, vesselData.id)
-      equal(onFulfilledDelete.getCall(0).args[0].data, 'vessel deleted')
+      expect(onFulfilledDelete.mock.calls[0][0].data).toBe('vessel deleted')
     })
 
     it('calls API and patches the user removing the reference to specified vessel', async() => {
       await actions.deleteVessel(context, vesselData.id)
-      equal(onFulfilledPatch.getCall(0).args[0].data, 'vessel ref in user patched')
+      expect(onFulfilledPatch.mock.calls[0][0].data).toBe('vessel ref in user patched')
     })
 
     it('calls commit with DELETE_VESSEL and the vesselId', async() => {
