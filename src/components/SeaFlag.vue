@@ -14,7 +14,7 @@
         :strokeColor='strokeColor'
         viewBox="-6 22 60 60"
       >
-        <IconArrow></IconArrow>
+        <IconArrow/>
       </BaseIcon>
       <BaseIcon
         class="sea-flag__icon-wave"
@@ -23,7 +23,7 @@
         :strokeColor='strokeColor'
         viewBox="0 35 40 40"
       >
-        <IconWave></IconWave>
+        <IconWave/>
       </BaseIcon>
     </div>
   </div>
@@ -83,13 +83,8 @@
     },
 
     watch: {
-      direction () {
-        this.setFlag()
-      },
-
-      height () {
-        this.setFlag()
-      }
+      direction: 'setFlag',
+      height: 'setFlag'
     },
 
     methods: {

@@ -6,10 +6,18 @@ import BaseList from '@/components/BaseList'
 describe('SeaData.vue', () => {
   const wrapper = shallow(SeaData, {
     propsData: {
-      seaData: {
-        swellHeight: 3,
-        swellDir: 300
-      },
+      seaData: [
+        {
+          title: "Sea state",
+          value: "2"
+        }, {
+          title: "Swell direction",
+          value: "100°"
+        }, {
+          title:"Swell height",
+          value:"4.0 m"
+        }
+      ],
       swellHeightProp: 3,
       swellDirProp: 300
     }
@@ -24,21 +32,6 @@ describe('SeaData.vue', () => {
   })
 
   describe('Computed properties', () => {
-    it('swellHeight returns proper data', () => {
-      const expectedResult = 3
-      expect(wrapper.vm.swellHeight).toEqual(expectedResult)
-    }),
-
-    it('swellDir returns proper data', () => {
-      const expectedResult = 300
-      expect(wrapper.vm.swellDir).toEqual(expectedResult)
-    })
-
-    wrapper.setData({
-      swellHeightProp: null,
-      swellDirProp: null
-    })
-
     it('swellHeight returns proper data', () => {
       const expectedResult = 3
       expect(wrapper.vm.swellHeight).toEqual(expectedResult)

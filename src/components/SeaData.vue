@@ -5,13 +5,12 @@
       :height="swellHeight"
       :direction="swellDir"
       :withBorder="true"
-    >
-    </SeaFlag>
+    />
     <BaseList
       class="sea-data__list"
       :items="seaData"
       size="big"
-    ></BaseList>
+    />
   </div>
 </template>
 
@@ -37,11 +36,11 @@ export default {
 
   computed: {
     swellHeight () {
-      return this.swellHeightProp || this.seaData.swellHeight
+      return this.swellHeightProp
     },
 
     swellDir () {
-      return this.swellDirProp || this.seaData.swellDir
+      return this.swellDirProp
     }
   }
 }
