@@ -40,7 +40,7 @@ describe('RemainingOnBoard.vue', () => {
     it('miniStatsItems returns proper data', () => {
       const expectedResult = [
         {
-          "change": 0,
+          "change": 5,
           "color": "black",
           "customClass": "mini-stats__item--fo",
           "description": "Fuel Oil",
@@ -48,7 +48,7 @@ describe('RemainingOnBoard.vue', () => {
           "icon": "IconFuel",
           "unit": "cbm"
         }, {
-          "change": 0,
+          "change": 10,
           "color": "brown",
           "customClass": "mini-stats__item--do",
           "description": "Diesel Oil",
@@ -56,7 +56,7 @@ describe('RemainingOnBoard.vue', () => {
           "icon": "IconFuel",
           "unit": "cbm"
         }, {
-          "change": 0,
+          "change": 3,
           "color": "light-blue",
           "customClass": "mini-stats__item--fw",
           "description": "Fresh Water",

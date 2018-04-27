@@ -12,10 +12,10 @@
         :key="report.id"
         class="report-selector__selection"
       >
-        <calendar-card
+        <CalendarCard
           :report="report"
           @click.native="selectReport(report)"
-        ></calendar-card>
+        ></CalendarCard>
       </v-slide>
     </v-carousel>
   </div>
