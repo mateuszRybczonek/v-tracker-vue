@@ -1,5 +1,5 @@
 <template>
-  <div class="success-sign">
+  <div class="success-sign" data-test-success-sign>
     <div class="circle">
       <span class="checkmark draw"></span>
     </div>
