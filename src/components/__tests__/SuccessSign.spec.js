@@ -1,7 +1,7 @@
 import { shallow } from 'vue-test-utils'
 import SuccessSign from '@/components/SuccessSign.vue'
 
-describe('SeaFlag.vue', () => {
+describe('SuccessSign.vue', () => {
   const wrapper = shallow(SuccessSign, {
     propsData: {
       title: 'Great success!',
