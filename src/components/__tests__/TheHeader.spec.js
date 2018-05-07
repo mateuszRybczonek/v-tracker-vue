@@ -7,9 +7,11 @@ describe('TheHeader.vue', () => {
   let getters
   let store
 
+  const logoutSpy = jest.fn(() => Promise.resolve())
+
   beforeEach(() => {
     actions = {
-      logout: jest.fn(() => Promise.resolve()) 
+      logout: logoutSpy
     }
 
     getters = {
@@ -65,6 +67,20 @@ describe('TheHeader.vue', () => {
     expect(firstLink.text()).toBe('V-Tracker')
 
     expect(wrapper.findAll('[data-test-the-header-logout-button]')).toHaveLength(0)
+  })
+
+  describe('Methods', () => {
+    it('onLogout calls logout action', () => {
+      getters.isAuthenticated.mockReturnValue(false)
+
+      const wrapper = mount(TheHeader, {
+        store,
+        stubs: ['router-link']
+      })
+      wrapper.vm.onLogout()
+
+      expect(logoutSpy).toHaveBeenCalled()
+    })
   })
 
   // test('mocking router', () => {

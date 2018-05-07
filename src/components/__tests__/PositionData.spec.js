@@ -5,27 +5,31 @@ import BaseList from '@/components/BaseList'
 import { report } from '@/../test/stubs/report'
 
 describe('PositionData.vue', () => {
-  let wrapper
-
-  beforeEach(() => {
-    wrapper = mount(PositionData, {
+  const setup = overrideProps => {
+    const wrapper = mount(PositionData, {
       propsData: {
         report,
         fetchingReports: false
       }
     })
-  })
+
+    return { wrapper }
+  }
 
   it('renders BaseBadge component', () => {
+    const { wrapper } = setup()
     expect(wrapper.findAll(BaseBadge)).toHaveLength(1)
   })
 
   it('renders BaseList component', () => {
+    const { wrapper } = setup()
     expect(wrapper.findAll(BaseList)).toHaveLength(1)
   })
 
   describe('Computed properties', () => {
     it('positonData returns proper data', () => {
+      const { wrapper } = setup()
+
       const expectedResult = [
         {
           title: "Latitude",
