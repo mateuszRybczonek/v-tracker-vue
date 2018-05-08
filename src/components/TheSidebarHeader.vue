@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar__header">
     <h5>{{vessel.name}}</h5>
-    <router-link
+    <RouterLink
       tag="i"
       :to="editLink"
       class="sidebar__header__edit-link"
@@ -13,12 +13,12 @@
       >
         <IconPencil></IconPencil>
       </BaseIcon>
-    </router-link>
+    </RouterLink>
     <div
       class="sidebar__header__close"
       @click="toggleSidebar"
     >
-      <div
+      <div data-test-sidebar-header-close-icon
         class="sidebar__header__close__icon"
         :class="{ 'sidebar__header__close__icon--open': !sidebarVisible }"
       >
