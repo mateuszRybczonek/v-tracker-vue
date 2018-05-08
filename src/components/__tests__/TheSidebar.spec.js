@@ -4,7 +4,7 @@ import TheSidebarHeader from '@/components/TheSidebarHeader.vue'
 import TheSidebarQuickLinks from '@/components/TheSidebarQuickLinks.vue'
 import TheSidebarContent from '@/components/TheSidebarContent.vue'
 import Vuex from 'vuex'
-import { report, secondReport } from '@/../test/stubs/report'
+import { report } from '@/../test/stubs/report'
 import { firstVessel, secondVessel } from '@/../test/stubs/vessel'
 
 describe('TheSidebar.vue', () => {
@@ -14,18 +14,18 @@ describe('TheSidebar.vue', () => {
   let localVue
 
   beforeEach(() => {
-    getters = {
-      sidebarVisible: jest.fn(),
+    getters = {
+      sidebarVisible: jest.fn(),
       vessels: jest.fn()
-    }
+    }
 
     localVue = createLocalVue()
     localVue.use(Vuex)
 
-    store = new Vuex.Store({
-      state: {},
-      getters
-    })
+    store = new Vuex.Store({
+      state: {},
+      getters
+    })
 
     mocks = {
       $route: {
@@ -34,7 +34,7 @@ describe('TheSidebar.vue', () => {
         }
       }
     }
-  })
+  })
 
   test('adds sidebar--collapsed when sidebarVisible is false', () => {
     getters.sidebarVisible.mockReturnValue(false)

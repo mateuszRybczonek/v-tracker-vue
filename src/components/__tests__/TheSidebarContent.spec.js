@@ -6,15 +6,12 @@ import { firstVessel } from '@/../test/stubs/vessel'
 import moment from 'moment'
 import VueMomentJS from 'vue-momentjs'
 
-let originalDateNow
-const mockDateNow = () => 1524475888010
-
 describe('TheSidebarContent.vue', () => {
   const setup = sidebarVisible => {
     const getters = {
-      sidebarVisible: jest.fn(),
+      sidebarVisible: jest.fn(),
       vessels: jest.fn()
-    }
+    }
 
     getters.sidebarVisible.mockReturnValue(sidebarVisible)
 
@@ -22,10 +19,10 @@ describe('TheSidebarContent.vue', () => {
     localVue.use(Vuex)
     localVue.use(VueMomentJS, moment)
 
-    const store = new Vuex.Store({
-      state: {},
-      getters
-    })
+    const store = new Vuex.Store({
+      state: {},
+      getters
+    })
 
     const wrapper = shallow(TheSidebarContent, {
       localVue,
@@ -37,11 +34,11 @@ describe('TheSidebarContent.vue', () => {
       }
     })
 
-    return { wrapper, getters }
+    return { wrapper }
   }
 
   describe('when sidebarVisible is false', () => {
-    const { wrapper, getters } = setup(false)
+    const { wrapper } = setup(false)
 
     test('status marker is rendered', () => {
       expect(wrapper.find('[data-test-sidebar-content-status]').text()).toContain('')
@@ -53,14 +50,14 @@ describe('TheSidebarContent.vue', () => {
     })
 
     test('list items are not rendered', () => {
-      const { wrapper, getters } = setup()
+      const { wrapper } = setup()
 
       expect(wrapper.findAll('[data-test-sidebar-content-list-items]')).toHaveLength(0)
     })
   })
 
   describe('when sidebarVisible is true', () => {
-    const { wrapper, getters } = setup(true)
+    const { wrapper } = setup(true)
 
     test('status label and marker is rendered', () => {
       expect(wrapper.find('[data-test-sidebar-content-status]').text()).toContain('Status')

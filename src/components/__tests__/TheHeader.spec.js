@@ -7,23 +7,24 @@ describe('TheHeader.vue', () => {
   let getters
   let store
 
+  // eslint-disable-next-line no-undef
   const logoutSpy = jest.fn(() => Promise.resolve())
 
   beforeEach(() => {
-    actions = {
-      logout: logoutSpy
-    }
+    actions = {
+      logout: logoutSpy
+    }
 
-    getters = {
-      isAuthenticated: jest.fn()
-    }
+    getters = {
+      isAuthenticated: jest.fn()
+    }
 
-    store = new Vuex.Store({
-      state: {},
-      getters,
-      actions
-    })
-  })
+    store = new Vuex.Store({
+      state: {},
+      getters,
+      actions
+    })
+  })
 
   test('renders proper header when isAuthenticated', () => {
     getters.isAuthenticated.mockReturnValue(true)

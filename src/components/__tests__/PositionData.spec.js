@@ -5,7 +5,7 @@ import BaseList from '@/components/BaseList'
 import { report } from '@/../test/stubs/report'
 
 describe('PositionData.vue', () => {
-  const setup = overrideProps => {
+  const setup = () => {
     const wrapper = mount(PositionData, {
       propsData: {
         report,
