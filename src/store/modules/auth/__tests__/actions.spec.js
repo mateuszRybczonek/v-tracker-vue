@@ -1,9 +1,7 @@
 import authAxios from '@/axios-auth'
 import axios from 'axios'
 import moxios from 'moxios'
-import sinon from 'sinon'
 import actions from '@/store/modules/auth/actions'
-import { equal } from 'assert'
 
 const authUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyAFJIoUJ2ZzcnfA0O-ODvWRHsOvCMjg6ow'
 const signUpUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyAFJIoUJ2ZzcnfA0O-ODvWRHsOvCMjg6ow'
@@ -74,7 +72,7 @@ describe('auth actions', () => {
       originalDateNow = Date.now
       Date.now = mockDateNow
 
-      onFulfilledPost = sinon.spy()
+      onFulfilledPost = jest.fn()
 
       authAxios.post(authUrl).then(onFulfilledPost)
 
@@ -90,7 +88,7 @@ describe('auth actions', () => {
 
     it('calls API and gets a response', async() => {
       await actions.login(context, authData)
-      equal(onFulfilledPost.getCall(0).args[0].data, postResponse)
+      expect(onFulfilledPost.mock.calls[0][0].data).toBe(postResponse)
     })
 
     it('calls commit with AUTH_USER and token, userId and userEmail', async() => {
@@ -153,7 +151,7 @@ describe('auth actions', () => {
       originalDateNow = Date.now
       Date.now = mockDateNow
 
-      onFulfilledPost = sinon.spy()
+      onFulfilledPost = jest.fn()
 
       authAxios.post(signUpUrl).then(onFulfilledPost)
 
@@ -169,7 +167,7 @@ describe('auth actions', () => {
 
     it('calls API and gets a response', async() => {
       await actions.signup(context, authData)
-      equal(onFulfilledPost.getCall(0).args[0].data, postResponse)
+      expect(onFulfilledPost.mock.calls[0][0].data).toBe(postResponse)
     })
 
     it('calls commit with AUTH_USER and token, userId and userEmail', async() => {
@@ -260,7 +258,7 @@ describe('auth actions', () => {
 
       postResponse = 'user stored in database'
 
-      onFulfilledPost = sinon.spy()
+      onFulfilledPost = jest.fn()
 
       axios.post('/users/1.json?auth=123456789').then(onFulfilledPost)
 
@@ -284,7 +282,7 @@ describe('auth actions', () => {
 
     it('calls API and stores the user in the database', async() => {
       await actions.storeUser(context, userData)
-      equal(onFulfilledPost.getCall(0).args[0].data, postResponse)
+      expect(onFulfilledPost.mock.calls[0][0].data).toBe(postResponse)
     })
 
     it('calls commit with STORE_USER and userData', async() => {
@@ -326,7 +324,7 @@ describe('auth actions', () => {
 
       getResponse = 'get user from the database'
 
-      onFulfilledGet = sinon.spy()
+      onFulfilledGet = jest.fn()
 
       axios.get('/users/1.json?auth=123456789').then(onFulfilledGet)
 
@@ -342,7 +340,7 @@ describe('auth actions', () => {
 
     it('calls API and get the user from the database', async() => {
       await actions.fetchUser(context)
-      equal(onFulfilledGet.getCall(0).args[0].data, getResponse)
+      expect(onFulfilledGet.mock.calls[0][0].data).toBe(getResponse)
     })
 
     it('calls localStorage to set the user', async() => {

@@ -1,7 +1,7 @@
 <template>
-  <header class="header">
+  <header class="header" data-test-the-header>
     <div class="header__logo">
-      <router-link to="/">V-Tracker</router-link>
+      <RouterLink to="/">V-Tracker</RouterLink>
     </div>
     <nav class="header__navigation">
       <ul
@@ -9,13 +9,14 @@
         class="header__navigation-items"
       >
         <li class="header__navigation-item">
-          <router-link to="/dashboard/vessels">Vessels</router-link>
+          <RouterLink to="/dashboard/vessels">Vessels</RouterLink>
         </li>
         <li class="header__navigation-item">
-          <router-link to="/dashboard/reports">Reports</router-link>
+          <RouterLink to="/dashboard/reports">Reports</RouterLink>
         </li>
         <li class="header__navigation-item">
           <button
+            data-test-the-header-logout-button
             @click="onLogout"
             class="header__logout"
           >
@@ -28,9 +29,8 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import router from '@/router/index'
-  import { mapActions } from 'vuex'
 
   export default {
     computed: {

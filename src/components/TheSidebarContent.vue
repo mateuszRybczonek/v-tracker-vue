@@ -1,7 +1,10 @@
 <template>
   <div class="sidebar__content">
     <ul class="sidebar__content__list">
-      <li class="sidebar__content__list__item__status">
+      <li
+        data-test-sidebar-content-status
+        class="sidebar__content__list__item__status"
+      >
         <span
           class="sidebar__content__list__item__title"
           v-if="sidebarVisible"
@@ -9,12 +12,14 @@
           Status
         </span>
         <span
+          data-test-sidebar-content-status-marker
           class="sidebar__content__list__item__status__marker"
           :class="vesselStatusClass"
         ></span>
       </li>
 
       <div
+        data-test-sidebar-content-list-last-report
         class="sidebar__content__list__item sidebar__content__list__item__last-report"
         v-if="sidebarVisible"
       >
@@ -23,10 +28,12 @@
       </div>
 
       <div
+        data-test-sidebar-content-list-items
         class="sidebar__content__list__items"
         v-if="sidebarVisible"
       >
         <li
+          data-test-sidebar-content-list-item
           class="sidebar__content__list__item"
           v-for="item in items"
           :key="item.name"

@@ -1,19 +1,18 @@
 <template>
   <div
+    data-test-the-sidebar
     class="sidebar"
     :class="{ 'sidebar--collapsed': !sidebarVisible }"
   >
-    <TheSidebarHeader :vessel="vessel"></TheSidebarHeader>
+    <TheSidebarHeader :vessel="vessel"/>
 
     <TheSidebarQuickLinks
       class="sidebar__quick-links"
-      :vertical="!sidebarVisible"
-    ></TheSidebarQuickLinks>
+      :vertical="!sidebarVisible"/>
 
     <TheSidebarContent
       :vessel="vessel"
-      :lastReport="lastReport"
-    ></TheSidebarContent>
+      :lastReport="lastReport"/>
   </div>
 </template>
 

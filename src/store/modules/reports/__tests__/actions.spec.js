@@ -1,7 +1,5 @@
 import axios from 'axios'
 import moxios from 'moxios'
-import sinon from 'sinon'
-import { equal, ok } from 'assert'
 import actions from '@/store/modules/reports/actions'
 import { report, secondReport, rawSecondReport } from '@/../test/stubs/report'
 
@@ -32,8 +30,8 @@ describe('reports actions', () => {
         commit: jest.fn()
       }
 
-      onFulfilledPost = sinon.spy()
-      onFulfilledPatch = sinon.spy()
+      onFulfilledPost = jest.fn()
+      onFulfilledPatch = jest.fn()
 
       axios.post('/reports.json?auth=999').then(onFulfilledPost)
       axios.patch('vessels/vessel-1/reports.json?auth=999').then(onFulfilledPatch)
@@ -50,7 +48,7 @@ describe('reports actions', () => {
     })
 
     it('doesn\'t make a call when no idToken', async() => {
-      let onFulfilledNoToken = sinon.spy()
+      let onFulfilledNoToken = jest.fn()
       axios.post('/reports.json?auth=undefined').then(onFulfilledNoToken)
 
       context = {
@@ -60,17 +58,17 @@ describe('reports actions', () => {
       }
 
       await actions.createNewReport(context, reportData)
-      ok(onFulfilledNoToken.notCalled)
+      expect(onFulfilledNoToken).notCalled
     })
 
     it('calls API and creates the report', async() => {
       await actions.createNewReport(context, reportData)
-      equal(onFulfilledPost.getCall(0).args[0].data, postResponse)
+      expect(onFulfilledPost.mock.calls[0][0].data).toBe(postResponse)
     })
 
     it('calls API and patches the vessel adding a reference to the report', async() => {
       await actions.createNewReport(context, reportData)
-      equal(onFulfilledPatch.getCall(0).args[0].data, 'report ref in vessel added')
+      expect(onFulfilledPatch.mock.calls[0][0].data).toBe('report ref in vessel added')
     })
   })
 
@@ -84,7 +82,7 @@ describe('reports actions', () => {
     })
 
     it('doesn\'t make a call when no idToken', async() => {
-      onFulfilled = sinon.spy()
+      onFulfilled = jest.fn()
       axios.patch('/reports/888.json?auth=undefined').then(onFulfilled)
 
       context = {
@@ -95,11 +93,11 @@ describe('reports actions', () => {
       }
 
       await actions.updateReport(context, reportData)
-      ok(onFulfilled.notCalled)
+      expect(onFulfilled).notCalled
     })
 
     it('calls API and gets a proper response when idToken is valid', async() => {
-      onFulfilled = sinon.spy()
+      onFulfilled = jest.fn()
       axios.patch('/reports/888.json?auth=999').then(onFulfilled)
 
       moxios.stubRequest('/reports/888.json?auth=999', {
@@ -115,7 +113,7 @@ describe('reports actions', () => {
       }
 
       await actions.updateReport(context, reportData)
-      equal(onFulfilled.getCall(0).args[0].data, reportData)
+      expect(onFulfilled.mock.calls[0][0].data).toBe(reportData)
     })
 
     it('calls commit with UPDATE_REPORT and the updated reportData', async() => {
@@ -157,11 +155,11 @@ describe('reports actions', () => {
     })
 
     it('calls API and gets a proper response', async() => {
-      const onFulfilled = sinon.spy()
+      const onFulfilled = jest.fn()
       axios.get('/reports.json?orderBy="vessel"&equalTo="vessel-1"').then(onFulfilled)
 
       await actions.fetchReports(context, 'vessel-1')
-      equal(onFulfilled.getCall(0).args[0].data, responseJSON)
+      expect(onFulfilled.mock.calls[0][0].data).toBe(responseJSON)
     })
 
     it('dispatches storeReports action', async() => {
@@ -227,8 +225,8 @@ describe('reports actions', () => {
         commit: jest.fn()
       }
 
-      onFulfilledDelete = sinon.spy()
-      onFulfilledPatch = sinon.spy()
+      onFulfilledDelete = jest.fn()
+      onFulfilledPatch = jest.fn()
 
       axios.delete('/reports/999.json?auth=888').then(onFulfilledDelete)
       axios.patch('vessels/111/reports.json?auth=888').then(onFulfilledPatch)
@@ -246,12 +244,12 @@ describe('reports actions', () => {
 
     it('calls API and deletes the specified report', async() => {
       await actions.deleteReport(context, payload)
-      equal(onFulfilledDelete.getCall(0).args[0].data, 'report deleted')
+      expect(onFulfilledDelete.mock.calls[0][0].data).toBe('report deleted')
     })
 
     it('calls API and patches the vessel removing the reference to specified report', async() => {
       await actions.deleteReport(context, payload)
-      equal(onFulfilledPatch.getCall(0).args[0].data, 'report ref in vessel patched')
+      expect(onFulfilledPatch.mock.calls[0][0].data).toBe('report ref in vessel patched')
     })
 
     it('calls commit with DELETE_REPORT and the reportId', async() => {
