@@ -1,24 +1,14 @@
 import { shallow, createLocalVue } from 'vue-test-utils'
 import TheSidebarQuickLinks from '@/components/TheSidebarQuickLinks.vue'
 import { COMPONENT_NAMES } from '@/constants/vessel-details'
-import BaseIcon from '@/components/BaseIcon.vue'
-import IconFiles from '@/components/Icons/IconFiles.vue'
-import IconOverview from '@/components/Icons/IconOverview.vue'
-import IconWeather from '@/components/Icons/IconWeather.vue'
-import IconStatistics from '@/components/Icons/IconStatistics.vue'
 import Vuex from 'vuex'
 
-const { VESSEL_DASHBOARD, REPORTS, WEATHER, STATISTICS } = COMPONENT_NAMES
-const selectVesselDetailsComponentSpy = jest.fn()
+const { VESSEL_DASHBOARD } = COMPONENT_NAMES
 
 describe('TheSidebarQuickLinks.vue', () => {
   const setup = () => {
     const getters = {
       selectedVesselDetailsComponent: jest.fn()
-    }
-
-    const actions = {
-      selectVesselDetailsComponent: selectVesselDetailsComponentSpy
     }
 
     getters.selectedVesselDetailsComponent.mockReturnValue(VESSEL_DASHBOARD)
