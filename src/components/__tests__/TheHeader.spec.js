@@ -83,20 +83,4 @@ describe('TheHeader.vue', () => {
       expect(logoutSpy).toHaveBeenCalled()
     })
   })
-
-  // test('mocking router', () => {
-  //   const mocks = {
-  //     $router: {
-  //       replace: jest.fn()
-  //     }
-  //   }
-  //
-  //   const wrapper = mount(TheHeader, {
-  //     store,
-  //     mocks
-  //   })
-  //
-  //   const logoutButton = wrapper.find('[data-test-the-header-logout-button]')
-  //   expect(mocks.$router.replace).toHaveBeenCalledWith('/signin')
-  // })
 })
