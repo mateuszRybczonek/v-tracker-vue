@@ -1,11 +1,15 @@
 <template>
-  <div class="report-item-collapsed-body">
+  <div
+    data-test-report-item-collapsed-body
+    class="report-item-collapsed-body"
+  >
     <div class="report-item-collapsed-body__basic-data">
       <p>Latitude: {{lat}}</p>
       <p>Longitude: {{lng}}</p>
     </div>
     <div class="report-item__collapsed-body__actions">
       <span
+        data-test-report-item-collapsed-body-delete-icon
         class="delete-icon"
         @click.prevent.stop="deleteReport({ reportId, vesselId })"
       >
