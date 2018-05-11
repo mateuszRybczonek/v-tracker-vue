@@ -1,11 +1,13 @@
 <template>
   <div class="report-item-details-section">
     <div
+      data-test-report-item-details-header
       class="report-item-details-section__header"
       :class="color"
     >
       <span class="report-item-details-section__title">{{sectionData.sectionTitle}}</span>
       <span
+        data-test-report-item-details-save-button
         v-if="isEditing"
         @click.prevent.stop="updateReportAction(reportChangeset)"
       >
@@ -19,6 +21,7 @@
         </BaseIcon>
       </span>
       <span
+        data-test-report-item-details-edit-button
         v-else
         @click.prevent.stop="editReportSection"
       >
@@ -33,12 +36,14 @@
     </div>
     <ul class="report-item-details-section__list">
       <li
+        data-test-report-item-details-list-item
         class="list-item"
         v-for="sectionDataItem in sectionData.items"
         :key="sectionDataItem.title"
       >
         <span class="list-item__title">{{sectionDataItem.title}}</span>
         <input
+          data-test-report-item-details-list-item-input
           v-if="isEditing"
           class="list-item__title-input"
           type="text"
@@ -46,6 +51,7 @@
           v-model="reportChangeset[sectionDataItem.key]"
         >
         <span
+          data-test-report-item-details-list-item-value
           v-else
           class="list-item__value"
         >

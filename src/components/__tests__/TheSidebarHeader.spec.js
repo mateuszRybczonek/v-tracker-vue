@@ -58,13 +58,6 @@ describe('TheSidebarHeader.vue', () => {
     test('vessel name is rendered', () => {
       expect(wrapper.html()).toContain('ENSCO DS-2')
     })
-
-    test('proper edit link is rendered', () => {
-      const link = wrapper.find('routerlink')
-      expect(link.attributes().to).toBe('/dashboard/vessels/1/edit')
-      expect(link.find(BaseIcon))
-      expect(link.find(IconPencil))
-    })
   })
 
   describe('Methods', () => {

@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar__header">
     <h5>{{vessel.name}}</h5>
-    <RouterLink
+    <router-link
       tag="i"
       :to="editLink"
       class="sidebar__header__edit-link"
@@ -13,7 +13,7 @@
       >
         <IconPencil></IconPencil>
       </BaseIcon>
-    </RouterLink>
+    </router-link>
     <div
       class="sidebar__header__close"
       @click="toggleSidebar"

@@ -1,20 +1,20 @@
 <template>
   <header class="header" data-test-the-header>
-    <div class="header__logo">
-      <RouterLink to="/">V-Tracker</RouterLink>
+    <div data-test-the-header-navigation-item class="header__logo">
+      <router-link to="/">V-Tracker</router-link>
     </div>
     <nav class="header__navigation">
       <ul
         v-if="isAuthenticated"
         class="header__navigation-items"
       >
-        <li class="header__navigation-item">
-          <RouterLink to="/dashboard/vessels">Vessels</RouterLink>
+        <li data-test-the-header-navigation-item class="header__navigation-item">
+          <router-link to="/dashboard/vessels">Vessels</router-link>
         </li>
-        <li class="header__navigation-item">
-          <RouterLink to="/dashboard/reports">Reports</RouterLink>
+        <li data-test-the-header-navigation-item class="header__navigation-item">
+          <router-link to="/dashboard/reports">Reports</router-link>
         </li>
-        <li class="header__navigation-item">
+        <li data-test-the-header-navigation-item class="header__navigation-item">
           <button
             data-test-the-header-logout-button
             @click="onLogout"
