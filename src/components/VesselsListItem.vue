@@ -7,13 +7,11 @@
     <VesselsListItemBody
       :inProgress="inProgress"
       :vesselName="vessel.name"
-      :vesselImoNumber="vessel.imoNumber"
-    ></VesselsListItemBody>
+      :vesselImoNumber="vessel.imoNumber"/>
 
     <VesselsListItemActions
       @enableInProgress="enableInProgress"
-      :vesselId="vessel.id"
-    ></VesselsListItemActions>
+      :vesselId="vessel.id"/>
   </BaseCard>
 </template>
 
