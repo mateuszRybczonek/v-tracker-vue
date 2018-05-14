@@ -5,8 +5,6 @@ import BaseBadge from '@/components/BaseBadge.vue'
 import VesselReportsListItemDetails from '@/components/VesselReportsListItemDetails.vue'
 import VesselReportsListItemCollapsedBody from '@/components/VesselReportsListItemCollapsedBody.vue'
 import { report } from '@/../test/stubs/report'
-import { decimalToDMS } from '@/utils/coordinates-utils'
-
 
 describe('VesselReportsListItem.vue', () => {
   const setup = () => {

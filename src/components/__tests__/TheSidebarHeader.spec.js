@@ -1,7 +1,5 @@
 import { shallow, createLocalVue } from 'vue-test-utils'
 import TheSidebarHeader from '@/components/TheSidebarHeader.vue'
-import BaseIcon from '@/components/BaseIcon.vue'
-import IconPencil from '@/components/Icons/IconPencil.vue'
 import Vuex from 'vuex'
 import { firstVessel } from '@/../test/stubs/vessel'
 

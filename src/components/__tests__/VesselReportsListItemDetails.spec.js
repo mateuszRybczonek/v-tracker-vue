@@ -1,14 +1,8 @@
 import { mount, createLocalVue } from 'vue-test-utils'
 import VesselReportsListItemDetails from '@/components/VesselReportsListItemDetails.vue'
-import BaseIcon from '@/components/BaseIcon.vue'
 import IconSave from '@/components/Icons/IconSave.vue'
 import IconPencil from '@/components/Icons/IconPencil.vue'
-import {
-  formatLatForPersistanceLayer,
-  formatLngForPersistanceLayer,
-  decimalToDMS,
-  stripSymbols
-} from '@/utils/coordinates-utils'
+import { decimalToDMS } from '@/utils/coordinates-utils'
 import { report } from '@/../test/stubs/report'
 import Vuex from 'vuex'
 
