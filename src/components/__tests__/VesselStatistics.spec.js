@@ -3,7 +3,7 @@ import VesselStatistics from '@/components/VesselStatistics.vue'
 
 describe('VesselStatistics.vue', () => {
   const setup = () => {
-    const wrapper = mount(VesselStatistics)
+    const wrapper = shallow(VesselStatistics)
     return { wrapper }
   }
 

@@ -3,7 +3,7 @@ import VesselWeather from '@/components/VesselWeather.vue'
 
 describe('VesselWeather.vue', () => {
   const setup = () => {
-    const wrapper = mount(VesselWeather)
+    const wrapper = shallow(VesselWeather)
     return { wrapper }
   }
 
