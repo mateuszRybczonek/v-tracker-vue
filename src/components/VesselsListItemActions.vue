@@ -8,10 +8,11 @@
         width="40"
         height="40"
       >
-        <IconPencil></IconPencil>
+        <IconPencil/>
       </BaseIcon>
     </router-link>
     <span
+      data-test-vessels-list-item-actions-delete
       class="delete-icon"
       @click.prevent.stop="deleteVesselAction(vesselId)"
     >
@@ -19,7 +20,7 @@
         width="40"
         height="40"
       >
-        <IconTrash></IconTrash>
+        <IconTrash/>
       </BaseIcon>
     </span>
   </div>
