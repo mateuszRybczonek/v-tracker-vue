@@ -9,8 +9,7 @@
         slot="header"
         :title="report.reportTime"
         icon="IconCalendar"
-        color="blue"
-      ></BaseBadge>
+        color="blue"/>
       <div
         slot="body"
         class="report-item__body"
@@ -20,8 +19,7 @@
           :key="sectionData.sectionTitle"
           :color="sectionData.color"
           :sectionData="sectionData"
-          :report="report"
-        ></VesselReportsListItemDetails>
+          :report="report"/>
       </div>
 
       <VesselReportsListItemCollapsedBody
@@ -29,8 +27,7 @@
         :lat="formattedLat"
         :lng="formattedLng"
         :reportId="report.id"
-        :vesselId="report.vessel"
-      ></VesselReportsListItemCollapsedBody>
+        :vesselId="report.vessel"/>
     </AccordionWrapper>
   </li>
 </template>

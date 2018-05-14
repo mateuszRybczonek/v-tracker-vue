@@ -1,9 +1,12 @@
 <template>
   <div
+    data-test-vessel-dashboard
     class="vessel-dashboard"
     :class="{ 'vessel-dashboard--full-width': !sidebarVisible }"
   >
-    <h1 class="vessel-dashboard__header">Report details</h1>
+    <h1
+      data-test-vessel-dashboard-header
+      class="vessel-dashboard__header">Report details</h1>
 
     <affix
       relative-element-selector=".vessel-dashboard"

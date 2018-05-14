@@ -6,7 +6,7 @@
     <BaseIcon
       iconColor="#999"
     >
-      <IconTilesPlus></IconTilesPlus>
+      <IconTilesPlus/>
     </BaseIcon>
     <p>Add new report</p>
   </BaseListItem>

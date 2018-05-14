@@ -18,7 +18,7 @@
       class="sidebar__header__close"
       @click="toggleSidebar"
     >
-      <div
+      <div data-test-sidebar-header-close-icon
         class="sidebar__header__close__icon"
         :class="{ 'sidebar__header__close__icon--open': !sidebarVisible }"
       >

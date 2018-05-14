@@ -1,9 +1,10 @@
 <template>
-  <div
+  <div data-test-sidebar-quick-links
     class="quick-links"
     :class="{ 'quick-links--vertical': vertical }"
   >
     <button
+      data-test-sidebar-quick-links-button
       v-for="button in buttons"
       :key="button.component"
       class="quick-links__icon"

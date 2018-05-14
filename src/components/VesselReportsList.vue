@@ -1,6 +1,9 @@
 <template>
   <div class="reports-list">
-    <h1 class="reports-list__header">
+    <h1
+      data-test-vessel-reports-list-header
+      class="reports-list__header"
+    >
       {{title}}
     </h1>
 
