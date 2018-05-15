@@ -1,9 +1,13 @@
 <template>
   <div
+    data-test-wind-flag
     id="weather-flag"
     :class="classes"
   >
-    <i :class="iconClasses"></i>
+    <i
+      data-test-wind-flag-icon
+      :class="iconClasses"
+    ></i>
   </div>
 </template>
 

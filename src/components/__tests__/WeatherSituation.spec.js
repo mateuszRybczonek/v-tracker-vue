@@ -1,4 +1,4 @@
-import { mount, createLocalVue } from 'vue-test-utils'
+import { mount } from 'vue-test-utils'
 import WeatherSituation from '@/components/WeatherSituation.vue'
 import WindFlag from '@/components/WindFlag.vue'
 import SeaFlag from '@/components/SeaFlag.vue'
