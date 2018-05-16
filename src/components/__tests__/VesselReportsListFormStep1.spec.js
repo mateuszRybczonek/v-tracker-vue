@@ -1,7 +1,5 @@
 import { mount } from 'vue-test-utils'
 import VesselReportsListFormStep1 from '@/components/VesselReportsListFormStep1.vue'
-import ButtonPositive from '@/components/ButtonPositive.vue'
-import InputWithErrors from '@/components/InputWithErrors.vue'
 import { rawSecondReport } from '@/../test/stubs/report'
 
 const reportDataValidationsDefault = {
@@ -23,6 +21,7 @@ const reportDataValidationsDefault = {
 }
 
 describe('VesselReportsListFormStep1.vue', () => {
+  // eslint-disable-next-line no-unused-vars
   const setup = (step = 1, reportDataValidations = reportDataValidationsDefault) => {
     const mocks = {
       $v: {
@@ -100,7 +99,7 @@ describe('VesselReportsListFormStep1.vue', () => {
     const invalidReportTime = { lat: { $invalid: false }, lng: { $invalid: false }, reportTime: { $invalid: true }, course: { $invalid: false }, spd: { $invalid: false } }
 
     it('invalidStep returns true if reportTime is invalid', () => {
-      const { wrapper } = setup(1, invalidLng)
+      const { wrapper } = setup(1, invalidReportTime)
 
       expect(wrapper.vm.invalidStep).toEqual(true)
     })

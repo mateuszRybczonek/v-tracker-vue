@@ -1,7 +1,5 @@
 import { mount } from 'vue-test-utils'
 import VesselReportsListFormStep2 from '@/components/VesselReportsListFormStep2.vue'
-import ButtonPositive from '@/components/ButtonPositive.vue'
-import InputWithErrors from '@/components/InputWithErrors.vue'
 import { rawSecondReport } from '@/../test/stubs/report'
 
 const reportDataValidationsDefault = {
@@ -23,6 +21,7 @@ const reportDataValidationsDefault = {
 }
 
 describe('VesselReportsListFormStep2.vue', () => {
+  // eslint-disable-next-line no-unused-vars
   const setup = (step = 2, reportDataValidations = reportDataValidationsDefault) => {
     const mocks = {
       $v: {

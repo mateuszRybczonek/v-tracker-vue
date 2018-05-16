@@ -37,7 +37,6 @@ describe('MainMenuPage.vue', () => {
   })
 
   it('fetchUser is called on created', () => {
-    const { wrapper } = setup()
     expect(fetchUserSpy).toHaveBeenCalled()
   })
 })

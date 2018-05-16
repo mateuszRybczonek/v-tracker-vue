@@ -2,9 +2,6 @@ import { mount, createLocalVue } from 'vue-test-utils'
 import VesselPage from '@/pages/VesselPage.vue'
 import TheSidebar from '@/components/TheSidebar.vue'
 import VesselDashboard from '@/components/VesselDashboard.vue'
-import VesselStatistics from '@/components/VesselStatistics.vue'
-import VesselWeather from '@/components/VesselWeather.vue'
-import VesselReports from '@/components/VesselReports.vue'
 import { COMPONENT_NAMES } from '@/constants/vessel-details'
 import Vuex from 'vuex'
 import { firstVessel, secondVessel } from '@/../test/stubs/vessel'
@@ -78,7 +75,6 @@ describe('VesselPage.vue', () => {
   })
 
   test('created hook fetches reports', () => {
-    const { wrapper } = setup()
     expect(fetchReportsSpy.mock.calls[0][1]).toEqual('1')
   })
 

@@ -1,8 +1,6 @@
 import { mount, createLocalVue } from 'vue-test-utils'
 import SignupPage from '@/pages/auth/SignupPage.vue'
 import FormWrapper from '@/components/FormWrapper.vue'
-import ButtonPositive from '@/components/ButtonPositive.vue'
-import BaseIcon from '@/components/BaseIcon.vue'
 import IconEmail from '@/components/Icons/IconEmail.vue'
 import IconLock from '@/components/Icons/IconLock.vue'
 import Vuex from 'vuex'

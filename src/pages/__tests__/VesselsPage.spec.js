@@ -50,7 +50,6 @@ describe('VesselsPage.vue', () => {
   })
 
   test('created hook fetches vessels', () => {
-    const { wrapper } = setup()
     expect(fetchVesselsSpy.mock.calls[0][1]).toEqual(1)
   })
 })

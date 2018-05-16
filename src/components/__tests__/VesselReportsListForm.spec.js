@@ -3,9 +3,6 @@ import VesselReportsListForm from '@/components/VesselReportsListForm.vue'
 import FormWrapper from '@/components/FormWrapper.vue'
 import VesselReportsListNewStepper from '@/components/VesselReportsListFormStepper.vue'
 import Step1 from '@/components/VesselReportsListFormStep1.vue'
-import Step2 from '@/components/VesselReportsListFormStep2.vue'
-import Step3 from '@/components/VesselReportsListFormStep3.vue'
-import Step4 from '@/components/VesselReportsListFormStep4.vue'
 import Vuex from 'vuex'
 
 const createNewReportSpy = jest.fn()
@@ -67,7 +64,6 @@ describe('VesselReportsListForm.vue', () => {
 
     test('with Step1 component', () => {
       expect(wrapper.findAll(Step1)).toHaveLength(1)
-      const step1 = wrapper.find(Step1)
     })
   })
 
