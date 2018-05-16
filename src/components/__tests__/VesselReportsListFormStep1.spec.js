@@ -1,35 +1,8 @@
-import { mount, createLocalVue } from 'vue-test-utils'
+import { mount } from 'vue-test-utils'
 import VesselReportsListFormStep1 from '@/components/VesselReportsListFormStep1.vue'
 import ButtonPositive from '@/components/ButtonPositive.vue'
 import InputWithErrors from '@/components/InputWithErrors.vue'
-import BaseIcon from '@/components/BaseIcon.vue'
-import IconCalendar from '@/components/Icons/IconCalendar.vue'
-import IconFi from '@/components/Icons/IconFi.vue'
-import IconLambda from '@/components/Icons/IconLambda.vue'
-import IconNavigation from '@/components/Icons/IconNavigation.vue'
-import IconSpeed from '@/components/Icons/IconSpeed.vue'
-
-const reportData = {
-  reportTime: '2017-12-12',
-  lat: '12 20.3 N',
-  lng: '012 20.4 W',
-  course: '123',
-  spd: '12',
-  windDir: '200',
-  windSpd: '14',
-  seaState: '2',
-  swellDir: '300',
-  swellHeight: '2',
-  doRob: '100',
-  foRob: '90',
-  fwRob: '80',
-  pob: '67',
-  pitch: '1',
-  roll: '0.3',
-  updatedAt: '',
-  vessel: '1',
-  createdBy: '1234'
-}
+import { rawSecondReport } from '@/../test/stubs/report'
 
 const reportDataValidationsDefault = {
   lat: {
@@ -49,7 +22,7 @@ const reportDataValidationsDefault = {
   }
 }
 
-describe('VesselReportsListForm.vue', () => {
+describe('VesselReportsListFormStep1.vue', () => {
   const setup = (step = 1, reportDataValidations = reportDataValidationsDefault) => {
     const mocks = {
       $v: {
@@ -60,7 +33,7 @@ describe('VesselReportsListForm.vue', () => {
     const wrapper = mount(VesselReportsListFormStep1, {
       mocks,
       propsData: {
-        reportData,
+        reportData: rawSecondReport,
         showErrors: false
       }
     })

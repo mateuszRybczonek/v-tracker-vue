@@ -10,28 +10,6 @@ import Vuex from 'vuex'
 
 const createNewReportSpy = jest.fn()
 
-const reportData = {
-  reportTime: '2017-12-12',
-  lat: '12 20.3 N',
-  lng: '012 20.4 W',
-  course: '123',
-  spd: '12',
-  windDir: '200',
-  windSpd: '14',
-  seaState: '2',
-  swellDir: '300',
-  swellHeight: '2',
-  doRob: '100',
-  foRob: '90',
-  fwRob: '80',
-  pob: '67',
-  pitch: '1',
-  roll: '0.3',
-  updatedAt: '',
-  vessel: '1',
-  createdBy: '1234'
-}
-
 describe('VesselReportsListForm.vue', () => {
   const setup = (step = 1) => {
     const actions = {
