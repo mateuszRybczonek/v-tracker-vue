@@ -135,7 +135,6 @@ describe('MainMenuPage.vue', () => {
 
   test('created hook set proper vessel', () => {
     const { wrapper } = setup()
-
     expect(wrapper.vm.vessel).toEqual(firstVessel)
   })
 })
