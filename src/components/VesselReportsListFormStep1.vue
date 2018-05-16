@@ -199,6 +199,7 @@
     <div class="actions">
       <span></span>
       <ButtonPositive
+				data-test-vessel-reports-list-form-next-step-button
 			  :on-click="nextStep"
 				:inProgress="false"
 			>
