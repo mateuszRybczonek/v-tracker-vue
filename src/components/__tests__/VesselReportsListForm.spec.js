@@ -32,19 +32,6 @@ const reportData = {
   createdBy: '1234'
 }
 
-let originalDateNow
-
-const mockDateNow = () => 1524475888010
-
-beforeEach(() => {
-  originalDateNow = Date.now
-  Date.now = mockDateNow
-})
-
-afterEach(() => {
-  Date.now = originalDateNow
-})
-
 describe('VesselReportsListForm.vue', () => {
   const setup = (step = 1) => {
     const actions = {
