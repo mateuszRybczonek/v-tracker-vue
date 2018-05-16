@@ -95,9 +95,11 @@ describe('NewVesselPage.vue', () => {
 
   describe('when clicked on create new vessel button', () => {
     const { wrapper } = setup()
+
     wrapper.setData({
       vessel: firstVessel
     })
+
     const expectedFormData = {
       flag: 'Marshall Islands',
       gt: '47000',

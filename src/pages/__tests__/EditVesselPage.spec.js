@@ -8,7 +8,7 @@ import { firstVessel, secondVessel } from '@/../test/stubs/vessel'
 const editVesselSpy = jest.fn()
 const routerPushSpy = jest.fn()
 
-describe('MainMenuPage.vue', () => {
+describe('EditVesselPage.vue', () => {
   const setup = () => {
     const getters = {
       vessels: jest.fn()
