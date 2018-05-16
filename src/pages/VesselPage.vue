@@ -3,7 +3,11 @@
     <TheSidebar
       :lastReport="lastReport">
     </TheSidebar>
-    <div class="vessel__content" :class="{ 'vessel__content--expanded': !sidebarVisible }">
+    <div
+      data-test-vessel-page-content
+      class="vessel__content"
+      :class="{ 'vessel__content--expanded': !sidebarVisible }"
+    >
       <keep-alive>
         <transition name="slide" mode="out-in">
           <component
@@ -34,7 +38,7 @@
       VesselWeather,
       VesselReports
     },
-    
+
     created () {
       this.fetchReports(this.$route.params.id)
     },
