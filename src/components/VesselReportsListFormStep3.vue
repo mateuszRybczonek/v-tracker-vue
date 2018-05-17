@@ -15,8 +15,13 @@
     </div>
     <div class="form-sections">
       <div class="form-section">
-        <h4 class="form-section__heading">Remaining on board</h4>
-        <InputWithErrors unit="cbm">
+        <h4
+          data-test-vessel-reports-list-form-step-three-section-one-header
+          class="form-section__heading"
+        >
+          Remaining on board
+        </h4>
+        <InputWithErrors data-test-vessel-reports-list-form-step-three-fo-rob-input unit="cbm">
           <div
             slot="input"
             class="input__wrapper"
@@ -54,7 +59,7 @@
           </div>
         </InputWithErrors>
 
-        <InputWithErrors unit="cbm">
+        <InputWithErrors data-test-vessel-reports-list-form-step-three-do-rob-input unit="cbm">
           <div
             slot="input"
             class="input__wrapper"
@@ -92,7 +97,7 @@
           </div>
         </InputWithErrors>
 
-        <InputWithErrors unit="cbm">
+        <InputWithErrors data-test-vessel-reports-list-form-step-three-fw-rob-input unit="cbm">
           <div
            slot="input"
            class="input__wrapper"
@@ -132,8 +137,13 @@
       </div>
 
       <div class="form-section">
-        <h4 class="form-section__heading">Other</h4>
-        <InputWithErrors unit="">
+        <h4
+          data-test-vessel-reports-list-form-step-three-section-two-header
+          class="form-section__heading"
+        >
+          Other
+        </h4>
+        <InputWithErrors data-test-vessel-reports-list-form-step-three-pob-input unit="">
           <div
             slot="input"
             class="input__wrapper"
@@ -172,7 +182,7 @@
           </div>
         </InputWithErrors>
 
-        <InputWithErrors>
+        <InputWithErrors data-test-vessel-reports-list-form-step-three-pitch-input>
           <div
             slot="input"
             class="input__wrapper"
@@ -205,7 +215,7 @@
           </div>
         </InputWithErrors>
 
-        <InputWithErrors>
+        <InputWithErrors data-test-vessel-reports-list-form-step-three-roll-input>
           <div
             slot="input"
             class="input__wrapper"
@@ -242,6 +252,7 @@
 
     <div class="actions">
       <ButtonPositive
+        data-test-vessel-reports-list-form-next-step-button
         :on-click="previousStep"
         :inProgress='false'
       >
@@ -249,6 +260,7 @@
       </ButtonPositive>
 
       <ButtonPositive
+        data-test-vessel-reports-list-form-previous-step-button
         :on-click="submit"
         :inProgress='false'
       >
@@ -261,7 +273,7 @@
 <script>
   import ButtonPositive from './ButtonPositive.vue'
   import InputWithErrors from './InputWithErrors.vue'
-  import { required } from 'vuelidate/lib/validators'
+  import { required, numeric } from 'vuelidate/lib/validators'
   import BaseIcon from './BaseIcon.vue'
   import IconFuel from './Icons/IconFuel.vue'
   import IconWater from './Icons/IconWater.vue'
@@ -301,11 +313,12 @@
 
     computed: {
       invalidStep () {
-        return this.$v.reportData.windDir.$invalid ||
-          this.$v.reportData.windSpd.$invalid ||
-          this.$v.reportData.seaState.$invalid ||
-          this.$v.reportData.swellDir.$invalid ||
-          this.$v.reportData.swellHeight.$invalid
+        return this.$v.reportData.foRob.$invalid ||
+          this.$v.reportData.doRob.$invalid ||
+          this.$v.reportData.fwRob.$invalid ||
+          this.$v.reportData.pob.$invalid ||
+          this.$v.reportData.pitch.$invalid ||
+          this.$v.reportData.roll.$invalid
       }
     },
 
@@ -321,50 +334,27 @@
 
     validations: {
       reportData: {
-        windDir: {
+        foRob: {
           required,
-          format: value => {
-            if (value === 'undefined' || value === null || value === '') {
-              return true
-            }
-            return /^\d{3}$/.test(value)
-          },
-          range: value => {
-            if (value === 'undefined' || value === null || value === '') {
-              return true
-            }
-            return /^(?:36[0]|3[0-5][0-9]|[12][0-9][0-9]|[1-9]?[0-9])?$/.test(value)
-          }
+          numeric
         },
-        windSpd: {
-          required
-        },
-        seaState: {
+        doRob: {
           required,
-          range: value => {
-            if (value === 'undefined' || value === null || value === '') {
-              return true
-            }
-            return /^[0-9]$/.test(value)
-          }
+          numeric
         },
-        swellDir: {
+        fwRob: {
           required,
-          format: value => {
-            if (value === 'undefined' || value === null || value === '') {
-              return true
-            }
-            return /^\d{3}$/.test(value)
-          },
-          range: value => {
-            if (value === 'undefined' || value === null || value === '') {
-              return true
-            }
-            return /^(?:36[0]|3[0-5][0-9]|[12][0-9][0-9]|[1-9]?[0-9])?$/.test(value)
-          }
+          numeric
         },
-        swellHeight: {
-          required
+        pob: {
+          required,
+          numeric
+        },
+        pitch: {
+          numeric
+        },
+        roll: {
+          numeric
         }
       }
     }

@@ -87,7 +87,7 @@ describe('VesselReportsListFormStep2.vue', () => {
     const invalidWindDir = { windDir: { $invalid: true }, windSpd: { $invalid: false }, seaState: { $invalid: false }, swellDir: { $invalid: false }, swellHeight: { $invalid: false } }
 
     it('invalidStep returns true if windDir is invalid', () => {
-      const { wrapper } = setup(1, invalidWindDir)
+      const { wrapper } = setup(2, invalidWindDir)
 
       expect(wrapper.vm.invalidStep).toEqual(true)
     })
@@ -95,7 +95,7 @@ describe('VesselReportsListFormStep2.vue', () => {
     const invalidWindSpd = { windDir: { $invalid: false }, windSpd: { $invalid: true }, seaState: { $invalid: false }, swellDir: { $invalid: false }, swellHeight: { $invalid: false } }
 
     it('invalidStep returns true if windSpd is invalid', () => {
-      const { wrapper } = setup(1, invalidWindSpd)
+      const { wrapper } = setup(2, invalidWindSpd)
 
       expect(wrapper.vm.invalidStep).toEqual(true)
     })
@@ -103,7 +103,7 @@ describe('VesselReportsListFormStep2.vue', () => {
     const invalidSeaState = { windDir: { $invalid: false }, windSpd: { $invalid: false }, seaState: { $invalid: true }, swellDir: { $invalid: false }, swellHeight: { $invalid: false } }
 
     it('invalidStep returns true if seaState is invalid', () => {
-      const { wrapper } = setup(1, invalidSeaState)
+      const { wrapper } = setup(2, invalidSeaState)
 
       expect(wrapper.vm.invalidStep).toEqual(true)
     })
@@ -111,7 +111,7 @@ describe('VesselReportsListFormStep2.vue', () => {
     const invalidSwellDir = { windDir: { $invalid: false }, windSpd: { $invalid: false }, seaState: { $invalid: false }, swellDir: { $invalid: true }, swellHeight: { $invalid: false } }
 
     it('invalidStep returns true if swellDir is invalid', () => {
-      const { wrapper } = setup(1, invalidSwellDir)
+      const { wrapper } = setup(2, invalidSwellDir)
 
       expect(wrapper.vm.invalidStep).toEqual(true)
     })
@@ -119,7 +119,7 @@ describe('VesselReportsListFormStep2.vue', () => {
     const invalidSwellHeight = { windDir: { $invalid: false }, windSpd: { $invalid: false }, seaState: { $invalid: false }, swellDir: { $invalid: false }, swellHeight: { $invalid: true } }
 
     it('invalidStep returns true if swellHeight is invalid', () => {
-      const { wrapper } = setup(1, invalidSwellHeight)
+      const { wrapper } = setup(2, invalidSwellHeight)
 
       expect(wrapper.vm.invalidStep).toEqual(true)
     })
@@ -132,7 +132,7 @@ describe('VesselReportsListFormStep2.vue', () => {
       expect(wrapper.emitted().previousStep).toBeTruthy()
     })
 
-    it('nextStep emits previousStep', () => {
+    it('nextStep emits nextStep', () => {
       const { wrapper } = setup()
       wrapper.vm.nextStep()
       expect(wrapper.emitted().nextStep).toBeTruthy()

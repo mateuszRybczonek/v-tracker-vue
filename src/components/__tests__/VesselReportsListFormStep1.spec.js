@@ -128,7 +128,7 @@ describe('VesselReportsListFormStep1.vue', () => {
       expect(wrapper.emitted().previousStep).toBeTruthy()
     })
 
-    it('nextStep emits previousStep', () => {
+    it('nextStep emits nextStep', () => {
       const { wrapper } = setup()
       wrapper.vm.nextStep()
       expect(wrapper.emitted().nextStep).toBeTruthy()
