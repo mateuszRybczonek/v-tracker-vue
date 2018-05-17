@@ -26,7 +26,7 @@
     >
       <GoogleMap
         class="vessel-dashboard__row__item"
-        :report="report"
+        :reports="reversedReports"
         :fetchingReports="fetchingReports"
       ></GoogleMap>
 
