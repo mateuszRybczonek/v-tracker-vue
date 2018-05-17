@@ -20,11 +20,11 @@ module.exports = {
   snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue'],
   setupFiles: ['<rootDir>/test/unit/setup', 'jest-localstorage-mock'],
   mapCoverage: true,
+  modulePathIgnorePatterns: ['src/components/Icons'],
   coverageDirectory: '<rootDir>/test/unit/coverage',
   collectCoverageFrom: [
     'src/**/*.{js,vue}',
-    '!src/components/Icons/**',
-    '!src/components/Icons/Animated/**',
+    '!src/App.vue',
     '!src/main.js',
     '!src/router/index.js',
     '!**/node_modules/**'
