@@ -4,15 +4,8 @@ import { rawSecondReport } from '@/../test/stubs/report'
 
 describe('VesselReportsListFormStep3.vue', () => {
   // eslint-disable-next-line no-unused-vars
-  const setup = (step = 3, reportDataValidations = reportDataValidationsDefault) => {
-    const mocks = {
-      $v: {
-        reportData: reportDataValidations
-      }
-    }
-
+  const setup = (step = 3) => {
     const wrapper = mount(VesselReportsListFormStep3, {
-      mocks,
       propsData: {
         reportData: rawSecondReport,
         showErrors: false
