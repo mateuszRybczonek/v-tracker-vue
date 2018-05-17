@@ -12,7 +12,7 @@
         strokeColor="#7c9cc9"
         viewBox="0 0 76 76"
       >
-        <IconVessel></IconVessel>
+        <IconVessel/>
       </BaseIcon>
     </div>
 
@@ -24,8 +24,7 @@
         class="weather-situation__wind-flag"
         :speed="report.windSpd"
         :direction="report.windDir"
-        :withBorder="false"
-      ></WindFlag>
+        :withBorder="false"/>
     </div>
 
     <div

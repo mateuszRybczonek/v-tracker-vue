@@ -11,10 +11,10 @@
         slot="header"
         title="Weather info"
         icon="IconWeather"
-        color="blue"
-      ></BaseBadge>
+        color="blue"/>
 
       <div
+        data-test-weather-body
         slot="body"
         class="weather-data__body"
       >
@@ -22,21 +22,18 @@
           <WindData
             :windData="windData"
             :windDirProp="windDir"
-            :windSpdProp="windSpd"
-          ></WindData>
+            :windSpdProp="windSpd"/>
 
           <SeaData
             :seaData="seaData"
             :swellHeightProp="swellHeight"
-            :swellDirProp="swellDir"
-          ></SeaData>
+            :swellDirProp="swellDir"/>
         </div>
 
         <WeatherSituation
           v-if="!fetchingReports"
           class="weather-data__body-right"
-          :report="report"
-        ></WeatherSituation>
+          :report="report"/>
       </div>
     </AccordionWrapper>
   </div>

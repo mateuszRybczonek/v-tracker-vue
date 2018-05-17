@@ -7,7 +7,7 @@
     viewBox="0 0 200 200"
     aria-labelledby="palette"
     role="presentation"
-    >
+  >
     <path id="bk" fill="#fff" d="M0 0h100v100H0z"/>
     <g id="drawing">
       <g id="palette">

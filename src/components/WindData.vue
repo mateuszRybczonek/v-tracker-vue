@@ -4,14 +4,11 @@
       class="wind-data__flag"
       :speed="windSpd"
       :direction="windDir"
-      :withBorder="true"
-    >
-    </WindFlag>
+      :withBorder="true"/>
     <BaseList
       class="wind-data__list"
       :items="windData"
-      size="big"
-    ></BaseList>
+      size="big"/>
   </div>
 </template>
 

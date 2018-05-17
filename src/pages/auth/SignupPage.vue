@@ -4,12 +4,15 @@
       <form slot="content" @submit.prevent="onSubmit">
         <div class="input__wrapper">
           <BaseIcon
-            width=50
-            height=50
+            width='50'
+            height='50'
             viewBox='0 0 50 50'>
             <IconEmail></IconEmail>
           </BaseIcon>
-          <input class="input--with-error" :class="{ invalid: validationsEnabled && $v.email.$invalid }"
+          <input
+            data-test-signup-form-email-input
+            class="input--with-error"
+            :class="{ invalid: validationsEnabled && $v.email.$invalid }"
             v-model="email"
             placeholder="Email"
             @blur="$v.email.$touch()">
@@ -22,12 +25,15 @@
 
         <div class="input__wrapper">
           <BaseIcon
-            width=50
-            height=50
+            width='50'
+            height='50'
             viewBox='0 0 50 50'>
             <IconLock></IconLock>
           </BaseIcon>
-          <input class="input__password input--with-error" :class="{ invalid: validationsEnabled && $v.password.$invalid }"
+          <input
+            data-test-signup-form-password-input
+            class="input__password input--with-error"
+            :class="{ invalid: validationsEnabled && $v.password.$invalid }"
             type="password"
             v-model="password"
             placeholder="Password"
@@ -40,12 +46,15 @@
 
         <div class="input__wrapper">
           <BaseIcon
-            width=50
-            height=50
+            width='50'
+            height='50'
             viewBox='0 0 50 50'>
             <IconLock></IconLock>
           </BaseIcon>
-          <input class="input__password input--with-error" :class="{ invalid: validationsEnabled && $v.confirmPassword.$invalid }"
+          <input
+            data-test-signup-form-password-confirmation-input
+            class="input__password input--with-error"
+            :class="{ invalid: validationsEnabled && $v.confirmPassword.$invalid }"
             type="password"
             v-model="confirmPassword"
             placeholder="Password confirmation"
@@ -57,7 +66,13 @@
           </span>
         </div>
         <div class="actions">
-          <ButtonPositive :on-click="onSubmit" :inProgress="isSubmitted">Register</ButtonPositive>
+          <ButtonPositive
+            data-test-signup-form-submit-button
+            :on-click="onSubmit"
+            :inProgress="isSubmitted"
+          >
+            Register
+          </ButtonPositive>
         </div>
       </form>
     </FormWrapper>
@@ -126,6 +141,7 @@
           try {
             await this.signup(formData)
             router.push('/dashboard')
+            this.isSubmitted = true
           } catch(error) {
             throw(error)
           }

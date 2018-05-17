@@ -1,10 +1,10 @@
 <template>
   <div class="accordion">
-    <div
+    <div data-test-accordion-header
       class="accordion__header"
       @click="toggle"
     >
-      <slot name="header"></slot>
+      <slot name="header"/>
 
       <BaseIcon
         class="accordion__arrow"
@@ -13,7 +13,7 @@
         height="30"
         viewBox="-5 -7 40 40"
       >
-        <IconArrowDown></IconArrowDown>
+        <IconArrowDown/>
       </BaseIcon>
     </div>
 
@@ -27,7 +27,7 @@
         class="accordion__body"
         v-show="show"
       >
-        <slot name="body"></slot>
+        <slot name="body"/>
       </div>
     </transition>
 
@@ -35,14 +35,14 @@
       class="accordion__footer"
       v-show="show"
     >
-      <slot name="footer"></slot>
+      <slot name="footer"/>
     </div>
 
     <div
       class="accordion__footer"
       v-show="showCollapsedContent"
     >
-      <slot name="collapsed-content"></slot>
+      <slot name="collapsed-content"/>
     </div>
   </div>
 </template>

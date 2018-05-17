@@ -1,6 +1,6 @@
 <template>
   <div class="stepper">
-    <div class="stepper__step"
+    <div data-test-vessel-reports-list-form-stepper-step-one class="stepper__step"
       @click="selectStep(1)"
       :class="{
         active: selectedStep === 'step1',
@@ -15,7 +15,7 @@
         :class="{ 'step__progress-bar--visible': selectedStep !== 'step1' }"
       ></span>
     </div>
-    <div class="stepper__step"
+    <div data-test-vessel-reports-list-form-stepper-step-two class="stepper__step"
       @click="selectStep(2)"
       :class="{
         active: selectedStep === 'step2',
@@ -31,7 +31,7 @@
         :class="{ 'step__progress-bar--visible': selectedStep === 'step3' || selectedStep === 'step4'}"
       ></span>
     </div>
-    <div class="stepper__step"
+    <div data-test-vessel-reports-list-form-stepper-step-three class="stepper__step"
       @click="selectStep(3)"
       :class="{
         active: selectedStep === 'step3',

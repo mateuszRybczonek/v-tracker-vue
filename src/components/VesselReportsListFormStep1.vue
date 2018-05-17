@@ -2,8 +2,13 @@
 	<div class="step-1">
     <div class="form-sections">
       <div class="form-section">
-        <h4 class="form-section__heading">Position</h4>
-				<InputWithErrors unit="">
+        <h4
+					data-test-vessel-reports-list-form-step-one-header
+					class="form-section__heading"
+				>
+					Position
+				</h4>
+				<InputWithErrors data-test-vessel-reports-list-form-step-one-report-time-input unit="">
 					<div
 					  slot="input"
 						class="input__wrapper"
@@ -42,7 +47,7 @@
 					</div>
 				</InputWithErrors>
 
-        <InputWithErrors unit="°">
+        <InputWithErrors data-test-vessel-reports-list-form-step-one-report-lat-input unit="°">
 					<div
 					  slot="input"
 						class="input__wrapper"
@@ -79,7 +84,7 @@
           </div>
         </InputWithErrors>
 
-        <InputWithErrors unit="°">
+        <InputWithErrors data-test-vessel-reports-list-form-step-one-report-lng-input unit="°">
 					<div
 					  slot="input"
 						class="input__wrapper"
@@ -119,7 +124,7 @@
 
       <div class="form-section">
         <h4 class="form-section__heading">Navigation</h4>
-        <InputWithErrors unit="°">
+        <InputWithErrors data-test-vessel-reports-list-form-step-one-report-course-input unit="°">
 					<div
 					  slot="input"
 						class="input__wrapper"
@@ -162,7 +167,7 @@
           </div>
         </InputWithErrors>
 
-        <InputWithErrors unit="kn">
+        <InputWithErrors data-test-vessel-reports-list-form-step-one-report-spd-input unit="kn">
 					<div
 					  slot="input"
 						class="input__wrapper"
@@ -199,6 +204,7 @@
     <div class="actions">
       <span></span>
       <ButtonPositive
+				data-test-vessel-reports-list-form-next-step-button
 			  :on-click="nextStep"
 				:inProgress="false"
 			>

@@ -9,12 +9,15 @@
         </div>
         <div class="input__wrapper">
           <BaseIcon
-            width=50
-            height=50
+            width='50'
+            height='50'
             viewBox='0 0 50 50'>
             <IconEmail></IconEmail>
           </BaseIcon>
-          <input class="input--with-error" :class="{ invalid: validationsEnabled && $v.email.$invalid }"
+          <input
+            data-test-signin-form-email-input
+            class="input--with-error"
+            :class="{ invalid: validationsEnabled && $v.email.$invalid }"
             v-model="email"
             placeholder="Email"
             @input="clearAuthError()"
@@ -26,12 +29,15 @@
         </div>
         <div class="input__wrapper">
           <BaseIcon
-            width=50
-            height=50
+            width='50'
+            height='50'
             viewBox='0 0 50 50'>
             <IconLock></IconLock>
           </BaseIcon>
-          <input class="input--with-error" :class="{ invalid: validationsEnabled && $v.password.$invalid }"
+          <input
+            data-test-signin-form-password-input
+            class="input--with-error"
+            :class="{ invalid: validationsEnabled && $v.password.$invalid }"
             type="password"
             placeholder="Password"
             v-model="password"
@@ -41,8 +47,18 @@
           <span class="validation-error" v-if="validationsEnabled && !$v.password.required">This field must not be empty.</span>
         </div>
         <div class="actions">
-          <ButtonPositive :on-click="onSubmit" :inProgress="isSubmitted">Log in</ButtonPositive>
-          <ButtonPositive :on-click="falseSubmit" :inProgress=false>
+          <ButtonPositive
+            data-test-signin-form-submit-button
+            :on-click="onSubmit"
+            :inProgress="isSubmitted"
+          >
+            Log in
+          </ButtonPositive>
+          <ButtonPositive
+            data-test-signin-form-go-to-sign-up-button
+            :on-click="falseSubmit"
+            :inProgress="false"
+          >
             <router-link to="/signup" class="login-button">Sign Up</router-link>
           </ButtonPositive>
         </div>

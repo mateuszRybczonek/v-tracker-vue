@@ -9,7 +9,7 @@
       width='200'
       height='200'
     >
-      <IconTilesPlus></IconTilesPlus>
+      <IconTilesPlus/>
     </BaseIcon>
     <p>Add new vessel</p>
   </BaseCard>

@@ -1,7 +1,10 @@
 <template>
   <FormWrapper title="Edit vessel details" size="narrow">
     <form slot="content" @submit.prevent>
-      <input class="input--with-error" :class="{ invalid: showErrors && $v.vessel.name.$invalid }"
+      <input
+        data-test-edit-vessel-form-name-input
+        class="input--with-error"
+        :class="{ invalid: showErrors && $v.vessel.name.$invalid }"
         @blur="$v.vessel.name.$touch()"
         v-model="vessel.name"
         placeholder="Name">
@@ -9,7 +12,10 @@
         <span class="validation-error" v-if="showErrors && !$v.vessel.name.required">This field must not be empty.</span>
       </div>
 
-      <input class="input--with-error" :class="{ invalid: showErrors && $v.vessel.imoNumber.$invalid }"
+      <input
+        data-test-edit-vessel-form-imo-input
+        class="input--with-error"
+        :class="{ invalid: showErrors && $v.vessel.imoNumber.$invalid }"
         @blur="$v.vessel.imoNumber.$touch()"
         v-model="vessel.imoNumber"
         placeholder="IMO Number">
@@ -18,14 +24,19 @@
         <span class="validation-error" v-if="showErrors && !$v.vessel.imoNumber.numeric">IMO number must be a number.</span>
       </div>
 
-      <input class="input--with-error"
+      <input
+        data-test-edit-vessel-form-callsign-input
+        class="input--with-error"
         v-model="vessel.callsign"
         placeholder="Call sign">
       <div class="error">
         <span class="validation-error"></span>
       </div>
 
-      <input class="input--with-error" :class="{ invalid: showErrors && $v.vessel.mmsi.$invalid }"
+      <input
+        data-test-edit-vessel-form-mmsi-input
+        class="input--with-error"
+        :class="{ invalid: showErrors && $v.vessel.mmsi.$invalid }"
         @blur="$v.vessel.mmsi.$touch()"
         v-model="vessel.mmsi"
         placeholder="MMSI">
@@ -33,7 +44,10 @@
         <span class="validation-error" v-if="showErrors && !$v.vessel.mmsi.numeric">MMSI must be a number.</span>
       </div>
 
-      <input class="input--with-error" :class="{ invalid: showErrors && $v.vessel.gt.$invalid }"
+      <input
+        data-test-edit-vessel-form-gt-input
+        class="input--with-error"
+        :class="{ invalid: showErrors && $v.vessel.gt.$invalid }"
         @blur="$v.vessel.gt.$touch()"
         v-model="vessel.gt"
         placeholder="Gross tonnage">
@@ -41,7 +55,10 @@
         <span class="validation-error" v-if="showErrors && !$v.vessel.gt.numeric">GT must be a number.</span>
       </div>
 
-      <input class="input--with-error" :class="{ invalid: showErrors && $v.vessel.yob.$invalid }"
+      <input
+        data-test-edit-vessel-form-yob-input
+        class="input--with-error"
+        :class="{ invalid: showErrors && $v.vessel.yob.$invalid }"
         @blur="$v.vessel.yob.$touch()"
         v-model="vessel.yob"
         placeholder="Year of build">
@@ -49,7 +66,10 @@
         <span class="validation-error" v-if="showErrors && !$v.vessel.yob.numeric">Year of build must be a number.</span>
       </div>
 
-      <input class="input--with-error" :class="{ invalid: showErrors && $v.vessel.flag.$invalid }"
+      <input
+        data-test-edit-vessel-form-flag-input
+        class="input--with-error"
+        :class="{ invalid: showErrors && $v.vessel.flag.$invalid }"
         @blur="$v.vessel.flag.$touch()"
         v-model="vessel.flag"
         placeholder="Flag">

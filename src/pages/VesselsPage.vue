@@ -1,6 +1,6 @@
 <template>
   <div id="vessels">
-    <h1>Vessels</h1>
+    <h1 data-test-vessels-header>Vessels</h1>
     <VesselsList :vessels="vessels"></VesselsList>
   </div>
 </template>

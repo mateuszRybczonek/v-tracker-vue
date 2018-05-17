@@ -2,8 +2,13 @@
   <div class="step-2">
     <div class="form-sections">
       <div class="form-section">
-        <h4 class="form-section__heading">Wind</h4>
-        <InputWithErrors unit="°">
+        <h4
+          data-test-vessel-reports-list-form-step-two-header
+          class="form-section__heading"
+        >
+          Wind
+        </h4>
+        <InputWithErrors data-test-vessel-reports-list-form-step-two-wind-direction-input unit="°">
           <div
             slot="input"
             class="input__wrapper"
@@ -46,7 +51,7 @@
           </div>
         </InputWithErrors>
 
-        <InputWithErrors unit="kn">
+        <InputWithErrors data-test-vessel-reports-list-form-step-two-wind-speed-input unit="kn">
           <div
             slot="input"
             class="input__wrapper"
@@ -80,7 +85,7 @@
 
       <div class="form-section">
         <h4 class="form-section__heading">Sea</h4>
-        <InputWithErrors unit="°">
+        <InputWithErrors data-test-vessel-reports-list-form-step-two-sea-state-input unit="°">
           <div
             slot="input"
             class="input__wrapper"
@@ -118,7 +123,7 @@
           </div>
         </InputWithErrors>
 
-        <InputWithErrors unit="°">
+        <InputWithErrors data-test-vessel-reports-list-form-step-two-swell-direction-input unit="°">
           <div
             slot="input"
             class="input__wrapper"
@@ -162,7 +167,7 @@
           </div>
         </InputWithErrors>
 
-        <InputWithErrors unit="m">
+        <InputWithErrors data-test-vessel-reports-list-form-step-two-swell-height-input unit="m">
           <div
             slot="input"
             class="input__wrapper"
@@ -198,6 +203,7 @@
 
     <div class="actions">
       <ButtonPositive
+        data-test-vessel-reports-list-form-next-step-button
         :on-click="previousStep"
         :inProgress='false'
       >
@@ -205,6 +211,7 @@
       </ButtonPositive>
 
       <ButtonPositive
+        data-test-vessel-reports-list-form-previous-step-button
         :on-click="nextStep"
         :inProgress='false'
       >
