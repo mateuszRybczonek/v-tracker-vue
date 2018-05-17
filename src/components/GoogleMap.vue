@@ -14,8 +14,8 @@
       class="google-map__map"
     >
       <gmap-map
-        :center="center"
-        :zoom="9"
+        :options="mapSettings.defaultMapOptions"
+        :center="this.mapCenter"
         style="height: 460px;"
       >
         <gmap-info-window
@@ -27,9 +27,10 @@
           {{infoContent}}
         </gmap-info-window>
         <gmap-marker
-          :key="marker.id"
           v-for="(marker, index) in markers"
+          :key="marker.id"
           :position="marker.position"
+          :icon="mapSettings.defaultIconSettings"
           @click="toggleInfo(marker)"/>
       </gmap-map>
     </div>
@@ -37,6 +38,8 @@
 </template>
 
 <script>
+import mapSettings from '@/constants/mapSettings'
+
 export default {
   name: "GoogleMap",
 
@@ -52,7 +55,7 @@ export default {
 
   data() {
     return {
-      center: { lat: 54.5, lng: 18.5 },
+      mapSettings,
       markers: this.points,
       places: [],
       currentPlace: null,
@@ -63,14 +66,13 @@ export default {
       infoOptions: {
         pixelOffset: {
           width: 0,
-          height: -35
+          height: -10
         }
       }
     }
   },
 
   mounted() {
-    console.log(this.reports)
     this.markers = this.points
   },
 
@@ -86,6 +88,15 @@ export default {
             }
           }
         })
+      }
+    },
+
+    mapCenter () {
+      const reports = this.reports
+      const lastReport = reports[reports.length - 1]
+      return {
+        lat: lastReport.lat,
+        lng: lastReport.lng
       }
     }
   },
