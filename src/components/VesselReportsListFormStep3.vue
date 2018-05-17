@@ -311,17 +311,6 @@
       }
     },
 
-    computed: {
-      invalidStep () {
-        return this.$v.reportData.foRob.$invalid ||
-          this.$v.reportData.doRob.$invalid ||
-          this.$v.reportData.fwRob.$invalid ||
-          this.$v.reportData.pob.$invalid ||
-          this.$v.reportData.pitch.$invalid ||
-          this.$v.reportData.roll.$invalid
-      }
-    },
-
     methods: {
       previousStep () {
         this.$emit('previousStep')
@@ -329,33 +318,6 @@
 
       submit () {
         this.$emit('submit', this.invalidStep)
-      }
-    },
-
-    validations: {
-      reportData: {
-        foRob: {
-          required,
-          numeric
-        },
-        doRob: {
-          required,
-          numeric
-        },
-        fwRob: {
-          required,
-          numeric
-        },
-        pob: {
-          required,
-          numeric
-        },
-        pitch: {
-          numeric
-        },
-        roll: {
-          numeric
-        }
       }
     }
   }
