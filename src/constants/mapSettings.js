@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import { loaded } from 'vue2-google-maps'
-import colorPalette from '@/constants/colorPalette';
+import colorPalette from '@/constants/colorPalette'
 
-const { COLOR_POINT, COLOR_WATER, COLOR_LANDSCAPE } = colorPalette;
+const { COLOR_POINT, COLOR_WATER, COLOR_LANDSCAPE } = colorPalette
 
 const COLORS = {
   POINT: COLOR_POINT,
   LINE: '#FFFFFF',
   WATER: COLOR_WATER,
   LANDSCAPE: COLOR_LANDSCAPE,
-};
+}
 
 const POINT_MARKER_ICON_CONFIG = {
   path: 'M 0, 0 m -5, 0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0',
@@ -19,6 +19,24 @@ const POINT_MARKER_ICON_CONFIG = {
   fillColor: '#FFFFFF',
   fillOpacity: 1,
   scale: 1
+}
+
+const LINE_SYMBOL_CONFIG = {
+  path: 'M 0,-2 0,2',
+  strokeOpacity: 1,
+  strokeWeight: 2,
+  scale: 1,
+}
+
+const LINE_PATH_CONFIG = {
+  clickable: false,
+  geodesic: false,
+  strokeOpacity: 0,
+  strokeColor: COLORS.LINE,
+  icons: [{
+    icon: LINE_SYMBOL_CONFIG,
+    repeat: '10px',
+  }],
 }
 
 const settings = new Vue({
@@ -121,7 +139,10 @@ const settings = new Vue({
     }
 })
 
-export default settings;
+export {
+  settings,
+  LINE_PATH_CONFIG
+}
 
 loaded.then(() => {
     // settings.defaultIconSettings = /* Do something with google.maps.Size */

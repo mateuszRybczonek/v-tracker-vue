@@ -31,14 +31,24 @@
           :key="marker.id"
           :position="marker.position"
           :icon="mapSettings.defaultIconSettings"
-          @click="toggleInfo(marker)"/>
+          @click="toggleInfo(marker)"
+        />
+        <gmap-polyline
+          v-for="(line, index) in lines"
+          :key="line"
+          :path.sync="line.path"
+          :options="linePathConfig"
+        />
       </gmap-map>
     </div>
   </div>
 </template>
 
 <script>
-import mapSettings from '@/constants/mapSettings'
+import {
+  settings as mapSettings,
+  LINE_PATH_CONFIG
+} from '@/constants/mapSettings'
 
 export default {
   name: "GoogleMap",
@@ -55,6 +65,7 @@ export default {
 
   data() {
     return {
+      linePathConfig: LINE_PATH_CONFIG,
       mapSettings,
       markers: this.points,
       places: [],
@@ -91,6 +102,33 @@ export default {
       }
     },
 
+    lines () {
+      const lines = [];
+      const reports = this.reports
+
+      if (reports.length > 0) {
+        reports.forEach( (report, index) => {
+          const nextReport = reports[index + 1]
+
+          if (nextReport === undefined) return
+
+          const depLat = report.lat
+          const depLng = report.lng
+          const arrLat = nextReport.lat
+          const arrLng = nextReport.lng
+
+          lines.push({
+            path: [
+              { lat: depLat, lng: depLng },
+              { lat: arrLat, lng: arrLng },
+            ]
+          })
+        })
+      }
+
+      return lines;
+    },
+
     mapCenter () {
       const reports = this.reports
       const lastReport = reports[reports.length - 1]
@@ -110,16 +148,7 @@ export default {
             position: {
               lat: report.lat,
               lng: report.lng
-            },
-            // icon: {
-            //   path: 'M 0, 0 m -5, 0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0',
-            //   strokeOpacity: 1,
-            //   strokeWeight: 4,
-            //   strokeColor: '#FFFFFF',
-            //   fillColor: '#FFFFFF',
-            //   fillOpacity: 1,
-            //   scale: 1,
-            // },
+            }
           }
         })
         this.markers = markers
