@@ -54,7 +54,7 @@ const settings = new Vue({
           zoomControlOptions: {
             style: 'SMALL',
           },
-          zoom: 4,
+          zoom: 5,
           minZoom: 2,
           maxZoom: 8,
           styles: [

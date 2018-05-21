@@ -93,6 +93,7 @@ export default {
         return this.reports.map(report => {
           return {
             id: report.id,
+            reportTime: report.reportTime,
             position: {
               lat: report.lat,
               lng: report.lng
@@ -131,7 +132,7 @@ export default {
 
     mapCenter () {
       const reports = this.reports
-      const lastReport = reports[reports.length - 1]
+      const lastReport = reports[0]
       return {
         lat: lastReport.lat,
         lng: lastReport.lng
@@ -145,6 +146,7 @@ export default {
         const markers = this.reports.map(report => {
           return {
             id: report.id,
+            reportTime: report.reportTime,
             position: {
               lat: report.lat,
               lng: report.lng
@@ -163,7 +165,9 @@ export default {
           lat: this.currentPlace.geometry.location.lat(),
           lng: this.currentPlace.geometry.location.lng()
         }
-        this.markers.push({ position: marker })
+        this.markers.push({
+          position: marker
+        })
         this.places.push(this.currentPlace)
         this.center = marker
         this.currentPlace = null
@@ -172,7 +176,7 @@ export default {
 
     toggleInfo(marker) {
       this.infoPosition = marker.position
-      this.infoContent = marker.id
+      this.infoContent = marker.reportTime
       if (this.infoCurrentKey == marker.id) {
         this.infoOpened = !this.infoOpened
       } else {
