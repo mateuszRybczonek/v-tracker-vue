@@ -80,13 +80,6 @@
       ReportSelector
     },
 
-    props: {
-      componentProps: {
-        type: Object,
-        required: true
-      }
-    },
-
     data () {
       return {
         shrinkReportSelector: false
@@ -97,16 +90,10 @@
       ...mapGetters([
         'fetchingReports',
         'selectedReport',
-        'sidebarVisible'
+        'sidebarVisible',
+        'reversedReports',
+        'reports'
       ]),
-
-      reports () {
-        return this.componentProps.reports
-      },
-
-      reversedReports () {
-        return [...this.componentProps.reports.reverse()]
-      },
 
       report () {
         return this.selectedReport

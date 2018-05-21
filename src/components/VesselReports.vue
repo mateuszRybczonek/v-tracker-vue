@@ -1,11 +1,12 @@
 <template>
   <VesselReportsList
-    :reports="componentProps.last14Reports"
+    :reports="last14Reports"
     class="vessel-details-reports-list">
   </VesselReportsList>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import VesselReportsList from './VesselReportsList.vue'
 
   export default {
@@ -13,11 +14,10 @@
       VesselReportsList
     },
 
-    props: {
-      componentProps: {
-        type: Object,
-        required: true
-      }
+    computed: {
+      ...mapGetters([
+        'last14Reports',
+      ])
     }
   }
 </script>
