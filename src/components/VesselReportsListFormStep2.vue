@@ -286,7 +286,7 @@
             if (value === 'undefined' || value === null || value === '') {
               return true
             }
-            return /^(?:36[0]|3[0-5][0-9]|[12][0-9][0-9]|[1-9]?[0-9])?$/.test(value)
+            return /^(?:36[0]|3[0-5][0-9]|[012][0-9][0-9]|[1-9]?[0-9])?$/.test(value)
           }
         },
         windSpd: {
@@ -313,7 +313,7 @@
             if (value === 'undefined' || value === null || value === '') {
               return true
             }
-            return /^(?:36[0]|3[0-5][0-9]|[12][0-9][0-9]|[1-9]?[0-9])?$/.test(value)
+            return /^(?:36[0]|3[0-5][0-9]|[012][0-9][0-9]|[1-9]?[0-9])?$/.test(value)
           }
         },
         swellHeight: {
