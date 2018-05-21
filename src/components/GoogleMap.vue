@@ -35,7 +35,7 @@
         />
         <gmap-polyline
           v-for="(line, index) in lines"
-          :key="line"
+          :key="index"
           :path.sync="line.path"
           :options="linePathConfig"
         />
