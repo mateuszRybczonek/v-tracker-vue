@@ -50,6 +50,8 @@ import {
   LINE_PATH_CONFIG
 } from '@/constants/mapSettings'
 
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: "GoogleMap",
 
@@ -88,6 +90,10 @@ export default {
   },
 
   computed: {
+    ...mapGetters([
+      'reports'
+    ]),
+
     points () {
       if(!this.fetchingReports) {
         return this.reports.map(report => {
@@ -159,6 +165,10 @@ export default {
   },
 
   methods: {
+    ...mapActions([
+      'selectReport'
+    ]),
+
     addMarker() {
       if (this.currentPlace) {
         const marker = {
@@ -182,6 +192,8 @@ export default {
       } else {
         this.infoOpened = true
         this.infoCurrentKey = marker.id
+        const report = this.reports.find(report => report.id === marker.id)
+        this.selectReport(report)
       }
     }
   }
