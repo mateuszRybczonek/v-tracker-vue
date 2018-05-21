@@ -273,7 +273,6 @@
 <script>
   import ButtonPositive from './ButtonPositive.vue'
   import InputWithErrors from './InputWithErrors.vue'
-  import { required, numeric } from 'vuelidate/lib/validators'
   import BaseIcon from './BaseIcon.vue'
   import IconFuel from './Icons/IconFuel.vue'
   import IconWater from './Icons/IconWater.vue'

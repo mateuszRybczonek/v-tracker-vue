@@ -45,10 +45,9 @@ const settings = new Vue({
         defaultIconSettings: POINT_MARKER_ICON_CONFIG,
         defaultMapOptions: {
           clickableIcons: false,
-	        streetViewControl: false,
-	        panControlOptions: false,
-	        gestureHandling: 'greedy',
           streetViewControl: false,
+          panControlOptions: false,
+          gestureHandling: 'greedy',
           backgroundColor: COLORS.LANDSCAPE,
           mapTypeControl: false,
           zoomControlOptions: {

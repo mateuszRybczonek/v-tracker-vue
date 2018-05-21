@@ -14,11 +14,15 @@ describe('VesselDashboard.vue', () => {
     const getters = {
       sidebarVisible: jest.fn(),
       selectedReport: jest.fn(),
-      fetchingReports: jest.fn()
+      fetchingReports: jest.fn(),
+      sortedReports: jest.fn(),
+      reports: jest.fn()
     }
 
     getters.sidebarVisible.mockReturnValue(true)
     getters.fetchingReports.mockReturnValue(false)
+    getters.sortedReports.mockReturnValue([secondReport, report])
+    getters.reports.mockReturnValue([secondReport, report])
     getters.selectedReport.mockReturnValue(secondReport)
 
     const localVue = createLocalVue()
@@ -31,12 +35,7 @@ describe('VesselDashboard.vue', () => {
 
     const wrapper = shallow(VesselDashboard, {
       localVue,
-      store,
-      propsData: {
-        componentProps: {
-          reports: [report, secondReport]
-        }
-      }
+      store
     })
 
     return { wrapper }

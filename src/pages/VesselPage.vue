@@ -22,7 +22,6 @@
   import VesselStatistics from '../components/VesselStatistics.vue'
   import VesselWeather from '../components/VesselWeather.vue'
   import VesselReports from '../components/VesselReports.vue'
-  import { COMPONENT_NAMES } from '../constants/vessel-details'
 
   export default {
     components: {

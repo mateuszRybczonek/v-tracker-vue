@@ -21,7 +21,7 @@ Vue.use(VueAffix)
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyAcpHQzH108aO_4Ea9cS4zT5PTBqpopd8Q',
-    libraries: ['places', 'geometry']
+    libraries: ['geometry']
   }
 })
 Vue.config.productionTip = false
