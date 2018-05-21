@@ -43,8 +43,12 @@
         'sidebarVisible',
         'selectedVesselDetailsComponent',
         'selectedReport',
-        'lastReport'
-      ])
+        'sortedReports'
+      ]),
+
+      lastReport () {
+        return this.sortedReports[0]
+      }
     },
 
     methods: {

@@ -1,6 +1,6 @@
 <template>
   <VesselReportsList
-    :reports="last14Reports"
+    :reports="sortedReports"
     class="vessel-details-reports-list">
   </VesselReportsList>
 </template>
@@ -16,7 +16,7 @@
 
     computed: {
       ...mapGetters([
-        'last14Reports',
+        'sortedReports',
       ])
     }
   }

@@ -17,7 +17,7 @@
       <ReportSelector
         class="vessel-dashboard__report-selector"
         :class="{ 'vessel-dashboard__report-selector--shrunk': shrinkReportSelector }"
-        :reports="reversedReports"
+        :reports="sortedReports"
       ></ReportSelector>
     </affix>
 
@@ -26,7 +26,7 @@
     >
       <GoogleMap
         class="vessel-dashboard__row__item"
-        :reports="reversedReports"
+        :reports="sortedReports"
         :fetchingReports="fetchingReports"
       ></GoogleMap>
 
@@ -91,7 +91,7 @@
         'fetchingReports',
         'selectedReport',
         'sidebarVisible',
-        'reversedReports',
+        'sortedReports',
         'reports'
       ]),
 

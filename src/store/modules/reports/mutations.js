@@ -13,7 +13,7 @@ export default {
 
   [types.ADD_REPORT] (state, report) {
     mapReportForStore(report)
-    state.reports.push(report)
+    state.reports.unshift(report)
   },
 
   [types.DELETE_REPORT] (state, reportId) {
