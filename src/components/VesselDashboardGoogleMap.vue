@@ -26,11 +26,10 @@
         >
           {{infoContent}}
         </gmap-info-window>
-        <gmap-marker class="google-map__marker"
+        <gmap-marker data-test-google-map-marker class="google-map__marker"
           v-for="(marker, index) in markers"
           :key="marker.id"
           :position="marker.position"
-          :class="{ 'selected': marker.selected }"
           :icon="mapSettings.defaultIconSettings"
           @click="selectMarker(marker)"
         />
@@ -52,6 +51,10 @@ import {
 } from '@/constants/mapSettings'
 
 import { mapGetters } from 'vuex'
+import {
+  mapReportsToMarkers,
+  mapReportsToLines
+} from '@/utils/google-map-utils'
 
 export default {
   name: "GoogleMap",
@@ -61,7 +64,6 @@ export default {
       linePathConfig: LINE_PATH_CONFIG,
       mapSettings,
       markers: this.points,
-      places: [],
       currentPlace: null,
       infoPosition: null,
       infoContent: null,
@@ -88,50 +90,19 @@ export default {
     ]),
 
     points () {
-      if(!this.fetchingReports) {
-        return this.reports.map(report => {
-          return {
-            id: report.id,
-            reportTime: report.reportTime,
-            position: {
-              lat: report.lat,
-              lng: report.lng
-            }
-          }
-        })
-      }
+      if(!this.fetchingReports) return mapReportsToMarkers(this.reports)
     },
 
     lines () {
-      const lines = [];
       const reports = this.reports
-
-      if (reports.length > 0) {
-        reports.forEach( (report, index) => {
-          const nextReport = reports[index + 1]
-
-          if (nextReport === undefined) return
-
-          const depLat = report.lat
-          const depLng = report.lng
-          const arrLat = nextReport.lat
-          const arrLng = nextReport.lng
-
-          lines.push({
-            path: [
-              { lat: depLat, lng: depLng },
-              { lat: arrLat, lng: arrLng },
-            ]
-          })
-        })
-      }
-
-      return lines;
+      const lines = []
+      if (reports.length > 0) mapReportsToLines(reports, lines)
+      return lines
     },
 
     mapCenter () {
-      const reports = this.reports
-      const lastReport = reports[0]
+      const lastReport = this.reports[0]
+
       return {
         lat: lastReport.lat,
         lng: lastReport.lng
@@ -141,48 +112,21 @@ export default {
 
   watch: {
     reports () {
-      if(!this.fetchingReports) {
-        const markers = this.reports.map(report => {
-          return {
-            id: report.id,
-            reportTime: report.reportTime,
-            position: {
-              lat: report.lat,
-              lng: report.lng
-            }
-          }
-        })
-        this.markers = markers
-      }
+      if(!this.fetchingReports) this.markers = mapReportsToMarkers(this.reports)
     }
   },
 
   methods: {
-    addMarker() {
-      if (this.currentPlace) {
-        const marker = {
-          lat: this.currentPlace.geometry.location.lat(),
-          lng: this.currentPlace.geometry.location.lng()
-        }
-        this.markers.push({
-          position: marker
-        })
-        this.places.push(this.currentPlace)
-        this.center = marker
-        this.currentPlace = null
-      }
-    },
-
     selectMarker(marker) {
+      const markerId = marker.id
       this.infoPosition = marker.position
       this.infoContent = marker.reportTime
-      if (this.infoCurrentKey == marker.id) {
+      if (this.infoCurrentKey === markerId) {
         this.infoOpened = !this.infoOpened
       } else {
         this.infoOpened = true
-        this.infoCurrentKey = marker.id
-        const report = this.reports.find(report => report.id === marker.id)
-        marker.selected = true
+        this.infoCurrentKey = markerId
+        const report = this.reports.find(report => report.id === markerId)
         this.$emit('markerClicked', report)
       }
     }
@@ -204,10 +148,6 @@ export default {
     &__placeholder {
       height: 460px;
       width: 100%;
-    }
-
-    &__marker.selected {
-      transform: scale(1.5);
     }
   }
 </style>

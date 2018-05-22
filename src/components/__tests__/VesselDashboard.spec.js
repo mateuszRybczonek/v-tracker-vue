@@ -1,6 +1,6 @@
 import { shallow, createLocalVue } from 'vue-test-utils'
 import VesselDashboard from '@/components/VesselDashboard.vue'
-import GoogleMap from '@/components/GoogleMap.vue'
+import VesselDashboardGoogleMap from '@/components/VesselDashboardGoogleMap.vue'
 import WeatherData from '@/components/WeatherData.vue'
 import PositionData from '@/components/PositionData.vue'
 import NavigationData from '@/components/NavigationData.vue'
@@ -58,7 +58,7 @@ describe('VesselDashboard.vue', () => {
 
   test('renders GoogleMap component', () => {
     const { wrapper } = setup()
-    expect(wrapper.findAll(GoogleMap)).toHaveLength(1)
+    expect(wrapper.findAll(VesselDashboardGoogleMap)).toHaveLength(1)
   })
 
   test('renders PositionData component', () => {
