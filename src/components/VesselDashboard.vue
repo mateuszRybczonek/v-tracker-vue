@@ -18,29 +18,29 @@
         class="vessel-dashboard__report-selector"
         :class="{ 'vessel-dashboard__report-selector--shrunk': shrinkReportSelector }"
         :reports="sortedReports"
-      ></ReportSelector>
+      />
     </affix>
 
     <div
       class="vessel-dashboard__row"
     >
-      <GoogleMap
+      <VesselDashboardGoogleMap
         class="vessel-dashboard__row__item"
         @markerClicked="markerClicked"
-      ></GoogleMap>
+      />
 
       <div class="vessel-dashboard__row__item">
         <PositionData
           class="vessel-dashboard__row__item"
           :report="report"
           :fetchingReports="fetchingReports"
-        ></PositionData>
+        />
 
         <NavigationData
           class="vessel-dashboard__row__item"
           :report="report"
           :fetchingReports="fetchingReports"
-        ></NavigationData>
+        />
       </div>
     </div>
 
@@ -48,7 +48,7 @@
       class="vessel-dashboard__row__item"
       :report="report"
       :fetchingReports="fetchingReports"
-    ></WeatherData>
+    />
 
     <RemainingOnBoard
       class="vessel-dashboard__item"
@@ -56,13 +56,13 @@
       :report="report"
       :previousReport="previousReport"
       :fetchingReports="fetchingReports"
-    ></RemainingOnBoard>
+    />
   </div>
 </template>
 
 <script>
   import { mapGetters, mapActions } from 'vuex'
-  import GoogleMap from './GoogleMap.vue'
+  import VesselDashboardGoogleMap from './VesselDashboardGoogleMap.vue'
   import WeatherData from './WeatherData.vue'
   import PositionData from './PositionData.vue'
   import NavigationData from './NavigationData.vue'
@@ -71,7 +71,7 @@
 
   export default {
     components: {
-      GoogleMap,
+      VesselDashboardGoogleMap,
       RemainingOnBoard,
       WeatherData,
       PositionData,

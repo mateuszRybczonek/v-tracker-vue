@@ -1,19 +1,19 @@
 <template>
   <div class="vessel-weather">
     Weather
-    <GoogleMap
+    <VesselDashboardGoogleMap
       class="vessel-dashboard__row__item"
       @markerClicked="markerClicked"
-    ></GoogleMap>
+    />
   </div>
 </template>
 
 <script>
-  import GoogleMap from './GoogleMap.vue'
+  import VesselDashboardGoogleMap from './VesselDashboardGoogleMap.vue'
 
   export default {
     components: {
-      GoogleMap
+      VesselDashboardGoogleMap
     }
   }
 </script>

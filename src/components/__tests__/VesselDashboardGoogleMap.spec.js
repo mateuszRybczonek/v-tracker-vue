@@ -1,5 +1,5 @@
 import { shallow, createLocalVue } from 'vue-test-utils'
-import GoogleMap from '@/components/GoogleMap'
+import VesselDashboardGoogleMap from '@/components/VesselDashboardGoogleMap'
 import Vuex from 'vuex'
 import { report, secondReport } from '@/../test/stubs/report'
 

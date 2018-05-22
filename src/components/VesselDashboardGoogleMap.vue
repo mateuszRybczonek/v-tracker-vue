@@ -47,7 +47,7 @@
 
 <script>
 import {
-  settings as mapSettings,
+  mapSettings,
   LINE_PATH_CONFIG
 } from '@/constants/mapSettings'
 
