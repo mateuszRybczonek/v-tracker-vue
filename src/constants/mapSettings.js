@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import colorPalette from '@/constants/colorPalette'
 
-const { COLOR_POINT, COLOR_WATER, COLOR_LANDSCAPE } = colorPalette
+const { COLOR_POINT, COLOR_WATER, COLOR_LANDSCAPE, COLOR_LINE, COLOR_POINT_FILL } = colorPalette
 
 const COLORS = {
   POINT: COLOR_POINT,
-  LINE: '#FFFFFF',
+  LINE: COLOR_LINE,
   WATER: COLOR_WATER,
   LANDSCAPE: COLOR_LANDSCAPE,
 }
@@ -15,7 +15,7 @@ const POINT_MARKER_ICON_CONFIG = {
   strokeOpacity: 1,
   strokeWeight: 4,
   strokeColor: COLORS.POINT,
-  fillColor: '#FFFFFF',
+  fillColor: COLOR_POINT_FILL,
   fillOpacity: 1,
   scale: 1
 }
