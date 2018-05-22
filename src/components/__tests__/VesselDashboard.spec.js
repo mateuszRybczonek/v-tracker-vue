@@ -82,16 +82,6 @@ describe('VesselDashboard.vue', () => {
   })
 
   describe('Computed properties', () => {
-    it('reports returns proper data', () => {
-      const { wrapper } = setup()
-      expect(wrapper.vm.reports).toEqual([secondReport, report])
-    })
-
-    it('reversedReports returns proper data', () => {
-      const { wrapper } = setup()
-      expect(wrapper.vm.reversedReports).toEqual([secondReport, report])
-    })
-
     it('report returns selectedReport', () => {
       const { wrapper } = setup()
       expect(wrapper.vm.report).toEqual(secondReport)

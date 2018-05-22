@@ -26,12 +26,13 @@
         >
           {{infoContent}}
         </gmap-info-window>
-        <gmap-marker
+        <gmap-marker class="google-map__marker"
           v-for="(marker, index) in markers"
           :key="marker.id"
           :position="marker.position"
+          :class="{ 'selected': marker.selected }"
           :icon="mapSettings.defaultIconSettings"
-          @click="toggleInfo(marker)"
+          @click="selectMarker(marker)"
         />
         <gmap-polyline
           v-for="(line, index) in lines"
@@ -172,7 +173,7 @@ export default {
       }
     },
 
-    toggleInfo(marker) {
+    selectMarker(marker) {
       this.infoPosition = marker.position
       this.infoContent = marker.reportTime
       if (this.infoCurrentKey == marker.id) {
@@ -181,6 +182,7 @@ export default {
         this.infoOpened = true
         this.infoCurrentKey = marker.id
         const report = this.reports.find(report => report.id === marker.id)
+        marker.selected = true
         this.$emit('markerClicked', report)
       }
     }
@@ -202,6 +204,10 @@ export default {
     &__placeholder {
       height: 460px;
       width: 100%;
+    }
+
+    &__marker.selected {
+      transform: scale(1.5);
     }
   }
 </style>

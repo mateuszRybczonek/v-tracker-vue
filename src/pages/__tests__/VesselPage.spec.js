@@ -19,14 +19,14 @@ describe('VesselPage.vue', () => {
 
     const getters = {
       vessels: jest.fn(),
-      reports: jest.fn(),
+      sortedReports: jest.fn(),
       sidebarVisible: jest.fn(),
       selectedVesselDetailsComponent: jest.fn(),
       selectedReport: jest.fn()
     }
 
     getters.vessels.mockReturnValue([firstVessel, secondVessel])
-    getters.reports.mockReturnValue([report, secondReport])
+    getters.sortedReports.mockReturnValue([report, secondReport])
     getters.sidebarVisible.mockReturnValue(false)
     getters.selectedVesselDetailsComponent.mockReturnValue(selectedComponent)
     getters.selectedReport.mockReturnValue(report)
@@ -65,12 +65,7 @@ describe('VesselPage.vue', () => {
 
     test('with TheSidebar component', () => {
       expect(wrapper.findAll(TheSidebar)).toHaveLength(1)
-      expect(wrapper.find(TheSidebar).props().lastReport).toEqual(secondReport)
-    })
-
-    test('with proper dynamic component', () => {
-      expect(wrapper.findAll(VesselDashboard)).toHaveLength(1)
-      expect(wrapper.find(VesselDashboard).props().componentProps).toEqual({ reports: [secondReport, report] })
+      expect(wrapper.find(TheSidebar).props().lastReport).toEqual(report)
     })
   })
 
@@ -79,55 +74,9 @@ describe('VesselPage.vue', () => {
   })
 
   describe('Computed properties', () => {
-    it('reportsSortedAsc returns proper data', () => {
-      const { wrapper } = setup()
-      expect(wrapper.vm.reportsSortedAsc).toEqual([report, secondReport])
-    })
-
-    it('reportsSortedDesc returns proper data', () => {
-      const { wrapper } = setup()
-      expect(wrapper.vm.reportsSortedDesc).toEqual([secondReport, report])
-    })
-
-    it('previousReport returns proper data', () => {
-      const { wrapper } = setup()
-      expect(wrapper.vm.previousReport).toEqual(report)
-    })
-
     it('lastReport returns proper data', () => {
       const { wrapper } = setup()
-      expect(wrapper.vm.lastReport).toEqual(secondReport)
-    })
-
-    it('last14Reports returns proper data', () => {
-      const { wrapper } = setup()
-      expect(wrapper.vm.last14Reports).toEqual([secondReport, report])
-    })
-
-    describe('componentProps', () => {
-      it('returns proper data when selectedVesselDetailsComponent is VESSEL_DASHBOARD', () => {
-        const { wrapper } = setup()
-        expect(wrapper.vm.componentProps).toEqual({ reports: [secondReport, report] })
-      })
-
-      it('returns proper data when selectedVesselDetailsComponent is REPORTS', () => {
-        const { wrapper } = setup(REPORTS)
-        const expectedValue = {
-          reports: [report, secondReport],
-          last14Reports: [report, secondReport]
-        }
-        expect(wrapper.vm.componentProps).toEqual(expectedValue)
-      })
-
-      it('returns proper data when selectedVesselDetailsComponent is WEATHER', () => {
-        const { wrapper } = setup(WEATHER)
-        expect(wrapper.vm.componentProps).toEqual({})
-      })
-
-      it('returns proper data when selectedVesselDetailsComponent is STATISTICS', () => {
-        const { wrapper } = setup(STATISTICS)
-        expect(wrapper.vm.componentProps).toEqual({})
-      })
+      expect(wrapper.vm.lastReport).toEqual(report)
     })
   })
 })
