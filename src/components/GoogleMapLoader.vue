@@ -2,29 +2,22 @@
   <div>
     <div id="map" :style="{ height: mapHeight }"></div>
     <template v-if="!!this.google && !!this.map">
-      <GoogleMapProvider
+      <slot
         :google="google"
         :map="map"
-      >
-        <slot/>
-      </GoogleMapProvider>
+      />
     </template>
   </div>
 </template>
 
 <script>
 import GoogleMapsApiLoader from 'google-maps-api-loader'
-import GoogleMapProvider from './GoogleMapProvider'
 
 export default {
   props: {
     mapConfig: Object,
     apiKey: String,
     mapHeight: String
-  },
-
-  components: {
-    GoogleMapProvider
   },
 
   data (){

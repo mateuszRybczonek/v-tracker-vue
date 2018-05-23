@@ -3,8 +3,9 @@
 import { POINT_MARKER_ICON_CONFIG } from '@/constants/mapSettings'
 
 export default {
-  inject: ["google", "map"],
   props: {
+    google: Object,
+    map: Object,
     position: Object
   },
 

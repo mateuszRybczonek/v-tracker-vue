@@ -13,8 +13,8 @@
       data-test-google-map
       class="google-map__map"
       :markers='markers'
-      :center='mapCenter'>
-    </GoogleMap>
+      :center='mapCenter'
+    />
     <!-- <gmap-map
       :options="mapSettings.defaultMapOptions"
       :center="this.mapCenter"

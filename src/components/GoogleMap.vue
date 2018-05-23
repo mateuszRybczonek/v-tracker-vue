@@ -6,8 +6,14 @@
       map-height="460px"
       apiKey="AIzaSyAcpHQzH108aO_4Ea9cS4zT5PTBqpopd8Q"
     >
-      <template v-for="marker in markers">
-        <GoogleMapMarker :position="marker.position" />
+      <template slot-scope="scopeProps">
+        <GoogleMapMarker
+          v-for="marker in markers"
+          :key="marker.id"
+          :position="marker.position"
+          :google="scopeProps.google"
+          :map="scopeProps.map"
+        />
       </template>
     </GoogleMapLoader>
   </div>
