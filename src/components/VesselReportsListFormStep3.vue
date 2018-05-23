@@ -273,7 +273,6 @@
 <script>
   import ButtonPositive from './ButtonPositive.vue'
   import InputWithErrors from './InputWithErrors.vue'
-  import { required, numeric } from 'vuelidate/lib/validators'
   import BaseIcon from './BaseIcon.vue'
   import IconFuel from './Icons/IconFuel.vue'
   import IconWater from './Icons/IconWater.vue'
@@ -311,17 +310,6 @@
       }
     },
 
-    computed: {
-      invalidStep () {
-        return this.$v.reportData.foRob.$invalid ||
-          this.$v.reportData.doRob.$invalid ||
-          this.$v.reportData.fwRob.$invalid ||
-          this.$v.reportData.pob.$invalid ||
-          this.$v.reportData.pitch.$invalid ||
-          this.$v.reportData.roll.$invalid
-      }
-    },
-
     methods: {
       previousStep () {
         this.$emit('previousStep')
@@ -329,33 +317,6 @@
 
       submit () {
         this.$emit('submit', this.invalidStep)
-      }
-    },
-
-    validations: {
-      reportData: {
-        foRob: {
-          required,
-          numeric
-        },
-        doRob: {
-          required,
-          numeric
-        },
-        fwRob: {
-          required,
-          numeric
-        },
-        pob: {
-          required,
-          numeric
-        },
-        pitch: {
-          numeric
-        },
-        roll: {
-          numeric
-        }
       }
     }
   }

@@ -27,6 +27,10 @@ module.exports = {
     '!src/App.vue',
     '!src/main.js',
     '!src/router/index.js',
-    '!**/node_modules/**'
+    '!**/node_modules/**',
+    '!src/components/Icons/Animated'
+  ],
+  transformIgnorePatterns: [
+    "node_modules/(?!vue2-google-maps)"
   ]
 }

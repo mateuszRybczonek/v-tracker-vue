@@ -26,7 +26,7 @@ describe('reports mutations', () => {
     const state = { reports }
 
     mutations.ADD_REPORT(state, rawSecondReport)
-    expect(state.reports).toEqual([ report, secondReport ])
+    expect(state.reports).toEqual([ secondReport, report ])
   })
 
   test('DELETE_REPORT removes report from reports', () => {

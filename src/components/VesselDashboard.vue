@@ -17,31 +17,30 @@
       <ReportSelector
         class="vessel-dashboard__report-selector"
         :class="{ 'vessel-dashboard__report-selector--shrunk': shrinkReportSelector }"
-        :reports="reversedReports"
-      ></ReportSelector>
+        :reports="sortedReports"
+      />
     </affix>
 
     <div
       class="vessel-dashboard__row"
     >
-      <GoogleMap
+      <VesselDashboardGoogleMap
         class="vessel-dashboard__row__item"
-        :report="report"
-        :fetchingReports="fetchingReports"
-      ></GoogleMap>
+        @markerClicked="markerClicked"
+      />
 
       <div class="vessel-dashboard__row__item">
         <PositionData
           class="vessel-dashboard__row__item"
           :report="report"
           :fetchingReports="fetchingReports"
-        ></PositionData>
+        />
 
         <NavigationData
           class="vessel-dashboard__row__item"
           :report="report"
           :fetchingReports="fetchingReports"
-        ></NavigationData>
+        />
       </div>
     </div>
 
@@ -49,7 +48,7 @@
       class="vessel-dashboard__row__item"
       :report="report"
       :fetchingReports="fetchingReports"
-    ></WeatherData>
+    />
 
     <RemainingOnBoard
       class="vessel-dashboard__item"
@@ -57,13 +56,13 @@
       :report="report"
       :previousReport="previousReport"
       :fetchingReports="fetchingReports"
-    ></RemainingOnBoard>
+    />
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-  import GoogleMap from './GoogleMap.vue'
+  import { mapGetters, mapActions } from 'vuex'
+  import VesselDashboardGoogleMap from './VesselDashboardGoogleMap.vue'
   import WeatherData from './WeatherData.vue'
   import PositionData from './PositionData.vue'
   import NavigationData from './NavigationData.vue'
@@ -72,19 +71,12 @@
 
   export default {
     components: {
-      GoogleMap,
+      VesselDashboardGoogleMap,
       RemainingOnBoard,
       WeatherData,
       PositionData,
       NavigationData,
       ReportSelector
-    },
-
-    props: {
-      componentProps: {
-        type: Object,
-        required: true
-      }
     },
 
     data () {
@@ -97,16 +89,10 @@
       ...mapGetters([
         'fetchingReports',
         'selectedReport',
-        'sidebarVisible'
+        'sidebarVisible',
+        'sortedReports',
+        'reports'
       ]),
-
-      reports () {
-        return this.componentProps.reports
-      },
-
-      reversedReports () {
-        return [...this.componentProps.reports.reverse()]
-      },
 
       report () {
         return this.selectedReport
@@ -119,12 +105,20 @@
     },
 
     methods: {
+      ...mapActions([
+        'selectReport'
+      ]),
+
       shrinkReportSelect () {
         this.shrinkReportSelector = true
       },
 
       expandReportSelect () {
         this.shrinkReportSelector = false
+      },
+
+      markerClicked(report) {
+        this.selectReport(report)
       }
     }
   }

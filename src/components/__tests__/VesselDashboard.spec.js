@@ -1,6 +1,6 @@
 import { shallow, createLocalVue } from 'vue-test-utils'
 import VesselDashboard from '@/components/VesselDashboard.vue'
-import GoogleMap from '@/components/GoogleMap.vue'
+import VesselDashboardGoogleMap from '@/components/VesselDashboardGoogleMap.vue'
 import WeatherData from '@/components/WeatherData.vue'
 import PositionData from '@/components/PositionData.vue'
 import NavigationData from '@/components/NavigationData.vue'
@@ -14,11 +14,15 @@ describe('VesselDashboard.vue', () => {
     const getters = {
       sidebarVisible: jest.fn(),
       selectedReport: jest.fn(),
-      fetchingReports: jest.fn()
+      fetchingReports: jest.fn(),
+      sortedReports: jest.fn(),
+      reports: jest.fn()
     }
 
     getters.sidebarVisible.mockReturnValue(true)
     getters.fetchingReports.mockReturnValue(false)
+    getters.sortedReports.mockReturnValue([secondReport, report])
+    getters.reports.mockReturnValue([secondReport, report])
     getters.selectedReport.mockReturnValue(secondReport)
 
     const localVue = createLocalVue()
@@ -31,12 +35,7 @@ describe('VesselDashboard.vue', () => {
 
     const wrapper = shallow(VesselDashboard, {
       localVue,
-      store,
-      propsData: {
-        componentProps: {
-          reports: [report, secondReport]
-        }
-      }
+      store
     })
 
     return { wrapper }
@@ -59,7 +58,7 @@ describe('VesselDashboard.vue', () => {
 
   test('renders GoogleMap component', () => {
     const { wrapper } = setup()
-    expect(wrapper.findAll(GoogleMap)).toHaveLength(1)
+    expect(wrapper.findAll(VesselDashboardGoogleMap)).toHaveLength(1)
   })
 
   test('renders PositionData component', () => {
@@ -83,16 +82,6 @@ describe('VesselDashboard.vue', () => {
   })
 
   describe('Computed properties', () => {
-    it('reports returns proper data', () => {
-      const { wrapper } = setup()
-      expect(wrapper.vm.reports).toEqual([secondReport, report])
-    })
-
-    it('reversedReports returns proper data', () => {
-      const { wrapper } = setup()
-      expect(wrapper.vm.reversedReports).toEqual([secondReport, report])
-    })
-
     it('report returns selectedReport', () => {
       const { wrapper } = setup()
       expect(wrapper.vm.report).toEqual(secondReport)

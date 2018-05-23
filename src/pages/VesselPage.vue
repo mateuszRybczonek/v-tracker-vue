@@ -8,13 +8,9 @@
       class="vessel__content"
       :class="{ 'vessel__content--expanded': !sidebarVisible }"
     >
-      <keep-alive>
-        <transition name="slide" mode="out-in">
-          <component
-            :is="selectedVesselDetailsComponent" :componentProps="componentProps">
-          </component>
-        </transition>
-      </keep-alive>
+      <transition name="slide" mode="out-in">
+        <component :is="selectedVesselDetailsComponent"></component>
+      </transition>
     </div>
   </div>
 </template>
@@ -26,9 +22,6 @@
   import VesselStatistics from '../components/VesselStatistics.vue'
   import VesselWeather from '../components/VesselWeather.vue'
   import VesselReports from '../components/VesselReports.vue'
-  import { COMPONENT_NAMES } from '../constants/vessel-details'
-
-  const { VESSEL_DASHBOARD, REPORTS, WEATHER, STATISTICS } = COMPONENT_NAMES
 
   export default {
     components: {
@@ -46,46 +39,14 @@
     computed: {
       ...mapGetters([
         'vessels',
-        'reports',
         'sidebarVisible',
         'selectedVesselDetailsComponent',
-        'selectedReport'
+        'selectedReport',
+        'sortedReports'
       ]),
 
-      componentProps () {
-        switch (this.selectedVesselDetailsComponent) {
-          case VESSEL_DASHBOARD:
-            return {
-              reports: this.last14Reports
-            }
-          case REPORTS:
-            return {
-              reports: this.reports,
-              last14Reports: this.last14Reports
-            }
-          case WEATHER: return {}
-          case STATISTICS: return {}
-        }
-      },
-
-      reportsSortedAsc () {
-        return this.reports.sort((a, b) => a.reportTime > b.reportTime)
-      },
-
-      reportsSortedDesc () {
-        return this.reports.sort((a, b) => a.reportTime < b.reportTime)
-      },
-
-      previousReport () {
-        return this.reportsSortedAsc.slice(-2)[0]
-      },
-
       lastReport () {
-        return this.reportsSortedAsc.slice(-1)[0]
-      },
-
-      last14Reports () {
-        return this.reportsSortedAsc.slice(-14)
+        return this.sortedReports[0]
       }
     },
 

@@ -11,12 +11,19 @@ import router from './router/index'
 import store from './store/index'
 import VueContentPlaceholders from 'vue-content-placeholders'
 import VueAffix from 'vue-affix'
+import * as VueGoogleMaps from 'vue2-google-maps'
 
 Vue.use(VueContentPlaceholders)
 Vue.use(VueMomentJS, moment)
 Vue.use(Vuelidate)
 Vue.use(VueMaterial)
 Vue.use(VueAffix)
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyAcpHQzH108aO_4Ea9cS4zT5PTBqpopd8Q',
+    libraries: ['geometry']
+  }
+})
 Vue.config.productionTip = false
 
 axios.defaults.baseURL = 'https://v-tracker-vue.firebaseio.com/'

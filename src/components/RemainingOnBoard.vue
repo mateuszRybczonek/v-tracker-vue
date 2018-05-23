@@ -20,13 +20,15 @@
 
     props: {
       report: {
-        type: Object
+        type: Object,
+        required: true
       },
       previousReport: {
         type: Object
       },
       fetchingReports: {
-        type: Boolean
+        type: Boolean,
+        required: true
       }
     },
 
@@ -77,7 +79,7 @@
           {
             icon: 'IconFuel',
             header: this.animatedFoRob,
-            change: this.animatedFoRob - this.previousReport.foRob,
+            change: this.previousReport ? this.animatedFoRob - this.previousReport.foRob : 0,
             unit: 'cbm',
             description: 'Fuel Oil',
             customClass: 'mini-stats__item--fo',
@@ -85,7 +87,7 @@
           }, {
             icon: 'IconFuel',
             header: this.animatedDoRob,
-            change: this.animatedDoRob - this.previousReport.doRob,
+            change: this.previousReport ? this.animatedDoRob - this.previousReport.doRob : 0,
             unit: 'cbm',
             description: 'Diesel Oil',
             customClass: 'mini-stats__item--do',
@@ -93,7 +95,7 @@
           }, {
             icon: 'IconWater',
             header: this.animatedFwRob,
-            change: this.animatedFwRob - this.previousReport.fwRob,
+            change: this.previousReport ? this.animatedFwRob - this.previousReport.fwRob : 0,
             unit: 'cbm',
             description: 'Fresh Water',
             customClass: 'mini-stats__item--fw',
@@ -101,7 +103,7 @@
           }, {
             icon: 'IconPeople',
             header: this.animatedPob,
-            change: this.animatedPob - this.previousReport.pob,
+            change: this.previousReport ? this.animatedPob - this.previousReport.pob : 0,
             unit: 'persons',
             description: 'People On Board',
             customClass: 'mini-stats__item--pob',
