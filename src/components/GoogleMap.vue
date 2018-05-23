@@ -14,6 +14,13 @@
           :google="scopeProps.google"
           :map="scopeProps.map"
         />
+        <GoogleMapLine
+          v-for="(line, index) in lines"
+          :key="index"
+          :path.sync="line.path"
+          :google="scopeProps.google"
+          :map="scopeProps.map"
+        />
       </template>
     </GoogleMapLoader>
   </div>
@@ -22,6 +29,7 @@
 <script>
 import GoogleMapLoader from './GoogleMapLoader'
 import GoogleMapMarker from './GoogleMapMarker'
+import GoogleMapLine from './GoogleMapLine'
 
 import {
   mapSettings
@@ -30,6 +38,7 @@ import {
 export default {
   props: {
     markers: Array,
+    lines: Array,
     center: Object
   },
 
@@ -44,7 +53,8 @@ export default {
 
   components: {
     GoogleMapLoader,
-    GoogleMapMarker
+    GoogleMapMarker,
+    GoogleMapLine
   }
 }
 </script>

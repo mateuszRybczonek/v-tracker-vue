@@ -13,6 +13,7 @@
       data-test-google-map
       class="google-map__map"
       :markers='markers'
+      :lines='lines'
       :center='mapCenter'
     />
     <!-- <gmap-map
