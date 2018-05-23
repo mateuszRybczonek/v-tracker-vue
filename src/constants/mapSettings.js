@@ -13,22 +13,22 @@ const COLORS = {
 
 const POINT_MARKER_ICON_CONFIG = {
   path: 'M 0, 0 m -5, 0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0',
-  strokeOpacity: 1,
+  strokeOpacity: 0.7,
   strokeWeight: 4,
   strokeColor: COLORS.POINT,
   fillColor: COLORS.POINT_FILL,
-  fillOpacity: 1,
+  fillOpacity: 0.7,
   scale: 1
 }
 
 const SELECTED_POINT_MARKER_ICON_CONFIG = {
   path: 'M 0, 0 m -5, 0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0',
-  strokeOpacity: 1,
-  strokeWeight: 4,
+  strokeOpacity: 0.8,
+  strokeWeight: 8,
   strokeColor: COLORS.SELECTED_POINT,
   fillColor: COLORS.POINT_FILL,
-  fillOpacity: 1,
-  scale: 1
+  fillOpacity: 0.8,
+  scale: 1.5
 }
 
 const LINE_SYMBOL_CONFIG = {

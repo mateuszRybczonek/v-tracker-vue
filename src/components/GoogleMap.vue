@@ -65,7 +65,6 @@ export default {
     selectMarker (marker) {
       this.googleMapMarkers.forEach( googleMapMarker => {
         googleMapMarker.setIcon(POINT_MARKER_ICON_CONFIG)
-        googleMapMarker.setAnimation(null)
       })
       this.$emit('selectMarker', marker)
     }

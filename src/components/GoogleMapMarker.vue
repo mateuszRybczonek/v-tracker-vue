@@ -31,7 +31,6 @@ export default {
     this.googleMarker.addListener('click', () => {
       this.clickHandler()
       this.googleMarker.setIcon(SELECTED_POINT_MARKER_ICON_CONFIG)
-      this.googleMarker.setAnimation(this.google.maps.Animation.BOUNCE)
     })
 
     this.googleMapMarkers.push(this.googleMarker)
