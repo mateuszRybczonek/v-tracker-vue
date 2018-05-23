@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import colorPalette from '@/constants/colorPalette'
 
 const { COLOR_POINT, COLOR_WATER, COLOR_LANDSCAPE, COLOR_LINE, COLOR_POINT_FILL } = colorPalette
@@ -39,106 +38,100 @@ const LINE_PATH_CONFIG = {
   }],
 }
 
-const mapSettings = new Vue({
-    data() {
-      return {
-        defaultIconSettings: POINT_MARKER_ICON_CONFIG,
-        defaultMapOptions: {
-          clickableIcons: false,
-          streetViewControl: false,
-          panControlOptions: false,
-          gestureHandling: 'greedy',
-          backgroundColor: COLORS.LANDSCAPE,
-          mapTypeControl: false,
-          zoomControlOptions: {
-            style: 'SMALL',
-          },
-          zoom: 5,
-          minZoom: 2,
-          maxZoom: 8,
-          styles: [
-            {
-              featureType: 'landscape',
-              elementType: 'geometry.fill',
-              stylers: [{ color: COLORS.LANDSCAPE }],
-            },
-            {
-              featureType: 'poi',
-              stylers: [{ visibility: 'off' }],
-            },
-            {
-              featureType: 'road.highway',
-              stylers: [{ visibility: 'off' }],
-            },
-            {
-              featureType: 'road.arterial',
-              stylers: [{ visibility: 'off' }],
-            },
-            {
-              featureType: 'road.local',
-              stylers: [{ visibility: 'off' }],
-            },
-            {
-              featureType: 'transit',
-              stylers: [{ visibility: 'off' }],
-            },
-            {
-              featureType: 'administrative.province',
-              stylers: [{ visibility: 'off' }],
-            },
-            {
-              featureType: 'administrative.locality',
-              stylers: [{ visibility: 'off' }],
-            },
-            {
-              featureType: 'administrative.province',
-              stylers: [{ visibility: 'off' }],
-            },
-            {
-              featureType: 'administrative.land_parcel',
-              stylers: [{ visibility: 'off' }],
-            },
-            {
-              featureType: 'administrative.neighborhood',
-              stylers: [{ visibility: 'off' }],
-            },
-            {
-              featureType: 'administrative.country',
-              elementType: 'geometry.stroke',
-              stylers: [
-                { visibility: 'on' },
-                { color: COLORS.WATER },
-              ],
-            },
-            {
-              featureType: 'administrative',
-              elementType: 'labels',
-              stylers: [{ visibility: 'off' }],
-            },
-            {
-              featureType: 'water',
-              elementType: 'labels.text.fill',
-              stylers: [{ visibility: 'off' }],
-            },
-            {
-              featureType: 'water',
-              elementType: 'labels.text.stroke',
-              stylers: [{ visibility: 'off' }],
-            },
-            {
-              featureType: 'water',
-              elementType: 'geometry',
-              stylers: [
-                { color: COLORS.WATER },
-              ],
-            },
-          ],
-        }
-      }
-    }
-})
+const mapSettings = {
+  clickableIcons: false,
+  streetViewControl: false,
+  panControlOptions: false,
+  gestureHandling: 'greedy',
+  backgroundColor: COLORS.LANDSCAPE,
+  mapTypeControl: false,
+  zoomControlOptions: {
+    style: 'SMALL',
+  },
+  zoom: 5,
+  minZoom: 2,
+  maxZoom: 8,
+  styles: [
+    {
+      featureType: 'landscape',
+      elementType: 'geometry.fill',
+      stylers: [{ color: COLORS.LANDSCAPE }],
+    },
+    {
+      featureType: 'poi',
+      stylers: [{ visibility: 'off' }],
+    },
+    {
+      featureType: 'road.highway',
+      stylers: [{ visibility: 'off' }],
+    },
+    {
+      featureType: 'road.arterial',
+      stylers: [{ visibility: 'off' }],
+    },
+    {
+      featureType: 'road.local',
+      stylers: [{ visibility: 'off' }],
+    },
+    {
+      featureType: 'transit',
+      stylers: [{ visibility: 'off' }],
+    },
+    {
+      featureType: 'administrative.province',
+      stylers: [{ visibility: 'off' }],
+    },
+    {
+      featureType: 'administrative.locality',
+      stylers: [{ visibility: 'off' }],
+    },
+    {
+      featureType: 'administrative.province',
+      stylers: [{ visibility: 'off' }],
+    },
+    {
+      featureType: 'administrative.land_parcel',
+      stylers: [{ visibility: 'off' }],
+    },
+    {
+      featureType: 'administrative.neighborhood',
+      stylers: [{ visibility: 'off' }],
+    },
+    {
+      featureType: 'administrative.country',
+      elementType: 'geometry.stroke',
+      stylers: [
+        { visibility: 'on' },
+        { color: COLORS.WATER },
+      ],
+    },
+    {
+      featureType: 'administrative',
+      elementType: 'labels',
+      stylers: [{ visibility: 'off' }],
+    },
+    {
+      featureType: 'water',
+      elementType: 'labels.text.fill',
+      stylers: [{ visibility: 'off' }],
+    },
+    {
+      featureType: 'water',
+      elementType: 'labels.text.stroke',
+      stylers: [{ visibility: 'off' }],
+    },
+    {
+      featureType: 'water',
+      elementType: 'geometry',
+      stylers: [
+        { color: COLORS.WATER },
+      ],
+    },
+  ],
+}
 
 export {
   mapSettings,
-  LINE_PATH_CONFIG
+  LINE_PATH_CONFIG,
+  POINT_MARKER_ICON_CONFIG
 }

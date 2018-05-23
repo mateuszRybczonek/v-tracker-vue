@@ -8,39 +8,40 @@
       <content-placeholders-img class="google-map__placeholder"></content-placeholders-img>
     </content-placeholders>
 
-    <div
+    <GoogleMap
       v-else
       data-test-google-map
       class="google-map__map"
+      :markers='markers'
+      :center='mapCenter'>
+    </GoogleMap>
+    <!-- <gmap-map
+      :options="mapSettings.defaultMapOptions"
+      :center="this.mapCenter"
+      style="height: 460px;"
     >
-      <gmap-map
-        :options="mapSettings.defaultMapOptions"
-        :center="this.mapCenter"
-        style="height: 460px;"
+      <gmap-info-window
+        :options="infoOptions"
+        :position="infoPosition"
+        :opened="infoOpened"
+        @closeclick="infoOpened=false"
       >
-        <gmap-info-window
-          :options="infoOptions"
-          :position="infoPosition"
-          :opened="infoOpened"
-          @closeclick="infoOpened=false"
-        >
-          {{infoContent}}
-        </gmap-info-window>
-        <gmap-marker data-test-google-map-marker class="google-map__marker"
-          v-for="(marker, index) in markers"
-          :key="marker.id"
-          :position="marker.position"
-          :icon="mapSettings.defaultIconSettings"
-          @click="selectMarker(marker)"
-        />
-        <gmap-polyline
-          v-for="(line, index) in lines"
-          :key="index"
-          :path.sync="line.path"
-          :options="linePathConfig"
-        />
-      </gmap-map>
-    </div>
+        {{infoContent}}
+      </gmap-info-window>
+      <gmap-marker data-test-google-map-marker class="google-map__marker"
+        v-for="(marker, index) in markers"
+        :key="marker.id"
+        :position="marker.position"
+        :icon="mapSettings.defaultIconSettings"
+        @click="selectMarker(marker)"
+      />
+      <gmap-polyline
+        v-for="(line, index) in lines"
+        :key="index"
+        :path.sync="line.path"
+        :options="linePathConfig"
+      />
+    </gmap-map> -->
   </div>
 </template>
 
@@ -56,8 +57,12 @@ import {
   mapReportsToLines
 } from '@/utils/google-map-utils'
 
+import GoogleMap from '@/components/GoogleMap'
+
 export default {
-  name: "GoogleMap",
+  components: {
+    GoogleMap
+  },
 
   data() {
     return {
@@ -142,6 +147,7 @@ export default {
     @include box-shadow(0 0 100px 1px rgba(0,0,0,0.1));
 
     &__map {
+      height: 460px;
       width: 100%;
     }
 

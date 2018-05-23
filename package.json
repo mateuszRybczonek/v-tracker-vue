@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "firebase-tools": "^3.17.4",
+    "google-maps-api-loader": "^1.1.1",
     "gsap": "^1.20.4",
     "moment": "^2.20.1",
     "moxios": "^0.4.0",
@@ -28,7 +29,6 @@
     "vue-momentjs": "^0.1.1",
     "vue-router": "^3.0.1",
     "vue-test-utils": "^1.0.0-beta.11",
-    "vue2-google-maps": "^0.9.7",
     "vuelidate": "^0.6.1",
     "vuex": "^3.0.1",
     "vuex-router-sync": "^5.0.0"
