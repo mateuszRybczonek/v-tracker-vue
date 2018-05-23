@@ -94,7 +94,7 @@ export default {
     },
 
     lines () {
-      const reports = this.reports
+      const { reports } = this
       const lines = []
       if (reports.length > 0) mapReportsToLines(reports, lines)
       return lines

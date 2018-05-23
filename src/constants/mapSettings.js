@@ -5,6 +5,7 @@ const { COLOR_POINT, COLOR_WATER, COLOR_LANDSCAPE, COLOR_LINE, COLOR_POINT_FILL 
 
 const COLORS = {
   POINT: COLOR_POINT,
+  POINT_FILL: COLOR_POINT_FILL,
   LINE: COLOR_LINE,
   WATER: COLOR_WATER,
   LANDSCAPE: COLOR_LANDSCAPE,
@@ -15,7 +16,7 @@ const POINT_MARKER_ICON_CONFIG = {
   strokeOpacity: 1,
   strokeWeight: 4,
   strokeColor: COLORS.POINT,
-  fillColor: COLOR_POINT_FILL,
+  fillColor: COLORS.POINT_FILL,
   fillOpacity: 1,
   scale: 1
 }
