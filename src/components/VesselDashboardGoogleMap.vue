@@ -1,46 +1,47 @@
 <template>
-  <div class="google-map">
+  <div class='google-map'>
     <content-placeholders
       data-test-google-map-placeholder
-      class="google-map__placeholder"
-      v-if="fetchingReports"
+      class='google-map__placeholder'
+      v-if='fetchingReports'
     >
-      <content-placeholders-img class="google-map__placeholder"></content-placeholders-img>
+      <content-placeholders-img class='google-map__placeholder'></content-placeholders-img>
     </content-placeholders>
 
     <GoogleMap
       v-else
       data-test-google-map
-      class="google-map__map"
+      class='google-map__map'
       :markers='markers'
       :lines='lines'
       :center='mapCenter'
-    />
+      @selectMarker='selectMarker'
+    ></GoogleMap>
     <!-- <gmap-map
-      :options="mapSettings.defaultMapOptions"
-      :center="this.mapCenter"
-      style="height: 460px;"
+      :options='mapSettings.defaultMapOptions'
+      :center='this.mapCenter'
+      style='height: 460px;'
     >
       <gmap-info-window
-        :options="infoOptions"
-        :position="infoPosition"
-        :opened="infoOpened"
-        @closeclick="infoOpened=false"
+        :options='infoOptions'
+        :position='infoPosition'
+        :opened='infoOpened'
+        @closeclick='infoOpened=false'
       >
         {{infoContent}}
       </gmap-info-window>
-      <gmap-marker data-test-google-map-marker class="google-map__marker"
-        v-for="(marker, index) in markers"
-        :key="marker.id"
-        :position="marker.position"
-        :icon="mapSettings.defaultIconSettings"
-        @click="selectMarker(marker)"
+      <gmap-marker data-test-google-map-marker class='google-map__marker'
+        v-for='(marker, index) in markers'
+        :key='marker.id'
+        :position='marker.position'
+        :icon='mapSettings.defaultIconSettings'
+        @click='selectMarker(marker)'
       />
       <gmap-polyline
-        v-for="(line, index) in lines"
-        :key="index"
-        :path.sync="line.path"
-        :options="linePathConfig"
+        v-for='(line, index) in lines'
+        :key='index'
+        :path.sync='line.path'
+        :options='linePathConfig'
       />
     </gmap-map> -->
   </div>
@@ -140,7 +141,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang='scss'>
   .google-map {
     display: flex;
     justify-content: center;

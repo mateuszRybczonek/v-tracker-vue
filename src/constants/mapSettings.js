@@ -1,13 +1,14 @@
 import colorPalette from '@/constants/colorPalette'
 
-const { COLOR_POINT, COLOR_WATER, COLOR_LANDSCAPE, COLOR_LINE, COLOR_POINT_FILL } = colorPalette
+const { COLOR_POINT, COLOR_WATER, COLOR_LANDSCAPE, COLOR_LINE, COLOR_POINT_FILL, COLOR_SELECTED_POINT } = colorPalette
 
 const COLORS = {
+  LANDSCAPE: COLOR_LANDSCAPE,
+  LINE: COLOR_LINE,
   POINT: COLOR_POINT,
   POINT_FILL: COLOR_POINT_FILL,
-  LINE: COLOR_LINE,
-  WATER: COLOR_WATER,
-  LANDSCAPE: COLOR_LANDSCAPE,
+  SELECTED_POINT: COLOR_SELECTED_POINT,
+  WATER: COLOR_WATER
 }
 
 const POINT_MARKER_ICON_CONFIG = {
@@ -15,6 +16,16 @@ const POINT_MARKER_ICON_CONFIG = {
   strokeOpacity: 1,
   strokeWeight: 4,
   strokeColor: COLORS.POINT,
+  fillColor: COLORS.POINT_FILL,
+  fillOpacity: 1,
+  scale: 1
+}
+
+const SELECTED_POINT_MARKER_ICON_CONFIG = {
+  path: 'M 0, 0 m -5, 0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0',
+  strokeOpacity: 1,
+  strokeWeight: 4,
+  strokeColor: COLORS.SELECTED_POINT,
   fillColor: COLORS.POINT_FILL,
   fillOpacity: 1,
   scale: 1
@@ -133,5 +144,6 @@ const mapSettings = {
 export {
   mapSettings,
   LINE_PATH_CONFIG,
-  POINT_MARKER_ICON_CONFIG
+  POINT_MARKER_ICON_CONFIG,
+  SELECTED_POINT_MARKER_ICON_CONFIG
 }

@@ -9,11 +9,11 @@ export default {
     path: Array
   },
 
-  data (){
+  data () {
     return { line: null }
   },
 
-  mounted (){
+  mounted () {
     const { Polyline } = this.google.maps
     this.line = new Polyline({
       clickable: false,

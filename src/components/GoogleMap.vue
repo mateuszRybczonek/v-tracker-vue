@@ -10,9 +10,11 @@
         <GoogleMapMarker
           v-for="marker in markers"
           :key="marker.id"
-          :position="marker.position"
+          :marker="marker"
+          :googleMapMarkers="googleMapMarkers"
           :google="scopeProps.google"
           :map="scopeProps.map"
+          @selectMarker="selectMarker(marker)"
         />
         <GoogleMapLine
           v-for="(line, index) in lines"
@@ -32,7 +34,8 @@ import GoogleMapMarker from './GoogleMapMarker'
 import GoogleMapLine from './GoogleMapLine'
 
 import {
-  mapSettings
+  mapSettings,
+  POINT_MARKER_ICON_CONFIG
 } from '@/constants/mapSettings'
 
 export default {
@@ -47,7 +50,8 @@ export default {
       mapConfig: {
         ...mapSettings,
         center: this.center
-      }
+      },
+      googleMapMarkers: []
     }
   },
 
@@ -55,6 +59,16 @@ export default {
     GoogleMapLoader,
     GoogleMapMarker,
     GoogleMapLine
+  },
+
+  methods: {
+    selectMarker (marker) {
+      this.googleMapMarkers.forEach( googleMapMarker => {
+        googleMapMarker.setIcon(POINT_MARKER_ICON_CONFIG)
+        googleMapMarker.setAnimation(null)
+      })
+      this.$emit('selectMarker', marker)
+    }
   }
 }
 </script>
