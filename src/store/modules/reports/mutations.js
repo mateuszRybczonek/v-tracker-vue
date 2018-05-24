@@ -29,7 +29,7 @@ export default {
     Vue.set(state.reports, reportIndex, reportData)
   },
 
-  [types.SELECT_REPORT] (state, report) {
-    state.selectedReport = report
+  [types.SELECT_REPORT] (state, reportId) {
+    state.selectedReport = state.reports.find(report => report.id === reportId)
   }
 }

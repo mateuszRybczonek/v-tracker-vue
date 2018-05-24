@@ -117,8 +117,8 @@
         this.shrinkReportSelector = false
       },
 
-      markerClicked(report) {
-        this.selectReport(report)
+      markerClicked(reportId) {
+        this.selectReport(reportId)
       }
     }
   }

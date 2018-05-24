@@ -42,7 +42,7 @@ export default {
       }
       dispatch('storeReports', reports)
       dispatch('setFetchingReports', false)
-      dispatch('selectReport', getLastReport(reports))
+      dispatch('selectReport', getLastReport(reports).id)
     } catch (error) { throw(error) }
   },
 
@@ -54,8 +54,8 @@ export default {
     commit(types.FETCHING_REPORTS, value)
   },
 
-  selectReport ({ commit }, report) {
-    commit(types.SELECT_REPORT, report)
+  selectReport ({ commit }, reportId) {
+    commit(types.SELECT_REPORT, reportId)
   },
 
   async deleteReport ({ getters, commit }, payload) {
