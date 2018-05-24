@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div id="map" :style="{ height: mapHeight }"></div>
+    <div
+      data-test-map-container
+      id="map"
+      :style="{ height: mapHeight }"
+    ></div>
     <template v-if="!!this.google && !!this.map">
       <slot
         :google="google"
