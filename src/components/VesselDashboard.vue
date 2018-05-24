@@ -26,7 +26,6 @@
     >
       <VesselDashboardGoogleMap
         class="vessel-dashboard__row__item"
-        @markerClicked="markerClicked"
       />
 
       <div class="vessel-dashboard__row__item">
@@ -105,20 +104,12 @@
     },
 
     methods: {
-      ...mapActions([
-        'selectReport'
-      ]),
-
       shrinkReportSelect () {
         this.shrinkReportSelector = true
       },
 
       expandReportSelect () {
         this.shrinkReportSelector = false
-      },
-
-      markerClicked(reportId) {
-        this.selectReport(reportId)
       }
     }
   }

@@ -35,8 +35,11 @@ import GoogleMapLine from './GoogleMapLine'
 
 import {
   mapSettings,
-  POINT_MARKER_ICON_CONFIG
+  POINT_MARKER_ICON_CONFIG,
+  SELECTED_POINT_MARKER_ICON_CONFIG
 } from '@/constants/mapSettings'
+
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   props: {
@@ -45,7 +48,17 @@ export default {
     center: Object
   },
 
-  data (){
+  computed: {
+    ...mapGetters([
+      'selectedReport'
+    ]),
+
+    newSelectedReport () {
+      return this.selectedReport
+    }
+  },
+
+  data () {
     return {
       mapConfig: {
         ...mapSettings,
@@ -62,11 +75,24 @@ export default {
   },
 
   methods: {
+    ...mapActions([
+      'selectReport'
+    ]),
+
     selectMarker (marker) {
+      this.selectReport(marker.id)
+      this.$emit('selectMarker', marker)
+    }
+  },
+
+  watch: {
+    newSelectedReport (newValue) {
       this.googleMapMarkers.forEach( googleMapMarker => {
         googleMapMarker.setIcon(POINT_MARKER_ICON_CONFIG)
       })
-      this.$emit('selectMarker', marker)
+
+      const selectedMarker = this.googleMapMarkers.find(marker => marker.marker.id === newValue.id)
+      selectedMarker.setIcon(SELECTED_POINT_MARKER_ICON_CONFIG)
     }
   }
 }

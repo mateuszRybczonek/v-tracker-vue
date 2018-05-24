@@ -134,7 +134,6 @@ export default {
         this.infoOpened = true
         this.infoCurrentKey = markerId
         const report = this.reports.find(report => report.id === markerId)
-        this.$emit('markerClicked', report.id)
       }
     }
   }
