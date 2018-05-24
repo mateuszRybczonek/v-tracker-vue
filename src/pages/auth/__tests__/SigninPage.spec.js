@@ -7,6 +7,12 @@ import Vuex from 'vuex'
 
 const loginSpy = jest.fn()
 const clearAuthErrorSpy = jest.fn()
+const routerPushSpy = jest.fn()
+const routerResolveSpy = jest.fn().mockReturnValue({
+  location: {
+    path: '/fake-path'
+  }
+})
 
 describe('SigninPage.vue', () => {
   const setup = (isFormInvalid = false) => {
@@ -30,16 +36,38 @@ describe('SigninPage.vue', () => {
       getters
     })
 
+    const routerMock = {
+      push: routerPushSpy,
+      resolve: routerResolveSpy,
+      options: {
+        linkActiveClass: {}
+      },
+    }
+
+    const routeMock = {
+      path: '/fake-path'
+    }
+
     const mocks = {
       $v: {
-        $invalid: isFormInvalid
+        $invalid: isFormInvalid,
+        email: {
+          $invalid: false
+        },
+        password: {
+          $invalid: false
+        }
       }
     }
 
     const wrapper = mount(SigninPage, {
       localVue,
       store,
-      mocks
+      mocks,
+      beforeCreate: function () {
+        this._router = routerMock
+        this._route = routeMock
+      }
     })
 
     return { wrapper }

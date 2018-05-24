@@ -40,12 +40,32 @@ describe('EditVesselPage.vue', () => {
     }
 
     const router = {
-      push: routerPushSpy
+      push: routerPushSpy,
     }
 
     const mocks = {
       $v: {
-        $invalid: false
+        $invalid: false,
+        vessel: {
+          name: {
+            $invalid: false
+          },
+          imoNumber: {
+            $invalid: false
+          },
+          mmsi: {
+            $invalid: false
+          },
+          gt: {
+            $invalid: false
+          },
+          yob: {
+            $invalid: false
+          },
+          flag: {
+            $invalid: false
+          }
+        }
       }
     }
 

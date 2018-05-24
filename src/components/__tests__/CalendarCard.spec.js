@@ -3,24 +3,37 @@ import { shallow, createLocalVue } from 'vue-test-utils'
 import CalendarCard from '@/components/CalendarCard'
 import moment from 'moment'
 import VueMomentJS from 'vue-momentjs'
-
-const localVue = createLocalVue()
-localVue.use(Vuex)
-localVue.use(VueMomentJS, moment)
+import { report } from '@/../test/stubs/report'
 
 describe('CalendarCard.vue', () => {
-  const wrapper = shallow(CalendarCard, {
-    localVue,
-    computed: {
-      selectedReport() { return { id: 1 } }
-    },
-    propsData: {
-      report: {
-        id: 1,
-        reportTime: "2018-02-10"
-      }
+  const setup = () => {
+    const getters = {
+      selectedReport: jest.fn()
     }
-  })
+
+    getters.selectedReport.mockReturnValue(report)
+
+    const localVue = createLocalVue()
+    localVue.use(Vuex)
+    localVue.use(VueMomentJS, moment)
+
+    const store = new Vuex.Store({
+      state: {},
+      getters
+    })
+
+    const wrapper = shallow(CalendarCard, {
+      localVue,
+      store,
+      propsData: {
+        report
+      }
+    })
+
+    return { wrapper }
+  }
+
+  const { wrapper } = setup()
 
   it('renders correct month', () => {
     expect(wrapper.find('[data-test-calendar-card]').text()).toContain('Feb')

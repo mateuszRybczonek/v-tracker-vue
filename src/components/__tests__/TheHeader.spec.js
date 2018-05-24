@@ -1,4 +1,4 @@
-import { mount } from 'vue-test-utils'
+import { shallow } from 'vue-test-utils'
 import TheHeader from '@/components/TheHeader.vue'
 import Vuex from 'vuex'
 
@@ -29,7 +29,7 @@ describe('TheHeader.vue', () => {
   test('renders proper header when isAuthenticated', () => {
     getters.isAuthenticated.mockReturnValue(true)
 
-    const wrapper = mount(TheHeader, {
+    const wrapper = shallow(TheHeader, {
       store
     })
 
@@ -40,7 +40,7 @@ describe('TheHeader.vue', () => {
   test('renders proper header when not isAuthenticated', () => {
     getters.isAuthenticated.mockReturnValue(false)
 
-    const wrapper = mount(TheHeader, {
+    const wrapper = shallow(TheHeader, {
       store,
       stubs: ['router-link']
     })
@@ -53,7 +53,7 @@ describe('TheHeader.vue', () => {
     it('onLogout calls logout action', () => {
       getters.isAuthenticated.mockReturnValue(false)
 
-      const wrapper = mount(TheHeader, {
+      const wrapper = shallow(TheHeader, {
         store,
         stubs: ['router-link']
       })

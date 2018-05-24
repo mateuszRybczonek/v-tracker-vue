@@ -7,8 +7,8 @@
       class="sidebar__header__edit-link"
     >
       <BaseIcon
-        width=40
-        height=40
+        width='40'
+        height='40'
         viewBox='20 -5 76 76'
       >
         <IconPencil></IconPencil>
