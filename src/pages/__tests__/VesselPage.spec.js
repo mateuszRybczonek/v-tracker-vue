@@ -1,13 +1,12 @@
 import { mount, createLocalVue } from 'vue-test-utils'
 import VesselPage from '@/pages/VesselPage.vue'
 import TheSidebar from '@/components/TheSidebar.vue'
-import VesselDashboard from '@/components/VesselDashboard.vue'
 import { COMPONENT_NAMES } from '@/constants/vessel-details'
 import Vuex from 'vuex'
 import { firstVessel, secondVessel } from '@/../test/stubs/vessel'
 import { report, secondReport } from '@/../test/stubs/report'
 
-const { VESSEL_DASHBOARD, REPORTS, WEATHER, STATISTICS } = COMPONENT_NAMES
+const { VESSEL_DASHBOARD } = COMPONENT_NAMES
 
 const fetchReportsSpy = jest.fn()
 

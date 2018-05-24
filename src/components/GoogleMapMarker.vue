@@ -1,8 +1,7 @@
 <template></template>
 <script>
 import {
-  POINT_MARKER_ICON_CONFIG,
-  SELECTED_POINT_MARKER_ICON_CONFIG
+  POINT_MARKER_ICON_CONFIG
 } from '@/constants/mapSettings'
 
 export default {
@@ -29,16 +28,10 @@ export default {
     })
 
     this.googleMarker.addListener('click', () => {
-      this.clickHandler()
+      this.$emit('selectMarker', this.marker)
     })
 
     this.googleMapMarkers.push(this.googleMarker)
-  },
-
-  methods: {
-    clickHandler () {
-      this.$emit('selectMarker', this.marker)
-    }
   }
 }
 </script>

@@ -17,33 +17,6 @@
       :center='mapCenter'
       @selectMarker='selectMarker'
     ></GoogleMap>
-    <!-- <gmap-map
-      :options='mapSettings.defaultMapOptions'
-      :center='this.mapCenter'
-      style='height: 460px;'
-    >
-      <gmap-info-window
-        :options='infoOptions'
-        :position='infoPosition'
-        :opened='infoOpened'
-        @closeclick='infoOpened=false'
-      >
-        {{infoContent}}
-      </gmap-info-window>
-      <gmap-marker data-test-google-map-marker class='google-map__marker'
-        v-for='(marker, index) in markers'
-        :key='marker.id'
-        :position='marker.position'
-        :icon='mapSettings.defaultIconSettings'
-        @click='selectMarker(marker)'
-      />
-      <gmap-polyline
-        v-for='(line, index) in lines'
-        :key='index'
-        :path.sync='line.path'
-        :options='linePathConfig'
-      />
-    </gmap-map> -->
   </div>
 </template>
 
@@ -133,7 +106,6 @@ export default {
       } else {
         this.infoOpened = true
         this.infoCurrentKey = markerId
-        const report = this.reports.find(report => report.id === markerId)
       }
     }
   }

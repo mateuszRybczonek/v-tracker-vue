@@ -60,7 +60,7 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapGetters } from 'vuex'
   import VesselDashboardGoogleMap from './VesselDashboardGoogleMap.vue'
   import WeatherData from './WeatherData.vue'
   import PositionData from './PositionData.vue'

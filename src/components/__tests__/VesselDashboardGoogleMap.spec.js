@@ -1,4 +1,4 @@
-import { shallow, createLocalVue } from 'vue-test-utils'
+import { mount, createLocalVue } from 'vue-test-utils'
 import VesselDashboardGoogleMap from '@/components/VesselDashboardGoogleMap'
 import Vuex from 'vuex'
 import { report, secondReport } from '@/../test/stubs/report'
@@ -23,7 +23,7 @@ describe('VesselDashboardGoogleMap.vue', () => {
       getters
     })
 
-    const wrapper = shallow(VesselDashboardGoogleMap, {
+    const wrapper = mount(VesselDashboardGoogleMap, {
       localVue,
       store
     })
@@ -122,10 +122,6 @@ describe('VesselDashboardGoogleMap.vue', () => {
 
       it('sets infoCurrentKey to selected marker id', () => {
         expect(wrapper.vm.infoCurrentKey).toEqual('-L7yuO7nLZtMgEe8qth6')
-      })
-
-      it('emits markerClicked', () => {
-        expect(wrapper.emitted().markerClicked).toBeTruthy()
       })
     })
   })
