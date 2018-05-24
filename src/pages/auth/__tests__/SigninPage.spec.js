@@ -10,7 +10,7 @@ const clearAuthErrorSpy = jest.fn()
 const routerPushSpy = jest.fn()
 const routerResolveSpy = jest.fn().mockReturnValue({
   location: {
-    path: {}
+    path: '/fake-path'
   }
 })
 
@@ -36,12 +36,16 @@ describe('SigninPage.vue', () => {
       getters
     })
 
-    const router = {
+    const routerMock = {
       push: routerPushSpy,
       resolve: routerResolveSpy,
       options: {
         linkActiveClass: {}
-      }
+      },
+    }
+
+    const routeMock = {
+      path: '/fake-path'
     }
 
     const mocks = {
@@ -61,7 +65,8 @@ describe('SigninPage.vue', () => {
       store,
       mocks,
       beforeCreate: function () {
-        this._router = router
+        this._router = routerMock
+        this._route = routeMock
       }
     })
 
@@ -72,6 +77,10 @@ describe('SigninPage.vue', () => {
     const { wrapper } = setup()
 
     test('with FormWrapper component', () => {
+      var router = wrapper.vm.$router
+      var ref = router.resolve()
+      var location = ref.location
+
       expect(wrapper.findAll(FormWrapper)).toHaveLength(1)
       const formWrapper = wrapper.find(FormWrapper)
       expect(formWrapper.props().title).toEqual('Login')
