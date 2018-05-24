@@ -77,10 +77,6 @@ describe('SigninPage.vue', () => {
     const { wrapper } = setup()
 
     test('with FormWrapper component', () => {
-      var router = wrapper.vm.$router
-      var ref = router.resolve()
-      var location = ref.location
-
       expect(wrapper.findAll(FormWrapper)).toHaveLength(1)
       const formWrapper = wrapper.find(FormWrapper)
       expect(formWrapper.props().title).toEqual('Login')
