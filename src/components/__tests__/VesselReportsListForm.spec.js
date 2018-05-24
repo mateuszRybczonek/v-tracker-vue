@@ -30,6 +30,25 @@ describe('VesselReportsListForm.vue', () => {
         params: {
           id: '1'
         }
+      },
+      $v: {
+        reportData: {
+          reportTime: {
+            $invalid: false
+          },
+          lat: {
+            $invalid: false
+          },
+          lng: {
+            $invalid: false
+          },
+          course: {
+            $invalid: false
+          },
+          spd: {
+            $invalid: false
+          }
+        }
       }
     }
 

@@ -7,6 +7,15 @@ import WeatherSituation from '@/components/WeatherSituation.vue'
 import WindData from '@/components/WindData.vue'
 import { report } from '@/../test/stubs/report'
 
+Object.defineProperty(document, 'getElementById', {
+  value: jest.fn().mockReturnValue({
+    style: {
+      transform: ''
+    }
+  }
+  ),
+})
+
 const expectedWindData = [
   {
     title: "Wind direction",

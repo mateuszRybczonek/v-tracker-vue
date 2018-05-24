@@ -32,7 +32,34 @@ describe('NewVesselPage.vue', () => {
 
     const mocks = {
       $v: {
-        $invalid: false
+        $invalid: false,
+        vessel: {
+          name: {
+            $invalid: false,
+            required: true
+          },
+          imoNumber: {
+            $invalid: false,
+            required: true,
+            numeric: true
+          },
+          mmsi: {
+            $invalid: false,
+            numeric: true
+          },
+          gt: {
+            $invalid: false,
+            numeric: true
+          },
+          yob: {
+            $invalid: false,
+            numeric: true
+          },
+          flag: {
+            $invalid: false,
+            required: true
+          }
+        }
       }
     }
 

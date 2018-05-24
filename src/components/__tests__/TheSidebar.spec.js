@@ -1,11 +1,15 @@
-import { mount, shallow, createLocalVue } from 'vue-test-utils'
+import { shallow, mount, createLocalVue } from 'vue-test-utils'
 import TheSidebar from '@/components/TheSidebar.vue'
 import TheSidebarHeader from '@/components/TheSidebarHeader.vue'
 import TheSidebarQuickLinks from '@/components/TheSidebarQuickLinks.vue'
 import TheSidebarContent from '@/components/TheSidebarContent.vue'
 import Vuex from 'vuex'
+import moment from 'moment'
+import VueMomentJS from 'vue-momentjs'
 import { report } from '@/../test/stubs/report'
 import { firstVessel, secondVessel } from '@/../test/stubs/vessel'
+import { COMPONENT_NAMES } from '@/constants/vessel-details'
+const { VESSEL_DASHBOARD } = COMPONENT_NAMES
 
 describe('TheSidebar.vue', () => {
   let getters
@@ -15,12 +19,14 @@ describe('TheSidebar.vue', () => {
 
   beforeEach(() => {
     getters = {
+      selectedVesselDetailsComponent: jest.fn(),
       sidebarVisible: jest.fn(),
       vessels: jest.fn()
     }
 
     localVue = createLocalVue()
     localVue.use(Vuex)
+    localVue.use(VueMomentJS, moment)
 
     store = new Vuex.Store({
       state: {},
@@ -37,6 +43,7 @@ describe('TheSidebar.vue', () => {
   })
 
   test('adds sidebar--collapsed when sidebarVisible is false', () => {
+    getters.selectedVesselDetailsComponent.mockReturnValue(VESSEL_DASHBOARD)
     getters.sidebarVisible.mockReturnValue(false)
     getters.vessels.mockReturnValue([firstVessel, secondVessel])
 

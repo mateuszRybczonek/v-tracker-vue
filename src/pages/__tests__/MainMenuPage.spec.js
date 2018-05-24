@@ -1,4 +1,4 @@
-import { mount, createLocalVue } from 'vue-test-utils'
+import { shallow, createLocalVue } from 'vue-test-utils'
 import MainMenuPage from '@/pages/MainMenuPage.vue'
 import TheHeader from '@/components/TheHeader.vue'
 import Vuex from 'vuex'
@@ -19,7 +19,7 @@ describe('MainMenuPage.vue', () => {
       actions
     })
 
-    const wrapper = mount(MainMenuPage, {
+    const wrapper = shallow(MainMenuPage, {
       localVue,
       store,
       stubs: ['router-view']
