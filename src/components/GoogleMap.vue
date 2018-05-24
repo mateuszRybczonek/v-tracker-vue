@@ -8,6 +8,7 @@
     >
       <template slot-scope="scopeProps">
         <GoogleMapMarker
+          data-test-google-map-marker
           v-for="marker in markers"
           :key="marker.id"
           :marker="marker"
@@ -17,6 +18,7 @@
           @selectMarker="selectMarker(marker)"
         />
         <GoogleMapLine
+          data-test-google-map-line
           v-for="(line, index) in lines"
           :key="index"
           :path.sync="line.path"
