@@ -28,7 +28,8 @@ describe('VesselDashboardGoogleMap.vue', () => {
     localVue.use(Vuex)
 
     const store = new Vuex.Store({
-      getters
+      getters,
+      actions
     })
 
     const wrapper = mount(VesselDashboardGoogleMap, {
