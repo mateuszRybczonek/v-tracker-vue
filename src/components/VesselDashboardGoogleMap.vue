@@ -1,17 +1,17 @@
 <template>
-  <div class='google-map'>
+  <div class="google-map">
     <content-placeholders
       data-test-google-map-placeholder
-      class='google-map__placeholder'
-      v-if='fetchingReports'
+      class="google-map__placeholder"
+      v-if="fetchingReports"
     >
-      <content-placeholders-img class='google-map__placeholder'></content-placeholders-img>
+      <content-placeholders-img class="google-map__placeholder"></content-placeholders-img>
     </content-placeholders>
 
     <GoogleMapLoader
       v-else
       data-test-google-map
-      class='google-map__map'
+      class="google-map__map"
       :map-config="mapConfig"
       map-height="460px"
       apiKey="AIzaSyAcpHQzH108aO_4Ea9cS4zT5PTBqpopd8Q"
