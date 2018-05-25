@@ -12,19 +12,19 @@
       v-else
       data-test-google-map
       class="google-map__map"
-      :map-config="mapConfig"
-      map-height="460px"
+      :mapConfig="mapConfig"
+      mapHeight="460px"
       apiKey="AIzaSyAcpHQzH108aO_4Ea9cS4zT5PTBqpopd8Q"
     >
-      <template slot-scope="scopeProps">
+      <template slot-scope="{ google, map }">
         <GoogleMapMarker
           data-test-google-map-marker
           v-for="marker in markers"
           :key="marker.id"
           :marker="marker"
           :googleMapMarkers="googleMapMarkers"
-          :google="scopeProps.google"
-          :map="scopeProps.map"
+          :google="google"
+          :map="map"
           @selectMarker="selectMarker(marker)"
         />
         <GoogleMapLine
@@ -32,8 +32,8 @@
           v-for="(line, index) in lines"
           :key="index"
           :path.sync="line.path"
-          :google="scopeProps.google"
-          :map="scopeProps.map"
+          :google="google"
+          :map="map"
         />
       </template>
     </GoogleMapLoader>
