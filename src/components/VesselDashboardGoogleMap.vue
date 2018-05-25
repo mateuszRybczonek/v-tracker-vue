@@ -8,38 +8,65 @@
       <content-placeholders-img class='google-map__placeholder'></content-placeholders-img>
     </content-placeholders>
 
-    <GoogleMap
+    <GoogleMapLoader
       v-else
       data-test-google-map
       class='google-map__map'
-      :markers='markers'
-      :lines='lines'
-      :center='mapCenter'
-      @selectMarker='selectMarker'
-    ></GoogleMap>
+      :map-config="mapConfig"
+      map-height="460px"
+      apiKey="AIzaSyAcpHQzH108aO_4Ea9cS4zT5PTBqpopd8Q"
+    >
+      <template slot-scope="scopeProps">
+        <GoogleMapMarker
+          data-test-google-map-marker
+          v-for="marker in markers"
+          :key="marker.id"
+          :marker="marker"
+          :googleMapMarkers="googleMapMarkers"
+          :google="scopeProps.google"
+          :map="scopeProps.map"
+          @selectMarker="selectMarker(marker)"
+        />
+        <GoogleMapLine
+          data-test-google-map-line
+          v-for="(line, index) in lines"
+          :key="index"
+          :path.sync="line.path"
+          :google="scopeProps.google"
+          :map="scopeProps.map"
+        />
+      </template>
+    </GoogleMapLoader>
   </div>
 </template>
 
 <script>
+import GoogleMapLoader from './GoogleMapLoader'
+import GoogleMapMarker from './GoogleMapMarker'
+import GoogleMapLine from './GoogleMapLine'
+
 import {
   mapSettings,
+  POINT_MARKER_ICON_CONFIG,
+  SELECTED_POINT_MARKER_ICON_CONFIG,
   LINE_PATH_CONFIG
 } from '@/constants/mapSettings'
 
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+
 import {
   mapReportsToMarkers,
   mapReportsToLines
 } from '@/utils/google-map-utils'
 
-import GoogleMap from '@/components/GoogleMap'
-
 export default {
   components: {
-    GoogleMap
+    GoogleMapLoader,
+    GoogleMapMarker,
+    GoogleMapLine
   },
 
-  data() {
+  data () {
     return {
       linePathConfig: LINE_PATH_CONFIG,
       mapSettings,
@@ -54,11 +81,12 @@ export default {
           width: 0,
           height: -10
         }
-      }
+      },
+      googleMapMarkers: []
     }
   },
 
-  mounted() {
+  mounted () {
     this.markers = this.points
   },
 
@@ -66,8 +94,13 @@ export default {
     ...mapGetters([
       'reports',
       'sortedReports',
-      'fetchingReports'
+      'fetchingReports',
+      'selectedReport'
     ]),
+
+    newSelectedReport () {
+      return this.selectedReport
+    },
 
     points () {
       if(!this.fetchingReports) return mapReportsToMarkers(this.reports)
@@ -80,12 +113,19 @@ export default {
       return lines
     },
 
-    mapCenter () {
-      const lastReport = this.reports[0]
-
+    mapConfig () {
       return {
-        lat: lastReport.lat,
-        lng: lastReport.lng
+        ...mapSettings,
+        center: this.mapCenter
+      }
+    },
+
+    mapCenter () {
+      if(!this.fetchingReports) {
+        return {
+          lat: this.reports[0].lat,
+          lng: this.reports[0].lng
+        }
       }
     }
   },
@@ -97,7 +137,12 @@ export default {
   },
 
   methods: {
+    ...mapActions([
+      'selectReport'
+    ]),
+
     selectMarker(marker) {
+      this.selectReport(marker.id)
       const markerId = marker.id
       this.infoPosition = marker.position
       this.infoContent = marker.reportTime
@@ -106,6 +151,18 @@ export default {
       } else {
         this.infoOpened = true
         this.infoCurrentKey = markerId
+      }
+    }
+  },
+
+  watch: {
+    newSelectedReport (newValue) {
+      if(!this.fetchingReports) {
+        this.googleMapMarkers.forEach( googleMapMarker => {
+          googleMapMarker.setIcon(POINT_MARKER_ICON_CONFIG)
+        })
+        const selectedMarker = this.googleMapMarkers.find(marker => marker.marker.id === newValue.id)
+        selectedMarker.setIcon(SELECTED_POINT_MARKER_ICON_CONFIG)
       }
     }
   }

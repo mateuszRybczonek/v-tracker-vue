@@ -3,18 +3,26 @@ import VesselDashboardGoogleMap from '@/components/VesselDashboardGoogleMap'
 import Vuex from 'vuex'
 import { report, secondReport } from '@/../test/stubs/report'
 
+const selectReportSpy = jest.fn()
+
 describe('VesselDashboardGoogleMap.vue', () => {
   const setup = () => {
 
     const getters = {
       reports: jest.fn(),
       sortedReports: jest.fn(),
-      fetchingReports: jest.fn()
+      fetchingReports: jest.fn(),
+      selectedReport: jest.fn()
+    }
+
+    const actions = {
+      selectReport: selectReportSpy
     }
 
     getters.reports.mockReturnValue([report, secondReport])
     getters.sortedReports.mockReturnValue([report, secondReport])
     getters.fetchingReports.mockReturnValue(false)
+    getters.selectedReport.mockReturnValue(report)
 
     const localVue = createLocalVue()
     localVue.use(Vuex)
@@ -25,7 +33,8 @@ describe('VesselDashboardGoogleMap.vue', () => {
 
     const wrapper = mount(VesselDashboardGoogleMap, {
       localVue,
-      store
+      store,
+      stubs: ['GoogleMapMarker', 'GoogleMapLine'],
     })
 
     return { wrapper }
@@ -39,8 +48,9 @@ describe('VesselDashboardGoogleMap.vue', () => {
   })
 
   describe('Computed properties', () => {
+    const { wrapper } = setup()
+
     it('points returns proper value', () => {
-      const { wrapper } = setup()
       const expectedResult = [
         {
           id: '-L7yuO7nLZtMgEe8qth6',
@@ -63,7 +73,6 @@ describe('VesselDashboardGoogleMap.vue', () => {
     })
 
     it('lines returns proper value', () => {
-      const { wrapper } = setup()
       const expectedResult = [
         {
           path: [
@@ -82,16 +91,19 @@ describe('VesselDashboardGoogleMap.vue', () => {
     })
 
     it('mapCenter returns position of last report', () => {
-      const { wrapper } = setup()
       const expectedResult = { lat: 12.338, lng: 12.34 }
       expect(wrapper.vm.mapCenter).toEqual(expectedResult)
+    })
+
+    it('newSelectedReport return proper data', () => {
+      expect(wrapper.vm.newSelectedReport).toEqual(report)
     })
   })
 
   describe('Methods', () => {
-    describe('selectMarker', () => {
-      const { wrapper } = setup()
+    const { wrapper } = setup()
 
+    describe('selectMarker', () => {
       const marker = {
         id: '-L7yuO7nLZtMgEe8qth6',
         position: {
