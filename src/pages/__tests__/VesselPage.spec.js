@@ -1,4 +1,4 @@
-import { mount, createLocalVue } from 'vue-test-utils'
+import { shallow, createLocalVue } from 'vue-test-utils'
 import VesselPage from '@/pages/VesselPage.vue'
 import TheSidebar from '@/components/TheSidebar.vue'
 import { COMPONENT_NAMES } from '@/constants/vessel-details'
@@ -46,7 +46,7 @@ describe('VesselPage.vue', () => {
       }
     }
 
-    const wrapper = mount(VesselPage, {
+    const wrapper = shallow(VesselPage, {
       localVue,
       store,
       mocks

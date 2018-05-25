@@ -23,7 +23,21 @@ describe('SignupPage.vue', () => {
 
     const mocks = {
       $v: {
-        $invalid: isFormInvalid
+        $invalid: isFormInvalid,
+        email: {
+          $invalid: false,
+          required: true,
+          email: true
+        },
+        password: {
+          $invalid: false,
+          required: true,
+          minLength: true
+        },
+        confirmPassword: {
+          $invalid: false,
+          sameAs: true
+        }
       }
     }
 
