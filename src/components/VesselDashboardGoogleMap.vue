@@ -163,8 +163,6 @@ export default {
 
         const selectedMarker = this.googleMapMarkers.find(marker => marker.marker.id === newValue.id)
         selectedMarker.setIcon(SELECTED_POINT_MARKER_ICON_CONFIG)
-        selectedMarker.setAnimation(google.maps.Animation.BOUNCE)
-        setTimeout(() => selectedMarker.setAnimation(null), 700)
       }
 
       slowPanTo(

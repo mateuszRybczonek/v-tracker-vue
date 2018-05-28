@@ -7,6 +7,8 @@ import NavigationData from '@/components/NavigationData.vue'
 import RemainingOnBoard from '@/components/RemainingOnBoard.vue'
 import ReportSelector from '@/components/ReportSelector'
 import Vuex from 'vuex'
+import moment from 'moment'
+import VueMomentJS from 'vue-momentjs'
 import { report, secondReport } from '@/../test/stubs/report'
 
 describe('VesselDashboard.vue', () => {
@@ -27,6 +29,7 @@ describe('VesselDashboard.vue', () => {
 
     const localVue = createLocalVue()
     localVue.use(Vuex)
+    localVue.use(VueMomentJS, moment)
 
     const store = new Vuex.Store({
       state: {},
@@ -46,9 +49,9 @@ describe('VesselDashboard.vue', () => {
     expect(wrapper.find('[data-test-vessel-dashboard]').classes()).not.toContain('vessel-dashboard--full-width')
   })
 
-  test('renders proper header', () => {
+  test('renders proper report month', () => {
     const { wrapper } = setup()
-    expect(wrapper.find('[data-test-vessel-dashboard-header]').text()).toContain('Report details')
+    expect(wrapper.find('[data-test-vessel-dashboard-report-date]').text()).toContain('April 2018')
   })
 
   test('renders ReportSelector component', () => {
@@ -90,20 +93,6 @@ describe('VesselDashboard.vue', () => {
     it('previousReport returns proper report', () => {
       const { wrapper } = setup()
       expect(wrapper.vm.previousReport).toEqual(report)
-    })
-  })
-
-  describe('Methods', () => {
-    it('shrinkReportSelect sets shrinkReportSelector to true', () => {
-      const { wrapper } = setup()
-      wrapper.vm.shrinkReportSelect()
-      expect(wrapper.vm.shrinkReportSelector).toEqual(true)
-    })
-
-    it('expandReportSelect sets shrinkReportSelector to false', () => {
-      const { wrapper } = setup()
-      wrapper.vm.expandReportSelect()
-      expect(wrapper.vm.shrinkReportSelector).toEqual(false)
     })
   })
 })
