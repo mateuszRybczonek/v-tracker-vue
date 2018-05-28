@@ -7,5 +7,9 @@ export default {
 
   [types.SELECTED_VESSEL_DETAILS_COMPONENT] (state, componentName) {
     state.selectedVesselDetailsComponent = componentName
+  },
+
+  [types.DASHBOARD_GOOGLE_MAP] (state, map) {
+    state.dashboardGoogleMap = map
   }
 }

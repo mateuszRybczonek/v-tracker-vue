@@ -12,6 +12,7 @@
       v-else
       data-test-google-map
       class="google-map__map"
+      :setGoogleMap="setDashboardGoogleMap"
       :mapConfig="mapConfig"
       mapHeight="460px"
       apiKey="AIzaSyAcpHQzH108aO_4Ea9cS4zT5PTBqpopd8Q"
@@ -95,7 +96,8 @@ export default {
       'reports',
       'sortedReports',
       'fetchingReports',
-      'selectedReport'
+      'selectedReport',
+      'dashboardGoogleMap'
     ]),
 
     newSelectedReport () {
@@ -123,8 +125,8 @@ export default {
     mapCenter () {
       if(!this.fetchingReports) {
         return {
-          lat: this.reports[0].lat,
-          lng: this.reports[0].lng
+          lat: this.selectedReport.lat,
+          lng: this.selectedReport.lng
         }
       }
     }
@@ -132,7 +134,8 @@ export default {
 
   methods: {
     ...mapActions([
-      'selectReport'
+      'selectReport',
+      'setDashboardGoogleMap'
     ]),
 
     selectMarker(marker) {
@@ -159,6 +162,8 @@ export default {
         const selectedMarker = this.googleMapMarkers.find(marker => marker.marker.id === newValue.id)
         selectedMarker.setIcon(SELECTED_POINT_MARKER_ICON_CONFIG)
       }
+
+      this.dashboardGoogleMap.panTo({ lat: newValue.lat, lng: newValue.lng })
     },
 
     reports () {
