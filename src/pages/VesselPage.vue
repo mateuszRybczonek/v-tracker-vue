@@ -1,8 +1,6 @@
 <template>
   <div class="vessel">
-    <TheSidebar
-      :lastReport="lastReport">
-    </TheSidebar>
+    <TheSidebar :lastReport="lastReport"/>
     <div
       data-test-vessel-page-content
       class="vessel__content"

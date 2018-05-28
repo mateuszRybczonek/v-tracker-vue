@@ -4,9 +4,12 @@
     class="vessel-dashboard"
     :class="{ 'vessel-dashboard--full-width': !sidebarVisible }"
   >
-    <h1
-      data-test-vessel-dashboard-header
-      class="vessel-dashboard__header">Report details</h1>
+    <span
+      data-test-vessel-dashboard-report-date
+      class="vessel-dashboard__report-date"
+    >
+      {{reportDate}}
+    </span>
 
     <ReportSelector
       class="vessel-dashboard__report-selector"
@@ -92,6 +95,10 @@
       previousReport () {
         const indexOfSelectedReport = this.reports.indexOf(this.report)
         return this.reports[indexOfSelectedReport + 1]
+      },
+
+      reportDate () {
+        if (this.selectedReport) return this.$moment(this.selectedReport.reportTime).format('MMMM YYYY')
       }
     }
   }
@@ -103,26 +110,41 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+
     &__report-selector {
       position: absolute;
       right: 0;
       background-color: $color-blue-grey;
       transition: 600ms ease-in-out;
     }
-    &__header {
-      padding-top: 50px;
-      text-align: center;
+
+    &__report-date {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      right: 50px;
+      padding: 15px;
+      background-color: $color-blue;
+      color: $color-whitey;
     }
+
     &__row {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       flex-wrap: wrap;
+
+      &:first-of-type {
+        margin-top: 30px;
+      }
+
       &__item {
         margin-top: 40px;
         min-width: 49%;
       }
     }
+
     &__item {
       margin-top: 40px;
     }
