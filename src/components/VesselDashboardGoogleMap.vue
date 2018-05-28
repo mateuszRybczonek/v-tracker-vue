@@ -99,7 +99,7 @@ export default {
     ]),
 
     newSelectedReport () {
-      return this.selectedReport
+      if(this.googleMapMarkers.length > 0) return this.selectedReport
     },
 
     points () {
@@ -130,12 +130,6 @@ export default {
     }
   },
 
-  watch: {
-    reports () {
-      if(!this.fetchingReports) this.markers = mapReportsToMarkers(this.reports)
-    }
-  },
-
   methods: {
     ...mapActions([
       'selectReport'
@@ -157,13 +151,18 @@ export default {
 
   watch: {
     newSelectedReport (newValue) {
-      if(!this.fetchingReports) {
-        this.googleMapMarkers.forEach( googleMapMarker => {
+      if(!this.fetchingReports && this.googleMapMarkers.length > 0) {
+        this.googleMapMarkers.forEach(googleMapMarker => {
           googleMapMarker.setIcon(POINT_MARKER_ICON_CONFIG)
         })
+
         const selectedMarker = this.googleMapMarkers.find(marker => marker.marker.id === newValue.id)
         selectedMarker.setIcon(SELECTED_POINT_MARKER_ICON_CONFIG)
       }
+    },
+
+    reports () {
+      if(!this.fetchingReports) this.markers = mapReportsToMarkers(this.reports)
     }
   }
 }

@@ -23,12 +23,15 @@
       ...mapGetters([
         'selectedReport'
       ]),
+
       presentReportSelected () {
         return this.report.id === this.selectedReport.id
       },
+
       reportTime () {
         return this.report.reportTime
       },
+
       reportDay () {
         return this.$moment(this.reportTime).format('DD')
       }
