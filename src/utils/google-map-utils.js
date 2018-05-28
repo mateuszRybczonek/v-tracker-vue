@@ -54,6 +54,7 @@ function slowPanTo(map, endPosition, numberOfIntervals, duration) {
   const pan = i => {
     if (i < latArray.length) {
       return setTimeout(() => {
+        // eslint-disable-next-line no-undef
         map.panTo(new google.maps.LatLng({
           lat: latArray[i],
           lng: lngArray[i]

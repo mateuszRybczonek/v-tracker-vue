@@ -1,6 +1,5 @@
 import { mount, createLocalVue } from 'vue-test-utils'
 import ReportSelector from '@/components/ReportSelector'
-import { Carousel, Slide } from 'vue-carousel'
 import { report, secondReport } from '@/../test/stubs/report'
 import Vuex from 'vuex'
 import moment from 'moment'

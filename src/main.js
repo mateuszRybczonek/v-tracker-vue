@@ -10,7 +10,6 @@ import { sync } from 'vuex-router-sync'
 import router from './router/index'
 import store from './store/index'
 import VueContentPlaceholders from 'vue-content-placeholders'
-import VueAffix from 'vue-affix'
 
 Vue.use(VueContentPlaceholders)
 Vue.use(VueMomentJS, moment)
