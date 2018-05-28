@@ -57,7 +57,8 @@ import { mapGetters, mapActions } from 'vuex'
 
 import {
   mapReportsToMarkers,
-  mapReportsToLines
+  mapReportsToLines,
+  slowPanTo
 } from '@/utils/google-map-utils'
 
 export default {
@@ -157,13 +158,21 @@ export default {
       if(!this.fetchingReports && this.googleMapMarkers.length > 0) {
         this.googleMapMarkers.forEach(googleMapMarker => {
           googleMapMarker.setIcon(POINT_MARKER_ICON_CONFIG)
+          googleMapMarker.setAnimation(null)
         })
 
         const selectedMarker = this.googleMapMarkers.find(marker => marker.marker.id === newValue.id)
         selectedMarker.setIcon(SELECTED_POINT_MARKER_ICON_CONFIG)
+        selectedMarker.setAnimation(google.maps.Animation.BOUNCE)
+        setTimeout(() => selectedMarker.setAnimation(null), 700)
       }
 
-      this.dashboardGoogleMap.panTo({ lat: newValue.lat, lng: newValue.lng })
+      slowPanTo(
+        this.dashboardGoogleMap,
+        { lat: () => newValue.lat, lng: () => newValue.lng },
+        50,
+        1000
+      )
     },
 
     reports () {
