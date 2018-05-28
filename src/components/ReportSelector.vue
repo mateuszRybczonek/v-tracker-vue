@@ -1,38 +1,21 @@
 <template>
-  <div class="report-selector">
-    <v-carousel
-      ref="carousel"
-      :perPage="7"
-      :navigationEnabled="true"
-      :paginationEnabled="false"
-      class="report-selector__carousel"
-    >
-      <v-slide
-        v-for="report in reports"
-        :key="report.id"
-        class="report-selector__selection"
-      >
-        <CalendarCard
-          :report="report"
-          @click.native="selectReport(report.id)"
-        ></CalendarCard>
-      </v-slide>
-    </v-carousel>
-  </div>
+  <ul class="report-selector">
+    <ReportSelectorPoint
+      v-for="report in reports"
+      :key="report.id"
+      @click.native="selectReport(report.id)"
+      :report="report"
+    />
+  </ul>
 </template>
 
 <script>
-  import CalendarCard from './CalendarCard.vue'
-  import { Carousel, Slide } from 'vue-carousel'
+  import ReportSelectorPoint from './ReportSelectorPoint.vue'
   import { mapActions } from 'vuex'
-
   export default {
     components: {
-      CalendarCard,
-      VCarousel: Carousel,
-      VSlide: Slide
+      ReportSelectorPoint
     },
-
     props: {
       fetchingReports: {
         type: Boolean
@@ -42,7 +25,6 @@
         required: true
       }
     },
-
     methods: {
       ...mapActions([
         'selectReport'
@@ -53,17 +35,23 @@
 
 <style scoped lang="scss">
   .report-selector {
-    &__carousel {
-      margin: auto;
-      width: 90%;
-      max-width: 1000px;
-      height: 180px;
-    }
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    top: 0;
+    margin-top: 56px;
+    padding: 0;
+    background-color: $color-blue;
+    color: $color-whitey;
+    transition: margin-left .5s;
+    z-index: 999;
     &__selection {
       display: flex;
       margin-top: 30px;
-
       > div {
         margin: 10px;
       }
