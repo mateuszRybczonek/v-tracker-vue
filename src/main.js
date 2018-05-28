@@ -16,7 +16,6 @@ Vue.use(VueContentPlaceholders)
 Vue.use(VueMomentJS, moment)
 Vue.use(Vuelidate)
 Vue.use(VueMaterial)
-Vue.use(VueAffix)
 
 Vue.config.productionTip = false
 
