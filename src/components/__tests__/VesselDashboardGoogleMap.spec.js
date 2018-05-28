@@ -1,7 +1,9 @@
-import { shallow, createLocalVue } from 'vue-test-utils'
+import { mount, createLocalVue } from 'vue-test-utils'
 import VesselDashboardGoogleMap from '@/components/VesselDashboardGoogleMap'
 import Vuex from 'vuex'
 import { report, secondReport } from '@/../test/stubs/report'
+
+const selectReportSpy = jest.fn()
 
 describe('VesselDashboardGoogleMap.vue', () => {
   const setup = () => {
@@ -9,23 +11,31 @@ describe('VesselDashboardGoogleMap.vue', () => {
     const getters = {
       reports: jest.fn(),
       sortedReports: jest.fn(),
-      fetchingReports: jest.fn()
+      fetchingReports: jest.fn(),
+      selectedReport: jest.fn()
+    }
+
+    const actions = {
+      selectReport: selectReportSpy
     }
 
     getters.reports.mockReturnValue([report, secondReport])
     getters.sortedReports.mockReturnValue([report, secondReport])
     getters.fetchingReports.mockReturnValue(false)
+    getters.selectedReport.mockReturnValue(report)
 
     const localVue = createLocalVue()
     localVue.use(Vuex)
 
     const store = new Vuex.Store({
-      getters
+      getters,
+      actions
     })
 
-    const wrapper = shallow(VesselDashboardGoogleMap, {
+    const wrapper = mount(VesselDashboardGoogleMap, {
       localVue,
-      store
+      store,
+      stubs: ['GoogleMapMarker', 'GoogleMapLine'],
     })
 
     return { wrapper }
@@ -39,8 +49,9 @@ describe('VesselDashboardGoogleMap.vue', () => {
   })
 
   describe('Computed properties', () => {
+    const { wrapper } = setup()
+
     it('points returns proper value', () => {
-      const { wrapper } = setup()
       const expectedResult = [
         {
           id: '-L7yuO7nLZtMgEe8qth6',
@@ -63,7 +74,6 @@ describe('VesselDashboardGoogleMap.vue', () => {
     })
 
     it('lines returns proper value', () => {
-      const { wrapper } = setup()
       const expectedResult = [
         {
           path: [
@@ -82,16 +92,19 @@ describe('VesselDashboardGoogleMap.vue', () => {
     })
 
     it('mapCenter returns position of last report', () => {
-      const { wrapper } = setup()
       const expectedResult = { lat: 12.338, lng: 12.34 }
       expect(wrapper.vm.mapCenter).toEqual(expectedResult)
+    })
+
+    it('newSelectedReport return proper data', () => {
+      expect(wrapper.vm.newSelectedReport).toEqual(report)
     })
   })
 
   describe('Methods', () => {
-    describe('selectMarker', () => {
-      const { wrapper } = setup()
+    const { wrapper } = setup()
 
+    describe('selectMarker', () => {
       const marker = {
         id: '-L7yuO7nLZtMgEe8qth6',
         position: {
@@ -122,10 +135,6 @@ describe('VesselDashboardGoogleMap.vue', () => {
 
       it('sets infoCurrentKey to selected marker id', () => {
         expect(wrapper.vm.infoCurrentKey).toEqual('-L7yuO7nLZtMgEe8qth6')
-      })
-
-      it('emits markerClicked', () => {
-        expect(wrapper.emitted().markerClicked).toBeTruthy()
       })
     })
   })

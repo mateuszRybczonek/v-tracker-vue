@@ -8,58 +8,65 @@
       <content-placeholders-img class="google-map__placeholder"></content-placeholders-img>
     </content-placeholders>
 
-    <div
+    <GoogleMapLoader
       v-else
       data-test-google-map
       class="google-map__map"
+      :mapConfig="mapConfig"
+      mapHeight="460px"
+      apiKey="AIzaSyAcpHQzH108aO_4Ea9cS4zT5PTBqpopd8Q"
     >
-      <gmap-map
-        :options="mapSettings.defaultMapOptions"
-        :center="this.mapCenter"
-        style="height: 460px;"
-      >
-        <gmap-info-window
-          :options="infoOptions"
-          :position="infoPosition"
-          :opened="infoOpened"
-          @closeclick="infoOpened=false"
-        >
-          {{infoContent}}
-        </gmap-info-window>
-        <gmap-marker data-test-google-map-marker class="google-map__marker"
-          v-for="(marker, index) in markers"
+      <template slot-scope="{ google, map }">
+        <GoogleMapMarker
+          data-test-google-map-marker
+          v-for="marker in markers"
           :key="marker.id"
-          :position="marker.position"
-          :icon="mapSettings.defaultIconSettings"
-          @click="selectMarker(marker)"
+          :marker="marker"
+          :googleMapMarkers="googleMapMarkers"
+          :google="google"
+          :map="map"
+          @selectMarker="selectMarker(marker)"
         />
-        <gmap-polyline
+        <GoogleMapLine
+          data-test-google-map-line
           v-for="(line, index) in lines"
           :key="index"
           :path.sync="line.path"
-          :options="linePathConfig"
+          :google="google"
+          :map="map"
         />
-      </gmap-map>
-    </div>
+      </template>
+    </GoogleMapLoader>
   </div>
 </template>
 
 <script>
+import GoogleMapLoader from './GoogleMapLoader'
+import GoogleMapMarker from './GoogleMapMarker'
+import GoogleMapLine from './GoogleMapLine'
+
 import {
   mapSettings,
+  POINT_MARKER_ICON_CONFIG,
+  SELECTED_POINT_MARKER_ICON_CONFIG,
   LINE_PATH_CONFIG
 } from '@/constants/mapSettings'
 
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+
 import {
   mapReportsToMarkers,
   mapReportsToLines
 } from '@/utils/google-map-utils'
 
 export default {
-  name: "GoogleMap",
+  components: {
+    GoogleMapLoader,
+    GoogleMapMarker,
+    GoogleMapLine
+  },
 
-  data() {
+  data () {
     return {
       linePathConfig: LINE_PATH_CONFIG,
       mapSettings,
@@ -74,11 +81,12 @@ export default {
           width: 0,
           height: -10
         }
-      }
+      },
+      googleMapMarkers: []
     }
   },
 
-  mounted() {
+  mounted () {
     this.markers = this.points
   },
 
@@ -86,8 +94,13 @@ export default {
     ...mapGetters([
       'reports',
       'sortedReports',
-      'fetchingReports'
+      'fetchingReports',
+      'selectedReport'
     ]),
+
+    newSelectedReport () {
+      return this.selectedReport
+    },
 
     points () {
       if(!this.fetchingReports) return mapReportsToMarkers(this.reports)
@@ -100,12 +113,19 @@ export default {
       return lines
     },
 
-    mapCenter () {
-      const lastReport = this.reports[0]
-
+    mapConfig () {
       return {
-        lat: lastReport.lat,
-        lng: lastReport.lng
+        ...mapSettings,
+        center: this.mapCenter
+      }
+    },
+
+    mapCenter () {
+      if(!this.fetchingReports) {
+        return {
+          lat: this.reports[0].lat,
+          lng: this.reports[0].lng
+        }
       }
     }
   },
@@ -117,7 +137,12 @@ export default {
   },
 
   methods: {
+    ...mapActions([
+      'selectReport'
+    ]),
+
     selectMarker(marker) {
+      this.selectReport(marker.id)
       const markerId = marker.id
       this.infoPosition = marker.position
       this.infoContent = marker.reportTime
@@ -126,15 +151,25 @@ export default {
       } else {
         this.infoOpened = true
         this.infoCurrentKey = markerId
-        const report = this.reports.find(report => report.id === markerId)
-        this.$emit('markerClicked', report)
+      }
+    }
+  },
+
+  watch: {
+    newSelectedReport (newValue) {
+      if(!this.fetchingReports) {
+        this.googleMapMarkers.forEach( googleMapMarker => {
+          googleMapMarker.setIcon(POINT_MARKER_ICON_CONFIG)
+        })
+        const selectedMarker = this.googleMapMarkers.find(marker => marker.marker.id === newValue.id)
+        selectedMarker.setIcon(SELECTED_POINT_MARKER_ICON_CONFIG)
       }
     }
   }
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped lang='scss'>
   .google-map {
     display: flex;
     justify-content: center;
@@ -142,6 +177,7 @@ export default {
     @include box-shadow(0 0 100px 1px rgba(0,0,0,0.1));
 
     &__map {
+      height: 460px;
       width: 100%;
     }
 

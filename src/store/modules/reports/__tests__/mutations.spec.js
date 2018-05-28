@@ -51,11 +51,16 @@ describe('reports mutations', () => {
   })
 
   test('SELECT_REPORT sets state.selectedReport to report', () => {
+    const reports = [ report, secondReport ]
+
     const state = {
-      selectedReport: null
+      selectedReport: null,
+      reports
     }
 
-    mutations.SELECT_REPORT(state, report)
+    const reportId = reports[0].id
+
+    mutations.SELECT_REPORT(state, reportId)
     expect(state.selectedReport).toBe(report)
   })
 })

@@ -26,7 +26,6 @@
     >
       <VesselDashboardGoogleMap
         class="vessel-dashboard__row__item"
-        @markerClicked="markerClicked"
       />
 
       <div class="vessel-dashboard__row__item">
@@ -61,7 +60,7 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapGetters } from 'vuex'
   import VesselDashboardGoogleMap from './VesselDashboardGoogleMap.vue'
   import WeatherData from './WeatherData.vue'
   import PositionData from './PositionData.vue'
@@ -105,20 +104,12 @@
     },
 
     methods: {
-      ...mapActions([
-        'selectReport'
-      ]),
-
       shrinkReportSelect () {
         this.shrinkReportSelector = true
       },
 
       expandReportSelect () {
         this.shrinkReportSelector = false
-      },
-
-      markerClicked(report) {
-        this.selectReport(report)
       }
     }
   }

@@ -14,7 +14,7 @@
       >
         <CalendarCard
           :report="report"
-          @click.native="selectReport(report)"
+          @click.native="selectReport(report.id)"
         ></CalendarCard>
       </v-slide>
     </v-carousel>
