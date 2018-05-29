@@ -165,12 +165,7 @@ export default {
         selectedMarker.setIcon(SELECTED_POINT_MARKER_ICON_CONFIG)
       }
 
-      slowPanTo(
-        this.dashboardGoogleMap,
-        { lat: () => newValue.lat, lng: () => newValue.lng },
-        50,
-        1000
-      )
+      this.dashboardGoogleMap.panTo({ lat: newValue.lat, lng: newValue.lng })
     },
 
     reports () {

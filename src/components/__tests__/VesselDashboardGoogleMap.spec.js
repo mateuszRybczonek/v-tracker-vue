@@ -30,10 +30,7 @@ describe('VesselDashboardGoogleMap.vue', () => {
     getters.fetchingReports.mockReturnValue(false)
     getters.selectedReport.mockReturnValue(report)
     getters.dashboardGoogleMap.mockReturnValue({
-      getCenter: jest.fn().mockReturnValue({
-        lat: jest.fn(),
-        lng: jest.fn()
-      })
+      panTo: jest.fn()
     })
 
     const localVue = createLocalVue()
