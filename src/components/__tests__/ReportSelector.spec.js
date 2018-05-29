@@ -42,8 +42,6 @@ describe('ReportSelector.vue', () => {
     return { wrapper }
   }
 
-  const { wrapper } = setup()
-
   test('renders proper number of ReportSelectorPoint components', () => {
     const { wrapper } = setup()
     expect(wrapper.findAll(ReportSelectorPoint).length).toEqual(2)

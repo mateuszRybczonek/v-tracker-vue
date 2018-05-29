@@ -57,8 +57,7 @@ import { mapGetters, mapActions } from 'vuex'
 
 import {
   mapReportsToMarkers,
-  mapReportsToLines,
-  slowPanTo
+  mapReportsToLines
 } from '@/utils/google-map-utils'
 
 export default {

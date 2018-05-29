@@ -40,8 +40,6 @@ describe('ReportSelectorPoint.vue', () => {
     return { wrapper }
   }
 
-  const { wrapper } = setup()
-
   test('renders marker line', () => {
     const { wrapper } = setup()
     expect(wrapper.findAll('[data-test-report-selector-point-marker-line]').length).toEqual(1)
