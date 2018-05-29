@@ -16,6 +16,7 @@
     components: {
       ReportSelectorPoint
     },
+
     props: {
       fetchingReports: {
         type: Boolean
@@ -25,6 +26,7 @@
         required: true
       }
     },
+
     methods: {
       ...mapActions([
         'selectReport'

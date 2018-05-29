@@ -4,9 +4,9 @@
     class="report-selector-point"
     :class="{'report-selector-point--selected': presentReportSelected}"
   >
-    <span class="report-selector-point__marker-line"></span>
-    <span class="report-selector-point__marker-connector"></span>
-    <span>{{reportDay}}</span>
+    <span data-test-report-selector-point-marker-line class="report-selector-point__marker-line"></span>
+    <span data-test-report-selector-point-marker-connector class="report-selector-point__marker-connector"></span>
+    <span data-test-report-selector-point-report-day>{{reportDay}}</span>
   </li>
 </template>
 
@@ -19,6 +19,7 @@
         required: true
       }
     },
+
     computed: {
       ...mapGetters([
         'selectedReport'

@@ -4,11 +4,18 @@ import { report, secondReport } from '@/../test/stubs/report'
 import Vuex from 'vuex'
 import moment from 'moment'
 import VueMomentJS from 'vue-momentjs'
+import ReportSelectorPoint from '@/components/ReportSelectorPoint.vue'
+
+const selectReportSpy = jest.fn()
 
 describe('ReportSelector.vue', () => {
   const setup = () => {
     const getters = {
       selectedReport: jest.fn()
+    }
+
+    const actions = {
+      selectReport: selectReportSpy
     }
 
     getters.selectedReport.mockReturnValue(report)
@@ -19,7 +26,8 @@ describe('ReportSelector.vue', () => {
 
     const store = new Vuex.Store({
       state: {},
-      getters
+      getters,
+      actions
     })
 
     const wrapper = mount(ReportSelector, {
@@ -35,4 +43,15 @@ describe('ReportSelector.vue', () => {
   }
 
   const { wrapper } = setup()
+
+  test('renders proper number of ReportSelectorPoint components', () => {
+    const { wrapper } = setup()
+    expect(wrapper.findAll(ReportSelectorPoint).length).toEqual(2)
+  })
+
+  test('calls selectReport actions when clicked on a ReportSelectorPoint component', () => {
+    const { wrapper } = setup()
+    wrapper.find(ReportSelectorPoint).trigger('click')
+    expect(selectReportSpy).toHaveBeenCalled()
+  })
 })
