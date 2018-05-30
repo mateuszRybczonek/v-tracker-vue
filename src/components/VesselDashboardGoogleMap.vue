@@ -12,6 +12,7 @@
       v-else
       data-test-google-map
       class="google-map__map"
+      :setGoogleMap="setDashboardGoogleMap"
       :mapConfig="mapConfig"
       mapHeight="460px"
       apiKey="AIzaSyAcpHQzH108aO_4Ea9cS4zT5PTBqpopd8Q"
@@ -95,11 +96,12 @@ export default {
       'reports',
       'sortedReports',
       'fetchingReports',
-      'selectedReport'
+      'selectedReport',
+      'dashboardGoogleMap'
     ]),
 
     newSelectedReport () {
-      return this.selectedReport
+      if(this.googleMapMarkers.length > 0) return this.selectedReport
     },
 
     points () {
@@ -123,22 +125,17 @@ export default {
     mapCenter () {
       if(!this.fetchingReports) {
         return {
-          lat: this.reports[0].lat,
-          lng: this.reports[0].lng
+          lat: this.selectedReport.lat,
+          lng: this.selectedReport.lng
         }
       }
     }
   },
 
-  watch: {
-    reports () {
-      if(!this.fetchingReports) this.markers = mapReportsToMarkers(this.reports)
-    }
-  },
-
   methods: {
     ...mapActions([
-      'selectReport'
+      'selectReport',
+      'setDashboardGoogleMap'
     ]),
 
     selectMarker(marker) {
@@ -157,13 +154,22 @@ export default {
 
   watch: {
     newSelectedReport (newValue) {
-      if(!this.fetchingReports) {
-        this.googleMapMarkers.forEach( googleMapMarker => {
+      if(!this.fetchingReports && this.googleMapMarkers.length) {
+        this.googleMapMarkers.forEach(googleMapMarker => {
           googleMapMarker.setIcon(POINT_MARKER_ICON_CONFIG)
+          googleMapMarker.setAnimation(null)
         })
+
         const selectedMarker = this.googleMapMarkers.find(marker => marker.marker.id === newValue.id)
         selectedMarker.setIcon(SELECTED_POINT_MARKER_ICON_CONFIG)
       }
+
+      const { lat, lng } = newValue
+      this.dashboardGoogleMap.panTo({ lat, lng })
+    },
+
+    reports () {
+      if(!this.fetchingReports) this.markers = mapReportsToMarkers(this.reports)
     }
   }
 }

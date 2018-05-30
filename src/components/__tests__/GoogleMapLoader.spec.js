@@ -2,13 +2,16 @@ import { shallow } from 'vue-test-utils'
 import GoogleMapLoader from '@/components/GoogleMapLoader'
 import { mapSettings } from '@/constants/mapSettings'
 
+const setGoogleMapSpy = jest.fn()
+
 describe('GoogleMapLoader.vue', () => {
   const setup = () => {
     const wrapper = shallow(GoogleMapLoader, {
       propsData: {
         mapConfig: mapSettings,
         apiKey: '1',
-        mapHeight: '460px'
+        mapHeight: '460px',
+        setGoogleMap: setGoogleMapSpy
       },
       stubs: ['GoogleMapMarker', 'GoogleMapLine']
     })
@@ -34,7 +37,7 @@ describe('GoogleMapLoader.vue', () => {
           Marker: () => {},
           Polyline: () => {},
         },
-      };
+      }
       wrapper.vm.initializeMap()
 
       it('sets map properly', () => {

@@ -4,22 +4,17 @@
     class="vessel-dashboard"
     :class="{ 'vessel-dashboard--full-width': !sidebarVisible }"
   >
-    <h1
-      data-test-vessel-dashboard-header
-      class="vessel-dashboard__header">Report details</h1>
-
-    <affix
-      relative-element-selector=".vessel-dashboard"
-      :offset="{ top: -70, bottom: 0 }"
-      @affix="shrinkReportSelect()"
-      @affixtop="expandReportSelect()"
+    <span
+      data-test-vessel-dashboard-report-date
+      class="vessel-dashboard__report-date"
     >
-      <ReportSelector
-        class="vessel-dashboard__report-selector"
-        :class="{ 'vessel-dashboard__report-selector--shrunk': shrinkReportSelector }"
-        :reports="sortedReports"
-      />
-    </affix>
+      {{reportDate}}
+    </span>
+
+    <ReportSelector
+      class="vessel-dashboard__report-selector"
+      :reports="sortedReports"
+    />
 
     <div
       class="vessel-dashboard__row"
@@ -100,16 +95,10 @@
       previousReport () {
         const indexOfSelectedReport = this.reports.indexOf(this.report)
         return this.reports[indexOfSelectedReport + 1]
-      }
-    },
-
-    methods: {
-      shrinkReportSelect () {
-        this.shrinkReportSelector = true
       },
 
-      expandReportSelect () {
-        this.shrinkReportSelector = false
+      reportDate () {
+        if (this.selectedReport) return this.$moment(this.selectedReport.reportTime).format('MMMM YYYY')
       }
     }
   }
@@ -122,32 +111,22 @@
     display: flex;
     flex-direction: column;
 
-    .vue-affix.affix {
-      transition: left 600ms;
-      box-shadow: 0 0 15px -5px rgba(0, 0, 0, 0.5);
-      background-color: $color-whitey;
-      z-index: 100;
-      left: 300px;
-      right: 0;
-    }
-
-    &--full-width {
-      .vue-affix.affix {
-        left: 0px;
-      }
-    }
-
     &__report-selector {
-      transition: all 600ms ease-in-out;
-      &--shrunk {
-        height: 140px;
-        transform: scale(0.7);
-      }
+      position: absolute;
+      right: 0;
+      background-color: $color-blue-grey;
+      transition: 600ms ease-in-out;
     }
 
-    &__header {
-      padding-top: 50px;
-      text-align: center;
+    &__report-date {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      right: 50px;
+      padding: 15px;
+      background-color: $color-blue;
+      color: $color-whitey;
     }
 
     &__row {
@@ -155,6 +134,10 @@
       flex-direction: row;
       justify-content: space-between;
       flex-wrap: wrap;
+
+      &:first-of-type {
+        margin-top: 30px;
+      }
 
       &__item {
         margin-top: 40px;

@@ -7,5 +7,9 @@ export default {
 
   selectVesselDetailsComponent ({ commit }, componentName) {
     commit(types.SELECTED_VESSEL_DETAILS_COMPONENT, componentName)
+  },
+
+  setDashboardGoogleMap ({ commit }, map) {
+    commit(types.DASHBOARD_GOOGLE_MAP, map)
   }
 }

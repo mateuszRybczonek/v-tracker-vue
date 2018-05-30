@@ -21,7 +21,8 @@ export default {
   props: {
     mapConfig: Object,
     apiKey: String,
-    mapHeight: String
+    mapHeight: String,
+    setGoogleMap: Function
   },
 
   data (){
@@ -45,6 +46,7 @@ export default {
       const mapContainer = this.$el.querySelector('#map')
       const { Map } = this.google.maps
       this.map = new Map(mapContainer, this.mapConfig)
+      this.setGoogleMap(this.map)
     }
   }
 }

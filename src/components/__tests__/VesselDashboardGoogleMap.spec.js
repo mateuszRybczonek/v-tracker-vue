@@ -4,6 +4,11 @@ import Vuex from 'vuex'
 import { report, secondReport } from '@/../test/stubs/report'
 
 const selectReportSpy = jest.fn()
+const googleMapMarkerStub = {
+  setIcon: jest.fn(),
+  setAnimation: jest.fn(),
+  marker: { ...report }
+}
 
 describe('VesselDashboardGoogleMap.vue', () => {
   const setup = () => {
@@ -12,7 +17,8 @@ describe('VesselDashboardGoogleMap.vue', () => {
       reports: jest.fn(),
       sortedReports: jest.fn(),
       fetchingReports: jest.fn(),
-      selectedReport: jest.fn()
+      selectedReport: jest.fn(),
+      dashboardGoogleMap: jest.fn()
     }
 
     const actions = {
@@ -23,6 +29,9 @@ describe('VesselDashboardGoogleMap.vue', () => {
     getters.sortedReports.mockReturnValue([report, secondReport])
     getters.fetchingReports.mockReturnValue(false)
     getters.selectedReport.mockReturnValue(report)
+    getters.dashboardGoogleMap.mockReturnValue({
+      panTo: jest.fn()
+    })
 
     const localVue = createLocalVue()
     localVue.use(Vuex)
@@ -97,6 +106,7 @@ describe('VesselDashboardGoogleMap.vue', () => {
     })
 
     it('newSelectedReport return proper data', () => {
+      wrapper.setData({ googleMapMarkers: [googleMapMarkerStub] })
       expect(wrapper.vm.newSelectedReport).toEqual(report)
     })
   })

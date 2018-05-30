@@ -1,8 +1,6 @@
 <template>
   <div class="vessel">
-    <TheSidebar
-      :lastReport="lastReport">
-    </TheSidebar>
+    <TheSidebar :lastReport="lastReport"/>
     <div
       data-test-vessel-page-content
       class="vessel__content"
@@ -71,6 +69,7 @@
     &__content {
       transition: margin-left .5s;
       margin-left: 300px;
+      margin-right: 50px;
       padding: 0 15px;
 
       &--expanded {
