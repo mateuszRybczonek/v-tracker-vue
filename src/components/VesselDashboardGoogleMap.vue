@@ -154,7 +154,7 @@ export default {
 
   watch: {
     newSelectedReport (newValue) {
-      if(!this.fetchingReports && this.googleMapMarkers.length > 0) {
+      if(!this.fetchingReports && this.googleMapMarkers.length) {
         this.googleMapMarkers.forEach(googleMapMarker => {
           googleMapMarker.setIcon(POINT_MARKER_ICON_CONFIG)
           googleMapMarker.setAnimation(null)
@@ -164,7 +164,8 @@ export default {
         selectedMarker.setIcon(SELECTED_POINT_MARKER_ICON_CONFIG)
       }
 
-      this.dashboardGoogleMap.panTo({ lat: newValue.lat, lng: newValue.lng })
+      const { lat, lng } = newValue
+      this.dashboardGoogleMap.panTo({ lat, lng })
     },
 
     reports () {
