@@ -10,11 +10,13 @@ import { sync } from 'vuex-router-sync'
 import router from './router/index'
 import store from './store/index'
 import VueContentPlaceholders from 'vue-content-placeholders'
+import Vuency from 'vuency'
 
 Vue.use(VueContentPlaceholders)
 Vue.use(VueMomentJS, moment)
 Vue.use(Vuelidate)
 Vue.use(VueMaterial)
+Vue.use(Vuency)
 
 Vue.config.productionTip = false
 
