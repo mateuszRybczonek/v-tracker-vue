@@ -14,7 +14,7 @@
     <span
       data-test-vessels-list-item-actions-delete
       class="delete-icon"
-      @click.prevent.stop="deleteVesselAction(vesselId)"
+      @click.prevent.stop="deleteVesselTask.run()"
     >
       <BaseIcon
         width="40"
@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import BaseIcon from './BaseIcon.vue'
 import IconPencil from './Icons/IconPencil.vue'
 import IconTrash from './Icons/IconTrash.vue'
@@ -43,23 +42,16 @@ export default {
     vesselId: {
       type: String,
       required: true
+    },
+    deleteVesselTask: {
+      type: Object,
+      required: true
     }
   },
 
   computed: {
     editLink () {
       return `/dashboard/vessels/${this.vesselId}/edit`
-    }
-  },
-
-  methods: {
-    ...mapActions([
-      'deleteVessel'
-    ]),
-
-    deleteVesselAction (vesselId) {
-      this.deleteVessel(vesselId)
-      this.$emit('enableInProgress')
     }
   }
 }
