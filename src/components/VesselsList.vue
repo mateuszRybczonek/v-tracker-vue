@@ -5,8 +5,8 @@
       v-for="vessel in vessels"
       :key="vessel.imoNumber"
       :vessel="vessel"
-    ></VesselsListItem>
-    <VesselsListItemNew class="vessels-list__item"></VesselsListItemNew>
+    />
+    <VesselsListItemNew class="vessels-list__item"/>
   </div>
 </template>
 
