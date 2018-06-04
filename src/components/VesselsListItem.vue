@@ -56,7 +56,6 @@
         deleteVesselTask: t(function * () {
           yield this.deleteVessel(this.vessel.id)
         })
-        .flow('restart')
       }
     }
   }
