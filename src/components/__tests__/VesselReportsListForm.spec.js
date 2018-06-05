@@ -6,6 +6,11 @@ import Step1 from '@/components/VesselReportsListFormStep1.vue'
 import Vuex from 'vuex'
 
 const createNewReportSpy = jest.fn()
+const createNewReportTaskSpy = {
+  isActive: false,
+  isResolved: false,
+  run: jest.fn()
+}
 
 describe('VesselReportsListForm.vue', () => {
   const setup = (step = 1) => {
@@ -49,7 +54,8 @@ describe('VesselReportsListForm.vue', () => {
             $invalid: false
           }
         }
-      }
+      },
+      createNewReportTask: createNewReportTaskSpy
     }
 
     const wrapper = mount(VesselReportsListForm, {
@@ -161,12 +167,8 @@ describe('VesselReportsListForm.vue', () => {
           expect(wrapper.vm.showErrors).toEqual(false)
         })
 
-        it('calls createNewReport', () => {
-          expect(createNewReportSpy).toHaveBeenCalled()
-        })
-
-        it('proceeds to next step', () => {
-          expect(wrapper.vm.step).toEqual(2)
+        it('runs createNewReportTask', () => {
+          expect(createNewReportTaskSpy.run).toHaveBeenCalled()
         })
       })
     })

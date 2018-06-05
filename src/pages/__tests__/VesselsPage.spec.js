@@ -1,4 +1,4 @@
-import { mount, createLocalVue } from 'vue-test-utils'
+import { shallow, createLocalVue } from 'vue-test-utils'
 import VesselsPage from '@/pages/VesselsPage.vue'
 import VesselsList from '@/components/VesselsList.vue'
 import Vuex from 'vuex'
@@ -28,9 +28,9 @@ describe('VesselsPage.vue', () => {
       getters
     })
 
-    const wrapper = mount(VesselsPage, {
+    const wrapper = shallow(VesselsPage, {
       localVue,
-      store,
+      store
     })
 
     return { wrapper }

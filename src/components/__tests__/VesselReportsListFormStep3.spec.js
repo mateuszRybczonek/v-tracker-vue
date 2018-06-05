@@ -3,12 +3,32 @@ import VesselReportsListFormStep3 from '@/components/VesselReportsListFormStep3.
 import { rawSecondReport } from '@/../test/stubs/report'
 
 describe('VesselReportsListFormStep3.vue', () => {
+  const reportDataValidations = {
+    foRob: {
+      $invalid: false
+    },
+    doRob: {
+      $invalid: false
+    },
+    fwRob: {
+      $invalid: false
+    },
+    pob: {
+      $invalid: false
+    }
+  }
+
   // eslint-disable-next-line no-unused-vars
   const setup = (step = 3) => {
     const wrapper = mount(VesselReportsListFormStep3, {
       propsData: {
         reportData: rawSecondReport,
         showErrors: false
+      },
+      mocks: {
+        $v: {
+          reportData: reportDataValidations
+        }
       }
     })
 
