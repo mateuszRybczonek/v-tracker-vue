@@ -108,6 +108,16 @@ describe('VesselReportsListForm.vue', () => {
       expect(wrapper.vm.lastStep).toEqual(true)
     })
 
+    it('isSubmitted returns proper value', () => {
+      const { wrapper } = setup()
+      expect(wrapper.vm.isSubmitted).toEqual(false)
+    })
+
+    it('inProgress returns proper value', () => {
+      const { wrapper } = setup()
+      expect(wrapper.vm.inProgress).toEqual(false)
+    })
+
     describe('stepTitle', () => {
       it('returns proper title when on step 1', () => {
         const { wrapper } = setup()

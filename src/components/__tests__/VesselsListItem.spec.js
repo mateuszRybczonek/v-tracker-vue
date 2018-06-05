@@ -68,5 +68,11 @@ describe('VesselsListItem.vue', () => {
         expect(wrapper.find(VesselsListItemActions).props().vesselId).toEqual('1')
       })
     })
+
+    describe('Computed properties', () => {
+      it('inProgress returns proper value', () => {
+        const { wrapper } = setup()
+        expect(wrapper.vm.inProgress).toEqual(false)
+      })
   })
 })
