@@ -236,6 +236,8 @@
   import IconWater from './Icons/IconWater.vue'
   import IconPeople from './Icons/IconPeople.vue'
   import IconAngle from './Icons/IconAngle.vue'
+  import { numeric } from 'vuelidate/lib/validators'
+  import { positiveNumber } from '@/utils/validations'
 
   export default {
     components: {
@@ -290,36 +292,20 @@
     validations: {
       reportData: {
         foRob: {
-          range: value => {
-            if (value === 'undefined' || value === null || value === '' || value > -1) {
-              return true
-            }
-            return false
-          }
+          numeric,
+          range: value => positiveNumber(value)
         },
         doRob: {
-          range: value => {
-            if (value === 'undefined' || value === null || value === '' || value > -1) {
-              return true
-            }
-            return false
-          }
+          numeric,
+          range: value => positiveNumber(value)
         },
         fwRob: {
-          range: value => {
-            if (value === 'undefined' || value === null || value === '' || value > -1) {
-              return true
-            }
-            return false
-          }
+          numeric,
+          range: value => positiveNumber(value)
         },
         pob: {
-          range: value => {
-            if (value === 'undefined' || value === null || value === '' || value > -1) {
-              return true
-            }
-            return false
-          }
+          numeric,
+          range: value => positiveNumber(value)
         }
       }
     }
