@@ -47,7 +47,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { get } from 'vuex-pathify'
 
   export default {
     props: {
@@ -66,9 +66,7 @@
     },
 
     computed: {
-      ...mapGetters([
-        'sidebarVisible'
-      ]),
+      sidebarVisible: get('sidebarVisible'),
 
       vesselStatusClass () {
         if (!this.lastReport) return `status--red`

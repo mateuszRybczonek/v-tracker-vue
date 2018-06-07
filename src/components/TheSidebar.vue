@@ -18,6 +18,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  import { get } from 'vuex-pathify'
   import TheSidebarHeader from './TheSidebarHeader.vue'
   import TheSidebarQuickLinks from './TheSidebarQuickLinks.vue'
   import TheSidebarContent from './TheSidebarContent.vue'
@@ -37,9 +38,10 @@
 
     computed: {
       ...mapGetters([
-        'sidebarVisible',
         'vessels'
       ]),
+
+      sidebarVisible: get('sidebarVisible'),
 
       vessel () {
         return this.vessels.find(vessel => vessel.id === this.$route.params.id)

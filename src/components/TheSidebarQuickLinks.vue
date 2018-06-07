@@ -9,7 +9,7 @@
       :key="button.component"
       class="quick-links__icon"
       :class="{ 'quick-links__icon--active': selectedVesselDetailsComponent === button.component }"
-      @click="selectVesselDetailsComponent(button.component)">
+      @click="setSelectedVesselDetailsComponent(button.component)">
       <BaseIcon
         width="32"
         height="32"
@@ -75,7 +75,7 @@
 
     methods: {
       ...mapActions([
-        'selectVesselDetailsComponent'
+        'setSelectedVesselDetailsComponent'
       ])
     }
   }

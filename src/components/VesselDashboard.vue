@@ -82,13 +82,13 @@
 
     computed: {
       ...mapGetters([
-        'sidebarVisible',
-        'sortedReports',
+        'sortedReports'
       ]),
 
       fetchingReports: get('fetchingReports'),
       selectedReport: get('selectedReport'),
       reports: get('reports'),
+      sidebarVisible: get('sidebarVisible'),
 
       previousReport () {
         const indexOfSelectedReport = this.reports.indexOf(this.selectedReport)
