@@ -35,7 +35,7 @@ export default {
         userVessels.push(vessel)
       })
 
-      commit(types.STORE_VESSEL, userVessels)
+      commit(types.SET_VESSELS, userVessels)
     } catch (error) { throw(error) }
   },
 

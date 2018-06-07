@@ -7,7 +7,7 @@ export const STORE_USER = 'STORE_USER'
 
 // VESSELS
 export const FETCHING_VESSEL = 'FETCHING_VESSEL'
-export const STORE_VESSEL = 'STORE_VESSEL'
+export const SET_VESSELS = 'SET_VESSELS'
 export const DELETE_VESSEL = 'DELETE_VESSEL'
 
 // REPORTS
