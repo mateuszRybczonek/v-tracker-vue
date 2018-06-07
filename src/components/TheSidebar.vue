@@ -17,7 +17,6 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
   import { get } from 'vuex-pathify'
   import TheSidebarHeader from './TheSidebarHeader.vue'
   import TheSidebarQuickLinks from './TheSidebarQuickLinks.vue'
@@ -37,10 +36,7 @@
     },
 
     computed: {
-      ...mapGetters([
-        'vessels'
-      ]),
-
+      vessels: get('vessels'),
       sidebarVisible: get('sidebarVisible'),
 
       vessel () {

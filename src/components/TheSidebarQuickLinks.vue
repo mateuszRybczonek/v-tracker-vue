@@ -22,7 +22,8 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapActions } from 'vuex'
+  import { get } from 'vuex-pathify'
   import { COMPONENT_NAMES } from '../constants/vessel-details'
   import BaseIcon from './BaseIcon.vue'
   import IconFiles from './Icons/IconFiles.vue'
@@ -49,9 +50,7 @@
     },
 
     computed: {
-      ...mapGetters([
-        'selectedVesselDetailsComponent'
-      ]),
+      selectedVesselDetailsComponent: get('selectedVesselDetailsComponent'),
 
       buttons () {
         return [

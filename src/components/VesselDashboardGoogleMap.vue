@@ -94,10 +94,9 @@ export default {
 
   computed: {
     ...mapGetters([
-      'sortedReports',
-      'dashboardGoogleMap'
+      'sortedReports'
     ]),
-
+    dashboardGoogleMap: get('dashboardGoogleMap'),
     fetchingReports: get('fetchingReports'),
     selectedReport: get('selectedReport'),
     reports: get('reports'),
