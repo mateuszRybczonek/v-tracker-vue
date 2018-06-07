@@ -3,14 +3,6 @@ import Vue from 'vue'
 import { mapReportForStore } from './helpers'
 
 export default {
-  [types.STORE_REPORTS] (state, reports) {
-    state.reports = reports
-  },
-
-  [types.FETCHING_REPORTS] (state, value) {
-    state.fetchingReports = value
-  },
-
   [types.ADD_REPORT] (state, report) {
     mapReportForStore(report)
     state.reports.unshift(report)
