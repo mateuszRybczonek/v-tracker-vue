@@ -22,6 +22,8 @@
     },
 
     computed: {
+      selectedReport: get('selectedReport'),
+
       presentReportSelected () {
         return this.report.id === this.selectedReport.id
       },
@@ -32,9 +34,7 @@
 
       reportDay () {
         return this.$moment(this.reportTime).format('DD')
-      },
-
-      selectedReport: get('selectedReport')
+      }
     }
   }
 </script>

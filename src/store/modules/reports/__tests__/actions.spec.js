@@ -162,47 +162,28 @@ describe('reports actions', () => {
       expect(onFulfilled.mock.calls[0][0].data).toBe(responseJSON)
     })
 
-    it('dispatches storeReports action', async() => {
+    it('commits SET_REPORTS mutation with reports', async() => {
       await actions.fetchReports(context, 'vessel-1')
-      expect(context.dispatch).toHaveBeenCalledWith('storeReports', expect.anything())
+      expect(context.commit).toHaveBeenCalledWith('SET_REPORTS', expect.anything())
     })
 
-    it('dispatches setFetchingReports action with false', async() => {
+    it('commits SET_FETCHING_REPORTS mutation with false', async() => {
       await actions.fetchReports(context, 'vessel-1')
-      expect(context.dispatch).toHaveBeenCalledWith('setFetchingReports', false)
+      expect(context.commit).toHaveBeenCalledWith('SET_FETCHING_REPORTS', false)
     })
 
-    it('dispatches selectReport action', async() => {
+    it('commits SELECT_REPORT mutation', async() => {
       await actions.fetchReports(context, 'vessel-1')
-      expect(context.dispatch).toHaveBeenCalledWith('selectReport', expect.anything())
-    })
-  })
-
-  describe('storeReports', () => {
-    const context = { commit: jest.fn() }
-    const reports = [ report, secondReport ]
-
-    it('calls commit with STORE_REPORTS and reports array', async() => {
-      await actions.storeReports(context, reports)
-      expect(context.commit).toHaveBeenCalledWith('STORE_REPORTS', reports)
-    })
-  })
-
-  describe('setFetchingReports', () => {
-    const context = { commit: jest.fn() }
-
-    it('calls commit with FETCHING_REPORTS and given value', async() => {
-      await actions.setFetchingReports(context, true)
-      expect(context.commit).toHaveBeenCalledWith('FETCHING_REPORTS', true)
+      expect(context.commit).toHaveBeenCalledWith('SELECT_REPORT', expect.anything())
     })
   })
 
   describe('selectReport', () => {
     const context = { commit: jest.fn() }
 
-    it('calls commit with SELECT_REPORT and a report object', async() => {
-      await actions.selectReport(context, report)
-      expect(context.commit).toHaveBeenCalledWith('SELECT_REPORT', report)
+    it('calls commit with SELECT_REPORT and a report id', async() => {
+      await actions.selectReport(context, report.id)
+      expect(context.commit).toHaveBeenCalledWith('SELECT_REPORT', report.id)
     })
   })
 

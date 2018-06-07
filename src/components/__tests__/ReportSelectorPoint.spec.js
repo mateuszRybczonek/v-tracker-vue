@@ -59,11 +59,6 @@ describe('ReportSelectorPoint.vue', () => {
   describe('Computed properties', () => {
     describe('presentReportSelected', () => {
       it('returns proper data', () => {
-        const { wrapper } = setup(secondReport)
-        expect(wrapper.vm.presentReportSelected).toEqual(false)
-      })
-
-      it('returns proper data', () => {
         const { wrapper } = setup()
         expect(wrapper.vm.presentReportSelected).toEqual(true)
       })
