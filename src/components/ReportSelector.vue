@@ -12,6 +12,7 @@
 <script>
   import ReportSelectorPoint from './ReportSelectorPoint.vue'
   import { mapActions } from 'vuex'
+
   export default {
     components: {
       ReportSelectorPoint

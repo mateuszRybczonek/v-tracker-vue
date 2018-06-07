@@ -11,7 +11,8 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { get } from 'vuex-pathify'
+
   export default {
     props: {
       report: {
@@ -21,10 +22,6 @@
     },
 
     computed: {
-      ...mapGetters([
-        'selectedReport'
-      ]),
-
       presentReportSelected () {
         return this.report.id === this.selectedReport.id
       },
@@ -35,7 +32,9 @@
 
       reportDay () {
         return this.$moment(this.reportTime).format('DD')
-      }
+      },
+
+      selectedReport: get('selectedReport')
     }
   }
 </script>
