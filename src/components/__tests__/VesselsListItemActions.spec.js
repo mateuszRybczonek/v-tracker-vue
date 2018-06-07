@@ -1,10 +1,7 @@
-import { mount, createLocalVue } from 'vue-test-utils'
+import { mount } from 'vue-test-utils'
 import VesselsListItemActions from '@/components/VesselsListItemActions.vue'
 import IconPencil from '@/components/Icons/IconPencil.vue'
 import IconTrash from '@/components/Icons/IconTrash.vue'
-import Vuex from 'vuex'
-
-const deleteVesselSpy = jest.fn()
 
 describe('VesselsListItemActions.vue', () => {
   const deleteVesselTaskSpy = {

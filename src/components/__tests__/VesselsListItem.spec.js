@@ -74,5 +74,6 @@ describe('VesselsListItem.vue', () => {
         const { wrapper } = setup()
         expect(wrapper.vm.inProgress).toEqual(false)
       })
+    })
   })
 })
