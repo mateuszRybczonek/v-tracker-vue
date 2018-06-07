@@ -54,6 +54,7 @@ import {
 } from '@/constants/mapSettings'
 
 import { mapGetters, mapActions } from 'vuex'
+import { get } from 'vuex-pathify'
 
 import {
   mapReportsToMarkers,
@@ -93,12 +94,13 @@ export default {
 
   computed: {
     ...mapGetters([
-      'reports',
       'sortedReports',
-      'fetchingReports',
-      'selectedReport',
       'dashboardGoogleMap'
     ]),
+
+    fetchingReports: get('fetchingReports'),
+    selectedReport: get('selectedReport'),
+    reports: get('reports'),
 
     newSelectedReport () {
       if(this.googleMapMarkers.length > 0) return this.selectedReport
