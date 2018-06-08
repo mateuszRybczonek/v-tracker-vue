@@ -1,4 +1,4 @@
-import { shallow, mount, createLocalVue } from 'vue-test-utils'
+import { shallow, createLocalVue } from 'vue-test-utils'
 import TheSidebar from '@/components/TheSidebar.vue'
 import TheSidebarHeader from '@/components/TheSidebarHeader.vue'
 import TheSidebarQuickLinks from '@/components/TheSidebarQuickLinks.vue'

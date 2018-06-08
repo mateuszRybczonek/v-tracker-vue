@@ -1,7 +1,7 @@
 import axios from 'axios'
 import moxios from 'moxios'
 import actions from '@/store/modules/reports/actions'
-import { report, secondReport, rawSecondReport } from '@/../test/stubs/report'
+import { report, rawSecondReport } from '@/../test/stubs/report'
 
 describe('reports actions', () => {
   beforeEach(() => {
