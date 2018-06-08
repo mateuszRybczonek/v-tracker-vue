@@ -4,8 +4,11 @@ import FormWrapper from '@/components/FormWrapper.vue'
 import VesselReportsListNewStepper from '@/components/VesselReportsListFormStepper.vue'
 import Step1 from '@/components/VesselReportsListFormStep1.vue'
 import Vuex from 'vuex'
+import { taskSpy } from '@/../test/stubs/task'
 
 const createNewReportSpy = jest.fn()
+const createNewReportTaskSpy = taskSpy()
+
 
 describe('VesselReportsListForm.vue', () => {
   const setup = (step = 1) => {
@@ -49,7 +52,8 @@ describe('VesselReportsListForm.vue', () => {
             $invalid: false
           }
         }
-      }
+      },
+      createNewReportTask: createNewReportTaskSpy
     }
 
     const wrapper = mount(VesselReportsListForm, {
@@ -100,6 +104,16 @@ describe('VesselReportsListForm.vue', () => {
     it('lastStep returns proper data when on last step', () => {
       const { wrapper } = setup(4)
       expect(wrapper.vm.lastStep).toEqual(true)
+    })
+
+    it('isSubmitted returns proper value', () => {
+      const { wrapper } = setup()
+      expect(wrapper.vm.isSubmitted).toEqual(false)
+    })
+
+    it('inProgress returns proper value', () => {
+      const { wrapper } = setup()
+      expect(wrapper.vm.inProgress).toEqual(false)
     })
 
     describe('stepTitle', () => {
@@ -161,12 +175,8 @@ describe('VesselReportsListForm.vue', () => {
           expect(wrapper.vm.showErrors).toEqual(false)
         })
 
-        it('calls createNewReport', () => {
-          expect(createNewReportSpy).toHaveBeenCalled()
-        })
-
-        it('proceeds to next step', () => {
-          expect(wrapper.vm.step).toEqual(2)
+        it('runs createNewReportTask', () => {
+          expect(createNewReportTaskSpy.run).toHaveBeenCalled()
         })
       })
     })

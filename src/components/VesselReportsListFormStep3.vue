@@ -46,12 +46,6 @@
           <div slot="errors">
             <span
               class="validation-error"
-              v-if="showErrors && !$v.reportData.foRob.required"
-            >
-              This field must not be empty.
-            </span>
-            <span
-              class="validation-error"
               v-if="showErrors && !$v.reportData.foRob.range"
             >
               Fuel oil cannot be less than 0.
@@ -84,12 +78,6 @@
           <div slot="errors">
             <span
               class="validation-error"
-              v-if="showErrors && !$v.reportData.doRob.required"
-            >
-              This field must not be empty.
-            </span>
-            <span
-              class="validation-error"
               v-if="showErrors && !$v.reportData.doRob.range"
             >
               Diesel oil cannot be less than 0.
@@ -120,12 +108,6 @@
             >
           </div>
           <div slot="errors">
-            <span
-              class="validation-error"
-              v-if="showErrors && !$v.reportData.fwRob.required"
-          >
-            This field must not be empty.
-          </span>
             <span
               class="validation-error"
               v-if="showErrors && !$v.reportData.fwRob.range"
@@ -169,12 +151,6 @@
           <div slot="errors">
             <span
               class="validation-error"
-              v-if="showErrors && !$v.reportData.pob.required"
-            >
-              This field must not be empty.
-            </span>
-            <span
-              class="validation-error"
               v-if="showErrors && !$v.reportData.pob.range"
             >
               POB cannot be less than 0.
@@ -197,21 +173,12 @@
             </BaseIcon>
             <input
               class="input input--with-error"
-              :class="{ invalid: showErrors && $v.reportData.pitch.$invalid }"
               type="number "
               step="0.1"
               placeholder="Pitch"
               v-model="reportData.pitch"
               @input="$v.reportData.pitch.$touch()"
             >
-          </div>
-          <div class="error">
-            <span
-              class="validation-error"
-              v-if="showErrors && !$v.reportData.pitch.required"
-            >
-              This field must not be empty.
-            </span>
           </div>
         </InputWithErrors>
 
@@ -230,21 +197,12 @@
             </BaseIcon>
             <input
               class="input input__pitch input__movements input--with-error"
-              :class="{ invalid: showErrors && $v.reportData.roll.$invalid }"
               type="number"
               step="0.1"
               placeholder="Roll"
               v-model="reportData.roll"
               @input="$v.reportData.roll.$touch()"
             >
-          </div>
-          <div slot="errors">
-            <span
-              class="validation-error"
-              v-if="showErrors && !$v.reportData.roll.required"
-            >
-              This field must not be empty.
-            </span>
           </div>
         </InputWithErrors>
       </div>
@@ -254,7 +212,7 @@
       <ButtonPositive
         data-test-vessel-reports-list-form-next-step-button
         :on-click="previousStep"
-        :inProgress='false'
+        :inProgress="inProgress"
       >
         <span>Back</span>
       </ButtonPositive>
@@ -262,7 +220,7 @@
       <ButtonPositive
         data-test-vessel-reports-list-form-previous-step-button
         :on-click="submit"
-        :inProgress='false'
+        :inProgress="inProgress"
       >
         <span>Continue</span>
       </ButtonPositive>
@@ -278,6 +236,8 @@
   import IconWater from './Icons/IconWater.vue'
   import IconPeople from './Icons/IconPeople.vue'
   import IconAngle from './Icons/IconAngle.vue'
+  import { numeric } from 'vuelidate/lib/validators'
+  import { positiveNumber } from '@/utils/validations'
 
   export default {
     components: {
@@ -310,6 +270,15 @@
       }
     },
 
+    computed: {
+      invalidStep () {
+        return this.$v.reportData.foRob.$invalid ||
+          this.$v.reportData.doRob.$invalid ||
+          this.$v.reportData.fwRob.$invalid ||
+          this.$v.reportData.pob.$invalid
+      }
+    },
+
     methods: {
       previousStep () {
         this.$emit('previousStep')
@@ -317,6 +286,27 @@
 
       submit () {
         this.$emit('submit', this.invalidStep)
+      }
+    },
+
+    validations: {
+      reportData: {
+        foRob: {
+          numeric,
+          range: value => positiveNumber(value)
+        },
+        doRob: {
+          numeric,
+          range: value => positiveNumber(value)
+        },
+        fwRob: {
+          numeric,
+          range: value => positiveNumber(value)
+        },
+        pob: {
+          numeric,
+          range: value => positiveNumber(value)
+        }
       }
     }
   }

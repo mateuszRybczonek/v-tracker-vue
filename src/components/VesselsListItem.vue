@@ -10,12 +10,13 @@
       :vesselImoNumber="vessel.imoNumber"/>
 
     <VesselsListItemActions
-      @enableInProgress="enableInProgress"
+      :deleteVesselTask="deleteVesselTask"
       :vesselId="vessel.id"/>
   </BaseCard>
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   import BaseCard from './BaseCard.vue'
   import VesselsListItemBody from './VesselsListItemBody.vue'
   import VesselsListItemActions from './VesselsListItemActions.vue'
@@ -34,21 +35,27 @@
       }
     },
 
-    data () {
-      return {
-        inProgress: false
-      }
-    },
-
     computed: {
       vesselDetailsLink () {
         return `/dashboard/vessels/${this.vessel.id}`
+      },
+
+      inProgress () {
+        return this.deleteVesselTask.isActive
       }
     },
 
     methods: {
-      enableInProgress () {
-        this.inProgress = true
+      ...mapActions([
+        'deleteVessel'
+      ])
+    },
+
+    tasks (task) {
+      return {
+        deleteVesselTask: task(function * () {
+          yield this.deleteVessel(this.vessel.id)
+        })
       }
     }
   }

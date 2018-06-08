@@ -1,4 +1,4 @@
-import { mount } from 'vue-test-utils'
+import { shallow } from 'vue-test-utils'
 import VesselsList from '@/components/VesselsList.vue'
 import VesselsListItem from '@/components/VesselsListItem.vue'
 import VesselsListItemNew from '@/components/VesselsListItemNew.vue'
@@ -6,7 +6,7 @@ import { firstVessel, secondVessel } from '@/../test/stubs/vessel'
 
 describe('VesselsList.vue', () => {
   const setup = () => {
-    const wrapper = mount(VesselsList, {
+    const wrapper = shallow(VesselsList, {
       propsData: {
         vessels: [firstVessel, secondVessel]
       }

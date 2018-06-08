@@ -85,13 +85,19 @@
         },
         step: 1, // initial step
         numberOfSteps: 4,
-        isSubmitted: false,
-        inProgress: false,
         showErrors: false
       }
     },
 
     computed: {
+      inProgress () {
+        return this.createNewReportTask.isActive
+      },
+
+      isSubmitted () {
+        return this.createNewReportTask.isResolved
+      },
+
       selectedStep () {
         return `step${this.step}`
       },
@@ -142,33 +148,39 @@
       },
 
       async submit (invalidStep) {
-        const newReportData = {
-          ...this.newReportData,
-          createdAt: new Date(Date.now())
-        }
-
-        newReportData.lat = formatLatForPersistanceLayer(newReportData.lat)
-        newReportData.lng = formatLngForPersistanceLayer(newReportData.lng)
-
         if (invalidStep) {
           this.showErrors = true
           return false
-        } else {
-          this.inProgress = true
-          try {
-            await this.createNewReport(newReportData)
-            this.inProgress = false
-            this.isSubmitted = true
-            this.step++
-            setTimeout(() => {
-              this.$emit('hideReportForm')
-            }, 2000)
-          } catch (error) {
-            this.inProgress = false
-            // flash message shall go here
-            alert('Something went wrong')
-          }
         }
+        this.createNewReportTask.run()
+      },
+
+      _getNewReportData () {
+        return {
+          ...this.newReportData,
+          createdAt: new Date(Date.now()),
+          lat: formatLatForPersistanceLayer(this.newReportData.lat),
+          lng: formatLngForPersistanceLayer(this.newReportData.lng)
+        }
+      }
+    },
+
+    tasks (task) {
+      return {
+        createNewReportTask: task(function * () {
+          yield this.createNewReport(this._getNewReportData())
+        })
+        .flow('restart')
+        .onSuccess(() => {
+          this.step++
+          setTimeout(() => {
+            this.$emit('hideReportForm')
+          }, 2000)
+        })
+        .onError(() => {
+          // flash message shall go here
+          alert('Something went wrong')
+        })
       }
     }
   }

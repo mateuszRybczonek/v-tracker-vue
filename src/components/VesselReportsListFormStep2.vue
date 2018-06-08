@@ -17,7 +17,8 @@
 							width="30"
 							height="30"
 							color="#999"
-							viewBox="2 -5 40 40">
+							viewBox="2 -5 40 40"
+            >
 							<IconNavigation></IconNavigation>
             </BaseIcon>
             <input
@@ -60,7 +61,8 @@
               width="30"
               height="30"
               color="#999"
-              viewBox="2 -5 40 40">
+              viewBox="2 -5 40 40"
+            >
               <IconSpeed></IconSpeed>
             </BaseIcon>
             <input
