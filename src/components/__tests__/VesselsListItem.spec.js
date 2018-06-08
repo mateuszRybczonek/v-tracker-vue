@@ -4,15 +4,10 @@ import BaseCard from '@/components/BaseCard.vue'
 import VesselsListItemBody from '@/components/VesselsListItemBody.vue'
 import VesselsListItemActions from '@/components/VesselsListItemActions.vue'
 import { firstVessel } from '@/../test/stubs/vessel'
+import { taskSpy } from '@/../test/stubs/task'
 
 describe('VesselsListItem.vue', () => {
-  const deleteVesselTaskSpy = (isActive, isResolved) => {
-    return {
-      isActive,
-      isResolved,
-      run: jest.fn()
-    }
-  }
+  const deleteVesselTaskSpy = taskSpy
 
   const setup = (isActive = false, isResolved = false) => {
     const wrapper = mount(VesselsListItem, {
@@ -74,5 +69,6 @@ describe('VesselsListItem.vue', () => {
         const { wrapper } = setup()
         expect(wrapper.vm.inProgress).toEqual(false)
       })
+    })
   })
 })
