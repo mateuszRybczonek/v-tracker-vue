@@ -4,13 +4,11 @@ import FormWrapper from '@/components/FormWrapper.vue'
 import VesselReportsListNewStepper from '@/components/VesselReportsListFormStepper.vue'
 import Step1 from '@/components/VesselReportsListFormStep1.vue'
 import Vuex from 'vuex'
+import { taskSpy } from '@/../test/stubs/task'
 
 const createNewReportSpy = jest.fn()
-const createNewReportTaskSpy = {
-  isActive: false,
-  isResolved: false,
-  run: jest.fn()
-}
+const createNewReportTaskSpy = taskSpy()
+
 
 describe('VesselReportsListForm.vue', () => {
   const setup = (step = 1) => {

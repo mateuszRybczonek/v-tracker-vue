@@ -2,11 +2,10 @@ import { mount } from 'vue-test-utils'
 import VesselsListItemActions from '@/components/VesselsListItemActions.vue'
 import IconPencil from '@/components/Icons/IconPencil.vue'
 import IconTrash from '@/components/Icons/IconTrash.vue'
+import { taskSpy } from '@/../test/stubs/task'
 
 describe('VesselsListItemActions.vue', () => {
-  const deleteVesselTaskSpy = {
-    run: jest.fn()
-  }
+  const deleteVesselTaskSpy = taskSpy()
 
   const setup = () => {
     const wrapper = mount(VesselsListItemActions, {

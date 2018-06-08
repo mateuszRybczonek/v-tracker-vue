@@ -51,9 +51,9 @@
       ])
     },
 
-    tasks (t) {
+    tasks (task) {
       return {
-        deleteVesselTask: t(function * () {
+        deleteVesselTask: task(function * () {
           yield this.deleteVessel(this.vessel.id)
         })
       }
