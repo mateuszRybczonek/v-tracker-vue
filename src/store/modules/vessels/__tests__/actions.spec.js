@@ -142,9 +142,9 @@ describe('vessels actions', () => {
       expect(onFulfilled.mock.calls[0][0].data).toBe(responseJSON)
     })
 
-    it('calls commit with STORE_VESSEL and the fetched userVessels', async() => {
+    it('calls commit with SET_VESSELS and the fetched userVessels', async() => {
       await actions.fetchVessels(context, 1)
-      expect(context.commit).toHaveBeenCalledWith('STORE_VESSEL', [ firstVessel ])
+      expect(context.commit).toHaveBeenCalledWith('SET_VESSELS', [ firstVessel ])
     })
   })
 

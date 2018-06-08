@@ -5,23 +5,28 @@ import { report, secondReport } from '@/../test/stubs/report'
 import { firstVessel } from '@/../test/stubs/vessel'
 import moment from 'moment'
 import VueMomentJS from 'vue-momentjs'
+import pathify from 'vuex-pathify'
+import { make } from 'vuex-pathify'
+import { COMPONENT_NAMES } from '@/constants/vessel-details'
+
+const { VESSEL_DASHBOARD } = COMPONENT_NAMES
 
 describe('TheSidebarContent.vue', () => {
   const setup = sidebarVisible => {
-    const getters = {
-      sidebarVisible: jest.fn(),
-      vessels: jest.fn()
-    }
-
-    getters.sidebarVisible.mockReturnValue(sidebarVisible)
-
     const localVue = createLocalVue()
     localVue.use(Vuex)
     localVue.use(VueMomentJS, moment)
 
+    const state = {
+      sidebarVisible,
+      selectedVesselDetailsComponent: VESSEL_DASHBOARD,
+      dashboardGoogleMap: {}
+    }
+
     const store = new Vuex.Store({
-      state: {},
-      getters
+      plugins: [ pathify.plugin ],
+      state,
+      getters: { ...make.getters(state) }
     })
 
     const wrapper = shallow(TheSidebarContent, {
@@ -50,14 +55,13 @@ describe('TheSidebarContent.vue', () => {
     })
 
     test('list items are not rendered', () => {
-      const { wrapper } = setup()
-
       expect(wrapper.findAll('[data-test-sidebar-content-list-items]')).toHaveLength(0)
     })
   })
 
   describe('when sidebarVisible is true', () => {
     const { wrapper } = setup(true)
+    wrapper.setComputed({ sidebarVisible: true })
 
     test('status label and marker is rendered', () => {
       expect(wrapper.find('[data-test-sidebar-content-status]').text()).toContain('Status')

@@ -6,137 +6,85 @@ import TheSidebarContent from '@/components/TheSidebarContent.vue'
 import Vuex from 'vuex'
 import moment from 'moment'
 import VueMomentJS from 'vue-momentjs'
+import pathify from 'vuex-pathify'
 import { report } from '@/../test/stubs/report'
 import { firstVessel, secondVessel } from '@/../test/stubs/vessel'
 import { COMPONENT_NAMES } from '@/constants/vessel-details'
 const { VESSEL_DASHBOARD } = COMPONENT_NAMES
 
 describe('TheSidebar.vue', () => {
-  let getters
-  let store
-  let mocks
-  let localVue
-
-  beforeEach(() => {
-    getters = {
-      selectedVesselDetailsComponent: jest.fn(),
-      sidebarVisible: jest.fn(),
-      vessels: jest.fn()
+  const setup = sidebarVisible => {
+    const getters = {
+      selectedVesselDetailsComponent: () => VESSEL_DASHBOARD,
+      sidebarVisible: () => sidebarVisible,
+      vessels: () => [firstVessel, secondVessel]
     }
 
-    localVue = createLocalVue()
+    const localVue = createLocalVue()
     localVue.use(Vuex)
     localVue.use(VueMomentJS, moment)
 
-    store = new Vuex.Store({
+    const store = new Vuex.Store({
+      plugins: [ pathify.plugin ],
       state: {},
       getters
     })
 
-    mocks = {
-      $route: {
-        params: {
-          id: '1'
-        }
-      }
-    }
-  })
-
-  test('adds sidebar--collapsed when sidebarVisible is false', () => {
-    getters.selectedVesselDetailsComponent.mockReturnValue(VESSEL_DASHBOARD)
-    getters.sidebarVisible.mockReturnValue(false)
-    getters.vessels.mockReturnValue([firstVessel, secondVessel])
-
     const wrapper = shallow(TheSidebar, {
       localVue,
       store,
-      mocks,
       propsData: {
         lastReport: report
+      },
+      mocks: {
+        $route: {
+          params: {
+            id: '1'
+          }
+        },
       }
     })
 
-    expect(wrapper.find('[data-test-the-sidebar]').classes()).toContain('sidebar--collapsed')
+    return { wrapper }
+  }
+
+  describe('it renders', () => {
+    const { wrapper } = setup(true)
+
+    test('TheSidebarHeader component', () => {
+      expect(wrapper.findAll(TheSidebarHeader)).toHaveLength(1)
+    })
+
+    test('TheSidebarQuickLinks component', () => {
+      expect(wrapper.findAll(TheSidebarQuickLinks)).toHaveLength(1)
+    })
+
+    test('TheSidebarContent component', () => {
+      expect(wrapper.findAll(TheSidebarContent)).toHaveLength(1)
+    })
   })
 
-  test('does not add sidebar--collapsed when sidebarVisible is true', () => {
-    getters.sidebarVisible.mockReturnValue(true)
-    getters.vessels.mockReturnValue([firstVessel, secondVessel])
+  describe('when sidebarVisible is false', () => {
+    const { wrapper } = setup(false)
 
-    const wrapper = shallow(TheSidebar, {
-      localVue,
-      store,
-      mocks,
-      propsData: {
-        lastReport: report
-      }
+    test('adds sidebar--collapsed', () => {
+      wrapper.setComputed({ sidebarVisible: false })
+      expect(wrapper.find('[data-test-the-sidebar]').classes()).toContain('sidebar--collapsed')
     })
-
-    expect(wrapper.find('[data-test-the-sidebar]').classes()).not.toContain('sidebar--collapsed')
   })
 
-  test('renders TheSidebarHeader component', () => {
-    getters.sidebarVisible.mockReturnValue(true)
-    getters.vessels.mockReturnValue([firstVessel, secondVessel])
+  describe('when sidebarVisible is true', () => {
+    const { wrapper } = setup(true)
 
-    const wrapper = shallow(TheSidebar, {
-      localVue,
-      store,
-      mocks,
-      propsData: {
-        lastReport: report
-      }
+    test('does not add sidebar--collapsed', () => {
+      expect(wrapper.find('[data-test-the-sidebar]').classes()).not.toContain('sidebar--collapsed')
     })
-
-    expect(wrapper.findAll(TheSidebarHeader)).toHaveLength(1)
-  })
-
-  test('renders TheSidebarQuickLinks component', () => {
-    getters.sidebarVisible.mockReturnValue(true)
-    getters.vessels.mockReturnValue([firstVessel])
-
-    const wrapper = shallow(TheSidebar, {
-      localVue,
-      store,
-      mocks,
-      propsData: {
-        lastReport: report
-      }
-    })
-
-    expect(wrapper.findAll(TheSidebarQuickLinks)).toHaveLength(1)
-  })
-
-  test('renders TheSidebarContent component', () => {
-    getters.sidebarVisible.mockReturnValue(true)
-    getters.vessels.mockReturnValue([firstVessel])
-
-    const wrapper = shallow(TheSidebar, {
-      localVue,
-      store,
-      mocks,
-      propsData: {
-        lastReport: report
-      }
-    })
-
-    expect(wrapper.findAll(TheSidebarContent)).toHaveLength(1)
   })
 
   describe('Computed properties', () => {
-    it('vessel returns proper data', () => {
-      getters.sidebarVisible.mockReturnValue(true)
-      getters.vessels.mockReturnValue([firstVessel, secondVessel])
+    const { wrapper } = setup(true)
 
-      const wrapper = mount(TheSidebar, {
-        localVue,
-        store,
-        mocks,
-        propsData: {
-          lastReport: report
-        }
-      })
-
+    test('vessel returns proper data', () => {
       expect(wrapper.vm.vessel).toEqual(firstVessel)
     })
   })
