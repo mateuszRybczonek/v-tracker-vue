@@ -104,7 +104,7 @@
         reportChangeset: {
           ...this.report,
           lat: stripSymbols(decimalToDMS(this.report.lat)),
-          lng: stripSymbols(decimalToDMS(this.report.lng, true))
+          lng: stripSymbols(decimalToDMS(this.report.lng, false))
         }
       }
     },
@@ -119,7 +119,7 @@
         this.reportChangeset = {
           ...this.report,
           lat: stripSymbols(decimalToDMS(this.report.lat)),
-          lng: stripSymbols(decimalToDMS(this.report.lng, true))
+          lng: stripSymbols(decimalToDMS(this.report.lng, false))
         }
       },
 
