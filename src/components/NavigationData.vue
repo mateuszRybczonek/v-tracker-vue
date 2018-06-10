@@ -12,7 +12,7 @@
         title="Navigation"
         icon="IconNavigation"
         color="blue"
-      ></BaseBadge>
+      />
 
       <div
         slot="body"
@@ -22,7 +22,7 @@
           class="navigation-info__list"
           :items="navigationData"
           size="big"
-        ></BaseList>
+        />
       </div>
     </AccordionWrapper>
   </div>
@@ -49,13 +49,18 @@
       },
       fetchingReports: {
         type: Boolean
+      },
+      distanceMadeSinceLastReport: {
+        type: String
       }
     },
 
     data () {
+      const report = this.report
       return {
-        tweenedCourse: this.report ? this.report.course : 0,
-        tweenedSpd: this.report ? this.report.spd : 0
+        tweenedCourse: report ? report.course : 0,
+        tweenedSpd: report ? report.spd : 0,
+        tweenedDistanceMade: report ? parseInt(this.distanceMadeSinceLastReport) : 0,
       }
     },
 
@@ -64,8 +69,16 @@
         return this.report ? this.report.course : 0
       },
 
+      distanceMade () {
+        return this.report ? this.distanceMadeSinceLastReport : 0
+      },
+
       spd () {
         return this.report ? this.report.spd : 0
+      },
+
+      animatedDistanceMade () {
+        return this.tweenedDistanceMade.toFixed(0)
       },
 
       animatedCourse () {
@@ -84,6 +97,11 @@
           }, {
             title: 'Speed',
             value: this.animatedSpd ? `${this.animatedSpd} kn` : NOT_PROVIDED
+          }, {
+            title: 'Distance made since last report',
+            value: this.animatedDistanceMade ?
+              `${this.animatedDistanceMade} Nm` :
+              NOT_PROVIDED
           }
         ]
       }
@@ -94,8 +112,12 @@
         TweenMax.to(this.$data, 2, { tweenedCourse: newValue })
       },
 
+      distanceMade (newValue) {
+        TweenMax.to(this.$data, 2, { tweenedDistanceMade: newValue })
+      },
+
       spd (newValue) {
-        TweenMax.to(this.$data, 2, { tweenedSpd: newValue })
+        TweenMax.to(this.$data, 2, { tweenedDistanceMade: newValue })
       }
     }
   }

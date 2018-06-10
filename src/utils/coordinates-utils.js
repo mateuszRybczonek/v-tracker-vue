@@ -31,10 +31,10 @@ function decimalToDMS (decimal, latitude = true, degrees = 0, minutes = 0, secon
 
 function distanceBetweenPoints (depLat, depLng, arrLat, arrLng) {
   const R = 6371e3
-  const lat1 = depLat.toRadians()
-  const lat2 = arrLat.toRadians()
-  const dlat = (arrLat - depLat).toRadians()
-  const dlng = (arrLng - depLng).toRadians()
+  const lat1 = toRadians(depLat)
+  const lat2 = toRadians(arrLat)
+  const dlat = toRadians(arrLat - depLat)
+  const dlng = toRadians(arrLng - depLng)
 
   const a = Math.sin(dlat / 2) * Math.sin(dlat / 2) +
     Math.cos(lat1) * Math.cos(lat2) *
@@ -42,7 +42,7 @@ function distanceBetweenPoints (depLat, depLng, arrLat, arrLng) {
 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
 
-  return R * c
+  return (R * c / 1852).toFixed(0)
 }
 
 function formatLatForPersistanceLayer (lat) {
@@ -65,6 +65,10 @@ function formatLngForPersistanceLayer (lng) {
 
 function stripSymbols (coordinate) {
   return coordinate.replace(String.fromCharCode(176), '').replace("'", '')
+}
+
+function toRadians (value) {
+  return value * Math.PI / 180
 }
 
 export { decimalToDMS, distanceBetweenPoints, formatLatForPersistanceLayer, formatLngForPersistanceLayer, stripSymbols }
