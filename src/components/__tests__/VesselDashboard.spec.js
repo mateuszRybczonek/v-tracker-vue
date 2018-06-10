@@ -89,5 +89,18 @@ describe('VesselDashboard.vue', () => {
       const { wrapper } = setup()
       expect(wrapper.vm.previousReport).toEqual(report)
     })
+
+    describe('distanceMadeSinceLastReport returns proper value', () => {
+      const { wrapper } = setup()
+
+      it('returns properly calculated distance when previuosReport exist', () => {
+        expect(wrapper.vm.distanceMadeSinceLastReport).toEqual(1447)
+      })
+
+      it('returns early when previuosReport does not exist', () => {
+        wrapper.setComputed({ previousReport: undefined })
+        expect(wrapper.vm.distanceMadeSinceLastReport).toEqual(false)
+      })
+    })
   })
 })
