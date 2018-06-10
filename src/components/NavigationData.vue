@@ -51,7 +51,7 @@
         type: Boolean
       },
       distanceMadeSinceLastReport: {
-        type: String
+        type: Number
       }
     },
 
@@ -60,7 +60,7 @@
       return {
         tweenedCourse: report ? report.course : 0,
         tweenedSpd: report ? report.spd : 0,
-        tweenedDistanceMade: report ? parseInt(this.distanceMadeSinceLastReport) : 0,
+        tweenedDistanceMade: report ? this.distanceMadeSinceLastReport : 0,
       }
     },
 
