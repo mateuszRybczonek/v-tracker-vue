@@ -76,12 +76,6 @@
       ReportSelector
     },
 
-    data () {
-      return {
-        shrinkReportSelector: false
-      }
-    },
-
     computed: {
       ...mapGetters([
         'sortedReports'
