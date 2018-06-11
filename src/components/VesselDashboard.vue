@@ -34,6 +34,7 @@
           class="vessel-dashboard__row__item"
           :report="selectedReport"
           :fetchingReports="fetchingReports"
+          :distanceMadeSinceLastReport="distanceMadeSinceLastReport"
         />
       </div>
     </div>
@@ -63,6 +64,7 @@
   import NavigationData from './NavigationData.vue'
   import RemainingOnBoard from './RemainingOnBoard.vue'
   import ReportSelector from './ReportSelector'
+  import { distanceBetweenPoints } from '@/utils/coordinates-utils'
 
   export default {
     components: {
@@ -93,6 +95,13 @@
       previousReport () {
         const indexOfSelectedReport = this.reports.indexOf(this.selectedReport)
         return this.reports[indexOfSelectedReport + 1]
+      },
+
+      distanceMadeSinceLastReport () {
+        if (!this.previousReport) return false
+        const { lat: prevLat, lng: prevLng } = this.previousReport
+        const { lat, lng } = this.selectedReport
+        return parseInt(distanceBetweenPoints(prevLat, prevLng, lat, lng))
       },
 
       reportDate () {

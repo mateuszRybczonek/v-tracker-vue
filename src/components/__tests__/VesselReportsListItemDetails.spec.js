@@ -156,7 +156,7 @@ describe('VesselReportsListItemDetails.vue', () => {
         fwRob: 80,
         id: '-L7yuO7nLZtMgEe8qth6',
         lat: '12 20.3 N',
-        lng: '12 20.4 N',
+        lng: '012 20.4 E',
         pitch: 1,
         pob: 67,
         reportTime: '2018-02-10',

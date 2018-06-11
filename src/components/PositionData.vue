@@ -12,7 +12,7 @@
         title="Position"
         icon="IconPosition"
         color="red"
-      ></BaseBadge>
+      />
 
       <div
         slot="body"
@@ -22,7 +22,7 @@
           class="position-info__list"
           :items="positionData"
           size="big"
-        ></BaseList>
+        />
       </div>
     </AccordionWrapper>
   </div>

@@ -8,7 +8,8 @@ describe('NavigationData.vue', () => {
   const wrapper = mount(NavigationData, {
     propsData: {
       report,
-      fetchingReports: false
+      fetchingReports: false,
+      distanceMadeSinceLastReport: 120
     }
   })
 
@@ -18,5 +19,21 @@ describe('NavigationData.vue', () => {
 
   it('renders BaseList component', () => {
     expect(wrapper.findAll(BaseList)).toHaveLength(1)
+  })
+
+  it('renders proper number of items', () => {
+    expect(wrapper.findAll('[data-test-base-list-item]')).toHaveLength(3)
+  })
+
+  it('contains Course item', () => {
+    expect(wrapper.text()).toContain(`${wrapper.vm.report.course}°`)
+  })
+
+  it('contains Speed item', () => {
+    expect(wrapper.text()).toContain(`${wrapper.vm.report.spd} kn`)
+  })
+
+  it('contains Distance made since last report value', () => {
+    expect(wrapper.text()).toContain(`${wrapper.vm.distanceMadeSinceLastReport} Nm`)
   })
 })
