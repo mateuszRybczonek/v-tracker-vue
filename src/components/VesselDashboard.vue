@@ -111,6 +111,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    margin-right: 50px;
 
     &__report-selector {
       position: absolute;
