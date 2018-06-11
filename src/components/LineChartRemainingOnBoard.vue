@@ -1,43 +1,84 @@
 <template>
   <div class="container">
-      <div class="Chart__list">
-        <div class="Chart">
-          <h2>Remaining on board</h2>
-          <LineChart
-            :chartData="chartData"
-          />
-        </div>
+      <div class="chart">
+        <h2>Remaining on board</h2>
+        <LineChart
+          :chartData="chartData"
+        />
       </div>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import LineChart from '@/components/LineChart'
+import colorPalette from '@/constants/colorPalette'
 
+const { COLOR_BLACK, COLOR_BROWN, COLOR_BLUE } = colorPalette
 export default {
   components: {
     LineChart
   },
 
-  data () {
-    return {
-      chartData: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  props: {
+    reports: {
+      type: Object,
+      required: true
+    }
+  },
+
+  computed: {
+    labels () {
+      return this.reports.map(report => {
+        return report.reportTime
+      })
+    },
+
+    foDataset () {
+      return this.reports.map(report => {
+        return report.foRob
+      })
+    },
+
+    doDataset () {
+      return this.reports.map(report => {
+        return report.doRob
+      })
+    },
+
+    fwDataset () {
+      return this.reports.map(report => {
+        return report.fwRob
+      })
+    },
+
+    chartData () {
+      return {
+        labels: this.labels,
         datasets: [
           {
-            label: 'Data One',
-            borderColor: '#FC2525',
+            label: 'FO',
+            borderColor: COLOR_BLACK,
             pointBackgroundColor: 'white',
             borderWidth: 1,
-            pointBorderColor: 'white',
-            data: [40, 39, 10, 40, 39, 80, 40]
-          },{
-            label: 'Data Two',
-            borderColor: '#05CBE1',
+            pointBorderColor: COLOR_BLACK,
+            data: this.foDataset
+          },
+          {
+            label: 'DO',
+            borderColor: COLOR_BROWN,
             pointBackgroundColor: 'white',
-            pointBorderColor: 'white',
+            pointBorderColor: COLOR_BROWN,
             borderWidth: 1,
-            data: [60, 55, 32, 10, 2, 12, 53]
+            data: this.doDataset
+          },
+          {
+            label: 'FW',
+            borderColor: COLOR_BLUE,
+            pointBackgroundColor: 'white',
+            pointBorderColor: COLOR_BLUE,
+            borderWidth: 1,
+            data: this.fwDataset
           }
         ]
       }
@@ -48,21 +89,18 @@ export default {
 
 <style scoped lang='scss'>
 .container {
-  max-width: 800px;
-  margin:  0 auto;
-}
+  .chart {
+    background: $color-white;
+    padding: 20px;
+    text-align: center;
+    @include box-shadow(0 0 100px 1px rgba(0,0,0,0.1));
 
-.Chart {
-  background: $color-white;
-  padding: 20px;
-  text-align: center;
-  @include box-shadow(0 0 100px 1px rgba(0,0,0,0.1));
-}
-
-.Chart h2 {
-  margin-top: 0;
-  padding: 15px 0;
-  color:  rgba(255, 0,0, 0.5);
-  border-bottom: 1px solid #323d54;
+    h2 {
+      margin-top: 0;
+      padding: 15px 0;
+      color:  rgba(255, 0,0, 0.5);
+      border-bottom: 1px solid #323d54;
+    }
+  }
 }
 </style>
