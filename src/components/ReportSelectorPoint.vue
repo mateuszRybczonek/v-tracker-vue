@@ -11,7 +11,8 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { get } from 'vuex-pathify'
+
   export default {
     props: {
       report: {
@@ -21,9 +22,7 @@
     },
 
     computed: {
-      ...mapGetters([
-        'selectedReport'
-      ]),
+      selectedReport: get('selectedReport'),
 
       presentReportSelected () {
         return this.report.id === this.selectedReport.id

@@ -1,6 +1,4 @@
-import actions from './actions'
-import getters from './getters'
-import mutations from './mutations'
+import { make } from 'vuex-pathify'
 import { COMPONENT_NAMES } from '@/constants/vessel-details'
 
 const { VESSEL_DASHBOARD } = COMPONENT_NAMES
@@ -13,7 +11,7 @@ const state = {
 
 export default {
   state,
-  getters,
-  actions,
-  mutations
+  getters: { ...make.getters(state) },
+  actions: { ...make.actions(state) },
+  mutations: { ...make.mutations(state) }
 }

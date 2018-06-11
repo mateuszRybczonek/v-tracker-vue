@@ -9,7 +9,7 @@
       :key="button.component"
       class="quick-links__icon"
       :class="{ 'quick-links__icon--active': selectedVesselDetailsComponent === button.component }"
-      @click="selectVesselDetailsComponent(button.component)">
+      @click="setSelectedVesselDetailsComponent(button.component)">
       <BaseIcon
         width="32"
         height="32"
@@ -22,7 +22,8 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapActions } from 'vuex'
+  import { get } from 'vuex-pathify'
   import { COMPONENT_NAMES } from '../constants/vessel-details'
   import BaseIcon from './BaseIcon.vue'
   import IconFiles from './Icons/IconFiles.vue'
@@ -49,9 +50,7 @@
     },
 
     computed: {
-      ...mapGetters([
-        'selectedVesselDetailsComponent'
-      ]),
+      selectedVesselDetailsComponent: get('selectedVesselDetailsComponent'),
 
       buttons () {
         return [
@@ -75,7 +74,7 @@
 
     methods: {
       ...mapActions([
-        'selectVesselDetailsComponent'
+        'setSelectedVesselDetailsComponent'
       ])
     }
   }

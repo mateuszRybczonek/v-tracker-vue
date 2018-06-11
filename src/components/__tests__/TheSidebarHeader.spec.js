@@ -1,9 +1,13 @@
 import { shallow, createLocalVue } from 'vue-test-utils'
 import TheSidebarHeader from '@/components/TheSidebarHeader.vue'
 import Vuex from 'vuex'
+import moment from 'moment'
+import VueMomentJS from 'vue-momentjs'
 import { firstVessel } from '@/../test/stubs/vessel'
+import { report } from '@/../test/stubs/report'
+import pathify from 'vuex-pathify'
 
-const toggleSidebarSpy = jest.fn()
+const setSidebarVisibleSpy = jest.fn()
 
 describe('TheSidebarHeader.vue', () => {
   const setup = sidebarVisible => {
@@ -12,15 +16,17 @@ describe('TheSidebarHeader.vue', () => {
     }
 
     const actions = {
-      toggleSidebar: toggleSidebarSpy
+      setSidebarVisible: setSidebarVisibleSpy
     }
 
     getters.sidebarVisible.mockReturnValue(sidebarVisible)
 
     const localVue = createLocalVue()
     localVue.use(Vuex)
+    localVue.use(VueMomentJS, moment)
 
     const store = new Vuex.Store({
+      plugins: [ pathify.plugin ],
       state: {},
       getters,
       actions
@@ -30,7 +36,8 @@ describe('TheSidebarHeader.vue', () => {
       localVue,
       store,
       propsData: {
-        vessel: firstVessel
+        vessel: firstVessel,
+        report
       },
       stubs: ['router-link']
     })
@@ -48,6 +55,7 @@ describe('TheSidebarHeader.vue', () => {
 
   describe('when sidebarVisible is true', () => {
     const { wrapper } = setup(true)
+    wrapper.setComputed({ sidebarVisible: true })
 
     test('close icon is rendered', () => {
       expect(wrapper.find('[data-test-sidebar-header-close-icon]').classes()).not.toContain('sidebar__header__close__icon--open')
@@ -59,17 +67,18 @@ describe('TheSidebarHeader.vue', () => {
   })
 
   describe('Methods', () => {
-    it('toggleSidebar calls toggleSidebar action', () => {
+    it('setSidebarVisible calls setSidebarVisible action', () => {
       const { wrapper } = setup(true)
-      wrapper.vm.toggleSidebar()
+      wrapper.vm.setSidebarVisible()
 
-      expect(toggleSidebarSpy).toHaveBeenCalled()
+      expect(setSidebarVisibleSpy).toHaveBeenCalled()
     })
   })
 
   describe('Computed properties', () => {
     it('editLink returns proper link', () => {
       const { wrapper } = setup(true)
+      wrapper.setComputed({ sidebarVisible: true })
       expect(wrapper.vm.editLink).toEqual("/dashboard/vessels/1/edit")
     })
 

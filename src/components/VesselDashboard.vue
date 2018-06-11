@@ -26,13 +26,13 @@
       <div class="vessel-dashboard__row__item">
         <PositionData
           class="vessel-dashboard__row__item"
-          :report="report"
+          :report="selectedReport"
           :fetchingReports="fetchingReports"
         />
 
         <NavigationData
           class="vessel-dashboard__row__item"
-          :report="report"
+          :report="selectedReport"
           :fetchingReports="fetchingReports"
         />
       </div>
@@ -40,14 +40,14 @@
 
     <WeatherData
       class="vessel-dashboard__row__item"
-      :report="report"
+      :report="selectedReport"
       :fetchingReports="fetchingReports"
     />
 
     <RemainingOnBoard
       class="vessel-dashboard__item"
       v-if="!fetchingReports"
-      :report="report"
+      :report="selectedReport"
       :previousReport="previousReport"
       :fetchingReports="fetchingReports"
     />
@@ -56,6 +56,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
+  import { get } from 'vuex-pathify'
   import VesselDashboardGoogleMap from './VesselDashboardGoogleMap.vue'
   import WeatherData from './WeatherData.vue'
   import PositionData from './PositionData.vue'
@@ -81,19 +82,16 @@
 
     computed: {
       ...mapGetters([
-        'fetchingReports',
-        'selectedReport',
-        'sidebarVisible',
-        'sortedReports',
-        'reports'
+        'sortedReports'
       ]),
 
-      report () {
-        return this.selectedReport
-      },
+      fetchingReports: get('fetchingReports'),
+      selectedReport: get('selectedReport'),
+      reports: get('reports'),
+      sidebarVisible: get('sidebarVisible'),
 
       previousReport () {
-        const indexOfSelectedReport = this.reports.indexOf(this.report)
+        const indexOfSelectedReport = this.reports.indexOf(this.selectedReport)
         return this.reports[indexOfSelectedReport + 1]
       },
 

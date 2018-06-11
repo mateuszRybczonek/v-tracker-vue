@@ -1,6 +1,6 @@
 import { shallow, createLocalVue } from 'vue-test-utils'
 import ReportSelectorPoint from '@/components/ReportSelectorPoint.vue'
-import { report, secondReport } from '@/../test/stubs/report'
+import { report } from '@/../test/stubs/report'
 import Vuex from 'vuex'
 import moment from 'moment'
 import VueMomentJS from 'vue-momentjs'
@@ -58,11 +58,6 @@ describe('ReportSelectorPoint.vue', () => {
 
   describe('Computed properties', () => {
     describe('presentReportSelected', () => {
-      it('returns proper data', () => {
-        const { wrapper } = setup(secondReport)
-        expect(wrapper.vm.presentReportSelected).toEqual(false)
-      })
-
       it('returns proper data', () => {
         const { wrapper } = setup()
         expect(wrapper.vm.presentReportSelected).toEqual(true)

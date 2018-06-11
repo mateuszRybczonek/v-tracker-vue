@@ -16,7 +16,7 @@
     </router-link>
     <div
       class="sidebar__header__close"
-      @click="toggleSidebar"
+      @click="setSidebarVisible(!sidebarVisible)"
     >
       <div data-test-sidebar-header-close-icon
         class="sidebar__header__close__icon"
@@ -30,7 +30,8 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapActions } from 'vuex'
+  import { get } from 'vuex-pathify'
   import BaseIcon from './BaseIcon.vue'
   import IconPencil from './Icons/IconPencil.vue'
 
@@ -51,9 +52,7 @@
     },
 
     computed: {
-      ...mapGetters([
-        'sidebarVisible'
-      ]),
+      sidebarVisible: get('sidebarVisible'),
 
       editLink () {
         return `/dashboard/vessels/${this.vessel.id}/edit`
@@ -96,7 +95,7 @@
 
     methods: {
       ...mapActions([
-        'toggleSidebar'
+        'setSidebarVisible'
       ])
     }
   }

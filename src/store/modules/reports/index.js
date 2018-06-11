@@ -1,3 +1,4 @@
+import { make } from 'vuex-pathify'
 import actions from './actions'
 import getters from './getters'
 import mutations from './mutations'
@@ -10,7 +11,16 @@ const state = {
 
 export default {
   state,
-  getters,
-  actions,
-  mutations
+  getters: {
+    ...make.getters(state),
+    ...getters
+  },
+  mutations: {
+    ...make.mutations(['reports', 'fetchingReports']),
+    ...mutations
+  },
+  actions: {
+    ...make.actions(state),
+    ...actions
+  }
 }

@@ -29,8 +29,8 @@ export default {
     } catch (error) { throw error }
   },
 
-  async fetchReports ({ dispatch }, vesselId) {
-    dispatch('setFetchingReports', true)
+  async fetchReports ({ commit }, vesselId) {
+    commit(types.SET_FETCHING_REPORTS, true)
     try {
       const { data } = await globalAxios.get(`/reports.json?orderBy="vessel"&equalTo="${vesselId}"`)
       const reports = []
@@ -40,22 +40,10 @@ export default {
         mapReportForStore(report)
         reports.push(report)
       }
-      dispatch('storeReports', reports)
-      dispatch('setFetchingReports', false)
-      dispatch('selectReport', getLastReport(reports).id)
+      commit(types.SET_REPORTS, reports)
+      commit(types.SET_FETCHING_REPORTS, false)
+      commit(types.SELECT_REPORT, getLastReport(reports).id)
     } catch (error) { throw(error) }
-  },
-
-  storeReports ({ commit }, reports) {
-    commit(types.STORE_REPORTS, reports)
-  },
-
-  setFetchingReports ({ commit }, value) {
-    commit(types.FETCHING_REPORTS, value)
-  },
-
-  selectReport ({ commit }, reportId) {
-    commit(types.SELECT_REPORT, reportId)
   },
 
   async deleteReport ({ getters, commit }, payload) {
@@ -68,5 +56,9 @@ export default {
         commit(types.DELETE_REPORT, reportId)
       } catch (error) { throw(error) }
     } catch (error) { throw(error) }
+  },
+
+  selectReport ({ commit }, reportId) {
+    commit(types.SELECT_REPORT, reportId)
   }
 }

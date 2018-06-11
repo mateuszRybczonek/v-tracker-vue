@@ -2,25 +2,6 @@ import mutations from '@/store/modules/reports/mutations'
 import { report, secondReport, rawSecondReport } from '@/../test/stubs/report'
 
 describe('reports mutations', () => {
-  test('STORE_REPORTS sets state.reports to reports', () => {
-    const reports = [ report ]
-
-    const state = {
-      reports: []
-    }
-
-    mutations.STORE_REPORTS(state, reports)
-    expect(state.reports).toBe(reports)
-  })
-
-  test('FETCHING_REPORTS sets state.fetchingReports to given value', () => {
-    const fetchingReports = true
-    const state = { fetchingReports }
-
-    mutations.FETCHING_REPORTS(state, false)
-    expect(state.fetchingReports).toBe(false)
-  })
-
   test('ADD_REPORT adds a report to state.reports', () => {
     const reports = [ report ]
     const state = { reports }
