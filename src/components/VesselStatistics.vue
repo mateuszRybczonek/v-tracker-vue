@@ -2,14 +2,16 @@
   <div
     data-test-vessel-statistics
     class="vessel-statistics"
-    :class="{ 'vessel-statistics--full-width': !sidebarVisible }"
   >
-    <LineChartRemainingOnBoard/>
+    <LineChartRemainingOnBoard
+      :reports="sortedReportsDesc"
+    />
   </div>
 </template>
 
 <script>
   import { get } from 'vuex-pathify'
+  import { mapGetters } from 'vuex'
   import LineChartRemainingOnBoard from './LineChartRemainingOnBoard'
 
   export default {
@@ -18,7 +20,9 @@
     },
 
     computed: {
-      sidebarVisible: get('sidebarVisible')
+      ...mapGetters([
+        'sortedReportsDesc'
+      ])
     }
   }
 </script>
