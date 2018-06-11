@@ -5,7 +5,7 @@ export default {
   COLOR_WATER: '#C3E6FF',
   COLOR_LINE: '#FFF',
   COLOR_SELECTED_POINT: '#00b853',
-  COLOR_BROWN: '#8B4513',
-  COLOR_BLACK: '#000',
-  COLOR_BLUE: '#4d6d9b'
+  COLOR_BROWN: 'rgb(139,69,19)',
+  COLOR_BLACK: 'rgb(0,0,0)',
+  COLOR_BLUE: 'rgb(77,109,155)'
 };

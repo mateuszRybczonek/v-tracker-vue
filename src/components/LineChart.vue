@@ -1,16 +1,9 @@
 <script>
-import { Line, mixins } from 'vue-chartjs'
+import { Line } from 'vue-chartjs'
+import { convertToRgba } from '@/utils/color-utils'
 
 export default {
   extends: Line,
-  mixins: [mixins.reactiveProp],
-
-  data () {
-    return {
-      gradient: null,
-      gradient2: null
-    }
-  },
 
   props: {
     chartData: {
@@ -20,32 +13,15 @@ export default {
   },
 
   mounted () {
-    this.gradient = this.$refs.canvas.getContext('2d').createLinearGradient(0, 0, 0, 450)
-    this.gradient2 = this.$refs.canvas.getContext('2d').createLinearGradient(0, 0, 0, 450)
-    this.gradient3 = this.$refs.canvas.getContext('2d').createLinearGradient(0, 0, 0, 450)
-
-    this.gradient.addColorStop(0, 'rgba(0, 0, 0, 0.5)')
-    this.gradient.addColorStop(0.5, 'rgba(0, 0, 0, 0.25)')
-    this.gradient.addColorStop(1, 'rgba(0, 0, 0, 0)')
-
-    this.gradient2.addColorStop(0, 'rgba(205, 133, 63, 0.7)')
-    this.gradient2.addColorStop(0.5, 'rgba(205,133, 63, 0.25)')
-    this.gradient2.addColorStop(1, 'rgba(205, 133, 63, 0)')
-
-    this.gradient3.addColorStop(0, 'rgba(195, 230, 255, 0.9)')
-    this.gradient3.addColorStop(0.5, 'rgba(195, 230, 255, 0.25)')
-    this.gradient3.addColorStop(1, 'rgba(195, 230, 255, 0)')
-
-    const gradients = [
-      this.gradient,
-      this.gradient2,
-      this.gradient3
-    ]
-
     const datasets = this.chartData.datasets.map((dataset, index) => {
+      const gradient = this.$refs.canvas.getContext('2d').createLinearGradient(0, 0, 0, 450)
+      gradient.addColorStop(0, convertToRgba(dataset.borderColor, 0.5))
+      gradient.addColorStop(0.5, convertToRgba(dataset.borderColor, 0.25))
+      gradient.addColorStop(1, convertToRgba(dataset.borderColor, 0))
+
       const changed = {
         ...dataset,
-        backgroundColor: gradients[index]
+        backgroundColor: gradient
       }
 
       return changed
@@ -70,7 +46,7 @@ export default {
             hitRadius: 20,
           },
           line: {
-            
+
           }
         }
       }
