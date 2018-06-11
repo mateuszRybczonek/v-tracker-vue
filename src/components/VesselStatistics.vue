@@ -10,7 +10,6 @@
 </template>
 
 <script>
-  import { get } from 'vuex-pathify'
   import { mapGetters } from 'vuex'
   import LineChartRemainingOnBoard from './LineChartRemainingOnBoard'
 
@@ -31,6 +30,7 @@
   .vessel-statistics {
     max-width: 1440px;
     margin: 0 auto;
+    padding: 54px 0;
     display: flex;
     flex-direction: column;
   }

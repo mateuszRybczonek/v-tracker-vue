@@ -1,7 +1,7 @@
 <template>
   <div class="container">
       <div class="chart">
-        <h2>Remaining on board</h2>
+        <h2 class="chart__header">Remaining on board chart</h2>
         <LineChart
           :chartData="chartData"
         />
@@ -10,11 +10,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import LineChart from '@/components/LineChart'
 import colorPalette from '@/constants/colorPalette'
 
-const { COLOR_BLACK, COLOR_BROWN, COLOR_BLUE } = colorPalette
+const { COLOR_BLACK, COLOR_BROWN, COLOR_BLUE, COLOR_WHITE } = colorPalette
 export default {
   components: {
     LineChart
@@ -22,7 +21,7 @@ export default {
 
   props: {
     reports: {
-      type: Object,
+      type: Array,
       required: true
     }
   },
@@ -59,7 +58,7 @@ export default {
           {
             label: 'FO',
             borderColor: COLOR_BLACK,
-            pointBackgroundColor: 'white',
+            pointBackgroundColor: COLOR_WHITE,
             borderWidth: 1,
             pointBorderColor: COLOR_BLACK,
             data: this.foDataset
@@ -67,7 +66,7 @@ export default {
           {
             label: 'DO',
             borderColor: COLOR_BROWN,
-            pointBackgroundColor: 'white',
+            pointBackgroundColor: COLOR_WHITE,
             pointBorderColor: COLOR_BROWN,
             borderWidth: 1,
             data: this.doDataset
@@ -75,7 +74,7 @@ export default {
           {
             label: 'FW',
             borderColor: COLOR_BLUE,
-            pointBackgroundColor: 'white',
+            pointBackgroundColor: COLOR_WHITE,
             pointBorderColor: COLOR_BLUE,
             borderWidth: 1,
             data: this.fwDataset
@@ -95,11 +94,10 @@ export default {
     text-align: center;
     @include box-shadow(0 0 100px 1px rgba(0,0,0,0.1));
 
-    h2 {
+    &__header {
       margin-top: 0;
       padding: 15px 0;
-      color:  rgba(255, 0,0, 0.5);
-      border-bottom: 1px solid #323d54;
+      color:  $color-dark-grey;
     }
   }
 }

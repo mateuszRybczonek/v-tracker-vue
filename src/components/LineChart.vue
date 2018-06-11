@@ -13,7 +13,7 @@ export default {
   },
 
   mounted () {
-    const datasets = this.chartData.datasets.map((dataset, index) => {
+    const datasets = this.chartData.datasets.map(dataset => {
       const gradient = this.$refs.canvas.getContext('2d').createLinearGradient(0, 0, 0, 450)
       gradient.addColorStop(0, convertToRgba(dataset.borderColor, 0.5))
       gradient.addColorStop(0.5, convertToRgba(dataset.borderColor, 0.25))
@@ -43,10 +43,7 @@ export default {
             radius: 4,
             pointStyle: 'circle',
             hoverRadius: 5,
-            hitRadius: 20,
-          },
-          line: {
-
+            hitRadius: 20
           }
         }
       }

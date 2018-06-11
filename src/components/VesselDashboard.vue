@@ -92,7 +92,7 @@
       },
 
       distanceMadeSinceLastReport () {
-        if (!this.previousReport) return false
+        if (!this.previousReport) return 0
         const { lat: prevLat, lng: prevLng } = this.previousReport
         const { lat, lng } = this.selectedReport
         return parseInt(distanceBetweenPoints(prevLat, prevLng, lat, lng))
