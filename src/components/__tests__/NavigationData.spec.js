@@ -26,14 +26,14 @@ describe('NavigationData.vue', () => {
   })
 
   it('contains Course item', () => {
-    expect(wrapper.text()).toContain('90°')
+    expect(wrapper.text()).toContain(`${wrapper.vm.report.course}°`)
   })
 
   it('contains Speed item', () => {
-    expect(wrapper.text()).toContain('12 kn')
+    expect(wrapper.text()).toContain(`${wrapper.vm.report.spd} kn`)
   })
 
   it('contains Distance made since last report value', () => {
-    expect(wrapper.text()).toContain('120 Nm')
+    expect(wrapper.text()).toContain(`${wrapper.vm.distanceMadeSinceLastReport} Nm`)
   })
 })
