@@ -1,13 +1,33 @@
 <template>
-  <div class="vessel-statistics">
-    Statistics
+  <div
+    data-test-vessel-statistics
+    class="vessel-statistics"
+    :class="{ 'vessel-statistics--full-width': !sidebarVisible }"
+  >
+    <LineChartRemainingOnBoard/>
   </div>
 </template>
 
 <script>
-  export default {}
+  import { get } from 'vuex-pathify'
+  import LineChartRemainingOnBoard from './LineChartRemainingOnBoard'
+
+  export default {
+    components: {
+      LineChartRemainingOnBoard
+    },
+
+    computed: {
+      sidebarVisible: get('sidebarVisible')
+    }
+  }
 </script>
 
 <style scoped lang="scss">
-  .vessel-statistics {}
+  .vessel-statistics {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
 </style>
