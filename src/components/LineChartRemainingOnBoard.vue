@@ -1,7 +1,12 @@
 <template>
   <div class="container">
       <div class="chart">
-        <h2 class="chart__header">Remaining on board chart</h2>
+        <h2
+          data-test-chart-header
+          class="chart__header"
+        >
+          Remaining on board chart
+        </h2>
         <LineChart
           :chartData="chartData"
         />
@@ -14,6 +19,7 @@ import LineChart from '@/components/LineChart'
 import colorPalette from '@/constants/colorPalette'
 
 const { COLOR_BLACK, COLOR_BROWN, COLOR_BLUE, COLOR_WHITE } = colorPalette
+
 export default {
   components: {
     LineChart
