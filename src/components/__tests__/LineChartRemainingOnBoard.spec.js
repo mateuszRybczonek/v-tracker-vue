@@ -1,4 +1,4 @@
-import { shallow, createLocalVue } from 'vue-test-utils'
+import { shallow } from 'vue-test-utils'
 import { report, secondReport } from '@/../test/stubs/report'
 import LineChartRemainingOnBoard from '@/components/LineChartRemainingOnBoard'
 import LineChart from '@/components/LineChart'
