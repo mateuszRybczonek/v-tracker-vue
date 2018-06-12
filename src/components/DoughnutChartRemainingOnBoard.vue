@@ -22,9 +22,17 @@ export default {
   },
 
   props: {
-    item: {
-      type: Object,
+    filled: {
+      type: String,
       required: true
+    },
+    empty: {
+      type: Number,
+      required: true
+    },
+    change: {
+      type: Number,
+      requried: true
     }
   },
 
@@ -33,11 +41,16 @@ export default {
       return {
         labels: [
           'Filled',
+          'Change',
           'Empty'
         ],
         datasets: [
           {
-            data: [parseInt(this.item.header), 10],
+            data: [
+              this.filled,
+              this.change,
+              this.empty
+            ],
           }
         ]
       }

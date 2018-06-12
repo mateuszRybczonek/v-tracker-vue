@@ -5,7 +5,14 @@
     :class="item.color"
   >
     <div class="mini-stats-item-body__icon">
+      <DoughnutChartRemainingOnBoard
+        v-if="item.freeSpace || item.freeSpace === 0"
+        :filled="filledValue"
+        :change="item.change"
+        :empty="item.freeSpace"
+      />
       <BaseIcon
+        v-else
         width="80"
         height="80"
       >
@@ -34,13 +41,15 @@
   import IconFuel from './Icons/IconFuel.vue'
   import IconWater from './Icons/IconWater.vue'
   import IconPeople from './Icons/IconPeople.vue'
+  import DoughnutChartRemainingOnBoard from './DoughnutChartRemainingOnBoard'
 
   export default {
     components: {
       BaseIcon,
       IconFuel,
       IconWater,
-      IconPeople
+      IconPeople,
+      DoughnutChartRemainingOnBoard
     },
 
     props: {
@@ -48,12 +57,23 @@
         type: Object,
         required: true
       }
+    },
+
+    computed: {
+      filledValue () {
+        const filled = parseInt(this.item.header)
+        const change = this.item.change
+
+        return change < 0 ? filled : filled - change
+      }
     }
   }
 </script>
 
 <style scoped lang="scss">
   .mini-stats-item-body {
+    position: relative;
+
     &.black {
       color: $color-black;
     }

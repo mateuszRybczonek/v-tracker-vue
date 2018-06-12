@@ -29,7 +29,11 @@
       fetchingReports: {
         type: Boolean,
         required: true
+      },
+      vesselCapacities: {
+        type: Object
       }
+
     },
 
     data () {
@@ -77,29 +81,29 @@
       miniStatsItems () {
         return [
           {
-            icon: 'IconFuel',
             header: this.animatedFoRob,
             change: this.previousReport ? this.animatedFoRob - this.previousReport.foRob : 0,
             unit: 'cbm',
             description: 'Fuel Oil',
             customClass: 'mini-stats__item--fo',
-            color: 'black'
+            color: 'black',
+            freeSpace: this.vesselCapacities.maxFo - this.animatedFoRob - (this.previousReport ? this.animatedFoRob - this.previousReport.foRob : 0)
           }, {
-            icon: 'IconFuel',
             header: this.animatedDoRob,
             change: this.previousReport ? this.animatedDoRob - this.previousReport.doRob : 0,
             unit: 'cbm',
             description: 'Diesel Oil',
             customClass: 'mini-stats__item--do',
-            color: 'brown'
+            color: 'brown',
+            freeSpace: this.vesselCapacities.maxDo - this.animatedDoRob - (this.previousReport ? this.animatedDoRob - this.previousReport.doRob : 0)
           }, {
-            icon: 'IconWater',
             header: this.animatedFwRob,
             change: this.previousReport ? this.animatedFwRob - this.previousReport.fwRob : 0,
             unit: 'cbm',
             description: 'Fresh Water',
             customClass: 'mini-stats__item--fw',
-            color: 'light-blue'
+            color: 'light-blue',
+            freeSpace: this.vesselCapacities.maxFw - this.animatedFwRob - (this.previousReport ? this.animatedFwRob - this.previousReport.fwRob : 0)
           }, {
             icon: 'IconPeople',
             header: this.animatedPob,
