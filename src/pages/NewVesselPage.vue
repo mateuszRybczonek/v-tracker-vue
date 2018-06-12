@@ -77,6 +77,39 @@
         <span class="validation-error" v-if="showErrors && !$v.vessel.flag.required">This field must not be empty.</span>
       </div>
 
+      <input
+        data-test-edit-vessel-form-max-fo-input
+        class="new-vessel-form__max-fo-input input--with-error"
+        :class="{ invalid: showErrors && $v.vessel.maxFo.$invalid }"
+        @blur="$v.vessel.maxFo.$touch()"
+        v-model="vessel.maxFo"
+        placeholder="Max FO">
+      <div class="error">
+        <span class="validation-error" v-if="showErrors && !$v.vessel.maxFo.numeric">Max FO must be a number.</span>
+      </div>
+
+      <input
+        data-test-edit-vessel-form-max-do-input
+        class="new-vessel-form__max-do-input input--with-error"
+        :class="{ invalid: showErrors && $v.vessel.maxDo.$invalid }"
+        @blur="$v.vessel.maxDo.$touch()"
+        v-model="vessel.maxDo"
+        placeholder="Max DO">
+      <div class="error">
+        <span class="validation-error" v-if="showErrors && !$v.vessel.maxDo.numeric">Max DO must be a number.</span>
+      </div>
+
+      <input
+        data-test-edit-vessel-form-max-fw-input
+        class="new-vessel-form__max-fw-input input--with-error"
+        :class="{ invalid: showErrors && $v.vessel.maxFw.$invalid }"
+        @blur="$v.vessel.maxFw.$touch()"
+        v-model="vessel.maxFw"
+        placeholder="Max FW">
+      <div class="error">
+        <span class="validation-error" v-if="showErrors && !$v.vessel.maxFw.numeric">Max FW must be a number.</span>
+      </div>
+
       <div class="actions">
         <ButtonPositive :inProgress="isSubmitted" :on-click="onSubmit">
           <span>
@@ -105,7 +138,10 @@
           mmsi: '',
           gt: '',
           yob: '',
-          flag: ''
+          flag: '',
+          maxFo: '',
+          maxDo: '',
+          maxFw: ''
         },
         isSubmitted: false,
         showErrors: false
@@ -119,7 +155,10 @@
         gt: { numeric },
         mmsi: { numeric },
         yob: { numeric },
-        flag: { required }
+        flag: { required },
+        maxFo: { numeric },
+        maxDo: { numeric },
+        maxFw: { numeric }
       }
     },
 
@@ -137,6 +176,9 @@
           yob: this.vessel.yob,
           flag: this.vessel.flag,
           reports: [],
+          maxFo: this.vessel.maxFo,
+          maxDo: this.vessel.maxDo,
+          maxFw: this.vessel.maxFw,
           owner: this.$store.state.auth.userId
         }
 
