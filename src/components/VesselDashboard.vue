@@ -51,6 +51,7 @@
       :report="selectedReport"
       :previousReport="previousReport"
       :fetchingReports="fetchingReports"
+      :vesselCapacities="vesselCapacities"
     />
   </div>
 </template>
@@ -85,6 +86,20 @@
       selectedReport: get('selectedReport'),
       reports: get('reports'),
       sidebarVisible: get('sidebarVisible'),
+      vessels: get('vessels'),
+
+      vessel () {
+        return this.vessels.find(vessel => vessel.id === this.$route.params.id)
+      },
+
+      vesselCapacities () {
+        const { maxFo, maxDo, maxFw } = this.vessel
+        return {
+          maxFo: parseInt(maxFo),
+          maxDo: parseInt(maxDo),
+          maxFw: parseInt(maxFw)
+        }
+      },
 
       previousReport () {
         const indexOfSelectedReport = this.reports.indexOf(this.selectedReport)
