@@ -78,32 +78,74 @@
         return this.tweenedPob.toFixed(0)
       },
 
+      foChange () {
+        return this.previousReport ? this.animatedFoRob - this.previousReport.foRob : 0
+      },
+
+      foFreeSpace () {
+        const foChange = this.foChange
+        const maxFo = this.vesselCapacities.maxFo
+        const animatedFoRob = this.animatedFoRob
+
+        return foChange > 0 ?
+          maxFo - animatedFoRob - foChange :
+          maxFo - animatedFoRob + foChange
+      },
+
+      doChange () {
+        return this.previousReport ? this.animatedDoRob - this.previousReport.doRob : 0
+      },
+
+      doFreeSpace () {
+        const doChange = this.doChange
+        const maxDo = this.vesselCapacities.maxDo
+        const animatedDoRob = this.animatedDoRob
+
+        return doChange > 0 ?
+          maxDo - animatedDoRob - doChange :
+          maxDo - animatedDoRob + doChange
+      },
+
+      fwChange () {
+        return this.previousReport ? this.animatedFwRob - this.previousReport.fwRob : 0
+      },
+
+      fwFreeSpace () {
+        const fwChange = this.fwChange
+        const maxFw = this.vesselCapacities.maxFw
+        const animatedFwRob = this.animatedFwRob
+
+        return fwChange > 0 ?
+          maxFw - animatedFwRob - fwChange :
+          maxFw - animatedFwRob + fwChange
+      },
+
       miniStatsItems () {
         return [
           {
             header: this.animatedFoRob,
-            change: this.previousReport ? this.animatedFoRob - this.previousReport.foRob : 0,
+            change: this.foChange,
             unit: 'cbm',
             description: 'Fuel Oil',
             customClass: 'mini-stats__item--fo',
             color: 'black',
-            freeSpace: this.vesselCapacities.maxFo - this.animatedFoRob - (this.previousReport ? this.animatedFoRob - this.previousReport.foRob : 0)
+            freeSpace: this.foFreeSpace
           }, {
             header: this.animatedDoRob,
-            change: this.previousReport ? this.animatedDoRob - this.previousReport.doRob : 0,
+            change: this.doChange,
             unit: 'cbm',
             description: 'Diesel Oil',
             customClass: 'mini-stats__item--do',
             color: 'brown',
-            freeSpace: this.vesselCapacities.maxDo - this.animatedDoRob - (this.previousReport ? this.animatedDoRob - this.previousReport.doRob : 0)
+            freeSpace: this.doFreeSpace
           }, {
             header: this.animatedFwRob,
-            change: this.previousReport ? this.animatedFwRob - this.previousReport.fwRob : 0,
+            change: this.fwChange,
             unit: 'cbm',
             description: 'Fresh Water',
             customClass: 'mini-stats__item--fw',
             color: 'light-blue',
-            freeSpace: this.vesselCapacities.maxFw - this.animatedFwRob - (this.previousReport ? this.animatedFwRob - this.previousReport.fwRob : 0)
+            freeSpace: this.fwFreeSpace
           }, {
             icon: 'IconPeople',
             header: this.animatedPob,
