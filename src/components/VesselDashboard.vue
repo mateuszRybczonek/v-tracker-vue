@@ -157,13 +157,16 @@
       }
 
       &__item {
-        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 20px;
         min-width: 49%;
       }
     }
 
     &__item {
-      margin-top: 40px;
+      margin: 20px 0;
     }
   }
 </style>

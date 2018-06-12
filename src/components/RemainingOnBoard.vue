@@ -5,7 +5,7 @@
       :key="item.description"
       :item="item"
       :showPlaceholder="fetchingReports"
-    ></MiniStatsItem>
+    />
   </div>
 </template>
 

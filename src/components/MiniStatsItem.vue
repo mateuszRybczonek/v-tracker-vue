@@ -64,7 +64,7 @@
 
 <style scoped lang="scss">
   .mini-stats-item {
-    min-width: 320px;
+    min-width: 430px;
     margin-top: 20px;
 
     &__body {
