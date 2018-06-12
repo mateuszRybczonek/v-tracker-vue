@@ -8,5 +8,8 @@ export default {
   COLOR_BROWN: 'rgb(139,69,19)',
   COLOR_BLACK: 'rgb(0,0,0)',
   COLOR_BLUE: 'rgb(77,109,155)',
-  COLOR_WHITE: 'rgb(255,255,255)'
+  COLOR_WHITE: 'rgb(255,255,255)',
+  COLOR_WHITEY: '#F0F0F0',
+  COLOR_GREEN: '#009b4d',
+  COLOR_TOMATO: '#F37272',
 };

@@ -123,6 +123,7 @@
       miniStatsItems () {
         return [
           {
+            icon: 'IconFuel',
             header: this.animatedFoRob,
             change: this.foChange,
             unit: 'cbm',
@@ -131,6 +132,7 @@
             color: 'black',
             freeSpace: this.foFreeSpace
           }, {
+            icon: 'IconFuel',
             header: this.animatedDoRob,
             change: this.doChange,
             unit: 'cbm',
@@ -139,6 +141,7 @@
             color: 'brown',
             freeSpace: this.doFreeSpace
           }, {
+            icon: 'IconWater',
             header: this.animatedFwRob,
             change: this.fwChange,
             unit: 'cbm',
