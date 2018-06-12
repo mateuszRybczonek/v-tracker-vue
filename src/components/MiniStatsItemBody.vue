@@ -10,6 +10,7 @@
         :filled="filledValue"
         :change="item.change"
         :empty="item.freeSpace"
+        :color="item.color"
       />
       <BaseIcon
         v-else
