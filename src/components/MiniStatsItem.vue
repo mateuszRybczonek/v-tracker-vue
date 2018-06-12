@@ -18,20 +18,20 @@
         :title="item.description"
         :color="item.color"
         viewBox="10 0 76 76"
-      ></BaseBadge>
+      />
 
       <MiniStatsItemBody
         slot="body"
         class="mini-stats-item__body"
         :item="item"
-      ></MiniStatsItemBody>
+      />
 
       <MiniStatsItemFooter
         slot="footer"
         class="mini-stats-item__footer"
         :change="item.change"
         :unit="item.unit"
-      ></MiniStatsItemFooter>
+      />
     </AccordionWrapper>
   </div>
 </template>
@@ -71,7 +71,7 @@
       display: flex;
       justify-content: space-evenly;
       text-align: left;
-      min-height: 130px;
+      min-height: 200px;
 
       .item__icon {
         display: flex;
