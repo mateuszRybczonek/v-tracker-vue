@@ -6,7 +6,9 @@ const { VESSEL_DASHBOARD } = COMPONENT_NAMES
 const state = {
   sidebarVisible: true,
   selectedVesselDetailsComponent: VESSEL_DASHBOARD,
-  dashboardGoogleMap: {}
+  dashboardGoogleMap: {},
+  vessel: {},
+  vesselCapacities: []
 }
 
 export default {
