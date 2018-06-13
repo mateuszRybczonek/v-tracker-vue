@@ -27,7 +27,7 @@ export default {
 
   props: {
     filled: {
-      type: String,
+      type: Number,
       required: true
     },
     empty: {
