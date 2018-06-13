@@ -69,7 +69,8 @@
       },
 
       isFreeSpacePresent () {
-        return item.freeSpace || item.freeSpace === 0
+        const freeSpace = this.item.freeSpace
+        return freeSpace || freeSpace === 0
       }
     }
   }
