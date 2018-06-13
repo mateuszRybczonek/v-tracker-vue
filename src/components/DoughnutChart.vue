@@ -14,13 +14,10 @@ export default {
   },
 
   mounted () {
-    const labels = this.chartData.labels
-    const datasets = this.chartData.datasets
-
     this.renderChart(
       {
-        labels,
-        datasets
+        labels: this.chartData.labels,
+        datasets: this.chartData.datasets
       },
       {
         responsive: true,
