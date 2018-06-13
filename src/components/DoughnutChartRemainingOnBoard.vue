@@ -17,7 +17,7 @@ import colorPalette from '@/constants/colorPalette'
 const {
   COLOR_BLACK,
   COLOR_BROWN,
-  COLOR_BLUE,
+  COLOR_LIGHT_BLUE,
   COLOR_WHITEY,
   COLOR_GREEN,
   COLOR_TOMATO
@@ -61,7 +61,11 @@ export default {
               this.change,
               this.empty
             ],
-            backgroundColor: this.colorSet
+            backgroundColor: [
+              this.filledColor,
+              this.changeColor,
+              COLOR_WHITEY
+            ]
           }
         ]
       }
@@ -71,26 +75,11 @@ export default {
       return this.change > 0 ? COLOR_GREEN : COLOR_TOMATO
     },
 
-    colorSet () {
+    filledColor () {
       switch (this.color) {
-        case 'black':
-          return [
-            COLOR_BLACK,
-            this.changeColor,
-            COLOR_WHITEY
-          ]
-        case 'brown':
-          return [
-            COLOR_BROWN,
-            this.changeColor,
-            COLOR_WHITEY
-          ]
-        case 'light-blue':
-          return [
-            COLOR_BLUE,
-            this.changeColor,
-            COLOR_WHITEY
-          ]
+        case 'black': return COLOR_BLACK
+        case 'brown': return COLOR_BROWN
+        case 'light-blue': return COLOR_LIGHT_BLUE
       }
     }
   }
