@@ -83,13 +83,7 @@
       },
 
       foFreeSpace () {
-        const foChange = this.foChange
-        const maxFo = this.vesselCapacities.maxFo
-        const animatedFoRob = this.animatedFoRob
-
-        return foChange > 0 ?
-          maxFo - animatedFoRob - foChange :
-          maxFo - animatedFoRob + foChange
+        return _getFreeSpace(this.foChange, this.vesselCapacities.maxFo, this.animatedFoRob)
       },
 
       doChange () {
@@ -97,13 +91,7 @@
       },
 
       doFreeSpace () {
-        const doChange = this.doChange
-        const maxDo = this.vesselCapacities.maxDo
-        const animatedDoRob = this.animatedDoRob
-
-        return doChange > 0 ?
-          maxDo - animatedDoRob - doChange :
-          maxDo - animatedDoRob + doChange
+        return _getFreeSpace(this.doChange, this.vesselCapacities.maxDo, this.animatedDoRob)
       },
 
       fwChange () {
@@ -111,13 +99,7 @@
       },
 
       fwFreeSpace () {
-        const fwChange = this.fwChange
-        const maxFw = this.vesselCapacities.maxFw
-        const animatedFwRob = this.animatedFwRob
-
-        return fwChange > 0 ?
-          maxFw - animatedFwRob - fwChange :
-          maxFw - animatedFwRob + fwChange
+        return _getFreeSpace(this.fwChange, this.vesselCapacities.maxFw, this.animatedFwRob)
       },
 
       miniStatsItems () {
@@ -179,6 +161,12 @@
         TweenMax.to(this.$data, 2, { tweenedPob: newValue })
       }
     }
+  }
+
+  function _getFreeSpace(change, maxCapacity, currentValue) {
+    return change > 0 ?
+      maxCapacity - currentValue - change :
+      maxCapacity - currentValue + change
   }
 </script>
 
