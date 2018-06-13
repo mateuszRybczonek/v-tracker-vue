@@ -1,13 +1,10 @@
 <template>
-  <div class="container">
-      <div class="chart">
-        <DoughnutChart
-          :chartData="chartData"
-          :width="150"
-          :height="150"
-        />
-      </div>
-    </div>
+  <DoughnutChart
+    class="doughnut-chart"
+    :chartData="chartData"
+    :width="150"
+    :height="150"
+  />
 </template>
 
 <script>
@@ -87,17 +84,15 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-.container {
-  .chart {
-    background: transparent;
-    padding: 20px;
-    text-align: center;
+.doughnut-chart {
+  background: transparent;
+  padding: 20px;
+  text-align: center;
 
-    &__header {
-      margin-top: 0;
-      padding: 15px 0;
-      color:  $color-dark-grey;
-    }
+  &__header {
+    margin-top: 0;
+    padding: 15px 0;
+    color:  $color-dark-grey;
   }
 }
 </style>

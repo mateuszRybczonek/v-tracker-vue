@@ -6,7 +6,7 @@
   >
     <div class="mini-stats-item-body__icon">
       <DoughnutChartRemainingOnBoard
-        v-if="item.freeSpace || item.freeSpace === 0"
+        v-if="isFreeSpacePresent"
         :filled="filledValue"
         :change="item.change"
         :empty="item.freeSpace"
@@ -66,6 +66,10 @@
         const change = this.item.change
 
         return change < 0 ? filled : filled - change
+      },
+
+      isFreeSpacePresent () {
+        return item.freeSpace || item.freeSpace === 0
       }
     }
   }
