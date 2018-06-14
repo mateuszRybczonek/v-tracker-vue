@@ -110,12 +110,10 @@ describe('VesselDashboard.vue', () => {
   })
 
   test('it calls SetVessel method with proper arguments', () => {
-    const { wrapper } = setup()
     expect(setVesselSpy).toHaveBeenCalledWith(firstVessel)
   })
 
   test('it calls setVesselCapacities method with proper arguments', () => {
-    const { wrapper } = setup()
     const { maxFo, maxDo, maxFw } = firstVessel
 
     const expectedResult = {
