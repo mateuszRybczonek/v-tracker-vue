@@ -66,44 +66,65 @@ describe('VesselDashboard.vue', () => {
     return { wrapper }
   }
 
-  test('renders not full width dashboard', () => {
+  describe('it renders', () => {
     const { wrapper } = setup()
-    expect(wrapper.find('[data-test-vessel-dashboard]').classes()).not.toContain('vessel-dashboard--full-width')
+
+    test('not full width dashboard', () => {
+      expect(wrapper.find('[data-test-vessel-dashboard]').classes()).not.toContain('vessel-dashboard--full-width')
+    })
+
+    test('with proper report month', () => {
+      const { wrapper } = setup()
+      expect(wrapper.find('[data-test-vessel-dashboard-report-date]').text()).toContain('April 2018')
+    })
+
+    test('with ReportSelector component', () => {
+      const { wrapper } = setup()
+      expect(wrapper.findAll(ReportSelector)).toHaveLength(1)
+    })
+
+    test('with GoogleMap component', () => {
+      const { wrapper } = setup()
+      expect(wrapper.findAll(VesselDashboardGoogleMap)).toHaveLength(1)
+    })
+
+    test('with PositionData component', () => {
+      const { wrapper } = setup()
+      expect(wrapper.findAll(PositionData)).toHaveLength(1)
+    })
+
+    test('with NavigationData component', () => {
+      const { wrapper } = setup()
+      expect(wrapper.findAll(NavigationData)).toHaveLength(1)
+    })
+
+    test('with WeatherData component', () => {
+      const { wrapper } = setup()
+      expect(wrapper.findAll(WeatherData)).toHaveLength(1)
+    })
+
+    test('with RemainingOnBoard component', () => {
+      const { wrapper } = setup()
+      expect(wrapper.findAll(RemainingOnBoard)).toHaveLength(1)
+    })
   })
 
-  test('renders proper report month', () => {
+  test('it calls SetVessel method with proper arguments', () => {
     const { wrapper } = setup()
-    expect(wrapper.find('[data-test-vessel-dashboard-report-date]').text()).toContain('April 2018')
+    expect(setVesselSpy).toHaveBeenCalledWith(firstVessel)
   })
 
-  test('renders ReportSelector component', () => {
+  test('it calls setVesselCapacities method with proper arguments', () => {
     const { wrapper } = setup()
-    expect(wrapper.findAll(ReportSelector)).toHaveLength(1)
-  })
+    const { maxFo, maxDo, maxFw } = firstVessel
 
-  test('renders GoogleMap component', () => {
-    const { wrapper } = setup()
-    expect(wrapper.findAll(VesselDashboardGoogleMap)).toHaveLength(1)
-  })
+    const expectedResult = {
+      maxFo: parseInt(maxFo),
+      maxDo: parseInt(maxDo),
+      maxFw: parseInt(maxFw)
+    }
 
-  test('renders PositionData component', () => {
-    const { wrapper } = setup()
-    expect(wrapper.findAll(PositionData)).toHaveLength(1)
-  })
-
-  test('renders NavigationData component', () => {
-    const { wrapper } = setup()
-    expect(wrapper.findAll(NavigationData)).toHaveLength(1)
-  })
-
-  test('renders WeatherData component', () => {
-    const { wrapper } = setup()
-    expect(wrapper.findAll(WeatherData)).toHaveLength(1)
-  })
-
-  test('renders RemainingOnBoard component', () => {
-    const { wrapper } = setup()
-    expect(wrapper.findAll(RemainingOnBoard)).toHaveLength(1)
+    expect(setVesselCapacitiesSpy).toHaveBeenCalledWith(expectedResult)
   })
 
   describe('Computed properties', () => {
