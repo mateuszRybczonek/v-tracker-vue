@@ -121,7 +121,8 @@
     methods: {
      ...mapActions([
        'setVessel',
-       'setVesselCapacities'
+       'setVesselCapacities',
+       'selectReport'
      ])
    }
   }

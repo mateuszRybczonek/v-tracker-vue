@@ -84,7 +84,7 @@
       },
 
       foChange () {
-        return _getChange(this.previousReport, this.animatedFoRob, this.previousReport.foRob)
+        return this.previousReport ? this.animatedFoRob - this.previousReport.foRob : 0
       },
 
       foFreeSpace () {
@@ -92,7 +92,7 @@
       },
 
       doChange () {
-        return _getChange(this.previousReport, this.animatedDoRob, this.previousReport.doRob)
+        return this.previousReport ? this.animatedDoRob - this.previousReport.doRob : 0
       },
 
       doFreeSpace () {
@@ -100,7 +100,7 @@
       },
 
       fwChange () {
-        return _getChange(this.previousReport, this.animatedFwRob, this.previousReport.fwRob)
+        return this.previousReport ? this.animatedFwRob - this.previousReport.fwRob : 0
       },
 
       fwFreeSpace () {
@@ -108,7 +108,7 @@
       },
 
       pobChange () {
-        return _getChange(this.previousReport, this.animatedPob, this.previousReport.pob)
+        return this.previousReport ? this.animatedPob - this.previousReport.pob : 0
       },
 
       miniStatsItems () {
@@ -176,10 +176,6 @@
     return change > 0 ?
       maxCapacity - currentValue - change :
       maxCapacity - currentValue + change
-  }
-
-  function _getChange(previousReport, animatedValue, previousReportValue) {
-    return previousReport ? animatedValue - previousReportValue : 0
   }
 </script>
 
