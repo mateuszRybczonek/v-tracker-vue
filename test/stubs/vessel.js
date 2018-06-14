@@ -13,7 +13,10 @@ const firstVessel = {
     'r1': true,
     'r2': true
   },
-  yob: '1997'
+  yob: '1997',
+  maxFo: '0',
+  maxDo: '650',
+  maxFw: '660'
 }
 
 const secondVessel = {
@@ -31,7 +34,16 @@ const secondVessel = {
     'r3': true,
     'r4': true
   },
-  yob: '2013'
+  yob: '2013',
+  maxFo: '0',
+  maxDo: '650',
+  maxFw: '660'
 }
 
-export { firstVessel, secondVessel }
+const vesselCapacities = {
+  maxDo: 650,
+  maxFo: 0,
+  maxFw: 660
+}
+
+export { firstVessel, secondVessel, vesselCapacities }

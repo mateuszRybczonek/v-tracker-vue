@@ -58,6 +58,15 @@ describe('NewVesselPage.vue', () => {
           flag: {
             $invalid: false,
             required: true
+          },
+          maxFo: {
+            $invalid: false
+          },
+          maxDo: {
+            $invalid: false
+          },
+          maxFw: {
+            $invalid: false
           }
         }
       }
@@ -135,7 +144,10 @@ describe('NewVesselPage.vue', () => {
       name: 'ENSCO DS-2',
       owner: '1234',
       reports: [],
-      yob: '1997'
+      yob: '1997',
+      maxDo: '650',
+      maxFo: '0',
+      maxFw: '660'
     }
 
     wrapper.find(ButtonPositive).trigger('click')

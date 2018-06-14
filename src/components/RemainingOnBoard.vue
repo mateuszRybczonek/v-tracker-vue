@@ -5,7 +5,7 @@
       :key="item.description"
       :item="item"
       :showPlaceholder="fetchingReports"
-    ></MiniStatsItem>
+    />
   </div>
 </template>
 
@@ -29,33 +29,42 @@
       fetchingReports: {
         type: Boolean,
         required: true
+      },
+      vesselCapacities: {
+        type: Object
       }
+
     },
 
     data () {
+      const report = this.report
       return {
-        tweenedFoRob: this.report ? this.report.foRob : 0,
-        tweenedDoRob: this.report ? this.report.doRob : 0,
-        tweenedFwRob: this.report ? this.report.fwRob : 0,
-        tweenedPob: this.report ? this.report.pob : 0
+        tweenedFoRob: report ? report.foRob : 0,
+        tweenedDoRob: report ? report.doRob : 0,
+        tweenedFwRob: report ? report.fwRob : 0,
+        tweenedPob: report ? report.pob : 0
       }
     },
 
     computed: {
       foRob () {
-        return this.report ? this.report.foRob : 0
+        const report = this.report
+        return report ? report.foRob : 0
       },
 
       doRob () {
-        return this.report ? this.report.doRob : 0
+        const report = this.report
+        return report ? report.doRob : 0
       },
 
       fwRob () {
-        return this.report ? this.report.fwRob : 0
+        const report = this.report
+        return report ? report.fwRob : 0
       },
 
       pob () {
-        return this.report ? this.report.pob : 0
+        const report = this.report
+        return report ? report.pob : 0
       },
 
       animatedFoRob () {
@@ -74,32 +83,63 @@
         return this.tweenedPob.toFixed(0)
       },
 
+      foChange () {
+        return _getChange(this.previousReport, this.animatedFoRob, this.previousReport.foRob)
+      },
+
+      foFreeSpace () {
+        return _getFreeSpace(this.foChange, this.vesselCapacities.maxFo, this.animatedFoRob)
+      },
+
+      doChange () {
+        return _getChange(this.previousReport, this.animatedDoRob, this.previousReport.doRob)
+      },
+
+      doFreeSpace () {
+        return _getFreeSpace(this.doChange, this.vesselCapacities.maxDo, this.animatedDoRob)
+      },
+
+      fwChange () {
+        return _getChange(this.previousReport, this.animatedFwRob, this.previousReport.fwRob)
+      },
+
+      fwFreeSpace () {
+        return _getFreeSpace(this.fwChange, this.vesselCapacities.maxFw, this.animatedFwRob)
+      },
+
+      pobChange () {
+        return _getChange(this.previousReport, this.animatedPob, this.previousReport.pob)
+      },
+
       miniStatsItems () {
         return [
           {
             icon: 'IconFuel',
             header: this.animatedFoRob,
-            change: this.previousReport ? this.animatedFoRob - this.previousReport.foRob : 0,
+            change: this.foChange,
             unit: 'cbm',
             description: 'Fuel Oil',
             customClass: 'mini-stats__item--fo',
-            color: 'black'
+            color: 'black',
+            freeSpace: this.foFreeSpace
           }, {
             icon: 'IconFuel',
             header: this.animatedDoRob,
-            change: this.previousReport ? this.animatedDoRob - this.previousReport.doRob : 0,
+            change: this.doChange,
             unit: 'cbm',
             description: 'Diesel Oil',
             customClass: 'mini-stats__item--do',
-            color: 'brown'
+            color: 'brown',
+            freeSpace: this.doFreeSpace
           }, {
             icon: 'IconWater',
             header: this.animatedFwRob,
-            change: this.previousReport ? this.animatedFwRob - this.previousReport.fwRob : 0,
+            change: this.fwChange,
             unit: 'cbm',
             description: 'Fresh Water',
             customClass: 'mini-stats__item--fw',
-            color: 'light-blue'
+            color: 'light-blue',
+            freeSpace: this.fwFreeSpace
           }, {
             icon: 'IconPeople',
             header: this.animatedPob,
@@ -130,6 +170,16 @@
         TweenMax.to(this.$data, 2, { tweenedPob: newValue })
       }
     }
+  }
+
+  function _getFreeSpace(change, maxCapacity, currentValue) {
+    return change > 0 ?
+      maxCapacity - currentValue - change :
+      maxCapacity - currentValue + change
+  }
+
+  function _getChange(previousReport, animatedValue, previousReportValue) {
+    return previousReport ? animatedValue - previousReportValue : 0
   }
 </script>
 

@@ -51,12 +51,13 @@
       :report="selectedReport"
       :previousReport="previousReport"
       :fetchingReports="fetchingReports"
+      :vesselCapacities="vesselCapacities"
     />
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
   import { get } from 'vuex-pathify'
   import VesselDashboardGoogleMap from './VesselDashboardGoogleMap.vue'
   import WeatherData from './WeatherData.vue'
@@ -76,6 +77,17 @@
       ReportSelector
     },
 
+    created () {
+      this.setVessel(this.vessels.find(vessel => vessel.id === this.$route.params.id))
+
+      const { maxFo, maxDo, maxFw } = this.vessel
+      this.setVesselCapacities({
+        maxFo: parseInt(maxFo),
+        maxDo: parseInt(maxDo),
+        maxFw: parseInt(maxFw)
+      })
+    },
+
     computed: {
       ...mapGetters([
         'sortedReports'
@@ -85,6 +97,9 @@
       selectedReport: get('selectedReport'),
       reports: get('reports'),
       sidebarVisible: get('sidebarVisible'),
+      vessels: get('vessels'),
+      vessel: get('vessel'),
+      vesselCapacities: get('vesselCapacities'),
 
       previousReport () {
         const indexOfSelectedReport = this.reports.indexOf(this.selectedReport)
@@ -101,7 +116,14 @@
       reportDate () {
         if (this.selectedReport) return this.$moment(this.selectedReport.reportTime).format('MMMM YYYY')
       }
-    }
+    },
+
+    methods: {
+     ...mapActions([
+       'setVessel',
+       'setVesselCapacities'
+     ])
+   }
   }
 </script>
 
@@ -142,13 +164,16 @@
       }
 
       &__item {
-        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 20px;
         min-width: 49%;
       }
     }
 
     &__item {
-      margin-top: 40px;
+      margin: 20px 0;
     }
   }
 </style>

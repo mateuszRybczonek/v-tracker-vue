@@ -53,6 +53,7 @@
 
     &__cards {
       display: flex;
+      height: 100vh;
       justify-content: space-around;
       margin: 0 40px;
     }

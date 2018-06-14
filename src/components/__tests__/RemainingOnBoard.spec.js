@@ -1,14 +1,16 @@
-import { mount } from 'vue-test-utils'
+import { shallow } from 'vue-test-utils'
 import RemainingOnBoard from '@/components/RemainingOnBoard'
 import MiniStatsItem from '@/components/MiniStatsItem'
 import { report, secondReport } from '@/../test/stubs/report'
+import { vesselCapacities } from '@/../test/stubs/vessel'
 
 describe('RemainingOnBoard.vue', () => {
-  const wrapper = mount(RemainingOnBoard, {
+  const wrapper = shallow(RemainingOnBoard, {
     propsData: {
       report,
       previousReport: secondReport,
-      fetchingReports: false
+      fetchingReports: false,
+      vesselCapacities
     }
   })
 
@@ -44,6 +46,7 @@ describe('RemainingOnBoard.vue', () => {
           "color": "black",
           "customClass": "mini-stats__item--fo",
           "description": "Fuel Oil",
+          "freeSpace": -95,
           "header": "90",
           "icon": "IconFuel",
           "unit": "cbm"
@@ -52,6 +55,7 @@ describe('RemainingOnBoard.vue', () => {
           "color": "brown",
           "customClass": "mini-stats__item--do",
           "description": "Diesel Oil",
+          "freeSpace": 540,
           "header": "100",
           "icon": "IconFuel",
           "unit": "cbm"
@@ -60,6 +64,7 @@ describe('RemainingOnBoard.vue', () => {
           "color": "light-blue",
           "customClass": "mini-stats__item--fw",
           "description": "Fresh Water",
+          "freeSpace": 577,
           "header": "80",
           "icon": "IconWater",
           "unit": "cbm"

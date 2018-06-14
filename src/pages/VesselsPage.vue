@@ -1,5 +1,5 @@
 <template>
-  <div id="vessels">
+  <div class="vessels">
     <h1 data-test-vessels-header>Vessels</h1>
     <VesselsList :vessels="vessels"></VesselsList>
   </div>
@@ -34,11 +34,15 @@
 </script>
 
 <style scoped lang="scss">
-  h1, p {
-    text-align: center;
-  }
+  .vessels {
+    height: 100vh;
 
-  h1 {
-    padding: 50px 0;
+    h1, p {
+      text-align: center;
+    }
+
+    h1 {
+      padding: 50px 0;
+    }
   }
 </style>

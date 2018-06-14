@@ -3,7 +3,7 @@ import { report, secondReport } from '@/../test/stubs/report'
 import LineChartRemainingOnBoard from '@/components/LineChartRemainingOnBoard'
 import LineChart from '@/components/LineChart'
 
-describe('VesselStatistics.vue', () => {
+describe('LineChartRemainingOnBoard.vue', () => {
   const setup = () => {
     const wrapper = shallow(LineChartRemainingOnBoard, {
       propsData: {

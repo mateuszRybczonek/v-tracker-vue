@@ -18,7 +18,7 @@ function mapReportForStore (report) {
 
 function getLastReport (reports) {
   const sortedReports = reports.sort((a, b) => a.reportTime > b.reportTime)
-  return sortedReports.slice(-1)[0]
+  return sortedReports[0]
 }
 
 export { mapReportForStore, getLastReport }
