@@ -69,7 +69,6 @@
     &__content {
       transition: margin-left .5s;
       margin-left: 300px;
-      margin-right: 50px;
       padding: 0 15px;
 
       &--expanded {

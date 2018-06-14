@@ -99,7 +99,7 @@ describe('VesselDashboard.vue', () => {
 
       it('returns early when previuosReport does not exist', () => {
         wrapper.setComputed({ previousReport: undefined })
-        expect(wrapper.vm.distanceMadeSinceLastReport).toEqual(false)
+        expect(wrapper.vm.distanceMadeSinceLastReport).toEqual(0)
       })
     })
   })
