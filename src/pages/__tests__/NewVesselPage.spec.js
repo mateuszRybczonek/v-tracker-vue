@@ -58,6 +58,15 @@ describe('NewVesselPage.vue', () => {
           flag: {
             $invalid: false,
             required: true
+          },
+          maxFo: {
+            $invalid: false
+          },
+          maxDo: {
+            $invalid: false
+          },
+          maxFw: {
+            $invalid: false
           }
         }
       }

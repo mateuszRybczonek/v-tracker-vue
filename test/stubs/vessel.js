@@ -34,4 +34,10 @@ const secondVessel = {
   yob: '2013'
 }
 
-export { firstVessel, secondVessel }
+const vesselCapacities = {
+  maxDo: 650,
+  maxFo: 0,
+  maxFw: 660
+}
+
+export { firstVessel, secondVessel, vesselCapacities }

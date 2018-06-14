@@ -64,6 +64,15 @@ describe('EditVesselPage.vue', () => {
           },
           flag: {
             $invalid: false
+          },
+          maxFo: {
+            $invalid: false
+          },
+          maxDo: {
+            $invalid: false
+          },
+          maxFw: {
+            $invalid: false
           }
         }
       }

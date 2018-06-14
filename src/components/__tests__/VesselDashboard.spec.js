@@ -10,6 +10,10 @@ import Vuex from 'vuex'
 import moment from 'moment'
 import VueMomentJS from 'vue-momentjs'
 import { report, secondReport } from '@/../test/stubs/report'
+import { vesselCapacities, firstVessel, secondVessel } from '@/../test/stubs/vessel'
+
+const setVesselSpy = jest.fn()
+const setVesselCapacitiesSpy = jest.fn()
 
 describe('VesselDashboard.vue', () => {
   const setup = () => {
@@ -18,14 +22,11 @@ describe('VesselDashboard.vue', () => {
       selectedReport: jest.fn(),
       fetchingReports: jest.fn(),
       sortedReports: jest.fn(),
-      reports: jest.fn()
+      reports: jest.fn(),
+      vesselCapacities: jest.fn()
     }
 
-    getters.sidebarVisible.mockReturnValue(true)
-    getters.fetchingReports.mockReturnValue(false)
     getters.sortedReports.mockReturnValue([secondReport, report])
-    getters.reports.mockReturnValue([secondReport, report])
-    getters.selectedReport.mockReturnValue(secondReport)
 
     const localVue = createLocalVue()
     localVue.use(Vuex)
@@ -38,7 +39,28 @@ describe('VesselDashboard.vue', () => {
 
     const wrapper = shallow(VesselDashboard, {
       localVue,
-      store
+      store,
+      mocks: {
+        $route: {
+          params: {
+            id: '1'
+          }
+        },
+      },
+      computed: {
+        fetchingReports: () => false,
+        selectedReport: () => secondReport,
+        reports: () => [secondReport, report],
+        sidebarVisible: () => true,
+        vessels: () => [firstVessel, secondVessel],
+        vessel: () => firstVessel,
+        vesselCapacities: () => vesselCapacities
+      },
+
+      methods: {
+        setVessel: setVesselSpy,
+        setVesselCapacities: setVesselCapacitiesSpy
+      }
     })
 
     return { wrapper }
