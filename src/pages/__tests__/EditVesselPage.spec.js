@@ -148,7 +148,10 @@ describe('EditVesselPage.vue', () => {
       owners: {
         '1234': true
       },
-      yob: '1997'
+      yob: '1997',
+      maxDo: '650',
+      maxFo: '0',
+      maxFw: '660'
     }
 
     wrapper.find(ButtonPositive).trigger('click')
