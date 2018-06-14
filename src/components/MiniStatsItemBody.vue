@@ -70,7 +70,7 @@
 
       isFreeSpacePresent () {
         const freeSpace = this.item.freeSpace
-        return freeSpace || freeSpace === 0
+        return !!freeSpace || freeSpace === 0
       }
     }
   }

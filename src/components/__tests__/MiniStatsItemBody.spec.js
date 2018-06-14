@@ -2,7 +2,12 @@ import { shallow } from 'vue-test-utils'
 import MiniStatsItemBody from '@/components/MiniStatsItemBody'
 import BaseIcon from '@/components/BaseIcon'
 import DoughnutChartRemainingOnBoard from '@/components/DoughnutChartRemainingOnBoard'
-import { miniStatsItem, miniStatsItemWithFreeSpace } from '@/../test/stubs/miniStatsItem'
+import {
+  miniStatsItem,
+  miniStatsItemWithFreeSpace,
+  miniStatsItemWithPositiveChange,
+  miniStatsItemWithNegativeChange,
+} from '@/../test/stubs/miniStatsItem'
 
 describe('MiniStatsItemBody.vue', () => {
   const setup = (item = miniStatsItem) => {
@@ -44,6 +49,33 @@ describe('MiniStatsItemBody.vue', () => {
 
     it('renders DoughnutChartRemainingOnBoard component', () => {
       expect(wrapper.findAll(DoughnutChartRemainingOnBoard)).toHaveLength(1)
+    })
+  })
+
+  describe('Computed properties', () => {
+    describe('filledValue', () => {
+      it('returns proper data for positive value', () => {
+        const { wrapper } = setup(miniStatsItemWithPositiveChange)
+        const item = miniStatsItemWithPositiveChange
+        expect(wrapper.vm.filledValue).toEqual(item.header - item.change)
+      })
+
+      it('returns proper data for negative value', () => {
+        const { wrapper } = setup(miniStatsItemWithNegativeChange)
+        expect(wrapper.vm.filledValue).toEqual(parseInt(miniStatsItemWithNegativeChange.header))
+      })
+    })
+
+    describe('isFreeSpacePresent', () => {
+      it('returns proper data when freeSpace is present', () => {
+        const { wrapper } = setup(miniStatsItemWithFreeSpace)
+        expect(wrapper.vm.isFreeSpacePresent).toEqual(true)
+      })
+
+      it('returns proper data when freeSpace is not present', () => {
+        const { wrapper } = setup(miniStatsItem)
+        expect(wrapper.vm.isFreeSpacePresent).toEqual(false)
+      })
     })
   })
 })
