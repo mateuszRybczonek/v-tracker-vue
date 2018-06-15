@@ -7,6 +7,7 @@ export default {
     google: Object,
     map: Object,
     marker: Object,
+    markerIcon: Object,
     googleMapMarkers: Array
   },
 
@@ -22,7 +23,7 @@ export default {
       marker: this.marker,
       clickHandler: this.clickHandler,
       map: this.map,
-      icon: POINT_MARKER_ICON_CONFIG
+      icon: this.markerIcon || POINT_MARKER_ICON_CONFIG
     })
 
     this.googleMarker.addListener('click', () => {
