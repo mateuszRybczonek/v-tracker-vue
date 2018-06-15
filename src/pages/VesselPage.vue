@@ -36,10 +36,8 @@
 
     computed: {
       ...mapGetters([
-        'vessels',
         'sidebarVisible',
         'selectedVesselDetailsComponent',
-        'selectedReport',
         'sortedReports'
       ]),
 
