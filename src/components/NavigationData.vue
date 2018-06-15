@@ -117,7 +117,7 @@
       },
 
       spd (newValue) {
-        TweenMax.to(this.$data, 2, { tweenedDistanceMade: newValue })
+        TweenMax.to(this.$data, 2, { tweenedSpd: newValue })
       }
     }
   }
