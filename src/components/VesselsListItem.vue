@@ -7,6 +7,7 @@
     <VesselsListItemBody
       :inProgress="inProgress"
       :vesselName="vessel.name"
+      :vesselLastReportTime="vessel.lastReport.reportTime"
       :vesselImoNumber="vessel.imoNumber"/>
 
     <VesselsListItemActions

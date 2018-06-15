@@ -12,6 +12,9 @@
     <p>
       IMO number: {{vesselImoNumber}}
     </p>
+    <p>
+      Last report: {{vesselLastReportTime}}
+    </p>
   </div>
 </template>
 
@@ -31,6 +34,9 @@ export default {
     vesselImoNumber: {
       type: String,
       required: true
+    },
+    vesselLastReportTime: {
+      type: String
     }
   }
 }
