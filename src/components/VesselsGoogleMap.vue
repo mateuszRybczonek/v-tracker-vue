@@ -3,7 +3,7 @@
     <content-placeholders
       data-test-google-map-placeholder
       class="google-map__placeholder"
-      v-if="fetchingReports"
+      v-if="fetchingVessels"
     >
       <content-placeholders-img class="google-map__placeholder"></content-placeholders-img>
     </content-placeholders>
@@ -12,7 +12,7 @@
       v-else
       data-test-google-map
       class="google-map__map"
-      :setGoogleMap="setDashboardGoogleMap"
+      :setGoogleMap="setVesselsGoogleMap"
       :mapConfig="mapConfig"
       mapHeight="460px"
       apiKey="AIzaSyAcpHQzH108aO_4Ea9cS4zT5PTBqpopd8Q"
@@ -23,16 +23,8 @@
           v-for="marker in markers"
           :key="marker.id"
           :marker="marker"
+          :markerIcon="markerConfig"
           :googleMapMarkers="googleMapMarkers"
-          :google="google"
-          :map="map"
-          @selectMarker="selectMarker(marker)"
-        />
-        <GoogleMapLine
-          data-test-google-map-line
-          v-for="(line, index) in lines"
-          :key="index"
-          :path.sync="line.path"
           :google="google"
           :map="map"
         />
@@ -44,33 +36,36 @@
 <script>
 import GoogleMapLoader from './GoogleMapLoader'
 import GoogleMapMarker from './GoogleMapMarker'
-import GoogleMapLine from './GoogleMapLine'
 
 import {
   mapSettings,
-  POINT_MARKER_ICON_CONFIG,
   SELECTED_POINT_MARKER_ICON_CONFIG,
-  LINE_PATH_CONFIG
 } from '@/constants/mapSettings'
 
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 import { get } from 'vuex-pathify'
 
 import {
-  mapReportsToMarkers,
-  mapReportsToLines
+  mapReportsToMarkers
 } from '@/utils/google-map-utils'
 
 export default {
   components: {
     GoogleMapLoader,
-    GoogleMapMarker,
-    GoogleMapLine
+    GoogleMapMarker
+  },
+
+  props: {
+    fetchingVessels: {
+      type: Boolean
+    },
+    vessels: {
+      type: Array
+    }
   },
 
   data () {
     return {
-      linePathConfig: LINE_PATH_CONFIG,
       mapSettings,
       markers: this.points,
       currentPlace: null,
@@ -93,85 +88,68 @@ export default {
   },
 
   computed: {
-    ...mapGetters([
-      'sortedReports'
-    ]),
-    dashboardGoogleMap: get('dashboardGoogleMap'),
-    fetchingReports: get('fetchingReports'),
-    selectedReport: get('selectedReport'),
-    reports: get('reports'),
+    vesselsGoogleMap: get('vesselsGoogleMap'),
 
-    newSelectedReport () {
-      if(this.googleMapMarkers.length > 0) return this.selectedReport
+    markerConfig () {
+      return SELECTED_POINT_MARKER_ICON_CONFIG
     },
 
     points () {
-      if(!this.fetchingReports) return mapReportsToMarkers(this.reports)
-    },
+      if(!this.fetchingVessels) {
+        const lastReports = this.vessels.map(vessel => {
+          const { lastReport } = vessel
 
-    lines () {
-      const { reports } = this
-      const lines = []
-      if (reports.length > 0) mapReportsToLines(reports, lines)
-      return lines
+          return {
+            course: parseInt(lastReport.course),
+            doRob: parseInt(lastReport.doRob),
+            foRob: parseInt(lastReport.foRob),
+            fwRob: parseInt(lastReport.fwRob),
+            lat: parseFloat(lastReport.lat),
+            lng: parseFloat(lastReport.lng),
+            pitch: parseFloat(lastReport.pitch),
+            roll: parseFloat(lastReport.roll),
+            pob: parseInt(lastReport.pob),
+            seaState: parseInt(lastReport.seaState),
+            spd: parseInt(lastReport.spd),
+            swellDir: parseInt(lastReport.swellDir),
+            swellHeight: parseFloat(lastReport.swellHeight),
+            windDir: parseInt(lastReport.windDir),
+            windSpd: parseInt(lastReport.windSpd)
+          }
+        })
+
+        return mapReportsToMarkers(lastReports)
+      }
     },
 
     mapConfig () {
       return {
         ...mapSettings,
+        zoom: 3,
         center: this.mapCenter
       }
     },
 
     mapCenter () {
-      if(!this.fetchingReports) {
+      if(!this.fetchingVessels) {
         return {
-          lat: this.selectedReport.lat,
-          lng: this.selectedReport.lng
+          lat: parseFloat(this.points[1].position.lat),
+          lng: parseFloat(this.points[1].position.lng)
         }
       }
     }
   },
 
-  methods: {
-    ...mapActions([
-      'selectReport',
-      'setDashboardGoogleMap'
-    ]),
-
-    selectMarker(marker) {
-      this.selectReport(marker.id)
-      const markerId = marker.id
-      this.infoPosition = marker.position
-      this.infoContent = marker.reportTime
-      if (this.infoCurrentKey === markerId) {
-        this.infoOpened = !this.infoOpened
-      } else {
-        this.infoOpened = true
-        this.infoCurrentKey = markerId
-      }
+  watch: {
+    points () {
+      if(!this.fetchingVessels) this.markers = this.points
     }
   },
 
-  watch: {
-    newSelectedReport (newValue) {
-      if(!this.fetchingReports && this.googleMapMarkers.length) {
-        this.googleMapMarkers.forEach(googleMapMarker => {
-          googleMapMarker.setIcon(POINT_MARKER_ICON_CONFIG)
-          googleMapMarker.setAnimation(null)
-        })
-
-        const selectedMarker = this.googleMapMarkers.find(marker => marker.marker.id === newValue.id)
-        selectedMarker.setIcon(SELECTED_POINT_MARKER_ICON_CONFIG)
-      }
-
-      const { lat, lng } = newValue
-      this.dashboardGoogleMap.panTo({ lat, lng })
-    },
-
-    reports () {
-      if(!this.fetchingReports) this.markers = mapReportsToMarkers(this.reports)
-    }
+  methods: {
+    ...mapActions([
+      'setVesselsGoogleMap'
+    ])
   }
 }
 </script>

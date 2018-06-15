@@ -1,7 +1,10 @@
 <template>
   <div class="vessels">
     <h1 data-test-vessels-header>Vessels</h1>
-    <VesselsList :vessels="vessels"></VesselsList>
+    <VesselsList
+      :vessels="vessels"
+      :fetchingVessels="fetchingVessels"
+    />
   </div>
 </template>
 
@@ -15,20 +18,37 @@
     },
 
     created () {
-      this.fetchVessels(this.userId)
+      this.fetchVesselsTask.run()
     },
 
     computed: {
       ...mapGetters([
         'vessels',
         'userId'
-      ])
+      ]),
+
+      fetchingVessels () {
+        return this.fetchVesselsTask.isActive
+      }
     },
 
     methods: {
       ...mapActions([
         'fetchVessels'
       ])
+    },
+
+    tasks (task) {
+      return {
+        fetchVesselsTask: task(function * () {
+          yield this.fetchVessels(this.userId)
+        })
+        .flow('restart')
+        .onError(() => {
+          // flash message shall go here
+          alert('Something went wrong')
+        })
+      }
     }
   }
 </script>
