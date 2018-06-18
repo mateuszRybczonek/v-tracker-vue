@@ -8,7 +8,8 @@ export default {
     map: Object,
     marker: Object,
     markerIcon: Object,
-    googleMapMarkers: Array
+    googleMapMarkers: Array,
+    pulse: Boolean
   },
 
   data () {
@@ -23,14 +24,45 @@ export default {
       marker: this.marker,
       clickHandler: this.clickHandler,
       map: this.map,
-      icon: this.markerIcon || POINT_MARKER_ICON_CONFIG
+      icon: this.markerIcon || POINT_MARKER_ICON_CONFIG,
+      pulse: this.pulse
     })
+
+    if (this.googleMarker.pulse) {
+      this.fadeInMarker(this.googleMarker, 0, 'UP')
+    }
 
     this.googleMarker.addListener('click', () => {
       this.$emit('selectMarker', this.marker)
     })
 
     this.googleMapMarkers.push(this.googleMarker)
+  },
+
+  methods: {
+    fadeInMarker (marker, markerOpacity, direction) {
+      const markerOpacityIncrement = 0.03
+
+      if (direction === 'UP') {
+        if (markerOpacity >= 1) {
+          direction = 'DOWN'
+        } else {
+          marker.setOpacity(markerOpacity)
+          markerOpacity += markerOpacityIncrement
+        }
+      } else {
+        if (markerOpacity <= 0) {
+          direction = 'UP'
+        } else {
+          marker.setOpacity(markerOpacity)
+          markerOpacity -= markerOpacityIncrement
+        }
+      }
+
+      setTimeout(() => {
+        this.fadeInMarker(marker, markerOpacity, direction)
+      }, 50)
+    }
   }
 }
 </script>

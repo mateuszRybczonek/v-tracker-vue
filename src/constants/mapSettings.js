@@ -53,7 +53,7 @@ const mapSettings = {
   clickableIcons: false,
   streetViewControl: false,
   panControlOptions: false,
-  gestureHandling: 'greedy',
+  gestureHandling: 'cooperative',
   backgroundColor: COLORS.LANDSCAPE,
   mapTypeControl: false,
   zoomControlOptions: {
