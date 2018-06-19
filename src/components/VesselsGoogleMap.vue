@@ -106,7 +106,7 @@ export default {
         anchor: new google.maps.Point(16, 32),
         url: 'data:image/svg+xml;utf-8, \
           <svg width="36" height="36" viewBox="90 80 150 150" xmlns="http://www.w3.org/2000/svg"> \
-            <path fill="rgb(0,184,83)" d="M 200 100 c -11.5 -11.6 -27.3 -18.7 -44.9 -18.7 c -35 0 -63.4 28.5 -63.4 63.8 c 0 26 20.3 48.1 38.2 62.7 c 16.4 13.4 24 20.4 25.1 21.4 c 0.2 0.1 0.2 0.1 0.9 -0.6 c 2.3 -2.1 10 -9 24.5 -20.8 c 17.8 -14.6 38.2 -36.7 38.2 -62.7 c 0 -17.6 -7.1 -33.6 -18.6 -45.1 Z" /> \
+            <path fill="rgb(0,184,83)" stroke="#FFF" stroke-width="6" d="M 200 100 c -11.5 -11.6 -27.3 -18.7 -44.9 -18.7 c -35 0 -63.4 28.5 -63.4 63.8 c 0 26 20.3 48.1 38.2 62.7 c 16.4 13.4 24 20.4 25.1 21.4 c 0.2 0.1 0.2 0.1 0.9 -0.6 c 2.3 -2.1 10 -9 24.5 -20.8 c 17.8 -14.6 38.2 -36.7 38.2 -62.7 c 0 -17.6 -7.1 -33.6 -18.6 -45.1 Z" /> \
           </svg>'
       }
     },
@@ -190,7 +190,9 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    @include box-shadow(0 0 100px 1px rgba(0,0,0,0.1));
+    @include box-shadow(0 0 10px 1px rgba(0,0,0,0.1));
+    border-top: solid 2px $color-white;
+    border-bottom: solid 2px $color-white;
 
     &__map {
       height: 460px;

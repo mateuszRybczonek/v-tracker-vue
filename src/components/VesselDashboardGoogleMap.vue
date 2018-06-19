@@ -181,7 +181,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    @include box-shadow(0 0 100px 1px rgba(0,0,0,0.1));
+    @include box-shadow(0 0 10px 1px rgba(0,0,0,0.1));
+    border: solid 1px $color-white;
 
     &__map {
       height: 460px;

@@ -28,15 +28,15 @@ export default {
       pulse: this.pulse
     })
 
+    if (this.googleMarker.pulse) {
+      this.fadeInMarker(this.googleMarker, 0, 'UP')
+    }
+
     this.googleMarker.addListener('click', () => {
       this.$emit('selectMarker', this.marker)
     })
 
     this.googleMapMarkers.push(this.googleMarker)
-
-    if (this.googleMarker.pulse) {
-      this.fadeInMarker(this.googleMarker, 0, 'UP')
-    }
   },
 
   methods: {

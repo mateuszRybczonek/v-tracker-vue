@@ -1,8 +1,9 @@
 import colorPalette from '@/constants/colorPalette'
 
-const { COLOR_POINT, COLOR_WATER, COLOR_LANDSCAPE, COLOR_LINE, COLOR_POINT_FILL, COLOR_SELECTED_POINT } = colorPalette
+const { COLOR_POINT, COLOR_LANDSCAPE, COLOR_BORDERS, COLOR_WATER, COLOR_LINE, COLOR_POINT_FILL, COLOR_SELECTED_POINT } = colorPalette
 
 const COLORS = {
+  BORDERS: COLOR_BORDERS,
   LANDSCAPE: COLOR_LANDSCAPE,
   LINE: COLOR_LINE,
   POINT: COLOR_POINT,
@@ -65,8 +66,12 @@ const mapSettings = {
   styles: [
     {
       featureType: 'landscape',
-      elementType: 'geometry.fill',
-      stylers: [{ color: COLORS.LANDSCAPE }],
+      stylers: [
+          { hue: COLORS.LANDSCAPE },
+          { saturation: 50.2 },
+          { lightness: -34.8 },
+          { gamma: 1 }
+      ]
     },
     {
       featureType: 'poi',
@@ -74,11 +79,21 @@ const mapSettings = {
     },
     {
       featureType: 'road.highway',
-      stylers: [{ visibility: 'off' }],
+      stylers: [
+          { hue: COLORS.LANDSCAPE },
+          { saturation: -19.8 },
+          { lightness: -1.8 },
+          { gamma: 1 }
+      ]
     },
     {
       featureType: 'road.arterial',
-      stylers: [{ visibility: 'off' }],
+      stylers: [
+          { hue: COLORS.LANDSCAPE },
+          { saturation: 72.4 },
+          { lightness: -32.6 },
+          { gamma: 1 }
+      ]
     },
     {
       featureType: 'road.local',
@@ -113,7 +128,7 @@ const mapSettings = {
       elementType: 'geometry.stroke',
       stylers: [
         { visibility: 'on' },
-        { color: COLORS.WATER },
+        { color: COLORS.BORDERS },
       ],
     },
     {
@@ -123,21 +138,13 @@ const mapSettings = {
     },
     {
       featureType: 'water',
-      elementType: 'labels.text.fill',
-      stylers: [{ visibility: 'off' }],
-    },
-    {
-      featureType: 'water',
-      elementType: 'labels.text.stroke',
-      stylers: [{ visibility: 'off' }],
-    },
-    {
-      featureType: 'water',
-      elementType: 'geometry',
       stylers: [
-        { color: COLORS.WATER },
-      ],
-    },
+          { hue: COLORS.WATER },
+          { saturation: -63.2 },
+          { lightness: 38 },
+          { gamma: 1 }
+      ]
+    }
   ],
 }
 
