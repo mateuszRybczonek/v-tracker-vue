@@ -38,6 +38,7 @@
           :googleMapMarkers="googleMapMarkers"
           :google="google"
           :map="map"
+          @selectMarker="selectMarker(...arguments)"
         />
       </template>
     </GoogleMapLoader>
@@ -79,17 +80,6 @@ export default {
     return {
       mapSettings,
       markers: this.points,
-      currentPlace: null,
-      infoPosition: null,
-      infoContent: null,
-      infoOpened: false,
-      infoCurrentKey: null,
-      infoOptions: {
-        pixelOffset: {
-          width: 0,
-          height: -10
-        }
-      },
       googleMapMarkers: []
     }
   },
@@ -128,9 +118,10 @@ export default {
     points () {
       if(!this.fetchingVessels) {
         const lastReports = this.vessels.map(vessel => {
-          const { lastReport } = vessel
+          const { lastReport, name } = vessel
 
           return {
+            id: lastReport.id,
             course: parseInt(lastReport.course),
             doRob: parseInt(lastReport.doRob),
             foRob: parseInt(lastReport.foRob),
@@ -145,7 +136,9 @@ export default {
             swellDir: parseInt(lastReport.swellDir),
             swellHeight: parseFloat(lastReport.swellHeight),
             windDir: parseInt(lastReport.windDir),
-            windSpd: parseInt(lastReport.windSpd)
+            windSpd: parseInt(lastReport.windSpd),
+            reportTime: lastReport.reportTime,
+            vesselName: name
           }
         })
 
@@ -180,7 +173,30 @@ export default {
   methods: {
     ...mapActions([
       'setVesselsGoogleMap'
-    ])
+    ]),
+
+    selectMarker(marker, googleMarker) {
+      const { reportTime, lat, lng, vesselName } = marker
+
+      const infoWindow = new google.maps.InfoWindow({
+        content: `
+          <div>
+            <span>Vessel: ${vesselName}
+            ${reportTime}
+          </div>`
+      })
+
+      infoWindow.open(this.map, googleMarker)
+      //
+      // this.infoPosition = marker.position
+      // this.infoContent = marker.reportTime
+      // if (this.infoCurrentKey === markerId) {
+      //   this.infoOpened = !this.infoOpened
+      // } else {
+      //   this.infoOpened = true
+      //   this.infoCurrentKey = markerId
+      // }
+    }
   }
 }
 </script>

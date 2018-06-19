@@ -73,17 +73,6 @@ export default {
       linePathConfig: LINE_PATH_CONFIG,
       mapSettings,
       markers: this.points,
-      currentPlace: null,
-      infoPosition: null,
-      infoContent: null,
-      infoOpened: false,
-      infoCurrentKey: null,
-      infoOptions: {
-        pixelOffset: {
-          width: 0,
-          height: -10
-        }
-      },
       googleMapMarkers: []
     }
   },
@@ -141,15 +130,6 @@ export default {
 
     selectMarker(marker) {
       this.selectReport(marker.id)
-      const markerId = marker.id
-      this.infoPosition = marker.position
-      this.infoContent = marker.reportTime
-      if (this.infoCurrentKey === markerId) {
-        this.infoOpened = !this.infoOpened
-      } else {
-        this.infoOpened = true
-        this.infoCurrentKey = markerId
-      }
     }
   },
 

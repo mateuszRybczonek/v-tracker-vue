@@ -13,11 +13,12 @@ export default {
   },
 
   data () {
-    return { googleMarker: null}
+    return { googleMarker: null }
   },
 
   mounted () {
     const { Marker } = this.google.maps
+
     this.googleMarker = new Marker({
       clickable: true,
       position: this.marker.position,
@@ -29,7 +30,7 @@ export default {
     })
 
     this.googleMarker.addListener('click', () => {
-      this.$emit('selectMarker', this.marker)
+      this.$emit('selectMarker', this.marker, this.googleMarker)
     })
 
     this.googleMapMarkers.push(this.googleMarker)
