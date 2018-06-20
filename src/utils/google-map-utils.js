@@ -7,7 +7,8 @@ function mapReportsToMarkers(reports) {
         lat: report.lat,
         lng: report.lng
       },
-      vesselName: report.vesselName || '-'
+      vesselName: report.vesselName || '-',
+      vesselId: report.vesselId
     }
   })
 }
