@@ -80,7 +80,8 @@ export default {
     return {
       mapSettings,
       markers: this.points,
-      googleMapMarkers: []
+      googleMapMarkers: [],
+      infoWindow: null
     }
   },
 
@@ -180,22 +181,17 @@ export default {
 
       const infoWindow = new google.maps.InfoWindow({
         content: `
-          <div>
-            <span>Vessel: ${vesselName}
-            ${reportTime}
-          </div>`
+          <div class="iw-container">
+            <div class="iw-title">
+              <span>${vesselName}</span>
+            </div>
+          </div>
+        `
       })
 
+      if (this.infoWindow) this.infoWindow.close()
+      this.infoWindow = infoWindow
       infoWindow.open(this.map, googleMarker)
-      //
-      // this.infoPosition = marker.position
-      // this.infoContent = marker.reportTime
-      // if (this.infoCurrentKey === markerId) {
-      //   this.infoOpened = !this.infoOpened
-      // } else {
-      //   this.infoOpened = true
-      //   this.infoCurrentKey = markerId
-      // }
     }
   }
 }
