@@ -34,14 +34,29 @@ a {
   }
 
   .iw-container {
+    color: white;
+
     .iw-title {
       width: 100%;
-      font-family: 'Open Sans Condensed', sans-serif;
-      font-size: 22px;
-      font-weight: 400;
-      padding: 10px;
+      @include font(1.2rem, $fw-bold, 1.6rem);
+      padding-right: 20px;
       background-color: $color-dark-grey;
-      color: white;
+    }
+
+    .iw-body {
+      @include font(0.9rem, $fw-normal, 1.4rem);
+      background-color: $color-dark-grey;
+
+      &__position {
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+      }
+
+      &__item {
+        display: flex;
+        justify-content: space-between;
+      }
     }
   }
 

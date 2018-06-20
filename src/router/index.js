@@ -4,7 +4,6 @@ import store from '../store'
 
 import HomePage from '../pages/HomePage.vue'
 import MainMenuPage from '../pages/MainMenuPage.vue'
-import MainMenu from '../components/MainMenu.vue'
 import SignupPage from '../pages/auth/SignupPage.vue'
 import SigninPage from '../pages/auth/SigninPage.vue'
 import VesselsPage from '../pages/VesselsPage.vue'
@@ -22,7 +21,7 @@ const routes = [
     path: '/dashboard',
     component: MainMenuPage,
     children: [
-      { path: '', component: MainMenu },
+      { path: '', component: VesselsPage },
       { path: 'vessels', component: VesselsPage },
       { path: 'vessels/new', component: NewVesselPage },
       { path: 'vessels/:id/edit', component: EditVesselPage },

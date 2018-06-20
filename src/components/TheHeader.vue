@@ -9,10 +9,7 @@
         class="header__navigation-items"
       >
         <li data-test-the-header-navigation-item class="header__navigation-item">
-          <router-link to="/dashboard/vessels">Vessels</router-link>
-        </li>
-        <li data-test-the-header-navigation-item class="header__navigation-item">
-          <router-link to="/dashboard/reports">Reports</router-link>
+          <router-link to="/dashboard">Vessels</router-link>
         </li>
         <li data-test-the-header-navigation-item class="header__navigation-item">
           <button

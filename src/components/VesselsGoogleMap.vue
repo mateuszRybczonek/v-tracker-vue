@@ -48,18 +48,12 @@
 <script>
 import GoogleMapLoader from './GoogleMapLoader'
 import GoogleMapMarker from './GoogleMapMarker'
-
-import {
-  mapSettings,
-  SELECTED_POINT_MARKER_ICON_CONFIG,
-} from '@/constants/mapSettings'
-
+import { mapSettings } from '@/constants/mapSettings'
 import { mapActions } from 'vuex'
 import { get } from 'vuex-pathify'
+import { mapReportsToMarkers } from '@/utils/google-map-utils'
+import { decimalToDMS } from '@/utils/coordinates-utils'
 
-import {
-  mapReportsToMarkers
-} from '@/utils/google-map-utils'
 
 export default {
   components: {
@@ -94,6 +88,7 @@ export default {
 
     markerConfigMain () {
       return {
+        // eslint-disable-next-line no-undef
         anchor: new google.maps.Point(16, 32),
         url: 'data:image/svg+xml;utf-8, \
           <svg width="36" height="36" viewBox="90 80 150 150" xmlns="http://www.w3.org/2000/svg"> \
@@ -104,6 +99,7 @@ export default {
 
     markerConfigCircles () {
       return {
+        // eslint-disable-next-line no-undef
         anchor: new google.maps.Point(18, 34),
         url: 'data:image/svg+xml;utf-8, \
           <svg width="36" height="36" viewBox="150 165 120 120" xmlns="http://www.w3.org/2000/svg"> \
@@ -139,7 +135,8 @@ export default {
             windDir: parseInt(lastReport.windDir),
             windSpd: parseInt(lastReport.windSpd),
             reportTime: lastReport.reportTime,
-            vesselName: name
+            vesselName: name,
+            vesselId: vessel.id
           }
         })
 
@@ -177,13 +174,36 @@ export default {
     ]),
 
     selectMarker(marker, googleMarker) {
-      const { reportTime, lat, lng, vesselName } = marker
+      const {
+        reportTime,
+        position: {
+          lat,
+          lng
+        },
+        vesselName,
+        vesselId
+      } = marker
 
+      // eslint-disable-next-line no-undef
       const infoWindow = new google.maps.InfoWindow({
         content: `
           <div class="iw-container">
             <div class="iw-title">
               <span>${vesselName}</span>
+            </div>
+            <div class="iw-body">
+              <span>${reportTime}</span>
+              <div class="iw-body__position">
+                <span class="iw-body__item">
+                  <span>Latitude:</span>
+                  <span>${decimalToDMS(lat)}</span>
+                </span>
+                <span class="iw-body__item">
+                  <span>Longitude:</span>
+                  <span>${decimalToDMS(lng, false)}</span>
+                </span>
+                <a href="/dashboard/vessels/${vesselId}" class="router-link-exact-active router-link-active">Go to details</a>
+              </div>
             </div>
           </div>
         `
