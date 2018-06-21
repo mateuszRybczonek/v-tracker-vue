@@ -48,17 +48,19 @@
 <script>
 import GoogleMapLoader from './GoogleMapLoader'
 import GoogleMapMarker from './GoogleMapMarker'
+import GoogleMapInfoWindow from './GoogleMapInfoWindow'
 import { mapSettings } from '@/constants/mapSettings'
 import { mapActions } from 'vuex'
 import { get } from 'vuex-pathify'
 import { mapReportsToMarkers } from '@/utils/google-map-utils'
 import { decimalToDMS } from '@/utils/coordinates-utils'
-
+import Vue from 'vue'
 
 export default {
   components: {
     GoogleMapLoader,
-    GoogleMapMarker
+    GoogleMapMarker,
+    GoogleMapInfoWindow
   },
 
   props: {
@@ -184,29 +186,22 @@ export default {
         vesselId
       } = marker
 
+      const InfoWindow = Vue.extend(GoogleMapInfoWindow)
+      const infoWindowInstance = new InfoWindow({
+        propsData: {
+          vesselName,
+          reportTime,
+          lat: decimalToDMS(lat),
+          lng: decimalToDMS(lng, false),
+          vesselId
+        }
+      })
+
+      infoWindowInstance.$mount()
+
       // eslint-disable-next-line no-undef
-      const infoWindow = new google.maps.InfoWindow({
-        content: `
-          <div class="iw-container">
-            <div class="iw-title">
-              <span>${vesselName}</span>
-            </div>
-            <div class="iw-body">
-              <span>${reportTime}</span>
-              <div class="iw-body__position">
-                <span class="iw-body__item">
-                  <span>Latitude:</span>
-                  <span>${decimalToDMS(lat)}</span>
-                </span>
-                <span class="iw-body__item">
-                  <span>Longitude:</span>
-                  <span>${decimalToDMS(lng, false)}</span>
-                </span>
-                <a href="/dashboard/vessels/${vesselId}" class="router-link-exact-active router-link-active">Go to details</a>
-              </div>
-            </div>
-          </div>
-        `
+      var infoWindow = new google.maps.InfoWindow({
+        content: infoWindowInstance.$el,
       })
 
       if (this.infoWindow) this.infoWindow.close()

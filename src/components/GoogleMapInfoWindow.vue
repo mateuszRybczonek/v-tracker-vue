@@ -1,68 +1,75 @@
-<template></template>
+<template>
+  <div>
+    <div class="iw-title">
+      <span>{{vesselName}}</span>
+    </div>
+    <div class="iw-body">
+      <span>{{reportTime}}</span>
+      <div class="iw-body__position">
+        <span class="iw-body__item">
+          <span>Latitude:</span>
+          <span>{{lat}}</span>
+        </span>
+        <span class="iw-body__item">
+          <span>Longitude:</span>
+          <span>{{lng}}</span>
+        </span>
+        <ButtonSmallNeutral :onClick="goToVesselDetails">Go to details</ButtonSmallNeutral>
+      </div>
+    </div>
+  </div>
+</template>
+
 <script>
-import { POINT_MARKER_ICON_CONFIG } from '@/constants/mapSettings'
+import router from '@/router/index'
+import ButtonSmallNeutral from '@/components/ButtonSmallNeutral'
 
 export default {
+  name: 'infowindow',
+
+  components: {
+    ButtonSmallNeutral
+  },
+
   props: {
-    google: Object,
-    map: Object,
-    marker: Object,
-    markerIcon: Object,
-    googleMapMarkers: Array,
-    pulse: Boolean
-  },
-
-  data () {
-    return { googleMarker: null}
-  },
-
-  mounted () {
-    const { Marker } = this.google.maps
-    this.googleMarker = new Marker({
-      clickable: true,
-      position: this.marker.position,
-      marker: this.marker,
-      clickHandler: this.clickHandler,
-      map: this.map,
-      icon: this.markerIcon || POINT_MARKER_ICON_CONFIG,
-      pulse: this.pulse
-    })
-
-    if (this.googleMarker.pulse) {
-      this.fadeInMarker(this.googleMarker, 0, 'UP')
-    }
-
-    this.googleMarker.addListener('click', () => {
-      this.$emit('selectMarker', this.marker)
-    })
-
-    this.googleMapMarkers.push(this.googleMarker)
+    vesselName: String,
+    reportTime: String,
+    lat: String,
+    lng: String,
+    vesselId: String
   },
 
   methods: {
-    fadeInMarker (marker, markerOpacity, direction) {
-      const markerOpacityIncrement = 0.03
-
-      if (direction === 'UP') {
-        if (markerOpacity >= 1) {
-          direction = 'DOWN'
-        } else {
-          marker.setOpacity(markerOpacity)
-          markerOpacity += markerOpacityIncrement
-        }
-      } else {
-        if (markerOpacity <= 0) {
-          direction = 'UP'
-        } else {
-          marker.setOpacity(markerOpacity)
-          markerOpacity -= markerOpacityIncrement
-        }
-      }
-
-      setTimeout(() => {
-        this.fadeInMarker(marker, markerOpacity, direction)
-      }, 50)
+    goToVesselDetails() {
+      router.push(`/dashboard/vessels/${this.vesselId}`)
     }
   }
 }
 </script>
+
+<style scoped lang="scss">
+  .iw-title {
+    color: $color-white;
+    width: 100%;
+    @include font(1.2rem, $fw-bold, 1.6rem);
+    padding-right: 20px;
+    background-color: $color-dark-grey;
+  }
+
+  .iw-body {
+    color: $color-white;
+    @include font(0.9rem, $fw-normal, 1.4rem);
+    background-color: $color-dark-grey;
+
+    &__position {
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+    }
+
+    &__item {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+</style>

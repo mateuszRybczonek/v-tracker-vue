@@ -33,33 +33,6 @@ a {
     margin: auto;
   }
 
-  .iw-container {
-    color: white;
-
-    .iw-title {
-      width: 100%;
-      @include font(1.2rem, $fw-bold, 1.6rem);
-      padding-right: 20px;
-      background-color: $color-dark-grey;
-    }
-
-    .iw-body {
-      @include font(0.9rem, $fw-normal, 1.4rem);
-      background-color: $color-dark-grey;
-
-      &__position {
-        display: flex;
-        flex-direction: column;
-        padding-top: 20px;
-      }
-
-      &__item {
-        display: flex;
-        justify-content: space-between;
-      }
-    }
-  }
-
   div {
     overflow: visible !important;
   }
