@@ -6,6 +6,53 @@ a {
   text-decoration: none !important;
 }
 
+.gm-style-iw {
+  overflow: visible !important;
+  background-color: $color-dark-grey;
+  box-shadow: -14px 0px 0px $color-dark-grey, -14px 9px 0px $color-dark-grey, -14px -8px 0px $color-dark-grey, 15px -8px 0px $color-dark-grey, 15px 9px 0px $color-dark-grey;
+
+  &::before {
+    width: calc(100% + 29px);
+    height: calc(100% + 17px);
+    position: absolute;
+    background: $color-dark-grey;
+  }
+
+  &::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border: 22px solid transparent;
+    border-top-color: $color-dark-grey;
+    z-index: 4;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: -53px;
+    margin: auto;
+  }
+
+  div {
+    overflow: visible !important;
+  }
+
+  + div {
+    width: 20px !important;
+    height: 20px !important;
+    top: 10px !important;
+    right: 10px !important;
+
+    img {
+      width: 20px !important;
+      height: 20px !important;
+      left: 0px !important;
+      top: 0px !important;
+      content: url('../assets/close-button.svg') !important;
+    }
+  }
+}
+
 .content {
   position: absolute;
   padding:0;

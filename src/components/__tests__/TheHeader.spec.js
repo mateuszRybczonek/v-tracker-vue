@@ -33,7 +33,7 @@ describe('TheHeader.vue', () => {
       store
     })
 
-    expect(wrapper.findAll('[data-test-the-header-navigation-item]')).toHaveLength(4)
+    expect(wrapper.findAll('[data-test-the-header-navigation-item]')).toHaveLength(3)
     expect(wrapper.findAll('[data-test-the-header-logout-button]')).toHaveLength(1)
   })
 

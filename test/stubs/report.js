@@ -19,7 +19,9 @@ const report = {
   updatedAt: '',
   vessel: 'vessel-1',
   windDir: 100,
-  windSpd: 40
+  windSpd: 40,
+  vesselName: 'test vessel',
+  vesselId: '1'
 }
 
 const secondReport = {

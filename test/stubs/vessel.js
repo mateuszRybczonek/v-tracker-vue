@@ -16,7 +16,26 @@ const firstVessel = {
   yob: '1997',
   maxFo: '0',
   maxDo: '650',
-  maxFw: '660'
+  maxFw: '660',
+  lastReport: {
+    id: 1,
+    reportTime: '2018-06-20',
+    course: 300,
+    doRob: 200,
+    foRob: 100,
+    fwRob: 50,
+    lat: 12.3,
+    lng: 30.4,
+    pitch: 1,
+    roll: 2,
+    pob: 14,
+    seaState: 4,
+    spd: 12,
+    swellDir: 230,
+    swellHeight: 4,
+    windDir: 210,
+    windSpd: 20
+  }
 }
 
 const secondVessel = {
@@ -37,7 +56,26 @@ const secondVessel = {
   yob: '2013',
   maxFo: '0',
   maxDo: '650',
-  maxFw: '660'
+  maxFw: '660',
+  lastReport: {
+    id: 2,
+    reportTime: '2018-06-10',
+    course: 300,
+    doRob: 200,
+    foRob: 100,
+    fwRob: 50,
+    lat: 12.3,
+    lng: 30.4,
+    pitch: 1,
+    roll: 2,
+    pob: 14,
+    seaState: 4,
+    spd: 12,
+    swellDir: 230,
+    swellHeight: 4,
+    windDir: 210,
+    windSpd: 20
+  }
 }
 
 const vesselCapacities = {

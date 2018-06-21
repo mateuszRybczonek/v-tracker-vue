@@ -12,6 +12,10 @@ export default {
       const reportId = data.name
       reportData = { ...reportData, id: reportId }
       await globalAxios.patch(`vessels/${vesselId}/reports.json?auth=${getters.idToken}`, { [reportId]: true })
+      const lastReportInDatabase = getters.sortedReports[0]
+      const lastReport = lastReportInDatabase.reportTime > reportData.reportTime ? lastReportInDatabase : reportData
+
+      await globalAxios.patch(`vessels/${vesselId}/lastReport.json?auth=${getters.idToken}`, lastReport)
       commit(types.ADD_REPORT, reportData)
     } catch (error) { throw error }
   },
@@ -53,7 +57,11 @@ export default {
       await globalAxios.delete(`/reports/${reportId}.json?auth=${getters.idToken}`)
       try {
         await globalAxios.patch(`vessels/${vesselId}/reports.json?auth=${getters.idToken}`, { [reportId]: null })
+        const isLastReport = getters.sortedReports[0].id === reportId
         commit(types.DELETE_REPORT, reportId)
+        if (isLastReport) {
+          await globalAxios.patch(`vessels/${vesselId}/lastReport.json?auth=${getters.idToken}`, getters.sortedReports[0])
+        }
       } catch (error) { throw(error) }
     } catch (error) { throw(error) }
   },

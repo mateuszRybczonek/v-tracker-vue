@@ -68,14 +68,18 @@ describe('VesselDashboardGoogleMap.vue', () => {
             lat: 12.338,
             lng: 12.34
           },
-          reportTime: '2018-02-10'
+          reportTime: '2018-02-10',
+          vesselId: '1',
+          vesselName: 'test vessel'
         }, {
           id: '-LAUKugHH0_YhkHdzcS-',
           position: {
             lat: 12.338,
             lng: -12.34
           },
-          reportTime: '2018-04-16'
+          reportTime: '2018-04-16',
+          vesselId: undefined,
+          vesselName: '-'
         }
       ]
 
@@ -121,31 +125,17 @@ describe('VesselDashboardGoogleMap.vue', () => {
           lat: 12.338,
           lng: 12.34
         },
-        reportTime: '2018-02-10'
+        reportTime: '2018-02-10',
+        vesselId: '1',
+        vesselName: 'test vessel'
       }
 
       wrapper.vm.selectMarker(marker)
 
-
       it('sets proper infoPosition', () => {
-        expect(wrapper.vm.infoPosition).toEqual(marker.position)
+        expect(selectReportSpy).toHaveBeenCalled
       })
 
-      it('sets proper infoContent', () => {
-        expect(wrapper.vm.infoContent).toEqual(marker.reportTime)
-      })
-
-      it('sets infoOpened to true if info is hidden', () => {
-        expect(wrapper.vm.infoOpened).toEqual(true)
-      })
-
-      it('sets infoOpened to true if info is hidden', () => {
-        expect(wrapper.vm.infoOpened).toEqual(true)
-      })
-
-      it('sets infoCurrentKey to selected marker id', () => {
-        expect(wrapper.vm.infoCurrentKey).toEqual('-L7yuO7nLZtMgEe8qth6')
-      })
     })
   })
 })

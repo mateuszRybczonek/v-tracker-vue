@@ -17,6 +17,7 @@ describe('reports actions', () => {
     let reportData
     let onFulfilledPost
     let onFulfilledPatch
+    let onFulfilledLastReportPatch
     let postResponse
 
     beforeEach(() => {
@@ -26,15 +27,18 @@ describe('reports actions', () => {
       context = {
         getters: {
           idToken: 999,
+          sortedReports: [reportData]
         },
         commit: jest.fn()
       }
 
       onFulfilledPost = jest.fn()
       onFulfilledPatch = jest.fn()
+      onFulfilledLastReportPatch = jest.fn()
 
       axios.post('/reports.json?auth=999').then(onFulfilledPost)
       axios.patch('vessels/vessel-1/reports.json?auth=999').then(onFulfilledPatch)
+      axios.patch('vessels/vessel-1/lastReport.json?auth=999').then(onFulfilledLastReportPatch)
 
       moxios.stubRequest('/reports.json?auth=999', {
         status: 200,
@@ -44,6 +48,11 @@ describe('reports actions', () => {
       moxios.stubRequest('vessels/vessel-1/reports.json?auth=999', {
         status: 200,
         response: 'report ref in vessel added'
+      })
+
+      moxios.stubRequest('vessels/vessel-1/lastReport.json?auth=999', {
+        status: 200,
+        response: 'lastReport vessel patched'
       })
     })
 
@@ -69,6 +78,11 @@ describe('reports actions', () => {
     it('calls API and patches the vessel adding a reference to the report', async() => {
       await actions.createNewReport(context, reportData)
       expect(onFulfilledPatch.mock.calls[0][0].data).toBe('report ref in vessel added')
+    })
+
+    it('calls API and patches the vessel lastReport', async() => {
+      await actions.createNewReport(context, reportData)
+      expect(onFulfilledLastReportPatch.mock.calls[0][0].data).toBe('lastReport vessel patched')
     })
   })
 
@@ -192,6 +206,8 @@ describe('reports actions', () => {
     let payload
     let onFulfilledDelete
     let onFulfilledPatch
+    let onFulfilledLastReportPatch
+    let reportData
 
     beforeEach(() => {
       payload = {
@@ -199,18 +215,23 @@ describe('reports actions', () => {
         reportId: 999
       }
 
+      reportData = { ...report, id: 999 }
+
       context = {
         getters: {
           idToken: 888,
+          sortedReports: [reportData]
         },
         commit: jest.fn()
       }
 
       onFulfilledDelete = jest.fn()
       onFulfilledPatch = jest.fn()
+      onFulfilledLastReportPatch = jest.fn()
 
       axios.delete('/reports/999.json?auth=888').then(onFulfilledDelete)
       axios.patch('vessels/111/reports.json?auth=888').then(onFulfilledPatch)
+      axios.patch('vessels/111/lastReport.json?auth=888').then(onFulfilledLastReportPatch)
 
       moxios.stubRequest('/reports/999.json?auth=888', {
         status: 200,
@@ -220,6 +241,11 @@ describe('reports actions', () => {
       moxios.stubRequest('vessels/111/reports.json?auth=888', {
         status: 200,
         response: 'report ref in vessel patched'
+      })
+
+      moxios.stubRequest('vessels/111/lastReport.json?auth=888', {
+        status: 200,
+        response: 'lastReport vessel patched'
       })
     })
 
