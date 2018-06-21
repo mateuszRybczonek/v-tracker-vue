@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="iw-title">
+    <div data-test-google-map-info-window-title class="iw-title">
       <span>{{vesselName}}</span>
     </div>
-    <div class="iw-body">
+    <div data-test-google-map-info-window-body class="iw-body">
       <span>{{reportTime}}</span>
       <div class="iw-body__position">
         <span class="iw-body__item">
@@ -14,7 +14,12 @@
           <span>Longitude:</span>
           <span>{{lng}}</span>
         </span>
-        <ButtonSmallNeutral :onClick="goToVesselDetails">Go to details</ButtonSmallNeutral>
+        <ButtonSmallNeutral
+          data-test-google-map-info-window-body-button
+          :onClick="goToVesselDetails"
+        >
+          Go to details
+        </ButtonSmallNeutral>
       </div>
     </div>
   </div>
