@@ -59,7 +59,6 @@ export default {
         await globalAxios.patch(`vessels/${vesselId}/reports.json?auth=${getters.idToken}`, { [reportId]: null })
         const isLastReport = getters.sortedReports[0].id === reportId
         commit(types.DELETE_REPORT, reportId)
-
         if (isLastReport) {
           await globalAxios.patch(`vessels/${vesselId}/lastReport.json?auth=${getters.idToken}`, getters.sortedReports[0])
         }

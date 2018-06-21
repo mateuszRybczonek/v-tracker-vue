@@ -79,6 +79,11 @@ describe('reports actions', () => {
       await actions.createNewReport(context, reportData)
       expect(onFulfilledPatch.mock.calls[0][0].data).toBe('report ref in vessel added')
     })
+
+    it('calls API and patches the vessel lastReport', async() => {
+      await actions.createNewReport(context, reportData)
+      expect(onFulfilledLastReportPatch.mock.calls[0][0].data).toBe('lastReport vessel patched')
+    })
   })
 
   describe('updateReport', () => {
