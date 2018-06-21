@@ -115,30 +115,32 @@ export default {
         const lastReports = this.vessels.map(vessel => {
           const { lastReport, name } = vessel
 
-          return {
-            id: lastReport.id,
-            course: parseInt(lastReport.course),
-            doRob: parseInt(lastReport.doRob),
-            foRob: parseInt(lastReport.foRob),
-            fwRob: parseInt(lastReport.fwRob),
-            lat: parseFloat(lastReport.lat),
-            lng: parseFloat(lastReport.lng),
-            pitch: parseFloat(lastReport.pitch),
-            roll: parseFloat(lastReport.roll),
-            pob: parseInt(lastReport.pob),
-            seaState: parseInt(lastReport.seaState),
-            spd: parseInt(lastReport.spd),
-            swellDir: parseInt(lastReport.swellDir),
-            swellHeight: parseFloat(lastReport.swellHeight),
-            windDir: parseInt(lastReport.windDir),
-            windSpd: parseInt(lastReport.windSpd),
-            reportTime: lastReport.reportTime,
-            vesselName: name,
-            vesselId: vessel.id
+          if (lastReport !== undefined) {
+            return {
+              id: lastReport.id,
+              course: parseInt(lastReport.course),
+              doRob: parseInt(lastReport.doRob),
+              foRob: parseInt(lastReport.foRob),
+              fwRob: parseInt(lastReport.fwRob),
+              lat: parseFloat(lastReport.lat),
+              lng: parseFloat(lastReport.lng),
+              pitch: parseFloat(lastReport.pitch),
+              roll: parseFloat(lastReport.roll),
+              pob: parseInt(lastReport.pob),
+              seaState: parseInt(lastReport.seaState),
+              spd: parseInt(lastReport.spd),
+              swellDir: parseInt(lastReport.swellDir),
+              swellHeight: parseFloat(lastReport.swellHeight),
+              windDir: parseInt(lastReport.windDir),
+              windSpd: parseInt(lastReport.windSpd),
+              reportTime: lastReport.reportTime,
+              vesselName: name,
+              vesselId: vessel.id
+            }
           }
         })
 
-        return mapReportsToMarkers(lastReports)
+        if (lastReports[0] !== undefined) return mapReportsToMarkers(lastReports)
       }
     },
 
@@ -151,23 +153,27 @@ export default {
     },
 
     mapCenter () {
-      if(!this.fetchingVessels) {
-        if (this.points.length === 1) return { lat: parseFloat(this.points[0].position.lat), lng: parseFloat(this.points[0].position.lng) }
+      if (this.points === undefined) {
+        return { lat: 0, lng: 0 }
+      } else {
+        if(!this.fetchingVessels) {
+          if (this.points.length === 1) return { lat: parseFloat(this.points[0].position.lat), lng: parseFloat(this.points[0].position.lng) }
 
-        const lats = this.points.map(point => {
-        	return point.position.lat
-        })
+          const lats = this.points.map(point => {
+            return point.position.lat
+          })
 
-        const lngs = this.points.map(point => {
-        	return point.position.lng
-        })
+          const lngs = this.points.map(point => {
+            return point.position.lng
+          })
 
-        const avgLat = lats.reduce((a, b) => a + b)
-        const avgLng = lngs.reduce((a, b) => a + b) / lngs.length
+          const avgLat = lats.reduce((a, b) => a + b) / lats.length
+          const avgLng = lngs.reduce((a, b) => a + b) / lngs.length
 
-        return {
-          lat: avgLat,
-          lng: avgLng
+          return {
+            lat: avgLat,
+            lng: avgLng
+          }
         }
       }
     }

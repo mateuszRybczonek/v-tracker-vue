@@ -15,9 +15,6 @@ describe('GoogleMapInfoWindow.vue', () => {
         lat,
         lng,
         vesselId: report.vesselId
-      },
-      methods: {
-        goToVesselDetails() { goToVesselDetailsSpy }
       }
     })
 

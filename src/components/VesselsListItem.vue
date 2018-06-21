@@ -7,7 +7,7 @@
     <VesselsListItemBody
       :inProgress="inProgress"
       :vesselName="vessel.name"
-      :vesselLastReportTime="vessel.lastReport.reportTime"
+      :vesselLastReportTime="vesselLastReportTime"
       :vesselImoNumber="vessel.imoNumber"/>
 
     <VesselsListItemActions
@@ -39,6 +39,11 @@
     computed: {
       vesselDetailsLink () {
         return `/dashboard/vessels/${this.vessel.id}`
+      },
+
+      vesselLastReportTime () {
+        const { vessel } = this
+        return vessel.lastReport ? vessel.lastReport.reportTime : '-'
       },
 
       inProgress () {

@@ -54,7 +54,13 @@
 
     computed: {
       positionData () {
-        const { lat, lng } = this.report
+        let lat = 0
+        let lng = 0
+
+        if (this.report !== null) {
+          lat = this.report.lat
+          lng = this.report.lng
+        }
 
         return [
           {

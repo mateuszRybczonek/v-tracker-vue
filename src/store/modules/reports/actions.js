@@ -7,13 +7,19 @@ export default {
     if (!getters.idToken) return
 
     try {
+      let lastReport = {}
       const { data } = await globalAxios.post(`/reports.json?auth=${getters.idToken}`, reportData)
       const vesselId = reportData.vessel
       const reportId = data.name
       reportData = { ...reportData, id: reportId }
       await globalAxios.patch(`vessels/${vesselId}/reports.json?auth=${getters.idToken}`, { [reportId]: true })
-      const lastReportInDatabase = getters.sortedReports[0]
-      const lastReport = lastReportInDatabase.reportTime > reportData.reportTime ? lastReportInDatabase : reportData
+
+      if (getters.sortedReports.length > 0) {
+        const lastReportInDatabase = getters.sortedReports[0]
+        lastReport = lastReportInDatabase.reportTime > reportData.reportTime ? lastReportInDatabase : reportData
+      } else {
+        lastReport = reportData
+      }
 
       await globalAxios.patch(`vessels/${vesselId}/lastReport.json?auth=${getters.idToken}`, lastReport)
       commit(types.ADD_REPORT, reportData)

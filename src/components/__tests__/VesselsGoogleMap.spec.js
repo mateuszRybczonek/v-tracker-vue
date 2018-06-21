@@ -5,11 +5,6 @@ import { report, secondReport } from '@/../test/stubs/report'
 import { firstVessel, secondVessel } from '@/../test/stubs/vessel'
 
 const selectReportSpy = jest.fn()
-const googleMapMarkerStub = {
-  setIcon: jest.fn(),
-  setAnimation: jest.fn(),
-  marker: { ...report }
-}
 
 describe('VesselsGoogleMap.vue', () => {
   const setup = () => {
@@ -97,7 +92,7 @@ describe('VesselsGoogleMap.vue', () => {
     })
 
     it('mapCenter returns position of last report', () => {
-      const expectedResult = { lat: 24.6, lng: 30.4 }
+      const expectedResult = { lat: 12.3, lng: 30.4 }
       expect(wrapper.vm.mapCenter).toEqual(expectedResult)
     })
   })

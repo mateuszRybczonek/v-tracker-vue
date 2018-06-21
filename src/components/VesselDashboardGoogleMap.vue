@@ -113,10 +113,14 @@ export default {
     },
 
     mapCenter () {
-      if(!this.fetchingReports) {
-        return {
-          lat: this.selectedReport.lat,
-          lng: this.selectedReport.lng
+      if (this.selectedReport === null) {
+        return { lat: 0, lng: 0 }
+      } else {
+        if(!this.fetchingReports) {
+          return {
+            lat: this.selectedReport.lat,
+            lng: this.selectedReport.lng
+          }
         }
       }
     }
