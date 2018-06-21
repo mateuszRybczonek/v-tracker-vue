@@ -24,9 +24,7 @@ describe('vessels actions', () => {
       context = {
         getters: {
           idToken: 999,
-          user: {
-            userId: 333
-          }
+          userId: 333
         },
         commit: jest.fn()
       }
@@ -160,9 +158,7 @@ describe('vessels actions', () => {
       context = {
         getters: {
           idToken: 999,
-          user: {
-            userId: 333
-          }
+          userId: 333
         },
         commit: jest.fn()
       }
