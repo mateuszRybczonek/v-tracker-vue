@@ -1,8 +1,10 @@
 import { mount } from 'vue-test-utils'
 import GoogleMapInfoWindow from '@/components/GoogleMapInfoWindow.vue'
 import { report } from '@/../test/stubs/report'
+import { decimalToDMS } from '@/utils/coordinates-utils'
 
-const goToVesselDetailsSpy = jest.fn()
+const lat = decimalToDMS(report.lat)
+const lng = decimalToDMS(report.lng)
 
 describe('GoogleMapInfoWindow.vue', () => {
   const setup = () => {
@@ -10,8 +12,8 @@ describe('GoogleMapInfoWindow.vue', () => {
       propsData: {
         vesselName: report.vesselName,
         reportTime: report.reportTime,
-        lat: report.lat,
-        lng: report.lng,
+        lat,
+        lng,
         vesselId: report.vesselId
       },
       methods: {
@@ -25,16 +27,24 @@ describe('GoogleMapInfoWindow.vue', () => {
   describe('it renders', () => {
     const { wrapper } = setup()
 
-    test('with proper title title', () => {
+    test('with proper title', () => {
       expect(wrapper.find('[data-test-google-map-info-window-title]').text()).toContain(report.vesselName)
     })
-  })
 
+    test('with reportTime in body', () => {
+      expect(wrapper.find('[data-test-google-map-info-window-body]').text()).toContain(report.reportTime)
+    })
 
-  test('calls goToVesselDetailsSpy method when clicked on a buttom', () => {
-    const { wrapper } = setup()
+    test('with lat in body', () => {
+      expect(wrapper.find('[data-test-google-map-info-window-body]').text()).toContain(lat)
+    })
 
-    wrapper.find('[data-test-google-map-info-window-body-button]').trigger('click')
-    expect(goToVesselDetailsSpy).toHaveBeenCalled()
+    test('with lng in body', () => {
+      expect(wrapper.find('[data-test-google-map-info-window-body]').text()).toContain(lng)
+    })
+
+    test('with lng in body', () => {
+      expect(wrapper.findAll('[data-test-google-map-info-window-body-button]').length).toEqual(1)
+    })
   })
 })

@@ -18,7 +18,23 @@ const firstVessel = {
   maxDo: '650',
   maxFw: '660',
   lastReport: {
-    reportTime: '2018-06-20'
+    id: 1,
+    reportTime: '2018-06-20',
+    course: 300,
+    doRob: 200,
+    foRob: 100,
+    fwRob: 50,
+    lat: 12.3,
+    lng: 30.4,
+    pitch: 1,
+    roll: 2,
+    pob: 14,
+    seaState: 4,
+    spd: 12,
+    swellDir: 230,
+    swellHeight: 4,
+    windDir: 210,
+    windSpd: 20
   }
 }
 
@@ -42,7 +58,23 @@ const secondVessel = {
   maxDo: '650',
   maxFw: '660',
   lastReport: {
-    reportTime: '2018-06-10'
+    id: 2,
+    reportTime: '2018-06-10',
+    course: 300,
+    doRob: 200,
+    foRob: 100,
+    fwRob: 50,
+    lat: 12.3,
+    lng: 30.4,
+    pitch: 1,
+    roll: 2,
+    pob: 14,
+    seaState: 4,
+    spd: 12,
+    swellDir: 230,
+    swellHeight: 4,
+    windDir: 210,
+    windSpd: 20
   }
 }
 
