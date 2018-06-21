@@ -209,7 +209,7 @@ export default {
       infoWindowInstance.$mount()
 
       // eslint-disable-next-line no-undef
-      var infoWindow = new this.google.maps.InfoWindow({
+      const infoWindow = new google.maps.InfoWindow({
         content: infoWindowInstance.$el,
       })
 
