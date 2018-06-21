@@ -9,7 +9,7 @@ export default {
       const { data } = await globalAxios.post(`/vessels.json?auth=${getters.idToken}`, vesselData)
       const vesselId = data.name
       try {
-        await globalAxios.patch(`users/${getters.user.userId}/vessels.json?auth=${getters.idToken}`, { [vesselId]: true })
+        await globalAxios.patch(`users/${getters.userId}/vessels.json?auth=${getters.idToken}`, { [vesselId]: true })
       } catch (error) { throw(error) }
     } catch (error) { throw(error) }
   },
@@ -43,7 +43,7 @@ export default {
     try {
       await globalAxios.delete(`/vessels/${vesselId}.json?auth=${getters.idToken}`)
       try {
-        await globalAxios.patch(`users/${getters.user.userId}/vessels.json?auth=${getters.idToken}`, { [vesselId]: null })
+        await globalAxios.patch(`users/${getters.userId}/vessels.json?auth=${getters.idToken}`, { [vesselId]: null })
         commit(types.DELETE_VESSEL, vesselId)
       } catch (error) { throw(error) }
     } catch (error) { throw(error) }
