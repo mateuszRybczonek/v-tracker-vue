@@ -3,6 +3,8 @@ import { MARKERS } from '@/../test/stubs/googleMap'
 import GoogleMapMarker from '@/components/GoogleMapMarker'
 import { POINT_MARKER_ICON_CONFIG } from '@/constants/mapSettings'
 
+const setOpacitySpy = jest.fn()
+
 describe('GoogleMapMarker.vue', () => {
   const setup = () => {
     const wrapper = shallow(GoogleMapMarker, {
@@ -10,19 +12,21 @@ describe('GoogleMapMarker.vue', () => {
         google: {
           maps: {
             Marker: function(props) {
-              this.clickable = props.clickable,
-              this.position = props.position,
-              this.marker = props.marker,
-              this.clickHandler = props.clickHandler,
+              this.clickable = props.clickable
+              this.position = props.position
+              this.marker = props.marker
+              this.clickHandler = props.clickHandler
               this.map = props.map
               this.icon = props.icon
               this.addListener = jest.fn()
+              this.setOpacity = setOpacitySpy
             }
           }
         },
         map: { map: true },
         marker: MARKERS[0],
-        googleMapMarkers: MARKERS
+        googleMapMarkers: MARKERS,
+        pulse: true
       }
     })
     return { wrapper }
@@ -39,7 +43,8 @@ describe('GoogleMapMarker.vue', () => {
         'clickHandler',
         'map',
         'icon',
-        'addListener'
+        'addListener',
+        'setOpacity'
       ])
     })
 
@@ -61,6 +66,50 @@ describe('GoogleMapMarker.vue', () => {
 
     it('sets icon properly', () => {
       expect(wrapper.vm.googleMarker.icon).toEqual(POINT_MARKER_ICON_CONFIG)
+    })
+  })
+
+  describe('Methods', () => {
+    beforeEach(() => {
+      jest.useFakeTimers()
+    })
+
+    afterEach(() => {
+      jest.useRealTimers()
+    })
+
+    it('fadeInMarker calls setOpacity with proper value when going UP', () => {
+      const { wrapper } = setup(true)
+      wrapper.vm.fadeInMarker(wrapper.vm.googleMarker, 0.9, 'UP')
+
+      expect(setOpacitySpy).toHaveBeenLastCalledWith(0.9)
+      jest.runTimersToTime(51)
+      expect(setOpacitySpy).toHaveBeenLastCalledWith(0.93)
+      jest.runTimersToTime(101)
+    })
+
+    it('fadeInMarker calls setOpacity with proper value when going DOWN', () => {
+      const { wrapper } = setup(true)
+      wrapper.vm.fadeInMarker(wrapper.vm.googleMarker, 0.9, 'DOWN')
+
+      expect(setOpacitySpy).toHaveBeenLastCalledWith(0.9)
+      jest.runTimersToTime(51)
+      expect(setOpacitySpy).toHaveBeenLastCalledWith(0.87)
+    })
+
+    it('fadeInMarker calls setOpacity with proper value when reaches the pivot point', () => {
+      const { wrapper } = setup(true)
+      wrapper.vm.fadeInMarker(wrapper.vm.googleMarker, 0.9, 'UP')
+
+      expect(setOpacitySpy).toHaveBeenLastCalledWith(0.9)
+      jest.runTimersToTime(51)
+      expect(setOpacitySpy).toHaveBeenLastCalledWith(0.93)
+      jest.runTimersToTime(101)
+      expect(setOpacitySpy).toHaveBeenLastCalledWith(0.9900000000000001)
+      jest.runTimersToTime(151)
+      expect(setOpacitySpy).toHaveBeenLastCalledWith(0.99)
+      jest.runTimersToTime(201)
+      expect(setOpacitySpy).toHaveBeenLastCalledWith(0.8699999999999999)
     })
   })
 })
