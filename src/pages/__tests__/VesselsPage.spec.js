@@ -3,15 +3,12 @@ import VesselsPage from '@/pages/VesselsPage.vue'
 import VesselsList from '@/components/VesselsList.vue'
 import Vuex from 'vuex'
 import { firstVessel, secondVessel } from '@/../test/stubs/vessel'
+import { taskSpy } from '@/../test/stubs/task'
 
-const fetchVesselsSpy = jest.fn()
+const fetchVesselsTaskSpy = taskSpy()
 
 describe('VesselsPage.vue', () => {
   const setup = () => {
-    const actions = {
-      fetchVessels: fetchVesselsSpy
-    }
-
     const getters = {
       vessels: jest.fn(),
       userId: jest.fn()
@@ -24,13 +21,17 @@ describe('VesselsPage.vue', () => {
     localVue.use(Vuex)
 
     const store = new Vuex.Store({
-      actions,
       getters
     })
 
+    const mocks = {
+      fetchVesselsTask: fetchVesselsTaskSpy
+    }
+
     const wrapper = shallow(VesselsPage, {
       localVue,
-      store
+      store,
+      mocks
     })
 
     return { wrapper }
@@ -50,6 +51,6 @@ describe('VesselsPage.vue', () => {
   })
 
   test('created hook fetches vessels', () => {
-    expect(fetchVesselsSpy.mock.calls[0][1]).toEqual(1)
+    expect(fetchVesselsTaskSpy.run).toHaveBeenCalled()
   })
 })

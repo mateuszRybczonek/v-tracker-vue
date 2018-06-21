@@ -16,7 +16,10 @@ const firstVessel = {
   yob: '1997',
   maxFo: '0',
   maxDo: '650',
-  maxFw: '660'
+  maxFw: '660',
+  lastReport: {
+    reportTime: '2018-06-20'
+  }
 }
 
 const secondVessel = {
@@ -37,7 +40,10 @@ const secondVessel = {
   yob: '2013',
   maxFo: '0',
   maxDo: '650',
-  maxFw: '660'
+  maxFw: '660',
+  lastReport: {
+    reportTime: '2018-06-10'
+  }
 }
 
 const vesselCapacities = {

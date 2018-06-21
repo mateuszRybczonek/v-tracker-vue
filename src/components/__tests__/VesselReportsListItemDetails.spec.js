@@ -168,7 +168,9 @@ describe('VesselReportsListItemDetails.vue', () => {
         updatedAt: '',
         vessel: 'vessel-1',
         windDir: 100,
-        windSpd: 40
+        windSpd: 40,
+        vesselId: '1',
+        vesselName: 'test vessel',
       }
 
       wrapper.vm.editReportSection()

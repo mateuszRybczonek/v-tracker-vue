@@ -12,7 +12,6 @@ export default {
       const reportId = data.name
       reportData = { ...reportData, id: reportId }
       await globalAxios.patch(`vessels/${vesselId}/reports.json?auth=${getters.idToken}`, { [reportId]: true })
-
       const lastReportInDatabase = getters.sortedReports[0]
       const lastReport = lastReportInDatabase.reportTime > reportData.reportTime ? lastReportInDatabase : reportData
 

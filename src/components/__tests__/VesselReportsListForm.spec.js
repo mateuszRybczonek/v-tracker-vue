@@ -9,7 +9,6 @@ import { taskSpy } from '@/../test/stubs/task'
 const createNewReportSpy = jest.fn()
 const createNewReportTaskSpy = taskSpy()
 
-
 describe('VesselReportsListForm.vue', () => {
   const setup = (step = 1) => {
     const actions = {
