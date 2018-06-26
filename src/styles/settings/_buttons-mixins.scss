@@ -10,13 +10,31 @@ $button-height: 56px;
 
 @mixin green-button() {
   background-color: $color-blue;
-  color: #FFF;
+  color: $color-white;
 
   &:enabled {
     &:hover,
     &:focus {
       background-color: $color-light-blue;
       color: $color-whitey;
+      cursor: pointer;
+    }
+  }
+
+  &[disabled] {
+    opacity: 0.32;
+  }
+}
+
+@mixin light-blue-button() {
+  background-color: $color-light-blue;
+  color: $color-white;
+  border: solid 1px $color-white;
+
+  &:enabled {
+    &:hover {
+      background-color: $color-blue;
+      color: $color-white;
       cursor: pointer;
     }
   }
