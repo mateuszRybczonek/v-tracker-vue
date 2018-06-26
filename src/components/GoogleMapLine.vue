@@ -6,7 +6,8 @@ export default {
   props: {
     google: Object,
     map: Object,
-    path: Array
+    path: Array,
+    googleMapLines: Array,
   },
 
   data () {
@@ -21,6 +22,8 @@ export default {
       map: this.map,
       ...LINE_PATH_CONFIG
     })
+
+    this.googleMapLines.push(this.line)
   }
 }
 </script>

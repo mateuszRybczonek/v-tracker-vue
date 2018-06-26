@@ -28,6 +28,24 @@
       </div>
 
       <div
+        class=""
+      >
+        <DatePicker
+          class="form-input"
+          placeholder="Start date"
+          v-model="filteredFirstReportDate"
+        />
+
+        <DatePicker
+          class="form-input"
+          placeholder="End date"
+          v-model="filteredLastReportDate"
+        />
+
+        <button @click="filterReports()">Filter</button>
+      </div>
+
+      <div
         data-test-sidebar-content-list-items
         class="sidebar__content__list__items"
         v-if="sidebarVisible"
@@ -48,8 +66,14 @@
 
 <script>
   import { get } from 'vuex-pathify'
+  import { mapActions } from 'vuex'
+  import DatePicker from '@/components/DatePicker.vue'
 
   export default {
+    components: {
+      DatePicker
+    },
+
     props: {
       vessel: {
         type: Object,
@@ -65,8 +89,37 @@
       }
     },
 
+    data () {
+      return {
+        filteredFirstReportDate: this.$moment().subtract(14, 'days').format('YYYY-MM-DD'),
+        filteredLastReportDate: this.$moment().format('YYYY-MM-DD')
+      }
+    },
+
+    methods: {
+      ...mapActions([
+        'setFilteredReports'
+      ]),
+
+      filterReports () {
+        const firstReportDate = this.filteredFirstReportDate
+        const lastReportDate = this.filteredLastReportDate
+        const filteredReports = this.reports.filter(report => {
+          return new Date(report.reportTime) >= new Date(firstReportDate) &&
+            new Date(report.reportTime) <= new Date(lastReportDate)
+        })
+
+        this.setFilteredReports(filteredReports)
+      }
+    },
+
     computed: {
       sidebarVisible: get('sidebarVisible'),
+      reports: get('reports'),
+
+      firstReportDate () {
+        return this.filteredFirstReportDate || this.$moment(this.lastReportDate).subtract(14, 'days').format('YYYY-MM-DD')
+      },
 
       vesselStatusClass () {
         if (!this.lastReport) return `status--red`
@@ -111,6 +164,14 @@
       lastReportDaysAgo () {
         if (!this.lastReport) return '---'
         return this.$moment(this.lastReport.reportTime).fromNow()
+      }
+    },
+
+    watch: {
+      lastReportDate (newValue) {
+        this.filteredFirstReportDate = this.$moment(this.lastReportDate).subtract(14, 'days').format('YYYY-MM-DD'),
+        this.filteredLastReportDate = this.$moment(this.lastReportDate).format('YYYY-MM-DD')
+        this.filterReports()
       }
     }
   }

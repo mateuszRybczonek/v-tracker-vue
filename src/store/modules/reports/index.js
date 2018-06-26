@@ -6,7 +6,8 @@ import mutations from './mutations'
 const state = {
   reports: [],
   fetchingReports: false,
-  selectedReport: null
+  selectedReport: null,
+  filteredReports: []
 }
 
 export default {
@@ -16,7 +17,7 @@ export default {
     ...getters
   },
   mutations: {
-    ...make.mutations(['reports', 'fetchingReports']),
+    ...make.mutations(['reports', 'fetchingReports', 'filteredReports']),
     ...mutations
   },
   actions: {

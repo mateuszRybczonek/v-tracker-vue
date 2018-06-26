@@ -13,7 +13,7 @@
 
     <ReportSelector
       class="vessel-dashboard__report-selector"
-      :reports="sortedReports"
+      :reports="filteredReports"
     />
 
     <div
@@ -93,6 +93,7 @@
         'sortedReports'
       ]),
 
+      filteredReports: get('filteredReports'),
       fetchingReports: get('fetchingReports'),
       selectedReport: get('selectedReport'),
       reports: get('reports'),
