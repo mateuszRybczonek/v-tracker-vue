@@ -1,5 +1,9 @@
 <template>
-  <input :value="date" ref="datepicker" :placeholder="placeholder">
+  <input
+    ref="datepicker"
+    :value="date"
+    :placeholder="placeholder"
+  >
 </template>
 
 <script>
@@ -22,6 +26,14 @@ export default {
       default: 'YYYY-MM-DD'
     },
 
+    maxDate: {
+      type: Date
+    },
+
+    minDate: {
+      type: Date
+    },
+
     placeholder: {
       type: String,
       default: 'YYYY-MM-DD'
@@ -32,6 +44,8 @@ export default {
     const picker = new Pikaday({
       field: this.$refs.datepicker,
       format: this.format,
+      maxDate: this.maxDate,
+      minDate: this.minDate,
 
       onSelect: () => {
         this.$emit('selected', picker.toString())
@@ -40,3 +54,20 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+  input {
+    padding: 5px;
+    border-radius: 3px;
+    border: none;
+    background-color: $color-whitey-lighter;
+    @include box-shadow(0 8px 16px 0 rgba(83, 99, 115, 0.32));
+    text-align: right;
+    font-weight: $fw-bold;
+    color: $color-blue-grey;
+
+    &:focus {
+      outline: none;
+    }
+  }
+</style>

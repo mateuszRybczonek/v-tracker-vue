@@ -24,9 +24,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 100%;
     margin-top: 20px;
-    margin-left: 10px;
     text-transform: uppercase;
 
     @include common-button();
