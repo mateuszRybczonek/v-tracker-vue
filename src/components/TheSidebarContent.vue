@@ -27,23 +27,10 @@
         <span class="sidebar__content__list__item__title">({{lastReportDaysAgo}})</span>
       </div>
 
-      <div
-        class=""
-      >
-        <DatePicker
-          class="form-input"
-          placeholder="Start date"
-          v-model="filteredFirstReportDate"
-        />
-
-        <DatePicker
-          class="form-input"
-          placeholder="End date"
-          v-model="filteredLastReportDate"
-        />
-
-        <button @click="filterReports()">Filter</button>
-      </div>
+      <TheSidebarFilter
+        v-if="!fetchingReports"
+        :lastReport="lastReport"
+      />
 
       <div
         data-test-sidebar-content-list-items
@@ -67,11 +54,11 @@
 <script>
   import { get } from 'vuex-pathify'
   import { mapActions } from 'vuex'
-  import DatePicker from '@/components/DatePicker.vue'
+  import TheSidebarFilter from '@/components/TheSidebarFilter'
 
   export default {
     components: {
-      DatePicker
+      TheSidebarFilter
     },
 
     props: {
@@ -89,37 +76,10 @@
       }
     },
 
-    data () {
-      return {
-        filteredFirstReportDate: this.$moment().subtract(14, 'days').format('YYYY-MM-DD'),
-        filteredLastReportDate: this.$moment().format('YYYY-MM-DD')
-      }
-    },
-
-    methods: {
-      ...mapActions([
-        'setFilteredReports'
-      ]),
-
-      filterReports () {
-        const firstReportDate = this.filteredFirstReportDate
-        const lastReportDate = this.filteredLastReportDate
-        const filteredReports = this.reports.filter(report => {
-          return new Date(report.reportTime) >= new Date(firstReportDate) &&
-            new Date(report.reportTime) <= new Date(lastReportDate)
-        })
-
-        this.setFilteredReports(filteredReports)
-      }
-    },
-
     computed: {
+      fetchingReports: get('fetchingReports'),
       sidebarVisible: get('sidebarVisible'),
       reports: get('reports'),
-
-      firstReportDate () {
-        return this.filteredFirstReportDate || this.$moment(this.lastReportDate).subtract(14, 'days').format('YYYY-MM-DD')
-      },
 
       vesselStatusClass () {
         if (!this.lastReport) return `status--red`
@@ -164,14 +124,6 @@
       lastReportDaysAgo () {
         if (!this.lastReport) return '---'
         return this.$moment(this.lastReport.reportTime).fromNow()
-      }
-    },
-
-    watch: {
-      lastReportDate (newValue) {
-        this.filteredFirstReportDate = this.$moment(this.lastReportDate).subtract(14, 'days').format('YYYY-MM-DD'),
-        this.filteredLastReportDate = this.$moment(this.lastReportDate).format('YYYY-MM-DD')
-        this.filterReports()
       }
     }
   }
