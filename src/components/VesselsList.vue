@@ -43,10 +43,13 @@
 
 <style scoped lang="scss">
   .vessels-list-wrapper {
+    padding-bottom: 30px;
+
     .vessels-list {
       display: flex;
+      justify-content: center;
       flex-wrap: wrap;
-      margin: 0 30px;
+      margin: 30px 30px 0;
 
       &__item {
         margin: 20px;
@@ -55,9 +58,6 @@
           margin: 0;
         }
       }
-    },
-    .vessels-list__chart {
-      margin-bottom: 30px;
     }
   }
 </style>

@@ -30,8 +30,9 @@
   .main-menu {
     width: 100%;
     position: relative;
-    top: 56px;
+    top: 25px;
     background-color: $color-whitey;
     background-attachment: fixed;
+    padding-bottom: 100px;
   }
 </style>

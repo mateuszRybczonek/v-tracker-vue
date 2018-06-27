@@ -49,6 +49,10 @@
       width: 400px;
     }
 
+    &.medium {
+      width: 700px;
+    }
+
     &.wide {
       width: 80%;
     }

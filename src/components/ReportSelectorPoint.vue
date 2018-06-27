@@ -48,13 +48,16 @@
     margin: 10px 0;
     width: 30px;
     height: 30px;
+    min-height: 30px;
     background-color: $color-white;
     @include border-radius(50%);
     cursor: pointer;
     transition: all 400ms;
     filter: grayscale(100%);
+
     &__marker-line {
       transform: rotate(-90deg);
+
       &:before {
         content: '';
         position: absolute;
@@ -66,9 +69,11 @@
         z-index: -1;
       }
     }
+
     &__marker-connector {
       transition: all 400ms;
       transform: rotate(-90deg);
+
       &:before {
         content: '';
         position: absolute;
@@ -79,6 +84,7 @@
         z-index: -1;
       }
     }
+
     &:hover {
       transform: scale(1.1);
       filter: grayscale(50%);
@@ -86,24 +92,29 @@
       color: $color-whitey;
       border: 1px solid $color-whitey;
     }
+
     * {
       width: 100%;
       font-weight: $fw-bold;
       font-style: normal;
       text-align: center;
     }
+
     &--selected {
       transform: scale(1.2);
       filter: grayscale(0%);
       background-color: $color-light-blue;
       color: $color-whitey;
       border: 1px solid $color-whitey;
+
       .report-selector-point__marker-connector {
         transform: rotate(0deg);
+
         &:before {
           background-color: $color-light-blue;
         }
       }
+
       &:hover {
         transform: scale(1.2);
         filter: grayscale(0%);

@@ -55,7 +55,8 @@
 
 <style scoped lang="scss">
   .vessels {
-    height: 100vh;
+    position: relative;
+    top: 30px;
 
     h1, p {
       text-align: center;
