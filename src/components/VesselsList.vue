@@ -5,16 +5,16 @@
       :vessels="vessels"
       :fetchingVessels="fetchingVessels"
     />
-    <div class="vessels-list">
-      <VesselsListItem
-        class="vessels-list__item"
-        v-if="!fetchingVessels"
-        v-for="vessel in vessels"
-        :key="vessel.imoNumber"
-        :vessel="vessel"
-      />
-      <VesselsListItemNew class="vessels-list__item"/>
-    </div>
+    <transition-group name="rotate-card" class="vessels-list">
+        <VesselsListItem
+          class="vessels-list__item"
+          v-if="!fetchingVessels"
+          v-for="vessel in vessels"
+          :key="vessel.imoNumber"
+          :vessel="vessel"
+        />
+        <VesselsListItemNew key="vesselsListItemNew" class="vessels-list__item"/>
+    </transition-group>
   </div>
 </template>
 
@@ -59,5 +59,20 @@
         }
       }
     }
+  }
+
+  .rotate-card-enter, .rotate-card-leave-to {
+    opacity: 0;
+    perspective-origin: 25% 75%;
+    transform: perspective(400px) rotateY(45deg);
+  }
+
+  .rotate-card-enter-to, .rotate-card-leave {
+    opacity: 1;
+    transform: perspective(400px) rotateY(0deg);
+  }
+
+  .rotate-card-enter-active, .rotate-card-leave-active {
+    transition: opacity, transform 600ms ease-out;
   }
 </style>
