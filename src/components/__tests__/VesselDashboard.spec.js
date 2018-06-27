@@ -22,11 +22,13 @@ describe('VesselDashboard.vue', () => {
       selectedReport: jest.fn(),
       fetchingReports: jest.fn(),
       sortedReports: jest.fn(),
+      filteredReports:jest.fn(),
       reports: jest.fn(),
       vesselCapacities: jest.fn()
     }
 
     getters.sortedReports.mockReturnValue([secondReport, report])
+    getters.filteredReports.mockReturnValue([secondReport, report])
 
     const localVue = createLocalVue()
     localVue.use(Vuex)

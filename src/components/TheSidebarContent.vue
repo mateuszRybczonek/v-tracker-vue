@@ -53,7 +53,6 @@
 
 <script>
   import { get } from 'vuex-pathify'
-  import { mapActions } from 'vuex'
   import TheSidebarFilter from '@/components/TheSidebarFilter'
 
   export default {

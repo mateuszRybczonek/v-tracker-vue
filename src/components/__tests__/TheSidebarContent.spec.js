@@ -20,7 +20,9 @@ describe('TheSidebarContent.vue', () => {
     const state = {
       sidebarVisible,
       selectedVesselDetailsComponent: VESSEL_DASHBOARD,
-      dashboardGoogleMap: {}
+      dashboardGoogleMap: {},
+      reports: [report, secondReport],
+      fetchingReports: false
     }
 
     const store = new Vuex.Store({

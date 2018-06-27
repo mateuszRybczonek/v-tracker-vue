@@ -26,7 +26,7 @@
       data-test-google-map-info-window-body-button
       :onClick="filterReports"
       :disabled="disableFilterButton"
-      :colorTheme="inverted"
+      colorTheme="inverted"
     >
       Filter
     </ButtonSmall>

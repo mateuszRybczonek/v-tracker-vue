@@ -11,6 +11,8 @@ import router from './router/index'
 import store from './store/index'
 import VueContentPlaceholders from 'vue-content-placeholders'
 import Vuency from 'vuency'
+import 'pikaday/css/pikaday.css'
+
 
 Vue.use(VueContentPlaceholders)
 Vue.use(VueMomentJS, moment)

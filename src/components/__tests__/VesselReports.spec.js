@@ -7,10 +7,12 @@ import Vuex from 'vuex'
 describe('VesselReports.vue', () => {
   const setup = () => {
     const getters = {
-      sortedReports: jest.fn()
+      sortedReports: jest.fn(),
+      filteredReports:jest.fn()
     }
 
     getters.sortedReports.mockReturnValue([secondReport, report])
+    getters.filteredReports.mockReturnValue([secondReport, report])
 
     const localVue = createLocalVue()
     localVue.use(Vuex)

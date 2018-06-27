@@ -8,7 +8,6 @@
 
 <script>
 import Pikaday from 'pikaday'
-import 'pikaday/css/pikaday.css'
 
 export default {
   model: {
