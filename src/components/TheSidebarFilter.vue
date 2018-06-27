@@ -1,7 +1,10 @@
 <template>
   <div class="sidebar-filter">
     <div class="sidebar-filter__datepickers">
-      <label class="datepicker__label">
+      <label
+        data-test-sidebar-filter-start-date-datepicker
+        class="datepicker__label"
+      >
         Start date:
         <DatePicker
           placeholder="Start date"
@@ -11,7 +14,10 @@
         />
       </label>
 
-      <label class="datepicker__label">
+      <label
+        data-test-sidebar-filter-end-date-datepicker
+        class="datepicker__label"
+      >
         End date:
         <DatePicker
           placeholder="End date"
@@ -23,7 +29,7 @@
     </div>
 
     <ButtonSmall
-      data-test-google-map-info-window-body-button
+      data-test-sidebar-filter-button
       :onClick="filterReports"
       :disabled="disableFilterButton"
       colorTheme="inverted"

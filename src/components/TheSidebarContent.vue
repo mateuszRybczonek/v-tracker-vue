@@ -28,7 +28,8 @@
       </div>
 
       <TheSidebarFilter
-        v-if="!fetchingReports"
+        data-test-sidebar-contnent-filter
+        v-if="!fetchingReports && sidebarVisible"
         :lastReport="lastReport"
       />
 
