@@ -1,7 +1,8 @@
 <template>
   <button
-    data-test-button-small-inverted
+    data-test-button-small
     @click="onClick"
+    :class="colorTheme"
   >
     <slot></slot>
   </button>
@@ -13,6 +14,9 @@
       onClick: {
         type: Function,
         required: true
+      },
+      colorTheme: {
+        type: String
       }
     }
   }
@@ -36,6 +40,10 @@
     @media all and (max-width: $phone) {
       width: 100%;
       font-size: 1.2rem;
+    }
+
+    &.inverted {
+      @include light-blue-button();
     }
   }
 </style>

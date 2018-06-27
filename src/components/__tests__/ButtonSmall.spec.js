@@ -1,10 +1,10 @@
 import { shallow } from 'vue-test-utils'
-import ButtonSmallNeutral from '@/components/ButtonSmallNeutral'
+import ButtonSmall from '@/components/ButtonSmall'
 
-describe('ButtonSmallNeutral.vue', () => {
+describe('ButtonSmall.vue', () => {
   const onClick = jest.fn()
 
-  const wrapper = shallow(ButtonSmallNeutral, {
+  const wrapper = shallow(ButtonSmall, {
     propsData: {
       onClick
     },
@@ -15,12 +15,12 @@ describe('ButtonSmallNeutral.vue', () => {
   })
 
   it('renders correct content', () => {
-    expect(wrapper.findAll('[data-test-button-small-neutral]')).toHaveLength(1)
+    expect(wrapper.findAll('[data-test-button-small]')).toHaveLength(1)
     expect(wrapper.findAll('[data-test-fake-slot]')).toHaveLength(1)
   })
 
   it('should call onClick method when button is clicked', () => {
-    wrapper.find('[data-test-button-small-neutral]').trigger('click')
+    wrapper.find('[data-test-button-small]').trigger('click')
     expect(wrapper.vm.onClick).toBeCalled()
   })
 })

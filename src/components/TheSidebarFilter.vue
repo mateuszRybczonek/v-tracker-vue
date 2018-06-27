@@ -22,13 +22,14 @@
       </label>
     </div>
 
-    <ButtonSmallInverted
+    <ButtonSmall
       data-test-google-map-info-window-body-button
       :onClick="filterReports"
       :disabled="disableFilterButton"
+      :colorTheme="inverted"
     >
       Filter
-    </ButtonSmallInverted>
+    </ButtonSmall>
   </div>
 </template>
 
@@ -36,12 +37,12 @@
   import { get } from 'vuex-pathify'
   import { mapActions } from 'vuex'
   import DatePicker from '@/components/DatePicker'
-  import ButtonSmallInverted from '@/components/ButtonSmallInverted'
+  import ButtonSmall from '@/components/ButtonSmall'
 
   export default {
     components: {
       DatePicker,
-      ButtonSmallInverted
+      ButtonSmall
     },
 
     props: {

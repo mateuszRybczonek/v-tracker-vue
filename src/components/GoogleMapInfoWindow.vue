@@ -14,12 +14,12 @@
           <span>Longitude:</span>
           <span>{{lng}}</span>
         </span>
-        <ButtonSmallNeutral
+        <ButtonSmall
           data-test-google-map-info-window-body-button
           :onClick="goToVesselDetails"
         >
           Go to details
-        </ButtonSmallNeutral>
+        </ButtonSmall>
       </div>
     </div>
   </div>
@@ -27,13 +27,13 @@
 
 <script>
 import router from '@/router/index'
-import ButtonSmallNeutral from '@/components/ButtonSmallNeutral'
+import ButtonSmall from '@/components/ButtonSmall'
 
 export default {
   name: 'infowindow',
 
   components: {
-    ButtonSmallNeutral
+    ButtonSmall
   },
 
   props: {
