@@ -98,7 +98,7 @@ describe('EditVesselPage.vue', () => {
       expect(wrapper.findAll(FormWrapper)).toHaveLength(1)
       const formWrapper = wrapper.find(FormWrapper)
       expect(formWrapper.props().title).toEqual('Edit vessel details')
-      expect(formWrapper.props().size).toEqual('narrow')
+      expect(formWrapper.props().size).toEqual('medium')
     })
 
     test('with vessel name input', () => {

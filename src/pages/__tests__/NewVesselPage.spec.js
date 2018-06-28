@@ -91,7 +91,7 @@ describe('NewVesselPage.vue', () => {
       expect(wrapper.findAll(FormWrapper)).toHaveLength(1)
       const formWrapper = wrapper.find(FormWrapper)
       expect(formWrapper.props().title).toEqual('Create new vessel')
-      expect(formWrapper.props().size).toEqual('narrow')
+      expect(formWrapper.props().size).toEqual('medium')
     })
 
     test('with vessel name input', () => {
