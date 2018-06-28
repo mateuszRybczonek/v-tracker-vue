@@ -1,4 +1,4 @@
-import { shallow, createLocalVue } from 'vue-test-utils'
+import { mount, createLocalVue } from 'vue-test-utils'
 import TheSidebarContent from '@/components/TheSidebarContent.vue'
 import Vuex from 'vuex'
 import { report, secondReport } from '@/../test/stubs/report'
@@ -10,6 +10,7 @@ import { make } from 'vuex-pathify'
 import { COMPONENT_NAMES } from '@/constants/vessel-details'
 
 const { VESSEL_DASHBOARD } = COMPONENT_NAMES
+const setFilteredReportsSpy = jest.fn()
 
 describe('TheSidebarContent.vue', () => {
   const setup = sidebarVisible => {
@@ -20,16 +21,23 @@ describe('TheSidebarContent.vue', () => {
     const state = {
       sidebarVisible,
       selectedVesselDetailsComponent: VESSEL_DASHBOARD,
-      dashboardGoogleMap: {}
+      dashboardGoogleMap: {},
+      reports: [report, secondReport],
+      fetchingReports: false
+    }
+
+    const actions = {
+      setFilteredReports: setFilteredReportsSpy
     }
 
     const store = new Vuex.Store({
       plugins: [ pathify.plugin ],
       state,
-      getters: { ...make.getters(state) }
+      getters: { ...make.getters(state) },
+      actions
     })
 
-    const wrapper = shallow(TheSidebarContent, {
+    const wrapper = mount(TheSidebarContent, {
       localVue,
       store,
       propsData: {
@@ -50,6 +58,10 @@ describe('TheSidebarContent.vue', () => {
       expect(wrapper.findAll('[data-test-sidebar-content-status-marker]')).toHaveLength(1)
     })
 
+    test('filter is not rendered', () => {
+      expect(wrapper.findAll('[data-test-sidebar-contnent-filter]')).toHaveLength(0)
+    })
+
     test('last-report data is not rendered', () => {
       expect(wrapper.findAll('[data-test-sidebar-content-list-last-report]')).toHaveLength(0)
     })
@@ -66,6 +78,10 @@ describe('TheSidebarContent.vue', () => {
     test('status label and marker is rendered', () => {
       expect(wrapper.find('[data-test-sidebar-content-status]').text()).toContain('Status')
       expect(wrapper.findAll('[data-test-sidebar-content-status-marker]')).toHaveLength(1)
+    })
+
+    test('filter is rendered', () => {
+      expect(wrapper.findAll('[data-test-sidebar-contnent-filter]')).toHaveLength(1)
     })
 
     test('last-report data is rendered', () => {

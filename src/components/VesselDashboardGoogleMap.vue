@@ -19,6 +19,7 @@
     >
       <template slot-scope="{ google, map }">
         <GoogleMapMarker
+          v-if="showMapElements"
           data-test-google-map-marker
           v-for="marker in markers"
           :key="marker.id"
@@ -29,10 +30,12 @@
           @selectMarker="selectMarker(marker)"
         />
         <GoogleMapLine
+          v-if="showMapElements"
           data-test-google-map-line
           v-for="(line, index) in lines"
           :key="index"
           :path.sync="line.path"
+          :googleMapLines="googleMapLines"
           :google="google"
           :map="map"
         />
@@ -73,7 +76,10 @@ export default {
       linePathConfig: LINE_PATH_CONFIG,
       mapSettings,
       markers: this.points,
-      googleMapMarkers: []
+      googleMapMarkers: [],
+      googleMapLines: [],
+      showMapElements: true,
+      isRerendered: false
     }
   },
 
@@ -85,23 +91,24 @@ export default {
     ...mapGetters([
       'sortedReports'
     ]),
+    filteredReports: get('filteredReports'),
     dashboardGoogleMap: get('dashboardGoogleMap'),
     fetchingReports: get('fetchingReports'),
     selectedReport: get('selectedReport'),
     reports: get('reports'),
 
     newSelectedReport () {
-      if(this.googleMapMarkers.length > 0) return this.selectedReport
+      if(this.googleMapMarkers.length > 0 || this.isRerendered) return this.selectedReport
     },
 
     points () {
-      if(!this.fetchingReports) return mapReportsToMarkers(this.reports)
+      if(!this.fetchingReports) return mapReportsToMarkers(this.filteredReports)
     },
 
     lines () {
-      const { reports } = this
+      const { filteredReports } = this
       const lines = []
-      if (reports.length > 0) mapReportsToLines(reports, lines)
+      if (filteredReports.length > 0) mapReportsToLines(filteredReports, lines)
       return lines
     },
 
@@ -132,6 +139,27 @@ export default {
       'setDashboardGoogleMap'
     ]),
 
+    rerenderMapElements() {
+      this.googleMapMarkers.forEach(googleMapMarker => {
+        googleMapMarker.setIcon(null)
+        googleMapMarker.setAnimation(null)
+        googleMapMarker.setMap(null)
+      })
+
+      this.googleMapLines.forEach(googleMapLine => {
+        googleMapLine.setMap(null)
+      })
+
+      this.googleMapMarkers = []
+      this.googleMapLines = []
+
+      this.showMapElements = false
+      this.$nextTick(() => {
+        this.showMapElements = true
+      })
+      this.isRerendered = true
+    },
+
     selectMarker(marker) {
       this.selectReport(marker.id)
     }
@@ -153,8 +181,11 @@ export default {
       this.dashboardGoogleMap.panTo({ lat, lng })
     },
 
-    reports () {
-      if(!this.fetchingReports) this.markers = mapReportsToMarkers(this.reports)
+    filteredReports () {
+      const markers = this.points
+      this.selectReport(markers[0].id)
+      this.rerenderMapElements()
+      if(!this.fetchingReports) this.markers = mapReportsToMarkers(this.filteredReports)
     }
   }
 }

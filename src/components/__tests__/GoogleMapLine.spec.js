@@ -16,7 +16,8 @@ describe('GoogleMapLine.vue', () => {
           },
         },
         map: { map: true },
-        path: LINES[0].path
+        path: LINES[0].path,
+        googleMapLines: []
       }
     })
     return { wrapper }

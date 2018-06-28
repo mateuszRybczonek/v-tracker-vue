@@ -27,6 +27,12 @@
         <span class="sidebar__content__list__item__title">({{lastReportDaysAgo}})</span>
       </div>
 
+      <TheSidebarFilter
+        data-test-sidebar-contnent-filter
+        v-if="!fetchingReports && sidebarVisible"
+        :lastReport="lastReport"
+      />
+
       <div
         data-test-sidebar-content-list-items
         class="sidebar__content__list__items"
@@ -48,8 +54,13 @@
 
 <script>
   import { get } from 'vuex-pathify'
+  import TheSidebarFilter from '@/components/TheSidebarFilter'
 
   export default {
+    components: {
+      TheSidebarFilter
+    },
+
     props: {
       vessel: {
         type: Object,
@@ -66,7 +77,9 @@
     },
 
     computed: {
+      fetchingReports: get('fetchingReports'),
       sidebarVisible: get('sidebarVisible'),
+      reports: get('reports'),
 
       vesselStatusClass () {
         if (!this.lastReport) return `status--red`

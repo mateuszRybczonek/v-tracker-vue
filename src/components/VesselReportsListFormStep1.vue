@@ -21,15 +21,13 @@
 						>
               <IconCalendar></IconCalendar>
             </BaseIcon>
-
-						<input
-							class="input input__report-time input--with-error"
+						<DatePicker
+							class="form-input input input__report-time input--with-error"
 							:class="{ invalid: showErrors && $v.reportData.reportTime.$invalid }"
-							type="text"
 							placeholder="Report date"
 							v-model="reportData.reportTime"
-							@input="$v.reportData.reportTime.$touch()"
-						>
+							@selected="$v.reportData.reportTime.$touch()"
+						/>
 					</div>
 					<div slot="errors">
 						<span
@@ -224,6 +222,7 @@ import IconFi from './Icons/IconFi.vue'
 import IconLambda from './Icons/IconLambda.vue'
 import IconNavigation from './Icons/IconNavigation.vue'
 import IconSpeed from './Icons/IconSpeed.vue'
+import DatePicker from '@/components/DatePicker.vue'
 
 export default {
   components: {
@@ -234,7 +233,8 @@ export default {
     IconFi,
     IconLambda,
     IconNavigation,
-    IconSpeed
+    IconSpeed,
+		DatePicker
   },
 
   props: {

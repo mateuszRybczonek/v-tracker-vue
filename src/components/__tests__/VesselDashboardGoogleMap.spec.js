@@ -7,6 +7,7 @@ const selectReportSpy = jest.fn()
 const googleMapMarkerStub = {
   setIcon: jest.fn(),
   setAnimation: jest.fn(),
+  setMap: jest.fn(),
   marker: { ...report }
 }
 
@@ -16,6 +17,7 @@ describe('VesselDashboardGoogleMap.vue', () => {
     const getters = {
       reports: jest.fn(),
       sortedReports: jest.fn(),
+      filteredReports: jest.fn(),
       fetchingReports: jest.fn(),
       selectedReport: jest.fn(),
       dashboardGoogleMap: jest.fn()
@@ -27,6 +29,7 @@ describe('VesselDashboardGoogleMap.vue', () => {
 
     getters.reports.mockReturnValue([report, secondReport])
     getters.sortedReports.mockReturnValue([report, secondReport])
+    getters.filteredReports.mockReturnValue([report, secondReport])
     getters.fetchingReports.mockReturnValue(false)
     getters.selectedReport.mockReturnValue(report)
     getters.dashboardGoogleMap.mockReturnValue({

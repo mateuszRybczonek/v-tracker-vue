@@ -1,7 +1,8 @@
 <template>
   <button
-    data-test-button-small-neutral
+    data-test-button-small
     @click="onClick"
+    :class="colorTheme"
   >
     <slot></slot>
   </button>
@@ -13,6 +14,9 @@
       onClick: {
         type: Function,
         required: true
+      },
+      colorTheme: {
+        type: String
       }
     }
   }
@@ -24,13 +28,11 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 100%;
     margin-top: 20px;
-    margin-left: 10px;
     text-transform: uppercase;
 
     @include common-button();
-    @include green-button();
+    @include light-blue-button();
     @include box-shadow(0 8px 16px 0 rgba(83, 99, 115, 0.32));
     @include font(0.8rem, 700);
     height: 30px;
@@ -38,6 +40,10 @@
     @media all and (max-width: $phone) {
       width: 100%;
       font-size: 1.2rem;
+    }
+
+    &.inverted {
+      @include light-blue-button();
     }
   }
 </style>
