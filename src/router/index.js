@@ -2,30 +2,25 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store'
 
-const HomePage = () => import('../pages/HomePage.vue')
-const MainMenuPage = () => import('../pages/MainMenuPage.vue')
-const SignupPage = () => import('../pages/auth/SignupPage.vue')
-const SigninPage = () => import('../pages/auth/SigninPage.vue')
-const VesselsPage =() => import('../pages/VesselsPage.vue')
-const NewVesselPage =() => import('../pages/NewVesselPage.vue')
-const EditVesselPage =() => import('../pages/EditVesselPage.vue')
-const VesselPage =() => import('../pages/VesselPage.vue')
-
 Vue.use(VueRouter)
 
+function loadPage(page) {
+  return () => import(/* webpackChunkName: "[request]" */ `../pages/${page}.vue`)
+}
+
 const routes = [
-  { path: '/', component: HomePage },
-  { path: '/signup', component: SignupPage },
-  { path: '/signin', component: SigninPage },
+  { path: '/', component: loadPage('HomePage') },
+  { path: '/signup', component: loadPage('auth/SignupPage') },
+  { path: '/signin', component: loadPage('auth/SigninPage') },
   {
     path: '/dashboard',
-    component: MainMenuPage,
+    component: loadPage('MainMenuPage'),
     children: [
-      { path: '', component: VesselsPage },
-      { path: 'vessels', component: VesselsPage },
-      { path: 'vessels/new', component: NewVesselPage },
-      { path: 'vessels/:id/edit', component: EditVesselPage },
-      { path: 'vessels/:id', component: VesselPage }
+      { path: '', component: loadPage('VesselsPage') },
+      { path: 'vessels', component: loadPage('VesselsPage') },
+      { path: 'vessels/new', component: loadPage('NewVesselPage') },
+      { path: 'vessels/:id/edit', component: loadPage('EditVesselPage') },
+      { path: 'vessels/:id', component: loadPage('VesselPage') }
     ],
     beforeEnter (to, from, next) { // authentication guard
       if (store.state.auth.idToken) {
