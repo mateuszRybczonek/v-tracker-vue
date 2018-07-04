@@ -2,14 +2,14 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store'
 
-import HomePage from '../pages/HomePage.vue'
-import MainMenuPage from '../pages/MainMenuPage.vue'
-import SignupPage from '../pages/auth/SignupPage.vue'
-import SigninPage from '../pages/auth/SigninPage.vue'
-import VesselsPage from '../pages/VesselsPage.vue'
-import NewVesselPage from '../pages/NewVesselPage.vue'
-import EditVesselPage from '../pages/EditVesselPage.vue'
-import VesselPage from '../pages/VesselPage.vue'
+const HomePage = () => import('../pages/HomePage.vue')
+const MainMenuPage = () => import('../pages/MainMenuPage.vue')
+const SignupPage = () => import('../pages/auth/SignupPage.vue')
+const SigninPage = () => import('../pages/auth/SigninPage.vue')
+const VesselsPage =() => import('../pages/VesselsPage.vue')
+const NewVesselPage =() => import('../pages/NewVesselPage.vue')
+const EditVesselPage =() => import('../pages/EditVesselPage.vue')
+const VesselPage =() => import('../pages/VesselPage.vue')
 
 Vue.use(VueRouter)
 
