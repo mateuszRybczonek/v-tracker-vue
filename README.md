@@ -1,21 +1,23 @@
 # v-tracker-vue
 
-> A Vue.js project
+This is a Vue.js project for managing fleet of vessels.
+It allows user to add a vessel, create daily reports that are then visualized in the application.
+
+![](https://github.com/mateuszRybczonek/v-tracker-vue/blob/master/githubPictures/1.png)
+![](https://github.com/mateuszRybczonek/v-tracker-vue/blob/master/githubPictures/2.png)
+![](https://github.com/mateuszRybczonek/v-tracker-vue/blob/master/githubPictures/3.png)
+![](https://github.com/mateuszRybczonek/v-tracker-vue/blob/master/githubPictures/4.png)
+![](https://github.com/mateuszRybczonek/v-tracker-vue/blob/master/githubPictures/5.png)
+![](https://github.com/mateuszRybczonek/v-tracker-vue/blob/master/githubPictures/6.png)
+
 
 ## Build Setup
 
 ``` bash
-# install dependencies
 npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 
 # run unit tests
 npm run unit
@@ -26,6 +28,3 @@ npm run e2e
 # run all tests
 npm test
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-# v-tracker-vue
